@@ -1,5 +1,24 @@
 # Gambas Form File 3.0
 
 { Form Form
-  MoveScaled(0,0,79,51)
+  MoveScaled(0,0,135,93)
+  Expand = True
+  Maximized = True
+  Arrangement = Arrange.Fill
+  Centered = True
+  Spacing = True
+  Margin = True
+  Padding = 4
+  { Menu1 Menu
+    Text = ("Archivo")
+  }
+  { Menu2 Menu
+    Text = ("Edición")
+  }
+  { Menu3 Menu
+    Text = ("Herramientas")
+  }
+  { Menu4 Menu
+    Text = ("Acerca de") & "..."
+  }
 }
