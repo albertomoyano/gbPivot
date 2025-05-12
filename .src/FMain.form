@@ -89,6 +89,7 @@
         }
         { FileView1 FileView
           MoveScaled(38,6,20,14)
+          View = FileView.Detailed
         }
       }
     }
