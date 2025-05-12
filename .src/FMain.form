@@ -11,6 +11,10 @@
   Padding = 4
   { Menu1 Menu
     Text = ("Archivo")
+    { Menu6 Menu
+      Text = ("Abrir archivo")
+      Picture = Picture["iconos/abrirBuscar.svg"]
+    }
     { Menu5 Menu
       Text = ("Salir de la aplicación")
       Picture = Picture["iconos/salir.svg"]
@@ -25,13 +29,13 @@
   { Menu4 Menu
     Text = ("Acerca de") & "..."
   }
-  { Splitter1 Splitter
-    MoveScaled(1,1,116,63)
+  { SplitterPrincipal Splitter
+    MoveScaled(1,1,130,63)
     Expand = True
     Centered = True
     Border = False
     { Panel1 Panel
-      MoveScaled(3,10,40,49)
+      MoveScaled(1,6,40,49)
       Expand = True
       Arrangement = Arrange.Vertical
       Padding = 4
@@ -54,23 +58,39 @@
         { txtProyecto TextBox
           MoveScaled(25,0,11,4)
           Background = Color.Background
+          Foreground = Color.Blue
           Expand = True
           ReadOnly = True
         }
       }
     }
-    { TabPanel1 TabPanel
-      MoveScaled(45,10,70,26)
-      Count = 4
-      Index = 0
-      Text = ("Metadatos")
-      Index = 1
-      Text = ("Referencias bibliográficas")
-      Index = 2
-      Text = ("Siglas y glosarios")
-      Index = 3
-      Text = ("Asistente AI")
-      Index = 0
+    { SplitterPanel2 Splitter
+      MoveScaled(42,1,79,61)
+      Arrangement = Arrange.Vertical
+      Border = False
+      { TabPanel1 TabPanel
+        MoveScaled(1,6,76,26)
+        Count = 4
+        Index = 0
+        Text = ("Metadatos     ")
+        Index = 1
+        Text = ("Referencias bibliográficas     ")
+        Index = 2
+        Text = ("Siglas y glosarios     ")
+        Index = 3
+        Text = ("Asistente AI     ")
+        Index = 0
+      }
+      { SplitterPanel3 Splitter
+        MoveScaled(3,35,62,24)
+        Border = False
+        { DirView1 DirView
+          MoveScaled(5,7,26,14)
+        }
+        { FileView1 FileView
+          MoveScaled(38,6,20,14)
+        }
+      }
     }
   }
 }
