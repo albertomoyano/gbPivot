@@ -4,13 +4,17 @@
   MoveScaled(0,0,135,93)
   Expand = True
   Maximized = True
-  Arrangement = Arrange.Fill
+  Arrangement = Arrange.Vertical
   Centered = True
   Spacing = True
   Margin = True
   Padding = 4
   { Menu1 Menu
     Text = ("Archivo")
+    { Menu5 Menu
+      Text = ("Salir de la aplicación")
+      Picture = Picture["iconos/salir.svg"]
+    }
   }
   { Menu2 Menu
     Text = ("Edición")
@@ -20,5 +24,53 @@
   }
   { Menu4 Menu
     Text = ("Acerca de") & "..."
+  }
+  { Splitter1 Splitter
+    MoveScaled(1,1,116,63)
+    Expand = True
+    Centered = True
+    Border = False
+    { Panel1 Panel
+      MoveScaled(3,10,40,49)
+      Expand = True
+      Arrangement = Arrange.Vertical
+      Padding = 4
+      { Panel2 Panel
+        MoveScaled(2,4,30,13)
+        Expand = True
+        Arrangement = Arrange.Fill
+        Border = Border.Sunken
+        { WebViewEditor WebView
+          MoveScaled(1,2,22,7)
+        }
+      }
+      { HBox1 HBox
+        MoveScaled(1,44,37,4)
+        { Label1 Label
+          MoveScaled(4,0,11,4)
+          AutoResize = True
+          Text = ("Proyecto en curso:  ")
+        }
+        { txtProyecto TextBox
+          MoveScaled(25,0,11,4)
+          Background = Color.Background
+          Expand = True
+          ReadOnly = True
+        }
+      }
+    }
+    { TabPanel1 TabPanel
+      MoveScaled(45,10,70,26)
+      Count = 4
+      Index = 0
+      Text = ("Metadatos")
+      Index = 1
+      Text = ("Referencias bibliográficas")
+      Index = 2
+      Text = ("Siglas y glosarios")
+      Index = 3
+      Text = ("Asistente AI")
+      Index = 0
+    }
   }
 }
