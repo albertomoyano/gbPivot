@@ -12,7 +12,7 @@
   Spacing = True
   Margin = True
   Padding = 4
-  { Panel1 Panel
+  { Panel1 HBox
     Move(0,0,603,72)
     { PictureBox1 PictureBox
       Move(0,0,72,72)
@@ -20,6 +20,9 @@
       AutoResize = True
       Alignment = Align.Center
     }
+  }
+  { Separator1 Separator
+    Move(0,81,504,9)
   }
   { HBox6 HBox
     Move(9,108,747,36)

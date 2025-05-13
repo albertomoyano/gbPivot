@@ -9,12 +9,15 @@
   Spacing = True
   Margin = True
   Padding = 4
-  { Panel1 Panel
-    Move(63,36,603,72)
+  { Panel1 HBox
+    Move(9,9,603,72)
     { PictureBox1 PictureBox
       Move(0,0,72,72)
       Picture = Picture.Load("iconos/pivote.png")
       Alignment = Align.Center
     }
+  }
+  { Separator1 Separator
+    Move(9,90,504,9)
   }
 }

@@ -95,3 +95,9 @@ Public Sub reinicamosTiempo()
   ActualizarDisplay
 
 End
+
+Public Sub Menu22_Click()
+
+  f_BlockNotas.ShowModal()
+
+End

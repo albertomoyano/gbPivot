@@ -63,6 +63,10 @@
       Text = ("Comprimir todo el proyecto")
       Picture = Picture["iconos/archive-zip.svg"]
     }
+    { Menu22 Menu
+      Text = ("Block de notas")
+      Picture = Picture["iconos/textnormal.svg"]
+    }
     { Menu2 Menu
       Text = ("Preferencias")
       Picture = Picture["iconos/logfile.svg"]
