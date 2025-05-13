@@ -38,6 +38,10 @@
       Text = ("Empujar a gir remoto (github)")
       Picture = Picture["iconos/gitremoto.svg"]
     }
+    { Menu12 Menu
+      Text = ("Comprimir todo el proyecto")
+      Picture = Picture["iconos/archive-zip.svg"]
+    }
     { Menu2 Menu
       Text = ("Preferencias")
       Picture = Picture["iconos/logfile.svg"]
@@ -45,6 +49,10 @@
   }
   { Menu4 Menu
     Text = ("Acerca de") & "..."
+    { Menu13 Menu
+      Text = ("Gambas")
+      Picture = Picture["iconos/logo-gambas.png"]
+    }
     { Menu9 Menu
       Text = ("gbPivot")
       Picture = Picture["iconos/pivote.png"]
@@ -115,17 +123,17 @@
       }
     }
     { Panel3 Panel
-      MoveScaled(50,1,79,78)
+      MoveScaled(50,1,79,85)
       Expand = True
       Arrangement = Arrange.Vertical
       Padding = 4
       { SplitterPanel2 Splitter
-        MoveScaled(0,2,79,61)
+        MoveScaled(0,2,79,81)
         Expand = True
         Arrangement = Arrange.Vertical
         Border = False
         { TabPanel1 TabPanel
-          MoveScaled(1,6,76,26)
+          MoveScaled(1,1,76,55)
           Count = 4
           Index = 0
           Text = ("Metadatos     ")
@@ -142,7 +150,7 @@
           Index = 0
         }
         { TabPanel2 TabPanel
-          MoveScaled(3,37,74,23)
+          MoveScaled(2,57,74,23)
           Arrangement = Arrange.Fill
           Count = 2
           Index = 0
