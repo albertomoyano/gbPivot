@@ -20,6 +20,27 @@
       Picture = Picture["iconos/salir.svg"]
     }
   }
+  { Menu15 Menu
+    Text = ("Salidas en local")
+    { Menu16 Menu
+      Text = ("Generar PDFs")
+    }
+    { Menu17 Menu
+      Text = ("Generar ePub")
+    }
+    { Menu18 Menu
+      Text = ("Generar DocBook")
+    }
+    { Menu19 Menu
+      Text = ("Generar HTML")
+    }
+    { Menu20 Menu
+      Text = ("Generar XML-JATS SciELO")
+    }
+    { Menu21 Menu
+      Text = ("Generar XML-JATS PMD")
+    }
+  }
   { Menu3 Menu
     Text = ("Herramientas")
     { Menu7 Menu
@@ -35,7 +56,7 @@
       Picture = Picture["iconos/git-local.svg"]
     }
     { Menu11 Menu
-      Text = ("Empujar a gir remoto (github)")
+      Text = ("Empujar a github y generar todas las salidas")
       Picture = Picture["iconos/gitremoto.svg"]
     }
     { Menu12 Menu
