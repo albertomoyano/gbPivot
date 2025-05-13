@@ -5,3 +5,22 @@ Public Sub Menu5_Click()
   Quit
 
 End
+
+Public Sub Form_Open()
+
+  SplitterPanel3.Layout = [1, 1]
+  SplitterPanel2.Layout = [7, 3]
+
+End
+
+Public Sub SplitterPanel3_Resize()
+
+  SplitterPanel3.Layout = [1, 1]
+
+End
+
+Public Sub SplitterPanel2_Resize()
+
+  SplitterPanel2.Layout = [7, 3]
+
+End

@@ -25,20 +25,56 @@
   }
   { Menu3 Menu
     Text = ("Herramientas")
+    { Menu7 Menu
+      Text = ("Conversor de .docx --> .asciidoc")
+    }
+    { Menu8 Menu
+      Text = ("Exportar referencias bibliogáficas")
+    }
   }
   { Menu4 Menu
     Text = ("Acerca de") & "..."
+    { Menu9 Menu
+      Text = ("gbPivot")
+    }
   }
   { SplitterPrincipal Splitter
-    MoveScaled(1,1,130,63)
+    MoveScaled(1,1,130,87)
     Expand = True
     Centered = True
     Border = False
     { Panel1 Panel
-      MoveScaled(1,6,40,49)
+      MoveScaled(1,7,48,49)
       Expand = True
       Arrangement = Arrange.Vertical
       Padding = 4
+      { HBox2 HBox
+        MoveScaled(0,0,47,4)
+        { Button3 Button
+          MoveScaled(0,0,4,4)
+        }
+        { Button4 Button
+          MoveScaled(4,0,4,4)
+        }
+        { Button5 Button
+          MoveScaled(8,0,4,4)
+        }
+        { Button6 Button
+          MoveScaled(12,0,4,4)
+        }
+        { Spring1 Spring
+          MoveScaled(17,0,4,4)
+        }
+        { MenuButton1 MenuButton
+          MoveScaled(21,0,16,4)
+        }
+        { Button2 Button
+          MoveScaled(37,0,4,4)
+        }
+        { Button1 Button
+          MoveScaled(41,0,4,4)
+        }
+      }
       { Panel2 Panel
         MoveScaled(2,4,30,13)
         Expand = True
@@ -64,32 +100,52 @@
         }
       }
     }
-    { SplitterPanel2 Splitter
-      MoveScaled(42,1,79,61)
+    { Panel3 Panel
+      MoveScaled(50,1,79,78)
+      Expand = True
       Arrangement = Arrange.Vertical
-      Border = False
-      { TabPanel1 TabPanel
-        MoveScaled(1,6,76,26)
-        Count = 4
-        Index = 0
-        Text = ("Metadatos     ")
-        Index = 1
-        Text = ("Referencias bibliográficas     ")
-        Index = 2
-        Text = ("Siglas y glosarios     ")
-        Index = 3
-        Text = ("Asistente AI     ")
-        Index = 0
-      }
-      { SplitterPanel3 Splitter
-        MoveScaled(3,35,62,24)
+      Padding = 4
+      { SplitterPanel2 Splitter
+        MoveScaled(0,2,79,61)
+        Expand = True
+        Arrangement = Arrange.Vertical
         Border = False
-        { DirView1 DirView
-          MoveScaled(5,7,26,14)
+        { TabPanel1 TabPanel
+          MoveScaled(1,6,76,26)
+          Count = 4
+          Index = 0
+          Text = ("Metadatos     ")
+          Index = 1
+          Text = ("Referencias bibliográficas     ")
+          Index = 2
+          Text = ("Siglas y glosarios     ")
+          Index = 3
+          Text = ("Asistente AI     ")
+          Index = 0
         }
-        { FileView1 FileView
-          MoveScaled(38,6,20,14)
-          View = FileView.Detailed
+        { TabPanel2 TabPanel
+          MoveScaled(3,37,74,23)
+          Arrangement = Arrange.Fill
+          Count = 2
+          Index = 0
+          Text = ("Terminal     ")
+          { Terminal TerminalView
+            MoveScaled(8,5,24,9)
+          }
+          Index = 1
+          Text = ("Vista Dir/File     ")
+          { SplitterPanel3 Splitter
+            MoveScaled(1,1,48,17)
+            Border = False
+            { DirView1 DirView
+              MoveScaled(1,5,26,10)
+            }
+            { FileView1 FileView
+              MoveScaled(28,5,19,10)
+              View = FileView.Detailed
+            }
+          }
+          Index = 0
         }
       }
     }
