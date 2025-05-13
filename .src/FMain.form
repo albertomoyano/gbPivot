@@ -38,6 +38,10 @@
       Text = ("Empujar a gir remoto (github)")
       Picture = Picture["iconos/gitremoto.svg"]
     }
+    { Menu2 Menu
+      Text = ("Preferencias")
+      Picture = Picture["iconos/logfile.svg"]
+    }
   }
   { Menu4 Menu
     Text = ("Acerca de") & "..."

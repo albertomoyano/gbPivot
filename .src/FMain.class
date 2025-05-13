@@ -1,15 +1,15 @@
 ' Gambas class file
 
-Public Sub Menu5_Click()
-
-  Quit
-
-End
-
 Public Sub Form_Open()
 
   SplitterPanel3.Layout = [1, 1]
   SplitterPanel2.Layout = [7, 3]
+
+End
+
+Public Sub Menu5_Click()
+
+  Quit
 
 End
 
@@ -22,5 +22,17 @@ End
 Public Sub SplitterPanel2_Resize()
 
   SplitterPanel2.Layout = [7, 3]
+
+End
+
+Public Sub Menu2_Click()
+
+  f_Preferencias.ShowModal()
+
+End
+
+Public Sub Menu7_Click()
+
+  f_Conversor.ShowModal()
 
 End

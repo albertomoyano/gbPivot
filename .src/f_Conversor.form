@@ -1,0 +1,152 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  Move(0,0,963,369)
+  #Scaled = False
+  #Translate = False
+  Expand = True
+  Text = "Conversión de archivos Word (.docx) a formato AsciiDoc y LaTeX utilizando Pandoc"
+  Resizable = False
+  Arrangement = Arrange.Vertical
+  AutoResize = True
+  Spacing = True
+  Margin = True
+  Padding = 4
+  { Panel1 Panel
+    Move(0,0,603,72)
+    { PictureBox1 PictureBox
+      Move(0,0,72,72)
+      Picture = Picture.Load("iconos/conversor.png")
+      AutoResize = True
+      Alignment = Align.Center
+    }
+  }
+  { HBox6 HBox
+    Move(9,108,747,36)
+    { Label5 TextLabel
+      Move(54,0,621,36)
+      Expand = True
+      Text = ("Se dispone de un filtro Lua para editar en <strong>user.home/.gbpivot/filtro.lua</strong>")
+      Alignment = Align.Center
+    }
+  }
+  { HBox1 HBox
+    Move(9,144,747,36)
+    { Label3 Label
+      Move(0,0,162,36)
+      NoTabFocus = True
+      Alignment = Align.Right
+      Text = ("Seleccionar método  ")
+    }
+    { rbFormatoDOCX RadioButton
+      Move(234,0,198,36)
+      Expand = True
+      AutoResize = True
+      Text = ("Archivo con formato .docx          ")
+      Value = True
+    }
+    { rbFormatoRTF RadioButton
+      Move(459,0,243,36)
+      Expand = True
+      AutoResize = True
+      Text = ("Archivo con formato .rtf ")
+    }
+  }
+  { HBox2 HBox
+    Move(9,180,800,36)
+    NoTabFocus = True
+    { Label1 Label
+      Move(9,0,162,36)
+      NoTabFocus = True
+      Alignment = Align.Right
+      Text = ("Archivo de origen  ")
+    }
+    { btnBuscar Button
+      Move(297,0,36,36)
+      NoTabFocus = True
+      Picture = Picture["iconos/abrirBuscar.svg"]
+    }
+    { txtORIGEN TextBox
+      Move(369,0,216,36)
+      #Translate = False
+      Foreground = Color.Blue
+      NoTabFocus = True
+      Expand = True
+      ReadOnly = True
+      Placeholder = "Seleccione un archivo word con extensión docx"
+    }
+  }
+  { HBox5 HBox
+    Move(9,216,747,36)
+  }
+  { HBox4 HBox
+    Move(9,252,747,36)
+    { Label4 Label
+      Move(0,0,162,36)
+      NoTabFocus = True
+      Alignment = Align.Right
+      Text = ("Formato de salida  ")
+    }
+    { rbADOC RadioButton
+      Move(216,0,243,36)
+      Expand = True
+      AutoResize = True
+      Text = ("Archivo con formato .adoc")
+      Value = True
+    }
+    { rbTEX RadioButton
+      Move(468,0,198,36)
+      Expand = True
+      AutoResize = True
+      Text = ("Archivo con formato .tex         ")
+    }
+  }
+  { HBox3 HBox
+    Move(9,288,800,36)
+    NoTabFocus = True
+    { Label2 Label
+      Move(0,0,162,36)
+      NoTabFocus = True
+      Alignment = Align.Right
+      Text = ("Archivo de  destino  ")
+    }
+    { txtFecha TextBox
+      Move(234,0,144,36)
+      Background = Color.Background
+      Alignment = Align.Right
+      ReadOnly = True
+    }
+    { txtDESTINO TextBox
+      Move(387,0,216,40)
+      NoTabFocus = True
+      Expand = True
+      Placeholder = ("caracteres permitidos: ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+    }
+    { btnCONVERTIR Button
+      Move(621,0,144,40)
+      Enabled = False
+      NoTabFocus = True
+      Text = ("Convertir")
+      Picture = Picture["iconos/conversor.svg"]
+    }
+  }
+  { HBox7 HBox
+    Move(9,324,900,36)
+    { Spring1 Spring
+      Move(81,0,117,36)
+    }
+    { btnSalir Button
+      Move(234,0,144,36)
+      NoTabFocus = True
+      Text = ("Cerrar")
+      Picture = Picture["iconos/salir.svg"]
+    }
+    { btnListo Button
+      Move(414,0,288,36)
+      Visible = False
+      NoTabFocus = True
+      Text = ("Listo")
+      Picture = Picture["iconos/comp.svg"]
+    }
+  }
+}

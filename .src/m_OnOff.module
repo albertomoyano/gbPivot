@@ -1,0 +1,3 @@
+' Gambas module file
+
+' módulo de connexión a la red y de cerrar todos los rocesos abiertos para salir de la aplicación
