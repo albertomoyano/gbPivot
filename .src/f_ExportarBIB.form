@@ -1,0 +1,109 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  Move(0,0,963,342)
+  #Scaled = False
+  Expand = True
+  Text = ("Exportar referencias bibliográficas")
+  Resizable = False
+  Arrangement = Arrange.Vertical
+  AutoResize = True
+  Spacing = True
+  Margin = True
+  Padding = 4
+  { Panel1 HBox
+    Move(0,0,603,72)
+    { PictureBox1 PictureBox
+      Move(0,0,72,72)
+      Picture = Picture.Load("iconos/exportarBIB.png")
+      Alignment = Align.Center
+    }
+  }
+  { Separator2 Separator
+    Move(0,81,504,9)
+  }
+  { HBox1 HBox
+    Move(0,90,950,36)
+    { TextLabel1 TextLabel
+      Move(63,0,162,36)
+      Padding = 4
+      Text = ("Seleccionar destino  ")
+      Alignment = Align.Right
+      Wrap = False
+    }
+    { btnDestino Button
+      Move(225,0,36,36)
+      Picture = Picture["iconos/document.svg"]
+    }
+    { !txtdestino TextBox
+      Move(279,0,144,36)
+      #Public = True
+      Foreground = Color.DarkBlue
+      Expand = True
+      ReadOnly = True
+    }
+  }
+  { HBox2 HBox
+    Move(0,126,950,36)
+    { Label1 Label
+      Move(225,0,468,36)
+      Font = Font["Bold"]
+      Expand = True
+      Alignment = Align.Center
+      Text = ("Asegurese de escribir correctamente el nombre del filtro de exportación")
+    }
+  }
+  { HBox3 HBox
+    Move(-45,162,950,36)
+    { TextLabel4 TextLabel
+      Move(63,0,162,36)
+      Padding = 4
+      Text = ("Filtro  ")
+      Alignment = Align.Right
+      Wrap = False
+    }
+    { txtFiltro TextBox
+      Move(252,0,144,36)
+      Expand = True
+    }
+  }
+  { HBox5 HBox
+    Move(0,198,950,36)
+    { TextLabel2 TextLabel
+      Move(0,0,162,36)
+      Padding = 4
+      Text = ("  Exportar como  ")
+      Alignment = Align.Right
+      Wrap = False
+    }
+    { txtNombre TextBox
+      Move(252,0,198,36)
+      Expand = True
+      Placeholder = ("Nombre sin la extensión")
+    }
+  }
+  { HBox4 HBox
+    Move(0,234,950,36)
+    { Label2 Label
+      Move(225,0,468,36)
+      Expand = True
+      Alignment = Align.Center
+    }
+  }
+  { HBox14 HBox
+    Move(0,279,950,36)
+    { Spring1 Spring
+      Move(63,0,90,36)
+    }
+    { btnCancelar Button
+      Move(342,0,160,36)
+      Text = ("Cerrar")
+      Picture = Picture["iconos/salir.svg"]
+    }
+    { btnExportarBIB Button
+      Move(657,0,288,36)
+      Text = ("Exportar")
+      Picture = Picture["iconos/comp.svg"]
+    }
+  }
+}

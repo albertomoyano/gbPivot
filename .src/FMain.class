@@ -101,3 +101,9 @@ Public Sub Menu22_Click()
   f_BlockNotas.ShowModal()
 
 End
+
+Public Sub Menu8_Click()
+
+  f_ExportarBIB.ShowModal()
+
+End

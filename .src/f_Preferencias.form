@@ -12,8 +12,8 @@
   { Panel1 HBox
     Move(9,9,603,72)
     { PictureBox1 PictureBox
-      Move(0,0,72,72)
-      Picture = Picture.Load("iconos/pivote.png")
+      Move(0,0,79,72)
+      Picture = Picture.Load("iconos/preferencias.png")
       Alignment = Align.Center
     }
   }
