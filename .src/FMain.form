@@ -176,6 +176,12 @@
             Alignment = Align.Center
           }
         }
+        { TimerParcial #Timer
+          #MoveScaled(63,0)
+        }
+        { TimerTotal #Timer
+          #MoveScaled(70,0)
+        }
       }
     }
     { Panel3 Panel
