@@ -146,7 +146,6 @@
     }
     { btnListo Button
       Move(414,0,288,36)
-      Visible = False
       NoTabFocus = True
       Text = ("Listo")
       Picture = Picture["iconos/comp.svg"]

@@ -96,7 +96,7 @@
       Move(63,0,90,36)
     }
     { btnCancelar Button
-      Move(342,0,160,36)
+      Move(495,0,160,36)
       Text = ("Cerrar")
       Picture = Picture["iconos/salir.svg"]
     }
