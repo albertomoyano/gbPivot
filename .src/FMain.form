@@ -134,10 +134,26 @@
         Border = False
         { TabPanel1 TabPanel
           MoveScaled(1,1,76,55)
+          Expand = True
+          Arrangement = Arrange.Fill
           Count = 4
           Index = 0
           Text = ("Metadatos     ")
           Picture = Picture["iconos/metadatos.svg"]
+          { TabPanel3 TabPanel
+            MoveScaled(1,1,36,49)
+            Expand = True
+            Arrangement = Arrange.Fill
+            Border = False
+            Count = 2
+            Index = 0
+            Text = ("Revista     ")
+            Picture = Picture["iconos/revista.svg"]
+            Index = 1
+            Text = ("Autores     ")
+            Picture = Picture["iconos/autores.svg"]
+            Index = 0
+          }
           Index = 1
           Text = ("Referencias bibliográficas     ")
           Picture = Picture["iconos/bibtex.svg"]
@@ -160,7 +176,7 @@
             MoveScaled(8,5,24,9)
           }
           Index = 1
-          Text = ("Vista Dir/File     ")
+          Text = ("Archivos del proyecto")
           Picture = Picture["iconos/document.svg"]
           { SplitterPanel3 Splitter
             MoveScaled(1,1,48,17)
