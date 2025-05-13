@@ -131,18 +131,50 @@
         }
       }
       { HBox1 HBox
-        MoveScaled(1,44,37,4)
+        MoveScaled(-23,44,80,4)
         { Label1 Label
           MoveScaled(4,0,11,4)
           AutoResize = True
           Text = ("Proyecto en curso:  ")
         }
         { txtProyecto TextBox
-          MoveScaled(25,0,11,4)
+          MoveScaled(18,0,6,4)
           Background = Color.Background
           Foreground = Color.Blue
           Expand = True
           ReadOnly = True
+        }
+        { HBox4 HBox
+          MoveScaled(26,0,33,4)
+          { PictureBox37 PictureBox
+            MoveScaled(0,0,4,4)
+            Picture = Picture.Load("iconos/reloj.svg")
+            Alignment = Align.Right
+          }
+          { txtTiempo TextLabel
+            MoveScaled(4,0,12,4)
+            Font = Font["Bold"]
+            Background = Color.Background
+            Alignment = Align.Center
+            Wrap = False
+          }
+          { Separator13 Separator
+            MoveScaled(15,0,2.3333,4)
+            #Translate = False
+          }
+          { PictureBox3 PictureBox
+            MoveScaled(18,0,4,4)
+            Picture = Picture.Load("iconos/reloj.svg")
+            Alignment = Align.Right
+          }
+          { TextBoxHistorico TextLabel
+            MoveScaled(24,0,12,4)
+            Font = Font["Bold"]
+            Background = Color.Background
+            Foreground = Color.Blue
+            Text = ("00:00:00")
+            Alignment = Align.Center
+          }
         }
       }
     }
