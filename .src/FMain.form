@@ -53,6 +53,9 @@
       Text = ("Gambas")
       Picture = Picture["iconos/logo-gambas.png"]
     }
+    { Menu14 Menu
+      Text = ("De los íconos")
+    }
     { Menu9 Menu
       Text = ("gbPivot")
       Picture = Picture["iconos/pivote.png"]
@@ -141,17 +144,23 @@
           Text = ("Metadatos     ")
           Picture = Picture["iconos/metadatos.svg"]
           { TabPanel3 TabPanel
-            MoveScaled(1,1,36,49)
+            MoveScaled(1,1,73,49)
             Expand = True
             Arrangement = Arrange.Fill
             Border = False
-            Count = 2
+            Count = 4
             Index = 0
             Text = ("Revista     ")
             Picture = Picture["iconos/revista.svg"]
             Index = 1
+            Text = ("Artículos     ")
+            Picture = Picture["iconos/textnormal.svg"]
+            Index = 2
             Text = ("Autores     ")
             Picture = Picture["iconos/autores.svg"]
+            Index = 3
+            Text = ("Otros     ")
+            Picture = Picture["iconos/face.svg"]
             Index = 0
           }
           Index = 1
