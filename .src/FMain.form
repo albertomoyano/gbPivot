@@ -31,6 +31,14 @@
     { Menu8 Menu
       Text = ("Exportar referencias bibliogáficas")
     }
+    { Menu10 Menu
+      Text = ("Empujar a git logal")
+      Picture = Picture["iconos/git-local.svg"]
+    }
+    { Menu11 Menu
+      Text = ("Empujar a gir remoto (github)")
+      Picture = Picture["iconos/gitRemoto.svg"]
+    }
   }
   { Menu4 Menu
     Text = ("Acerca de") & "..."
@@ -70,9 +78,11 @@
         }
         { Button2 Button
           MoveScaled(37,0,4,4)
+          Picture = Picture["iconos/guardarComo.svg"]
         }
         { Button1 Button
           MoveScaled(41,0,4,4)
+          Picture = Picture["iconos/hide.png"]
         }
       }
       { Panel2 Panel
@@ -115,12 +125,16 @@
           Count = 4
           Index = 0
           Text = ("Metadatos     ")
+          Picture = Picture["iconos/metadatos.svg"]
           Index = 1
           Text = ("Referencias bibliográficas     ")
+          Picture = Picture["iconos/bibtex.svg"]
           Index = 2
           Text = ("Siglas y glosarios     ")
+          Picture = Picture["iconos/glosarios.svg"]
           Index = 3
           Text = ("Asistente AI     ")
+          Picture = Picture["iconos/AI.svg"]
           Index = 0
         }
         { TabPanel2 TabPanel
@@ -129,11 +143,13 @@
           Count = 2
           Index = 0
           Text = ("Terminal     ")
+          Picture = Picture["iconos/terminal.svg"]
           { Terminal TerminalView
             MoveScaled(8,5,24,9)
           }
           Index = 1
           Text = ("Vista Dir/File     ")
+          Picture = Picture["iconos/document.svg"]
           { SplitterPanel3 Splitter
             MoveScaled(1,1,48,17)
             Border = False
