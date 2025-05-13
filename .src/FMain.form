@@ -20,16 +20,15 @@
       Picture = Picture["iconos/salir.svg"]
     }
   }
-  { Menu2 Menu
-    Text = ("Edición")
-  }
   { Menu3 Menu
     Text = ("Herramientas")
     { Menu7 Menu
       Text = ("Conversor de .docx --> .asciidoc")
+      Picture = Picture["iconos/conversor.svg"]
     }
     { Menu8 Menu
       Text = ("Exportar referencias bibliogáficas")
+      Picture = Picture["iconos/exportarbib.svg"]
     }
     { Menu10 Menu
       Text = ("Empujar a git logal")
@@ -37,13 +36,14 @@
     }
     { Menu11 Menu
       Text = ("Empujar a gir remoto (github)")
-      Picture = Picture["iconos/gitRemoto.svg"]
+      Picture = Picture["iconos/gitremoto.svg"]
     }
   }
   { Menu4 Menu
     Text = ("Acerca de") & "..."
     { Menu9 Menu
       Text = ("gbPivot")
+      Picture = Picture["iconos/pivote.png"]
     }
   }
   { SplitterPrincipal Splitter
