@@ -38,11 +38,11 @@
 '
 ' End
 '
-' Public Sub btnCerrar_Click()
-'
-'   Me.Close
-'
-' End
+Public Sub btnCerrar_Click()
+
+  Me.Close
+
+End
 '
 ' Public Sub btnGuardarMod_Click()
 '

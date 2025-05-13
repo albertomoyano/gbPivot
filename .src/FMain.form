@@ -183,9 +183,6 @@
         { TimerParcial #Timer
           #MoveScaled(63,0)
         }
-        { TimerTotal #Timer
-          #MoveScaled(70,0)
-        }
       }
     }
     { Panel3 Panel
@@ -244,8 +241,9 @@
           Index = 0
           Text = ("Terminal     ")
           Picture = Picture["iconos/terminal.svg"]
-          { Terminal TerminalView
+          { !TerminalView TerminalView
             MoveScaled(8,5,24,9)
+            #Public = True
           }
           Index = 1
           Text = ("Archivos del proyecto")

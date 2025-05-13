@@ -3,8 +3,11 @@
 Private segundos As Integer
 Private minutos As Integer
 Private horas As Integer
+Public $Bash As Process
 
 Public Sub Form_Open()
+
+  $Bash = TerminalView.Shell("/usr/bin/bash")
 
   SplitterPanel3.Layout = [1, 1]
   SplitterPanel2.Layout = [7, 3]
@@ -17,11 +20,13 @@ Public Sub Form_Open()
   TimerParcial.Delay = 1000
   TimerParcial.Stop  ' No iniciamos el Timer hasta abrir un proyecto
 
+  reinicamosTiempo
+
 End
 
-Public Sub Menu5_Click()
+Public Sub Menu5_Click()' salir de la aplicacion
 
-  Quit
+  m_OnOff_y_Red.CerrarTodo()
 
 End
 
@@ -105,5 +110,11 @@ End
 Public Sub Menu8_Click()
 
   f_ExportarBIB.ShowModal()
+
+End
+
+Public Sub Form_Close()
+
+  m_OnOff_y_Red.CerrarTodo()
 
 End

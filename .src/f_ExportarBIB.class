@@ -131,14 +131,8 @@
 '
 ' End
 '
-' Public Sub btnCancelar_Click()
-'
-'   Me.Close
-'
-' End
-'
-' Public Sub Form_Close()
-'
-'   Me.Close
-'
-' End
+Public Sub btnCancelar_Click()
+
+  Me.Close
+
+End
