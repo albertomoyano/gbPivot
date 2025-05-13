@@ -4,10 +4,6 @@
 
 Public Sub CerrarTodo()
 
-  ' FMain.TabPanel1.Index = 0
-  ' FMain.TabPanel6.Index = 0
-  ' Borrar_Aux
-  ' Wait 0.2
   ' Borramos carpetas del caché
   FMain.TerminalView.Input("rm -rf " & User.Home & "/.local/share/org.gambas.*" & "\n")
   FMain.TerminalView.Input("clear" & "\n")
@@ -26,25 +22,11 @@ Public Sub CerrarTodo()
     Endif
   Endif
   '
-  ' ' Cierra la conexión a la BBDD si existe
-  ' If Form_ConectarBBDD.meConn Then
-  '   Form_ConectarBBDD.meConn.Close()
-  '   Form_ConectarBBDD.meConn = Null
-  '   Form_ConectarBBDD.Close
-  ' Endif
-  '
-  ' ' Cierra ambos WebView si existen
-  ' If FMain.WebViewEditor <> Null Or FMain.WebView1 <> Null Then
-  '   If FMain.WebViewEditor <> Null Then
-  '     FMain.WebViewEditor.Stop
-  '     FMain.WebViewEditor = Null
-  '   End If
-  '
-  '   If FMain.WebView1 <> Null Then
-  '     FMain.WebView1.Stop
-  '     FMain.WebView1 = Null
-  '   End If
-  ' End If
+  ' Cierra WebView
+  If FMain.WebViewEditor <> Null Then
+    FMain.WebViewEditor.Stop
+    FMain.WebViewEditor = Null
+  End If
 
   ' Finalmente cerrar formulario principal y salir de la aplicación
   FMain.Close
