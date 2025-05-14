@@ -1,0 +1,82 @@
+# Gambas Database Template File 3.0
+{ Table
+  Name="bibtex"
+  PrimaryKey=["id"]
+  { Field
+    Name="id"
+    Type=db.Integer
+  }
+}
+{ Table
+  Name="block_notas"
+  PrimaryKey=["id"]
+  { Field
+    Name="id"
+    Type=db.Integer
+  }
+  { Field
+    Name="asunto"
+    Type=db.String
+  }
+  { Field
+    Name="contenido"
+    Type=db.String
+  }
+  { Index 
+    Name="idx_notas"
+    Unique=False
+    Fields=["id"]
+  }
+}
+{ Table
+  Name="glosarios"
+  PrimaryKey=["id"]
+  { Field
+    Name="id"
+    Type=db.Integer
+  }
+}
+{ Table
+  Name="monetizar"
+  PrimaryKey=["id"]
+  { Field
+    Name="id"
+    Type=db.Integer
+  }
+}
+{ Table
+  Name="nombre_proyecto"
+  PrimaryKey=["id"]
+  { Field
+    Name="id"
+    Type=db.Integer
+  }
+  { Field
+    Name="nombre"
+    Type=db.String
+  }
+  { Field
+    Name="fecha"
+    Type=db.Date
+  }
+}
+{ Table
+  Name="recordatorios"
+  PrimaryKey=["id"]
+  { Field
+    Name="id"
+    Type=db.Integer
+  }
+  { Field
+    Name="completado"
+    Type=db.Integer
+  }
+  { Field
+    Name="titulo"
+    Type=db.String
+  }
+  { Field
+    Name="contenido"
+    Type=db.String
+  }
+}

@@ -237,15 +237,8 @@
         { TabPanel2 TabPanel
           MoveScaled(2,57,74,23)
           Arrangement = Arrange.Fill
-          Count = 2
+          Count = 3
           Index = 0
-          Text = ("Terminal     ")
-          Picture = Picture["iconos/terminal.svg"]
-          { !TerminalView TerminalView
-            MoveScaled(8,5,24,9)
-            #Public = True
-          }
-          Index = 1
           Text = ("Archivos del proyecto")
           Picture = Picture["iconos/document.svg"]
           { SplitterPanel3 Splitter
@@ -258,6 +251,31 @@
               MoveScaled(28,5,19,10)
               View = FileView.Detailed
             }
+          }
+          Index = 1
+          Text = ("Recordatorios     ")
+          Picture = Picture["iconos/checklist.svg"]
+          { SplitterApostillas Splitter
+            MoveScaled(1,2,41,12)
+            Border = False
+            { ViewLista ListView
+              MoveScaled(6,4,16,8)
+              PopupMenu = "menuTareas"
+            }
+            { txtTAREAS TextArea
+              MoveScaled(24,4,16,8)
+              Background = &HFFF7DF
+              ReadOnly = True
+              Wrap = True
+              ScrollBar = Scroll.Vertical
+            }
+          }
+          Index = 2
+          Text = ("Terminal     ")
+          Picture = Picture["iconos/terminal.svg"]
+          { !TerminalView TerminalView
+            MoveScaled(8,5,24,9)
+            #Public = True
           }
           Index = 0
         }

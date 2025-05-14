@@ -1,0 +1,11 @@
+[Connection]
+Type="sqlite"
+Path="~/.gbpivot"
+NoPassword=False
+RememberPassword=False
+IgnoreCharset=False
+DisplayMetadata=False
+RememberTemplate=True
+Database="gbpivot.sqlite"
+Requests=[""]
+
