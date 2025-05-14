@@ -47,6 +47,7 @@ Public Sub CerrarTodo()
   Endif
   '
   ' Finalmente cerrar formulario principal y salir de la aplicación
+  meConn.Close
   FMain.Close
   Quit
 
