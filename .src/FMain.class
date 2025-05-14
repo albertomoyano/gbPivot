@@ -7,6 +7,9 @@ Public $Bash As Process
 
 Public Sub Form_Open()
 
+  'nos conectamos a la base de datos
+  m_OnOff_y_Red.OnRed()
+
   $Bash = TerminalView.Shell("/usr/bin/bash")
 
   SplitterPanel3.Layout = [1, 1]
@@ -19,8 +22,6 @@ Public Sub Form_Open()
   ' Configuramos el Timer para que se ejecute cada segundo (1000 milisegundos)
   TimerParcial.Delay = 1000
   TimerParcial.Stop  ' No iniciamos el Timer hasta abrir un proyecto
-
-  reinicamosTiempo
 
 End
 
@@ -116,5 +117,41 @@ End
 Public Sub Form_Close()
 
   m_OnOff_y_Red.CerrarTodo()
+
+End
+
+Public Sub Menu6_Click()' abrir archivo
+
+  Dialog.Title = "Seleccionar archivo"
+  Dialog.Filter = ["*.adoc", "Archivos de AsciiDoc"]
+  Dialog.AutoExt = True
+  Dialog.Path = User.Home
+  If Dialog.OpenFile() Then
+    Return
+  Else
+    txtProyecto.Text = Dialog.Path
+    DirViewProyecto.Root = File.Dir(txtProyecto.Text)
+    reinicamosTiempo()
+  Endif
+
+End
+
+' Evento click en DirView actualiza los archivos que se muestran en FileView1
+Public Sub DirViewProyecto_Click()
+
+  Dim bloquear As Boolean = False
+
+  If Not bloquear Then
+    FileViewProyecto.Dir = DirViewProyecto.Current
+  Endif
+
+End
+
+' Evento que se ejecuta cuando se detecta un cambio en el directorio
+Public Sub Watcher_Change()
+
+  DirViewProyecto.Root = File.Dir(txtProyecto.Text)' reforzamos la indicación de la ruta
+  DirViewProyecto.Refresh
+  FileViewProyecto.Refresh
 
 End

@@ -1,6 +1,30 @@
 ' Gambas module file
 
 ' módulo de connexión a la red y de cerrar todos los rocesos abiertos para salir de la aplicación
+Public meConn As New Connection
+
+Public Sub OnRed() As Connection
+
+  meConn.Type = "sqlite3"
+  meConn.Host = User.Home & "/.gbpivot/"
+  meConn.Name = "gbpivot.sqlite"
+  meConn.Open()
+  ' Configurar el modo de journal a DELETE
+  meConn.Exec("PRAGMA journal_mode=DELETE")
+  Return meConn
+  'verificamos
+Catch
+  Message.Error("No se pudo conectar a la base de datos <strong>gbpivot.sqlite</strong>\n en: " & User.Home & "/.gbpivot/")
+  Quit
+
+End
+
+Public Sub OffRed(meConn As Connection)
+
+  meConn.Close
+  meConn = Null
+
+End
 
 Public Sub CerrarTodo()
 
@@ -22,12 +46,6 @@ Public Sub CerrarTodo()
     Endif
   Endif
   '
-  ' Cierra WebView
-  If FMain.WebViewEditor <> Null Then
-    FMain.WebViewEditor.Stop
-    FMain.WebViewEditor = Null
-  End If
-
   ' Finalmente cerrar formulario principal y salir de la aplicación
   FMain.Close
   Quit

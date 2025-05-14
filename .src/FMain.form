@@ -56,7 +56,7 @@
       Picture = Picture["iconos/git-local.svg"]
     }
     { Menu11 Menu
-      Text = ("Empujar a github y generar todas las salidas")
+      Text = ("Empujar a github y generar todos los release")
       Picture = Picture["iconos/gitremoto.svg"]
     }
     { Menu12 Menu
@@ -135,21 +135,21 @@
         }
       }
       { HBox1 HBox
-        MoveScaled(-23,44,80,4)
+        MoveScaled(-5,44,80,4)
         { Label1 Label
-          MoveScaled(4,0,11,4)
+          MoveScaled(-1,0,11,4)
           AutoResize = True
           Text = ("Proyecto en curso:  ")
         }
         { txtProyecto TextBox
-          MoveScaled(18,0,6,4)
+          MoveScaled(11,0,6,4)
           Background = Color.Background
           Foreground = Color.Blue
           Expand = True
           ReadOnly = True
         }
         { HBox4 HBox
-          MoveScaled(26,0,33,4)
+          MoveScaled(25,0,33,4)
           { PictureBox37 PictureBox
             MoveScaled(0,0,4,4)
             Picture = Picture.Load("iconos/reloj.svg")
@@ -251,10 +251,10 @@
           { SplitterPanel3 Splitter
             MoveScaled(1,1,48,17)
             Border = False
-            { DirView1 DirView
+            { DirViewProyecto DirView
               MoveScaled(1,5,26,10)
             }
-            { FileView1 FileView
+            { FileViewProyecto FileView
               MoveScaled(28,5,19,10)
               View = FileView.Detailed
             }
