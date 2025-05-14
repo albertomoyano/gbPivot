@@ -9,6 +9,25 @@
   Spacing = True
   Margin = True
   Padding = 4
+  { menuRecordatorios Menu
+    Text = ("menuRecordatorios")
+    Visible = False
+    { Menu23 Menu
+      Text = ("Menu23")
+    }
+    { Menu24 Menu
+      Text = ("Menu24")
+    }
+    { Menu25 Menu
+      Text = ("Menu25")
+    }
+    { Menu26 Menu
+      Text = ("Menu26")
+    }
+    { Menu27 Menu
+      Text = ("Menu27")
+    }
+  }
   { Menu1 Menu
     Text = ("Archivo")
     { Menu6 Menu
@@ -256,14 +275,14 @@
           Text = ("Recordatorios     ")
           Picture = Picture["iconos/checklist.svg"]
           { SplitterApostillas Splitter
-            MoveScaled(1,2,41,12)
+            MoveScaled(1,2,67,12)
             Border = False
-            { ViewLista ListView
-              MoveScaled(6,4,16,8)
+            { ViewRecordatorios ListView
+              MoveScaled(6,4,26,6)
               PopupMenu = "menuTareas"
             }
-            { txtTAREAS TextArea
-              MoveScaled(24,4,16,8)
+            { txtRecordatorios TextArea
+              MoveScaled(34,2,16,8)
               Background = &HFFF7DF
               ReadOnly = True
               Wrap = True

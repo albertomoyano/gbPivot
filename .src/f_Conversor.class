@@ -232,11 +232,11 @@ End
 '   Next
 '
 '   ' Limitar la longitud del texto a 11 caracteres
-'   If Len(textoFiltrado) > 20 Then
+'   If Len(textoFiltrado) > 12 Then
 '     ' Mostrar un mensaje de aviso
-'     Message.Warning("El nombre de salida del archivo no puede contener más de 20 caracteres.", "Entendido")
+'     Message.Warning("El nombre de salida del archivo no puede contener más de 12 caracteres.", "Entendido")
 '     ' Eliminar los caracteres adicionales
-'     txtDESTINO.Text = Left(textoFiltrado, 20)
+'     txtDESTINO.Text = Left(textoFiltrado, 12)
 '   Else
 '     ' Actualizar el TextBox con el texto filtrado y convertirlo a mayúsculas
 '     txtDESTINO.Text = UCase(textoFiltrado)

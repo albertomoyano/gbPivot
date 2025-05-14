@@ -82,28 +82,6 @@
   { HBox5 HBox
     Move(9,216,747,36)
   }
-  { HBox4 HBox
-    Move(9,252,747,36)
-    { Label4 Label
-      Move(0,0,162,36)
-      NoTabFocus = True
-      Alignment = Align.Right
-      Text = ("Formato de salida  ")
-    }
-    { rbADOC RadioButton
-      Move(216,0,243,36)
-      Expand = True
-      AutoResize = True
-      Text = ("Archivo con formato .adoc")
-      Value = True
-    }
-    { rbTEX RadioButton
-      Move(468,0,198,36)
-      Expand = True
-      AutoResize = True
-      Text = ("Archivo con formato .tex         ")
-    }
-  }
   { HBox3 HBox
     Move(9,288,800,36)
     NoTabFocus = True
