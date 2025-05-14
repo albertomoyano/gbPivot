@@ -5,7 +5,7 @@
   #Scaled = False
   #Translate = False
   Expand = True
-  Text = "Conversión de archivos Word (.docx) a formato AsciiDoc y LaTeX utilizando Pandoc"
+  Text = "Conversión de archivos Word (.docx) a formato AsciiDoc utilizando Pandoc"
   Resizable = False
   Arrangement = Arrange.Vertical
   AutoResize = True
@@ -82,6 +82,26 @@
   { HBox5 HBox
     Move(9,216,747,36)
   }
+  { HBox4 HBox
+    Move(0,252,800,36)
+    NoTabFocus = True
+    { Label4 Label
+      Move(0,0,162,36)
+      NoTabFocus = True
+      Alignment = Align.Right
+      Text = ("Destino  ")
+    }
+    { btnBuscar2 Button
+      Move(306,0,36,36)
+      NoTabFocus = True
+      Picture = Picture["iconos/abrirBuscar.svg"]
+    }
+    { txtDESTINO TextBox
+      Move(387,0,216,40)
+      NoTabFocus = True
+      Expand = True
+    }
+  }
   { HBox3 HBox
     Move(9,288,800,36)
     NoTabFocus = True
@@ -89,15 +109,9 @@
       Move(0,0,162,36)
       NoTabFocus = True
       Alignment = Align.Right
-      Text = ("Archivo de  destino  ")
+      Text = ("Nombre del archivo  ")
     }
-    { txtFecha TextBox
-      Move(234,0,144,36)
-      Background = Color.Background
-      Alignment = Align.Right
-      ReadOnly = True
-    }
-    { txtDESTINO TextBox
+    { txtNOMBRE TextBox
       Move(387,0,216,40)
       NoTabFocus = True
       Expand = True

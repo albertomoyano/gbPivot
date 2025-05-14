@@ -60,6 +60,18 @@
       Text = ("Generar XML-JATS PMD")
     }
   }
+  { Menu28 Menu
+    Text = ("Ver salidas")
+    { Menu29 Menu
+      Text = ("PDF")
+    }
+    { Menu30 Menu
+      Text = ("ePub")
+    }
+    { Menu31 Menu
+      Text = ("HTML")
+    }
+  }
   { Menu3 Menu
     Text = ("Herramientas")
     { Menu7 Menu
@@ -85,6 +97,9 @@
     { Menu22 Menu
       Text = ("Block de notas")
       Picture = Picture["iconos/textnormal.svg"]
+    }
+    { Menu32 Menu
+      Text = ("Generación de figura")
     }
     { Menu2 Menu
       Text = ("Preferencias")
