@@ -48,15 +48,22 @@
       ToolTip = ("Guardar cambios")
       Picture = Picture["iconos/guardarComo.svg"]
     }
-    { BtnBuscar Button
-      Move(261,0,36,36)
+    { Label7 Label
+      Move(144,0,126,36)
       NoTabFocus = True
-      ToolTip = ("Buscar en toda la base de datos")
-      Picture = Picture["iconos/search.svg"]
+      Alignment = Align.Right
+      Text = ("Asunto  ")
     }
-    { txtBuscar TextBox
-      Move(306,0,135,36)
+    { txtAsunto TextBox
+      Move(297,0,171,36)
+      NoTabFocus = True
       Expand = True
+    }
+    { ID_block TextBox
+      Move(621,0,63,36)
+      Visible = False
+      NoTabFocus = True
+      Alignment = Align.Center
     }
     { btnCerrar Button
       Move(702,0,160,36)
@@ -68,21 +75,14 @@
   }
   { HBox8 HBox
     Move(27,162,765,36)
-    { txId TextBox
-      Move(45,0,63,36)
-      Visible = False
+    { BtnBuscar Button
+      Move(0,0,36,36)
       NoTabFocus = True
-      Alignment = Align.Center
+      ToolTip = ("Buscar en toda la base de datos")
+      Picture = Picture["iconos/search.svg"]
     }
-    { Label7 Label
-      Move(315,0,126,36)
-      NoTabFocus = True
-      Alignment = Align.Right
-      Text = ("Asunto  ")
-    }
-    { txAsunto TextBox
-      Move(468,0,171,36)
-      NoTabFocus = True
+    { txtBuscar TextBox
+      Move(45,0,135,36)
       Expand = True
     }
   }
@@ -103,7 +103,7 @@
     Expand = True
     Arrangement = Arrange.Fill
     Border = Border.Sunken
-    { txContenido TextArea
+    { txtContenido TextArea
       Move(9,27,162,63)
       Font = Font["Monospace"]
       NoTabFocus = True

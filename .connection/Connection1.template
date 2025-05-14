@@ -1,5 +1,25 @@
 # Gambas Database Template File 3.0
 { Table
+  Name="__gb_metadata_v2"
+  PrimaryKey=["sTableName","iType","sKey"]
+  { Field
+    Name="sTableName"
+    Type=db.String
+  }
+  { Field
+    Name="iType"
+    Type=db.Integer
+  }
+  { Field
+    Name="sKey"
+    Type=db.String
+  }
+  { Field
+    Name="sValue"
+    Type=db.String
+  }
+}
+{ Table
   Name="bibtex"
   PrimaryKey=["id"]
   { Field

@@ -1,10 +1,11 @@
+# Gambas Connection File 3.0
 [Connection]
 Type="sqlite"
 Path="~/.gbpivot"
 NoPassword=False
 RememberPassword=False
 IgnoreCharset=False
-DisplayMetadata=False
+DisplayMetadata=True
 RememberTemplate=True
 Database="gbpivot.sqlite"
 Requests=[""]
