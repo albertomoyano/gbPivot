@@ -82,7 +82,7 @@
   { HBox5 HBox
     Move(9,216,747,36)
     { txtStatus TextLabel
-      Move(198,9,333,36)
+      Move(198,0,333,36)
       Expand = True
       Alignment = Align.Center
     }

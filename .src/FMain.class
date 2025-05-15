@@ -135,6 +135,7 @@ Public Sub Menu6_Click() ' abrir archivo
   sNombreProyecto = File.BaseName(sRuta)
   txtProyecto.Text = sRuta
   DirViewProyecto.Root = File.Dir(sRuta)
+  TerminalView.Input("cd " & File.Dir(sRuta) & "\n")' movemos la consola a la ruta del archivo
 
   ' Verificar si el proyecto existe en la base de datos
   rResultado = m_OnOff_y_Red.meConn.Exec("SELECT id FROM nombre_proyecto WHERE nombre = &1", sNombreProyecto)
