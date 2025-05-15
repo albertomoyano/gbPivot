@@ -20,7 +20,47 @@
   }
 }
 { Table
-  Name="bibtex"
+  Name="asistente_ai"
+  PrimaryKey=["id"]
+  { Field
+    Name="id"
+    Type=db.Integer
+  }
+  { Field
+    Name="identificador"
+    Type=db.String
+  }
+  { Field
+    Name="prompt"
+    Type=db.String
+  }
+}
+{ Table
+  Name="bibtex_a"
+  PrimaryKey=["id"]
+  { Field
+    Name="id"
+    Type=db.Integer
+  }
+}
+{ Table
+  Name="bibtex_b"
+  PrimaryKey=["id"]
+  { Field
+    Name="id"
+    Type=db.Integer
+  }
+}
+{ Table
+  Name="bibtex_c"
+  PrimaryKey=["id"]
+  { Field
+    Name="id"
+    Type=db.Integer
+  }
+}
+{ Table
+  Name="bibtex_d"
   PrimaryKey=["id"]
   { Field
     Name="id"
@@ -57,14 +97,6 @@
   }
 }
 { Table
-  Name="monetizar"
-  PrimaryKey=["id"]
-  { Field
-    Name="id"
-    Type=db.Integer
-  }
-}
-{ Table
   Name="nombre_proyecto"
   PrimaryKey=["id"]
   { Field
@@ -82,6 +114,10 @@
   { Field
     Name="en_uso"
     Type=db.Boolean
+  }
+  { Field
+    Name="tiempo_total_segundos"
+    Type=db.Integer
   }
 }
 { Table

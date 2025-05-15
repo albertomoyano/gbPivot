@@ -29,13 +29,14 @@ End
 Public Sub CerrarTodo()
   ' Lo primero: actualizar el estado del proyecto en la base de datos
 
+  FMain.guardarTiempoTotal()
+
   If FMain.txtProyecto.Text Then
     Dim sProyectoActual As String = File.BaseName(FMain.txtProyecto.Text)
     Try m_OnOff_y_Red.meConn.Exec("UPDATE nombre_proyecto SET en_uso = FALSE WHERE nombre = &1", sProyectoActual)
   Endif
 
   ' Ahora realizamos las operaciones que podrían fallar
-
   ' Borrar carpetas del caché
   Try FMain.TerminalView.Input("rm -rf " & User.Home & "/.local/share/org.gambas.*" & "\n")
   Try FMain.TerminalView.Input("clear" & "\n")

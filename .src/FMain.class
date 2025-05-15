@@ -1,10 +1,13 @@
 ' Gambas class file
 
 Private Item_Seleccionado As Integer
-Private segundos As Integer
-Private minutos As Integer
-Private horas As Integer
+Public segundos As Integer
+Public minutos As Integer
+Public horas As Integer
 Public $Bash As Process
+Public horasTotal As Integer
+Public minutosTotal As Integer
+Public segundosTotal As Integer
 
 Public Sub Form_Open()
 
@@ -28,11 +31,21 @@ Public Sub Form_Open()
 
 End
 
-Public Sub Menu5_Click()' salir de la aplicacion
-
-  m_OnOff_y_Red.CerrarTodo()
-
-End
+' ' Método para cerrar proyecto (añadir este método o agregarlo a su lugar correspondiente)
+' Public Sub CerrarProyecto()
+'   ' Guardar el tiempo total
+'
+'   guardarTiempoTotal()
+'
+'   ' Detener el timer
+'   TimerParcial.Stop
+'
+'   ' Limpiar el formulario
+'   txtProyecto.Text = ""
+'   txtTiempo.Text = "00:00:00"
+'   txtTiempoTotal.Text = "00:00:00"
+'
+' End
 
 Public Sub SplitterPanel3_Resize()
 
@@ -70,32 +83,7 @@ Public Sub TimerParcial_Timer()
   Endif
 
   ' Actualizamos el display del tiempo
-  ActualizarDisplay
-
-End
-
-' Función para actualizar el display del tiempo
-Public Sub ActualizarDisplay()
-
-  txtTiempo.Caption = Right$("0" & horas, 2) & ":" & Right$("0" & minutos, 2) & ":" & Right$("0" & segundos, 2)
-
-End
-
-' Función para actualizar el display del botón
-
-Public Sub reinicamosTiempo()
-
-  ' Reiniciamos el conteo de horas, minutos y segundos
-  horas = 0
-  minutos = 0
-  segundos = 0
-
-  ' Detenemos el Timer si está corriendo, luego lo reiniciamos
-  TimerParcial.Stop
-  TimerParcial.Start
-
-  ' Actualizamos el display para reflejar el reinicio
-  ActualizarDisplay
+  ActualizarDisplay()
 
 End
 
@@ -297,13 +285,6 @@ Public Sub menuADD_Click()
 
 End
 
-Public Sub Form_Close()
-  ' Asegurar que marcamos el proyecto como no en uso al cerrar
-
-  m_OnOff_y_Red.CerrarTodo()
-
-End
-
 Public Sub Menu6_Click() ' abrir archivo
 
   Dim sRuta As String
@@ -361,7 +342,158 @@ Public Sub Menu6_Click() ' abrir archivo
     txtProyecto.Text = sRuta
     DirViewProyecto.Root = File.Dir(sRuta)
     TerminalView.Input("cd " & File.Dir(sRuta) & "\n") ' movemos la consola a la ruta del archivo
-    reinicamosTiempo()
+    ' Solo procedemos si el proyecto se pudo abrir
+    If bProyectoAbierto Then
+      ' [código existente sin modificar]
+      reinicamosTiempo()
+      ' Cargar el tiempo total acumulado desde la base de datos
+      cargarTiempoTotal(sNombreProyecto)
+    Endif
   Endif
+
+End
+
+' Añadir este método para cargar el tiempo total
+Public Sub cargarTiempoTotal(sNombreProyecto As String)
+
+  Dim rResultado As Result
+  Dim tiempoTotalSegundos As Integer = 0
+
+  ' Verificar primero si la columna existe en la tabla
+  Try rResultado = m_OnOff_y_Red.meConn.Exec("PRAGMA table_info(nombre_proyecto)")
+
+  Dim columnaExiste As Boolean = False
+  While rResultado.Available
+    If rResultado["name"] = "tiempo_total_segundos" Then
+      columnaExiste = True
+      Break
+    Endif
+    rResultado.MoveNext
+  Wend
+
+  ' Si la columna no existe, la creamos
+  If Not columnaExiste Then
+    Try m_OnOff_y_Red.meConn.Exec("ALTER TABLE nombre_proyecto ADD COLUMN tiempo_total_segundos INTEGER DEFAULT 0")
+    ' Inicializamos a cero ya que la columna es nueva
+    horasTotal = 0
+    minutosTotal = 0
+    segundosTotal = 0
+    ActualizarDisplayTotal()
+    Return
+  Endif
+
+  ' Ahora consultamos el tiempo total para este proyecto
+  Try rResultado = m_OnOff_y_Red.meConn.Exec("SELECT tiempo_total_segundos FROM nombre_proyecto WHERE nombre = &1", sNombreProyecto)
+
+  ' Si la consulta fue exitosa y hay datos
+  If rResultado And rResultado.Available Then
+    ' Manejamos el caso de valor nulo de manera más segura
+    Try tiempoTotalSegundos = rResultado!tiempo_total_segundos
+
+    If Error Then
+      ' Si hay error al obtener el valor, inicializamos a cero
+      tiempoTotalSegundos = 0
+    Endif
+
+    horasTotal = Int(tiempoTotalSegundos / 3600)
+    minutosTotal = Int((tiempoTotalSegundos Mod 3600) / 60)
+    segundosTotal = tiempoTotalSegundos Mod 60
+  Else
+    ' Si no hay tiempo registrado, inicializamos a cero
+    horasTotal = 0
+    minutosTotal = 0
+    segundosTotal = 0
+  Endif
+
+  ' Actualizar el display del tiempo total
+  ActualizarDisplayTotal()
+
+End
+
+' Añadir este método para guardar el tiempo total
+Public Sub guardarTiempoTotal()
+
+  Dim tiempoTotalSegundos As Integer
+  Dim tiempoParcialSegundos As Integer
+  Dim sNombreProyecto As String
+
+  ' Solo proceder si hay un proyecto abierto
+  If txtProyecto.Text Then
+    sNombreProyecto = File.BaseName(txtProyecto.Text)
+
+    ' Calcular tiempo parcial en segundos
+    tiempoParcialSegundos = (horas * 3600) + (minutos * 60) + segundos
+
+    ' Calcular tiempo total en segundos
+    tiempoTotalSegundos = (horasTotal * 3600) + (minutosTotal * 60) + segundosTotal + tiempoParcialSegundos
+
+    ' Actualizar la base de datos
+    Try m_OnOff_y_Red.meConn.Exec("UPDATE nombre_proyecto SET tiempo_total_segundos = &1, en_uso = FALSE WHERE nombre = &2",
+      tiempoTotalSegundos, sNombreProyecto)
+  Endif
+
+End
+
+' Modificar el método reinicamosTiempo para reiniciar solo el tiempo parcial
+Public Sub reinicamosTiempo()
+  ' Reiniciamos solo el tiempo parcial, no el total
+
+  horas = 0
+  minutos = 0
+  segundos = 0
+  ActualizarDisplay()
+  TimerParcial.Start  ' Iniciamos el timer
+
+End
+
+' Añadir este método para actualizar el display del tiempo total
+Public Sub ActualizarDisplayTotal()
+  ' Formatear el tiempo total (hh:mm:ss)
+
+  txtTiempoTotal.Text = Format(horasTotal, "00") & ":" & Format(minutosTotal, "00") & ":" & Format(segundosTotal, "00")
+
+End
+
+' Modificar ActualizarDisplay para incluir el tiempo parcial + total
+Public Sub ActualizarDisplay()
+  ' Formatear el tiempo parcial (hh:mm:ss)
+
+  txtTiempo.Text = Format(horas, "00") & ":" & Format(minutos, "00") & ":" & Format(segundos, "00")
+
+  ' Calcular y mostrar el tiempo total (suma del tiempo parcial actual + tiempo total anterior)
+  Dim totalHoras As Integer = horasTotal
+  Dim totalMinutos As Integer = minutosTotal
+  Dim totalSegundos As Integer = segundosTotal + segundos
+
+  ' Ajustar los segundos
+  If totalSegundos >= 60 Then
+    totalMinutos += Int(totalSegundos / 60)
+    totalSegundos = totalSegundos Mod 60
+  Endif
+
+  ' Ajustar los minutos
+  totalMinutos += minutos
+  If totalMinutos >= 60 Then
+    totalHoras += Int(totalMinutos / 60)
+    totalMinutos = totalMinutos Mod 60
+  Endif
+
+  ' Ajustar las horas
+  totalHoras += horas
+
+  ' Mostrar tiempo total (tiempo acumulado + tiempo actual)
+  txtTiempoTotal.Text = Format(totalHoras, "00") & ":" & Format(totalMinutos, "00") & ":" & Format(totalSegundos, "00")
+
+End
+
+Public Sub Form_Close()
+
+  m_OnOff_y_Red.CerrarTodo()
+
+End
+
+Public Sub Menu5_Click()' salir de la aplicacion
+
+  m_OnOff_y_Red.CerrarTodo()
 
 End
