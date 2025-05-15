@@ -136,12 +136,12 @@
     }
   }
   { SplitterPrincipal Splitter
-    MoveScaled(1,1,176,87)
+    MoveScaled(14,1,176,87)
     Expand = True
     Centered = True
     Border = False
     { Panel1 Panel
-      MoveScaled(-13,7,48,49)
+      MoveScaled(-13,9,48,49)
       Expand = True
       Arrangement = Arrange.Vertical
       Padding = 4
@@ -180,14 +180,15 @@
         }
       }
       { HBox1 HBox
-        MoveScaled(-34,44,80,4)
+        MoveScaled(-13,44,80,4)
         { Label1 Label
           MoveScaled(-1,0,11,4)
           AutoResize = True
           Text = ("Proyecto en curso:  ")
         }
-        { txtProyecto TextBox
-          MoveScaled(11,0,6,4)
+        { !txtProyecto TextBox
+          MoveScaled(16,0,6,4)
+          #Public = True
           Background = Color.Background
           Foreground = Color.Blue
           Expand = True
@@ -696,8 +697,9 @@
         { SplitterPanel3 Splitter
           MoveScaled(4,1,48,17)
           Border = False
-          { DirViewProyecto DirView
+          { !DirViewProyecto DirView
             MoveScaled(1,5,26,10)
+            #Public = True
           }
           { FileViewProyecto FileView
             MoveScaled(28,5,19,10)

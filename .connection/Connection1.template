@@ -79,6 +79,10 @@
     Name="fecha"
     Type=db.Date
   }
+  { Field
+    Name="en_uso"
+    Type=db.Boolean
+  }
 }
 { Table
   Name="recordatorios"

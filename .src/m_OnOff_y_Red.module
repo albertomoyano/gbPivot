@@ -19,7 +19,7 @@ Catch
 
 End
 
-Public Sub OffRed(meConn As Connection)
+Public Sub OffRed() As Connection
 
   meConn.Close
   meConn = Null
@@ -27,27 +27,39 @@ Public Sub OffRed(meConn As Connection)
 End
 
 Public Sub CerrarTodo()
+  ' Lo primero: actualizar el estado del proyecto en la base de datos
 
-  ' Borramos carpetas del caché
-  FMain.TerminalView.Input("rm -rf " & User.Home & "/.local/share/org.gambas.*" & "\n")
-  FMain.TerminalView.Input("clear" & "\n")
+  If FMain.txtProyecto.Text Then
+    Dim sProyectoActual As String = File.BaseName(FMain.txtProyecto.Text)
+    Try m_OnOff_y_Red.meConn.Exec("UPDATE nombre_proyecto SET en_uso = FALSE WHERE nombre = &1", sProyectoActual)
+  Endif
+
+  ' Ahora realizamos las operaciones que podrían fallar
+
+  ' Borrar carpetas del caché
+  Try FMain.TerminalView.Input("rm -rf " & User.Home & "/.local/share/org.gambas.*" & "\n")
+  Try FMain.TerminalView.Input("clear" & "\n")
   Wait 0.2
 
-  ' detiene el proceso Bash
+  ' Detener el proceso Bash
   If FMain.$Bash And If FMain.$Bash.State = Process.Running Then
-    FMain.$Bash.Kill
+    Try FMain.$Bash.Kill
     Wait 0.2
     If FMain.$Bash.State = Process.Running Then
-      FMain.$Bash.Terminate
+      Try FMain.$Bash.Terminate
       Wait 0.2
       If FMain.$Bash.State = Process.Running Then
         Message.Warning("El proceso no pudo ser detenido.")
       Endif
     Endif
   Endif
-  '
-  ' Finalmente cerrar formulario principal y salir de la aplicación
-  meConn.Close
+
+  ' Limpiar la interfaz
+  FMain.txtProyecto.Text = ""
+  FMain.DirViewProyecto.Root = User.Home
+
+  ' Finalmente cerrar la conexión y salir
+  Try meConn.Close
   FMain.Close
   Quit
 
