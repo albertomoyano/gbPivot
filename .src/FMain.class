@@ -1,5 +1,6 @@
 ' Gambas class file
 
+Private Item_Seleccionado As Integer
 Private segundos As Integer
 Private minutos As Integer
 Private horas As Integer
@@ -21,6 +22,9 @@ Public Sub Form_Open()
   ' Configuramos el Timer para que se ejecute cada segundo (1000 milisegundos)
   TimerParcial.Delay = 1000
   TimerParcial.Stop  ' No iniciamos el Timer hasta abrir un proyecto
+
+  txtRecordatorios.Visible = False
+  Mostrar_Lista_Tareas
 
 End
 
@@ -178,3 +182,158 @@ Public Sub ToggleButtonMostrar_Click()
   End If
 
 End Sub
+
+Public Sub Chequear_Realizados()
+  ' Función para chequear si hay elementos completados de la lista así habilitamos / deshabilitamos el menú de borrado los elementos completados
+
+  mnuBorrarTODOS.Enabled = False
+
+  Dim chequear As Result
+
+  chequear = m_OnOff_y_Red.meConn.Exec("select completado from recordatorios where completado=true")
+  If chequear.Available = ""
+    Return
+  Else
+    mnuBorrarTODOS.Enabled = True
+  Endif
+
+End
+
+' esta función no me convence su utilidad
+Public Sub mnMarcarIncompleto_Click()
+
+  If ViewRecordatorios.Selected = False Then
+    Message.Error("Debe elegir un ítem primero")
+    Return
+  Endif
+
+  Dim incompleto As Result
+
+  incompleto = m_OnOff_y_Red.meConn.Edit("recordatorios", "id=" & Item_Seleccionado)
+  incompleto!completado = False
+  incompleto.Update
+
+  'Limpiamos lista y recargamos
+  ViewRecordatorios.Clear
+  Mostrar_Lista_Tareas
+
+End
+
+Public Sub mnMarcarCompletado_Click()
+  'Chequeamos primero que se haya seleccionado un elemento de la lista
+
+  If ViewRecordatorios.Selected = False Then
+    Message.Error("Debe elegir un ítem primero")
+    Return
+  Endif
+
+  Dim seleccionado As Result
+
+  seleccionado = m_OnOff_y_Red.meConn.Edit("recordatorios", "id=" & Item_Seleccionado)
+  seleccionado!completado = True
+  seleccionado.Update
+
+  'Limpiamos lista y recargamos
+  ViewRecordatorios.Clear
+  Mostrar_Lista_Tareas
+
+End
+
+Public Sub menuBORRARtarea_Click()
+
+  'Chequeamos primero que se haya seleccionado un elemento de la lista
+  If ViewRecordatorios.Selected = False Then
+    Message.Error("Debe elegir un ítem primero")
+    Return
+  Endif
+
+  Dim borrado As Result
+
+  If Message.Question("¿Está seguro de que desea borrar este ítem?", "Si", "No") = 1 Then
+    borrado = m_OnOff_y_Red.meConn.Exec("delete from recordatorios where id=" & Item_Seleccionado)
+  Endif
+
+  If ViewRecordatorios.Count = 0 Then 'Si no hay ningún contenido en la lista limpiar ocultar el panel de contenido
+    txtRecordatorios.Text = ""
+    txtRecordatorios.Visible = False
+  Endif
+
+  'Limpiamos lista y recargamos
+  ViewRecordatorios.Clear
+  Mostrar_Lista_Tareas
+
+  txtRecordatorios.Visible = False 'Cerramos el panel lateral para que no quede abierto tras borrar ítem que pueda conetener
+
+End
+
+Public Sub Mostrar_Lista_Tareas() ' Función para popular la lista de eventos
+
+  Dim listar As Result
+
+  listar = m_OnOff_y_Red.meConn.Exec("select id, completado, titulo from recordatorios")
+  If listar.Available Then
+    ViewRecordatorios.Clear
+    While (listar.Available)
+      If listar!completado = False Then
+        ViewRecordatorios.Add(CInt(listar!id), listar!titulo, Picture["./iconos/incomp.svg"])
+      Else
+        ViewRecordatorios.Add(CInt(listar!id), listar!titulo, Picture["./iconos/comp.svg"])
+      Endif
+      listar.MoveNext
+    Wend
+
+  End If
+
+  If ViewRecordatorios.Count = 0 Then 'Si no hay ningún contenido en la lista limpiar ocultar el panel de contenido y desactivar menú borrar todos
+    txtRecordatorios.Text = ""
+    txtRecordatorios.Visible = False
+    mnuBorrarTODOS.Enabled = False
+  Else
+    mnuBorrarTODOS.Enabled = True
+  End If
+
+  Chequear_Realizados()
+
+End
+
+Public Sub mnuBorrarTODOS_Click()
+
+  If Message.Question("¿Está seguro de que desea borrar todos los ítems marcados como completados?") = 1 Then
+    ' Conn.Exec("delete from tareas where completado=True")
+    m_OnOff_y_Red.meConn.Exec("delete from recordatorios where completado=True")
+    'Limpiamos lista y recargamos
+    ViewRecordatorios.Clear
+    Mostrar_Lista_Tareas
+  Else
+    Return
+
+  Endif
+
+  txtRecordatorios.Visible = False ' Cerramos el panel lateral por si queda abierto tras borrar ítem realizado
+
+End
+
+Public Sub ViewRecordatorios_Select() ' Función que nos muestra el contenido del título elegido en la ListView
+
+  Dim vistacompleta As Result
+
+  vistacompleta = m_OnOff_y_Red.meConn.Exec("select contenido from recordatorios where id = " & ViewRecordatorios.Item.key)
+  If vistacompleta!contenido <> "" Then
+    txtRecordatorios.Text = vistacompleta!contenido
+    txtRecordatorios.pos = 0
+    txtRecordatorios.Visible = True
+  Else
+    txtRecordatorios.Visible = False
+  Endif
+
+  Item_Seleccionado = ViewRecordatorios.Item.key
+
+  Print (Item_Seleccionado)
+
+End
+
+Public Sub menuADD_Click()
+
+  f_Recordatorios.ShowModal()
+
+End

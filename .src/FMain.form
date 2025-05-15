@@ -11,21 +11,29 @@
   Padding = 4
   { menuRecordatorios Menu
     Text = ("menuRecordatorios")
+    Toggle = True
     Visible = False
-    { Menu23 Menu
-      Text = ("Menu23")
+    { menuADD Menu
+      Text = ("Agregar tarea")
+      Picture = Picture["iconos/+nuevo.svg"]
     }
-    { Menu24 Menu
-      Text = ("Menu24")
+    { menuBORRARtarea Menu
+      Text = ("Borrar tarea")
+      Picture = Picture["iconos/borrar.svg"]
     }
-    { Menu25 Menu
-      Text = ("Menu25")
+    { mnMarcarCompletado Menu
+      Text = ("Marcar tarea completada")
+      Picture = Picture["iconos/comp.svg"]
     }
-    { Menu26 Menu
-      Text = ("Menu26")
+    { mnMarcarIncompleto Menu
+      Text = ("Marcar tarea como incompleta")
+      Picture = Picture["iconos/incomp.svg"]
+      Checked = True
     }
-    { Menu27 Menu
-      Text = ("Menu27")
+    { mnuBorrarTODOS Menu
+      #Translate = False
+      Text = "Borrar todos los recordatorios"
+      Picture = Picture["iconos/borrar.svg"]
     }
   }
   { Menu1 Menu
@@ -290,7 +298,7 @@
           Border = False
           { ViewRecordatorios ListView
             MoveScaled(6,4,26,6)
-            PopupMenu = "menuTareas"
+            PopupMenu = "menuRecordatorios"
           }
           { txtRecordatorios TextArea
             MoveScaled(34,2,16,8)

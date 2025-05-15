@@ -1,0 +1,53 @@
+' Gambas class file
+
+' Private meConn As New Connection
+
+Public Sub btnAgregar_Click()
+
+  If txtAgregarLista.Text = "" Then
+    Message.Warning("No puede agregar un elemento vacío a la lista")
+    Return
+  Endif
+
+  Dim agregar As Result
+  'Obtenemos el último ID y sumamos +1 para el nuevo registro
+  agregar = m_OnOff_y_Red.meConn.Exec("SELECT MAX(id) FROM recordatorios LIMIT 1")
+
+  Dim Idn As Integer
+  If agregar["MAX(id)"] = Null Then
+    Idn = 0
+  Else
+    Idn = CInt(agregar["MAX(id)"]) + 1
+  Endif
+
+  agregar = m_OnOff_y_Red.meConn.Create("recordatorios")
+  agregar!id = Idn
+  agregar!titulo = txtAgregarLista.Text
+
+  If txtAgregarDescripcion.Text <> "" Then
+    agregar!contenido = txtAgregarDescripcion.Text
+  Endif
+
+  agregar!completado = False
+  agregar.Update
+  FMain.Mostrar_Lista_Tareas
+
+  Me.Close
+
+End
+
+Public Sub Form_KeyRelease()
+
+  If Key.Code = Key.Esc Then
+    Me.Close
+  Endif
+
+End
+
+Public Sub txtAgregarLista_KeyRelease()
+
+  If Key.Code = 16777220 Or Key.code = 16777221 Then 'No me funciona de otra manera que no sea usando el código
+    btnAgregar_Click
+  Endif
+
+End
