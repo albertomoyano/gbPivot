@@ -297,12 +297,20 @@ Public Sub menuADD_Click()
 
 End
 
+Public Sub Form_Close()
+  ' Asegurar que marcamos el proyecto como no en uso al cerrar
+
+  m_OnOff_y_Red.CerrarTodo()
+
+End
+
 Public Sub Menu6_Click() ' abrir archivo
 
   Dim sRuta As String
   Dim sNombreProyecto As String
   Dim rResultado As Result
   Dim sProyectoAnterior As String
+  Dim bProyectoAbierto As Boolean = False ' Flag para controlar si se abrió el proyecto
 
   ' Guardar referencia al proyecto anterior si existe
   If txtProyecto.Text Then
@@ -326,35 +334,34 @@ Public Sub Menu6_Click() ' abrir archivo
     ' Proyecto encontrado, verificar si está en uso
     If rResultado!en_uso Then
       Message.Warning("¡Atención! Este proyecto ya está siendo utilizado en otra máquina.")
-      ' ' Return
+      ' No hacemos nada más aquí, el flag sigue siendo FALSE
     Else
       ' Proyecto encontrado pero no está en uso, marcarlo como en uso
       Try m_OnOff_y_Red.meConn.Exec("UPDATE nombre_proyecto SET en_uso = TRUE WHERE nombre = &1", sNombreProyecto)
       Message.Info("Proyecto encontrado en la base de datos. Se abrirá la aplicación.")
+      bProyectoAbierto = True ' Marcamos que se puede abrir
     Endif
   Else
     ' Proyecto no existe, insertar nuevo registro con en_uso = TRUE
     Try m_OnOff_y_Red.meConn.Exec("INSERT INTO nombre_proyecto (nombre, fecha, en_uso) VALUES (&1, &2, TRUE)",
       sNombreProyecto, Format(Date(Now), "yyyy-mm-dd"))
     Message.Info("El proyecto no existía en su base de datos. Se ha creado una nueva entrada.")
+    bProyectoAbierto = True ' Marcamos que se puede abrir
   Endif
 
-  ' Ahora que ya hemos seleccionado y verificado el nuevo proyecto,
-  ' cerramos el proyecto anterior si existía
-  If sProyectoAnterior Then
-    Try m_OnOff_y_Red.meConn.Exec("UPDATE nombre_proyecto SET en_uso = FALSE WHERE nombre = &1", sProyectoAnterior)
+  ' Solo procedemos si el proyecto se pudo abrir
+  If bProyectoAbierto Then
+    ' Ahora que ya hemos seleccionado y verificado el nuevo proyecto,
+    ' cerramos el proyecto anterior si existía
+    If sProyectoAnterior Then
+      Try m_OnOff_y_Red.meConn.Exec("UPDATE nombre_proyecto SET en_uso = FALSE WHERE nombre = &1", sProyectoAnterior)
+    Endif
+
+    ' Solo actualizamos la interfaz SI el proyecto no estaba en uso
+    txtProyecto.Text = sRuta
+    DirViewProyecto.Root = File.Dir(sRuta)
+    TerminalView.Input("cd " & File.Dir(sRuta) & "\n") ' movemos la consola a la ruta del archivo
+    reinicamosTiempo()
   Endif
-
-  txtProyecto.Text = sRuta
-  DirViewProyecto.Root = File.Dir(sRuta)
-  TerminalView.Input("cd " & File.Dir(sRuta) & "\n") ' movemos la consola a la ruta del archivo
-  reinicamosTiempo()
-
-End
-
-Public Sub Form_Close()
-  ' Asegurar que marcamos el proyecto como no en uso al cerrar
-
-  m_OnOff_y_Red.CerrarTodo()
 
 End

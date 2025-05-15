@@ -141,7 +141,7 @@
     Centered = True
     Border = False
     { Panel1 Panel
-      MoveScaled(-13,9,48,49)
+      MoveScaled(-30,8,62,49)
       Expand = True
       Arrangement = Arrange.Vertical
       Padding = 4
@@ -180,7 +180,7 @@
         }
       }
       { HBox1 HBox
-        MoveScaled(-13,44,80,4)
+        MoveScaled(23,44,80,4)
         { Label1 Label
           MoveScaled(-1,0,11,4)
           AutoResize = True
@@ -195,7 +195,7 @@
           ReadOnly = True
         }
         { HBox4 HBox
-          MoveScaled(25,0,33,4)
+          MoveScaled(26,0,33,4)
           { PictureBox37 PictureBox
             MoveScaled(0,0,4,4)
             Picture = Picture.Load("iconos/reloj.svg")
