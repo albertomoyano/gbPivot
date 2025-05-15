@@ -13,7 +13,6 @@ Public Sub Form_Open()
   $Bash = TerminalView.Shell("/usr/bin/bash")
 
   SplitterPanel3.Layout = [1, 1]
-  SplitterPanel2.Layout = [7, 3]
 
   ' Inicializamos los contadores de minutos y segundos
   horas = 0
@@ -34,12 +33,6 @@ End
 Public Sub SplitterPanel3_Resize()
 
   SplitterPanel3.Layout = [1, 1]
-
-End
-
-Public Sub SplitterPanel2_Resize()
-
-  SplitterPanel2.Layout = [7, 3]
 
 End
 
@@ -120,19 +113,38 @@ Public Sub Form_Close()
 
 End
 
-Public Sub Menu6_Click()' abrir archivo
+Public Sub Menu6_Click() ' abrir archivo
+
+  Dim sRuta As String
+  Dim sNombreProyecto As String
+  Dim rResultado As Result
 
   Dialog.Title = "Seleccionar archivo"
   Dialog.Filter = ["*.adoc", "Archivos de AsciiDoc"]
   Dialog.AutoExt = True
   Dialog.Path = User.Home
-  If Dialog.OpenFile() Then
-    Return
+
+  If Dialog.OpenFile() Then Return
+
+  ' Obtener la ruta y el nombre del proyecto sin extensión
+  sRuta = Dialog.Path
+  sNombreProyecto = File.BaseName(sRuta)
+  txtProyecto.Text = sRuta
+  DirViewProyecto.Root = File.Dir(sRuta)
+
+  ' Verificar si el proyecto existe en la base de datos
+  rResultado = m_OnOff_y_Red.meConn.Exec("SELECT id FROM nombre_proyecto WHERE nombre = &1", sNombreProyecto)
+
+  If rResultado.Available Then
+    Message.Info("Proyecto encontrado en la base de datos. Se abrirá la aplicación.")
   Else
-    txtProyecto.Text = Dialog.Path
-    DirViewProyecto.Root = File.Dir(txtProyecto.Text)
-    reinicamosTiempo()
+    ' Proyecto no existe, insertar nuevo registro
+    Try m_OnOff_y_Red.meConn.Exec("INSERT INTO nombre_proyecto (nombre, fecha) VALUES (&1, &2)", sNombreProyecto, Format(Date(Now), "yyyy-mm-dd"))
+
+    Message.Info("El proyecto no existía en su base de datos. Se ha creado una nueva entrada.")
   Endif
+
+  reinicamosTiempo()
 
 End
 
@@ -155,3 +167,14 @@ Public Sub Watcher_Change()
   FileViewProyecto.Refresh
 
 End
+
+Public Sub ToggleButtonMostrar_Click()
+
+  ' Cambiar visibilidad del TabPanel2 según el estado del botón
+  If ToggleButtonMostrar.Value Then
+    TabPanel2.Visible = True
+  Else
+    TabPanel2.Visible = False
+  End If
+
+End Sub

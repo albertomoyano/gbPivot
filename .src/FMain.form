@@ -154,10 +154,6 @@
           MoveScaled(37,0,4,4)
           Picture = Picture["iconos/guardarComo.svg"]
         }
-        { Button1 Button
-          MoveScaled(41,0,4,4)
-          Picture = Picture["iconos/hide.png"]
-        }
       }
       { Panel2 Panel
         MoveScaled(2,4,30,13)
@@ -169,7 +165,7 @@
         }
       }
       { HBox1 HBox
-        MoveScaled(-5,44,80,4)
+        MoveScaled(-34,44,80,4)
         { Label1 Label
           MoveScaled(-1,0,11,4)
           AutoResize = True
@@ -214,8 +210,12 @@
             Alignment = Align.Center
           }
         }
+        { ToggleButtonMostrar ToggleButton
+          MoveScaled(69,0,4,4)
+          Picture = Picture["iconos/hide.png"]
+        }
         { TimerParcial #Timer
-          #MoveScaled(63,0)
+          #MoveScaled(59,-1)
         }
       }
     }
@@ -224,95 +224,90 @@
       Expand = True
       Arrangement = Arrange.Vertical
       Padding = 4
-      { SplitterPanel2 Splitter
-        MoveScaled(0,2,79,81)
+      { TabPanel1 TabPanel
+        MoveScaled(0,0,76,39)
         Expand = True
-        Arrangement = Arrange.Vertical
-        Border = False
-        { TabPanel1 TabPanel
-          MoveScaled(1,1,76,55)
+        Arrangement = Arrange.Fill
+        Count = 4
+        Index = 0
+        Text = ("Metadatos     ")
+        Picture = Picture["iconos/metadatos.svg"]
+        { TabPanel3 TabPanel
+          MoveScaled(1,2,73,29)
           Expand = True
           Arrangement = Arrange.Fill
+          Border = False
           Count = 4
           Index = 0
-          Text = ("Metadatos     ")
-          Picture = Picture["iconos/metadatos.svg"]
-          { TabPanel3 TabPanel
-            MoveScaled(1,1,73,49)
-            Expand = True
-            Arrangement = Arrange.Fill
-            Border = False
-            Count = 4
-            Index = 0
-            Text = ("Revista     ")
-            Picture = Picture["iconos/revista.svg"]
-            Index = 1
-            Text = ("Artículos     ")
-            Picture = Picture["iconos/textnormal.svg"]
-            Index = 2
-            Text = ("Autores     ")
-            Picture = Picture["iconos/autores.svg"]
-            Index = 3
-            Text = ("Otros     ")
-            Picture = Picture["iconos/face.svg"]
-            Index = 0
-          }
+          Text = ("Revista     ")
+          Picture = Picture["iconos/revista.svg"]
           Index = 1
-          Text = ("Referencias bibliográficas     ")
-          Picture = Picture["iconos/bibtex.svg"]
+          Text = ("Artículos     ")
+          Picture = Picture["iconos/textnormal.svg"]
           Index = 2
-          Text = ("Siglas y glosarios     ")
-          Picture = Picture["iconos/glosarios.svg"]
+          Text = ("Autores     ")
+          Picture = Picture["iconos/autores.svg"]
           Index = 3
-          Text = ("Asistente AI     ")
-          Picture = Picture["iconos/AI.svg"]
+          Text = ("Otros     ")
+          Picture = Picture["iconos/face.svg"]
           Index = 0
         }
-        { TabPanel2 TabPanel
-          MoveScaled(2,57,74,23)
-          Arrangement = Arrange.Fill
-          Count = 3
-          Index = 0
-          Text = ("Archivos del proyecto")
-          Picture = Picture["iconos/document.svg"]
-          { SplitterPanel3 Splitter
-            MoveScaled(1,1,48,17)
-            Border = False
-            { DirViewProyecto DirView
-              MoveScaled(1,5,26,10)
-            }
-            { FileViewProyecto FileView
-              MoveScaled(28,5,19,10)
-              View = FileView.Detailed
-            }
+        Index = 1
+        Text = ("Referencias bibliográficas     ")
+        Picture = Picture["iconos/bibtex.svg"]
+        Index = 2
+        Text = ("Siglas y glosarios     ")
+        Picture = Picture["iconos/glosarios.svg"]
+        Index = 3
+        Text = ("Asistente AI     ")
+        Picture = Picture["iconos/AI.svg"]
+        Index = 0
+      }
+      { TabPanel2 TabPanel
+        MoveScaled(1,50,74,34)
+        Visible = False
+        Arrangement = Arrange.Fill
+        Count = 3
+        Index = 0
+        Text = ("Archivos del proyecto")
+        Picture = Picture["iconos/document.svg"]
+        { SplitterPanel3 Splitter
+          MoveScaled(4,1,48,17)
+          Border = False
+          { DirViewProyecto DirView
+            MoveScaled(1,5,26,10)
           }
-          Index = 1
-          Text = ("Recordatorios     ")
-          Picture = Picture["iconos/checklist.svg"]
-          { SplitterApostillas Splitter
-            MoveScaled(1,2,67,12)
-            Border = False
-            { ViewRecordatorios ListView
-              MoveScaled(6,4,26,6)
-              PopupMenu = "menuTareas"
-            }
-            { txtRecordatorios TextArea
-              MoveScaled(34,2,16,8)
-              Background = &HFFF7DF
-              ReadOnly = True
-              Wrap = True
-              ScrollBar = Scroll.Vertical
-            }
+          { FileViewProyecto FileView
+            MoveScaled(28,5,19,10)
+            View = FileView.Detailed
           }
-          Index = 2
-          Text = ("Terminal     ")
-          Picture = Picture["iconos/terminal.svg"]
-          { !TerminalView TerminalView
-            MoveScaled(8,5,24,9)
-            #Public = True
-          }
-          Index = 0
         }
+        Index = 1
+        Text = ("Recordatorios     ")
+        Picture = Picture["iconos/checklist.svg"]
+        { SplitterApostillas Splitter
+          MoveScaled(1,2,67,12)
+          Border = False
+          { ViewRecordatorios ListView
+            MoveScaled(6,4,26,6)
+            PopupMenu = "menuTareas"
+          }
+          { txtRecordatorios TextArea
+            MoveScaled(34,2,16,8)
+            Background = &HFFF7DF
+            ReadOnly = True
+            Wrap = True
+            ScrollBar = Scroll.Vertical
+          }
+        }
+        Index = 2
+        Text = ("Terminal     ")
+        Picture = Picture["iconos/terminal.svg"]
+        { !TerminalView TerminalView
+          MoveScaled(8,5,24,9)
+          #Public = True
+        }
+        Index = 0
       }
     }
   }
