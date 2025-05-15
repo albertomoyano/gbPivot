@@ -1,7 +1,7 @@
 # Gambas Form File 3.0
 
 { Form Form
-  MoveScaled(0,0,135,93)
+  MoveScaled(0,0,180,93)
   Expand = True
   Maximized = True
   Arrangement = Arrange.Vertical
@@ -90,13 +90,16 @@
       Text = ("Exportar referencias bibliogáficas")
       Picture = Picture["iconos/exportarbib.svg"]
     }
-    { Menu10 Menu
-      Text = ("Empujar a git logal")
-      Picture = Picture["iconos/git-local.svg"]
-    }
-    { Menu11 Menu
-      Text = ("Empujar a github y generar todos los release")
-      Picture = Picture["iconos/gitremoto.svg"]
+    { Menu23 Menu
+      Text = ("Control de versiones (Git)")
+      { Menu10 Menu
+        Text = ("Empujar a git logal")
+        Picture = Picture["iconos/git-local.svg"]
+      }
+      { Menu11 Menu
+        Text = ("Empujar a github y generar todos los release")
+        Picture = Picture["iconos/gitremoto.svg"]
+      }
     }
     { Menu12 Menu
       Text = ("Comprimir todo el proyecto")
@@ -129,12 +132,12 @@
     }
   }
   { SplitterPrincipal Splitter
-    MoveScaled(1,1,130,87)
+    MoveScaled(1,1,176,87)
     Expand = True
     Centered = True
     Border = False
     { Panel1 Panel
-      MoveScaled(1,7,48,49)
+      MoveScaled(-13,7,48,49)
       Expand = True
       Arrangement = Arrange.Vertical
       Padding = 4
@@ -228,14 +231,17 @@
       }
     }
     { Panel3 Panel
-      MoveScaled(50,1,79,85)
+      MoveScaled(37,1,125,85)
       Expand = True
       Arrangement = Arrange.Vertical
       Padding = 4
       { TabPanel1 TabPanel
-        MoveScaled(0,0,76,39)
+        MoveScaled(1,0,124,59)
         Expand = True
-        Arrangement = Arrange.Fill
+        Arrangement = Arrange.Vertical
+        Spacing = True
+        Margin = True
+        Padding = 4
         Count = 4
         Index = 0
         Text = ("Metadatos     ")
@@ -266,13 +272,417 @@
         Index = 2
         Text = ("Siglas y glosarios     ")
         Picture = Picture["iconos/glosarios.svg"]
+        { HBox8 Panel
+          MoveScaled(2,0,122,27)
+          NoTabFocus = True
+          Arrangement = Arrange.Horizontal
+          { TabPanel4 TabPanel
+            MoveScaled(1,1,119,25)
+            Expand = True
+            Arrangement = Arrange.Vertical
+            Spacing = True
+            Margin = True
+            Padding = 4
+            Count = 3
+            Index = 0
+            Text = ("Caja de texto temporal     ")
+            Picture = Picture["iconos/textnormal.svg"]
+            { txtTMPglosario TextArea
+              MoveScaled(1,1,13,6)
+              Enabled = False
+              Background = Color.LightGray
+              Expand = True
+              Wrap = True
+              ScrollBar = Scroll.Vertical
+            }
+            Index = 1
+            Text = ("Siglas y glosarios (archivo en curso)     ")
+            Picture = Picture["iconos/face.svg"]
+            { gidGLOactual TableView
+              MoveScaled(3,4,30,10)
+              Font = Font["-1"]
+              Expand = True
+              Mode = Select.Single
+              ShowCursor = True
+              Header = GridView.Horizontal
+              Resizable = False
+            }
+            Index = 2
+            Text = ("Siglas y glosarios (todas)     ")
+            Picture = Picture["iconos/bibtex.svg"]
+            { VGridGLO TableView
+              MoveScaled(4,3,30,10)
+              Font = Font["-1"]
+              Expand = True
+              Mode = Select.Single
+              ShowCursor = True
+              Header = GridView.Horizontal
+              Resizable = False
+            }
+            Index = 0
+          }
+        }
+        { HBox16 HBox
+          MoveScaled(1,27,105,4)
+          { BtnNuevoGlo Button
+            MoveScaled(0,0,4,4)
+            NoTabFocus = True
+            ToolTip = ("Agregar una nueva referencia")
+            Picture = Picture["iconos/+nuevo.svg"]
+          }
+          { BtnEliminarGlo Button
+            MoveScaled(4,0,4,4)
+            NoTabFocus = True
+            ToolTip = ("Borrar entrada")
+            Picture = Picture["iconos/borrar.svg"]
+          }
+          { btnGuardarGlo Button
+            MoveScaled(8,0,4,4)
+            ToolTip = ("Guardar modificaciones")
+            Picture = Picture["iconos/guardar.svg"]
+          }
+          { btnGuardarCambiosGlo Button
+            MoveScaled(12,0,4,4)
+            ToolTip = ("Guardar modificaciones")
+            Picture = Picture["iconos/guardarComo.svg"]
+          }
+          { txtIDglosario TextBox
+            MoveScaled(17,0,10,4)
+            Visible = False
+            Background = Color.Background
+            NoTabFocus = True
+            ReadOnly = True
+          }
+          { lblTotalesGLO TextLabel
+            MoveScaled(77,0,24.2222,4)
+            Expand = True
+            Alignment = Align.Center
+          }
+        }
+        { HBox3 HBox
+          MoveScaled(1,31,124,4)
+          { btnBuscarClaveGLO Button
+            MoveScaled(0,0,4,4)
+            Picture = Picture["iconos/search.svg"]
+          }
+          { lblAlta2 Label
+            MoveScaled(5,0,12.4444,4)
+            Alignment = Align.Right
+            Text = ("Clave  ")
+          }
+          { btnAgregarGloKey Button
+            MoveScaled(18,0,4,4)
+            ToolTip = ("Agregar clave")
+            Picture = Picture["iconos/clave.svg"]
+          }
+          { txtCLAVEglo TextBox
+            MoveScaled(23,0,8,4)
+            NoTabFocus = True
+            Expand = True
+            Alignment = Align.Left
+            Placeholder = ("Clave GLO única")
+          }
+          { Separator7 Separator
+            MoveScaled(104,0,2.3333,4)
+          }
+          { btnParcialGLO Button
+            MoveScaled(107,0,16,4)
+            Picture = Picture["iconos/face.svg"]
+          }
+        }
+        { HBox7 HBox
+          MoveScaled(1,35,103,4)
+          { Label11 Label
+            MoveScaled(0,0,16.4444,4)
+            Font = Font["Bold"]
+            Foreground = &HFF0000
+            Alignment = Align.Right
+            Text = ("Tipo de entrada  ")
+          }
+          { !cbTYPEentradaGlo ComboBox
+            MoveScaled(17,0,24,4)
+            #Public = True
+            NoTabFocus = True
+            ReadOnly = True
+          }
+          { lblKEYWORDS1 Label
+            MoveScaled(41,0,12.4444,4)
+            #Translate = False
+            Alignment = Align.Right
+            Text = "    Filtro "
+          }
+          { btnBuscarFiltroGlosario Button
+            MoveScaled(58,0,4,4)
+            Picture = Picture["iconos/search.svg"]
+          }
+          { btnAgregarKey Button
+            MoveScaled(62,0,4,4)
+            ToolTip = ("Agregar clave")
+            Picture = Picture["iconos/clave.svg"]
+          }
+          { txtARCHIVO TextBox
+            MoveScaled(66,0,10,4)
+            NoTabFocus = True
+            Expand = True
+          }
+        }
+        { ScrollView9 ScrollView
+          MoveScaled(1,40,124,34)
+          Expand = True
+          Arrangement = Arrange.Vertical
+          Spacing = True
+          Padding = 4
+          Border = False
+          ScrollBar = Scroll.Vertical
+          { HBox17 HBox
+            MoveScaled(0,0,87,4)
+            { btnBuscarNombreGLO Button
+              MoveScaled(1,0,4,4)
+              Picture = Picture["iconos/search.svg"]
+            }
+            { lblKEYWORDS2 Label
+              MoveScaled(10,0,12.4444,4)
+              #Translate = False
+              Alignment = Align.Right
+              Text = "Nombre "
+            }
+            { txtNAME TextBox
+              MoveScaled(28,0,24,4)
+              NoTabFocus = True
+              Expand = True
+            }
+          }
+          { HBox20 HBox
+            MoveScaled(0,4,87,4)
+            { Label12 Label
+              MoveScaled(1,0,16.4444,3.5556)
+              Alignment = Align.Right
+              Text = ("Description ")
+            }
+            { txtDESCRIPTION TextBox AllTextBoxes
+              Name = "txtDESCRIPTION"
+              MoveScaled(19,0,15,4)
+              Expand = True
+              Placeholder = ("La descripción del término.")
+            }
+            { ButtonMostrarTextoGlo Button
+              MoveScaled(37,0,4,4)
+              Picture = Picture["iconos/schedule.svg"]
+            }
+          }
+          { HBox5 HBox
+            MoveScaled(0,8,87,4)
+            { Label7 Label
+              MoveScaled(2,0,16.4444,3.5556)
+              Alignment = Align.Right
+              Text = ("Primera vez ")
+            }
+            { txtFIRST TextBox AllTextBoxes
+              Name = "txtFIRST"
+              MoveScaled(19,0,15,4)
+              Expand = True
+              PopupMenu = "menuTEXTBOX"
+              Placeholder = ("Esta entrada aparecerá en el texto del documento la primera vez que se use.")
+            }
+          }
+          { HBox10 HBox
+            MoveScaled(0,12,87,4)
+            { btnBuscarTextoGLO Button
+              MoveScaled(1,0,4,4)
+              Picture = Picture["iconos/search.svg"]
+            }
+            { Label8 Label
+              MoveScaled(17,0,12.4444,3.5556)
+              Alignment = Align.Right
+              Text = ("Text ")
+            }
+            { txtTEXT TextBox AllTextBoxes
+              Name = "txtTEXT"
+              MoveScaled(33,0,15,4)
+              Expand = True
+              Placeholder = ("Esta entrada aparecerá en el texto del documento.")
+            }
+          }
+          { HBox11 HBox
+            MoveScaled(0,16,87,4)
+            { Label2 Label
+              MoveScaled(2,0,16.4444,3.5556)
+              Alignment = Align.Right
+              Text = ("Firstplural ")
+            }
+            { txtFPLURAL TextBox AllTextBoxes
+              Name = "txtFPLURAL"
+              MoveScaled(19,0,15,4)
+              Expand = True
+              PopupMenu = "menuTEXTBOX"
+              Placeholder = ("Esta entrada es igual que plural, pero es solo válida para la primera vez que se llame a \\glspl.")
+            }
+          }
+          { HBox12 HBox
+            MoveScaled(0,20,87,4)
+            { lblLANGID2 Label
+              MoveScaled(0,0,16.4444,4)
+              Alignment = Align.Right
+              Text = ("Plural ")
+            }
+            { txtPLURAL TextBox AllTextBoxes
+              Name = "txtPLURAL"
+              MoveScaled(18,0,24,4)
+              Expand = True
+              PopupMenu = "menuTEXTBOX"
+              Placeholder = ("Esta entrada aparecerá en el texto cuando se utilice \\glspl.")
+            }
+          }
+          { HBox13 HBox
+            MoveScaled(0,24,87,4)
+            { lblLANGID1 Label
+              MoveScaled(0,0,16.4444,4)
+              Alignment = Align.Right
+              Text = ("Sort ")
+            }
+            { txtSORT TextBox AllTextBoxes
+              Name = "txtSORT"
+              MoveScaled(18,0,24,4)
+              Expand = True
+              PopupMenu = "menuTEXTBOX"
+              Placeholder = ("Este valor indica como makeindex deberı́a ordenar las entradas.")
+            }
+          }
+        }
         Index = 3
         Text = ("Asistente AI     ")
         Picture = Picture["iconos/AI.svg"]
+        { Panel11 Panel
+          MoveScaled(1,1,87,83)
+          Arrangement = Arrange.Vertical
+          Spacing = True
+          Padding = 4
+          { PanelAI3 Panel
+            MoveScaled(1,0,85,4)
+            Arrangement = Arrange.Horizontal
+            AutoResize = True
+            { Label172 Label
+              MoveScaled(0,0,16,3.5556)
+              Alignment = Align.Right
+              Text = ("Modelo ")
+            }
+            { cmbModelo ComboBox
+              MoveScaled(17,0,22,4)
+              Expand = True
+              ReadOnly = True
+              List = [("DeepSeek-V3"), ("ChatGPT-4 (Academic)")]
+            }
+            { Label174 Label
+              MoveScaled(49,0,12,4)
+              Alignment = Align.Right
+              Text = ("Temperatura ")
+            }
+            { txtTemperatura ValueBox
+              MoveScaled(63,0,4,4)
+            }
+            { txtIdPrompt TextBox
+              MoveScaled(69,0,10,4)
+              Visible = False
+            }
+          }
+          { PanelAI Panel
+            MoveScaled(1,4,75,4)
+            Arrangement = Arrange.Horizontal
+            AutoResize = True
+            { Label168 Label
+              MoveScaled(0,0,16,3.5556)
+              Alignment = Align.Right
+              Text = ("API Key ")
+            }
+            { txtAsistenteAI TextBox
+              MoveScaled(17,0,13,4)
+              Expand = True
+              Placeholder = ("Coloque su API key con el formato adecuado")
+            }
+            { btnAsistenteAI Button
+              MoveScaled(49,0,16,4)
+              Text = ("Consultar")
+              Picture = Picture["iconos/clave.svg"]
+            }
+          }
+          { PanelAI2 Panel
+            MoveScaled(1,8,85,4)
+            Arrangement = Arrange.Horizontal
+            AutoResize = True
+            { Label171 Label
+              MoveScaled(1,0,16,3.5556)
+              Alignment = Align.Right
+              Text = ("Base ")
+            }
+            { txtBaseAI TextBox
+              MoveScaled(17,0,13,4)
+              Expand = True
+            }
+            { HBox9 HBox
+              MoveScaled(54,0,16,4)
+              { btnPromptNuevo Button
+                MoveScaled(0,0,4,4)
+                NoTabFocus = True
+                ToolTip = ("Agregar entrada")
+                Picture = Picture["iconos/+nuevo.svg"]
+              }
+              { btnPromptBorrar Button
+                MoveScaled(5,0,4,4)
+                NoTabFocus = True
+                ToolTip = ("Eliminar entrada")
+                Picture = Picture["iconos/borrar.svg"]
+              }
+              { btnPromptGuardar Button
+                MoveScaled(9,0,4,4)
+                NoTabFocus = True
+                ToolTip = ("Guardar entrada")
+                Picture = Picture["iconos/guardar.svg"]
+              }
+              { btnPromptGuardarMod Button
+                MoveScaled(13,0,4,4)
+                NoTabFocus = True
+                ToolTip = ("Guardar cambios")
+                Picture = Picture["iconos/guardarComo.svg"]
+              }
+            }
+          }
+          { gridAI GridView
+            MoveScaled(1,12,47,20)
+            ShowCursor = True
+            ScrollBar = Scroll.Vertical
+          }
+          { TextLabel8 TextLabel
+            MoveScaled(2,33,49,7)
+            Padding = 4
+            AutoResize = True
+            Text = ("En el prompt puedes (y es recomendable) instruir al modelo para que priorice y se comporte como si consultara fuentes específicas como PubMed, SciELO, LatIndex, etc., añadiendo esto a tus prompts. Esto mejora la relevancia y calidad de las respuestas, especialmente para tareas académicas, y ayuda a reducir errores en las respuestas, <span style=\"color: #df0101;\"><strong>pero no reemplaza la necesidad de verificación humana</strong></span>, ya que no es una consulta en tiempo real a dichas bases de datos.\n")
+            Alignment = Align.Normal
+          }
+          { !txtAreaPrompt1 TextArea
+            MoveScaled(2,41,41,15)
+            #Public = True
+            Wrap = True
+            ScrollBar = Scroll.Vertical
+          }
+          { !txtAreaPrompt2 TextArea
+            MoveScaled(2,57,41,15)
+            #Public = True
+            Wrap = True
+            ScrollBar = Scroll.Vertical
+          }
+          { txtResultado TextArea
+            MoveScaled(2,73,24,10)
+            Background = Color.Background
+            Expand = True
+            ReadOnly = True
+            Wrap = True
+            ScrollBar = Scroll.Vertical
+          }
+        }
         Index = 0
       }
       { TabPanel2 TabPanel
-        MoveScaled(1,50,74,34)
+        MoveScaled(1,61,74,34)
         Visible = False
         Arrangement = Arrange.Fill
         Count = 3
