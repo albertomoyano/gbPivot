@@ -560,7 +560,8 @@
         Text = ("Asistente AI     ")
         Picture = Picture["iconos/AI.svg"]
         { Panel11 Panel
-          MoveScaled(1,1,87,83)
+          MoveScaled(1,1,87,90)
+          Expand = True
           Arrangement = Arrange.Vertical
           Spacing = True
           Padding = 4
@@ -623,6 +624,7 @@
             }
             { txtIdentificador TextBox
               MoveScaled(17,0,13,4)
+              Background = Color.Background
               Expand = True
               ReadOnly = True
             }
@@ -678,19 +680,23 @@
             Wrap = True
             ScrollBar = Scroll.Vertical
           }
-          { txtResultado TextArea
-            MoveScaled(2,73,24,10)
-            Background = Color.Background
+          { Panel4 HBox
+            MoveScaled(3,74,32,13)
             Expand = True
-            ReadOnly = True
-            Wrap = True
-            ScrollBar = Scroll.Vertical
+            { txtResultado TextArea
+              MoveScaled(0,0,24,10)
+              Background = Color.Background
+              Expand = True
+              ReadOnly = True
+              Wrap = True
+              ScrollBar = Scroll.Vertical
+            }
           }
         }
         Index = 0
       }
       { TabPanel2 TabPanel
-        MoveScaled(1,61,74,34)
+        MoveScaled(2,70,74,34)
         Visible = False
         Arrangement = Arrange.Fill
         Count = 3
