@@ -112,6 +112,10 @@
     { Menu32 Menu
       Text = ("Generación de figura")
     }
+    { Menu24 Menu
+      Text = ("Scripts externos en Python")
+      Picture = Picture["iconos/logo-python.svg"]
+    }
     { Menu2 Menu
       Text = ("Preferencias")
       Picture = Picture["iconos/logfile.svg"]
