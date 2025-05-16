@@ -588,8 +588,9 @@
             { txtTemperatura ValueBox
               MoveScaled(63,0,4,4)
             }
-            { txtIdPrompt TextBox
+            { !txtIdPrompt TextBox
               MoveScaled(69,0,10,4)
+              #Public = True
               Visible = False
             }
           }
@@ -622,42 +623,50 @@
               Alignment = Align.Right
               Text = ("Identificador ")
             }
-            { txtIdentificador TextBox
+            { !txtIdentificador TextBox
               MoveScaled(17,0,13,4)
+              #Public = True
               Background = Color.Background
               Expand = True
               ReadOnly = True
             }
             { HBox9 HBox
               MoveScaled(54,0,16,4)
-              { btnPromptNuevo Button
+              { !btnPromptNuevo Button
                 MoveScaled(0,0,4,4)
+                #Public = True
                 NoTabFocus = True
                 ToolTip = ("Agregar entrada")
                 Picture = Picture["iconos/+nuevo.svg"]
               }
-              { btnPromptBorrar Button
+              { !btnPromptBorrar Button
                 MoveScaled(5,0,4,4)
+                #Public = True
                 NoTabFocus = True
                 ToolTip = ("Eliminar entrada")
                 Picture = Picture["iconos/borrar.svg"]
               }
-              { btnPromptGuardar Button
+              { !btnPromptGuardar Button
                 MoveScaled(9,0,4,4)
+                #Public = True
                 NoTabFocus = True
                 ToolTip = ("Guardar entrada")
                 Picture = Picture["iconos/guardar.svg"]
               }
-              { btnPromptGuardarMod Button
+              { !btnPromptGuardarMod Button
                 MoveScaled(13,0,4,4)
+                #Public = True
                 NoTabFocus = True
                 ToolTip = ("Guardar cambios")
                 Picture = Picture["iconos/guardarComo.svg"]
               }
             }
           }
-          { gridAI GridView
+          { !gridAI GridView
             MoveScaled(1,12,47,20)
+            #Public = True
+            #Translate = False
+            Mode = Select.Single
             ShowCursor = True
             ScrollBar = Scroll.Vertical
           }

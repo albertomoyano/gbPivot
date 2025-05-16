@@ -24,28 +24,18 @@ Public Sub Form_Open()
   segundos = 0
   ' Configuramos el Timer para que se ejecute cada segundo (1000 milisegundos)
   TimerParcial.Delay = 1000
-  TimerParcial.Stop  ' No iniciamos el Timer hasta abrir un proyecto
+  TimerParcial.Stop' No iniciamos el Timer hasta abrir un proyecto
 
   txtRecordatorios.Visible = False
   Mostrar_Lista_Tareas
+  m_AI.gridviewAI' diseñamos el grid de AI
+  m_AI.cargargrid()
+  btnPromptNuevo.Visible = True
+  btnPromptBorrar.Visible = False
+  btnPromptGuardar.Visible = False
+  btnPromptGuardarMod.Visible = False
 
 End
-
-' ' Método para cerrar proyecto (añadir este método o agregarlo a su lugar correspondiente)
-' Public Sub CerrarProyecto()
-'   ' Guardar el tiempo total
-'
-'   guardarTiempoTotal()
-'
-'   ' Detener el timer
-'   TimerParcial.Stop
-'
-'   ' Limpiar el formulario
-'   txtProyecto.Text = ""
-'   txtTiempo.Text = "00:00:00"
-'   txtTiempoTotal.Text = "00:00:00"
-'
-' End
 
 Public Sub SplitterPanel3_Resize()
 
@@ -495,5 +485,23 @@ End
 Public Sub Menu5_Click()' salir de la aplicacion
 
   m_OnOff_y_Red.CerrarTodo()
+
+End
+
+Public Sub btnPromptNuevo_Click()
+
+  m_AI.PromptNuevo()
+
+End
+
+Public Sub btnPromptGuardar_Click()
+
+  m_AI.GuardarPrompt()
+
+End
+
+Public Sub Form_Activate()
+
+  m_AI.cargargrid()
 
 End
