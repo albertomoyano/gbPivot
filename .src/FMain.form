@@ -141,7 +141,7 @@
     Centered = True
     Border = False
     { Panel1 Panel
-      MoveScaled(-41,5,89,49)
+      MoveScaled(-64,5,89,49)
       Expand = True
       Arrangement = Arrange.Vertical
       Padding = 4
@@ -249,12 +249,12 @@
         Spacing = True
         Margin = True
         Padding = 4
-        Count = 4
+        Count = 5
         Index = 0
-        Text = ("Metadatos     ")
+        Text = ("Metadatos")
         Picture = Picture["iconos/metadatos.svg"]
         { TabPanel3 TabPanel
-          MoveScaled(1,2,73,29)
+          MoveScaled(3,2,73,29)
           Expand = True
           Arrangement = Arrange.Fill
           Border = False
@@ -274,10 +274,10 @@
           Index = 0
         }
         Index = 1
-        Text = ("Referencias bibliográficas     ")
+        Text = ("Bibliografia")
         Picture = Picture["iconos/bibtex.svg"]
         Index = 2
-        Text = ("Siglas y glosarios     ")
+        Text = ("Siglas y glosarios")
         Picture = Picture["iconos/glosarios.svg"]
         { HBox8 Panel
           MoveScaled(2,0,122,27)
@@ -557,7 +557,7 @@
           }
         }
         Index = 3
-        Text = ("Asistente AI     ")
+        Text = ("Asistente AI")
         Picture = Picture["iconos/AI.svg"]
         { Panel11 Panel
           MoveScaled(1,1,87,90)
@@ -702,6 +702,9 @@
             }
           }
         }
+        Index = 4
+        Text = ("GitPages p/corrección")
+        Picture = Picture["iconos/ChatGPT_logo.svg"]
         Index = 0
       }
       { TabPanel2 TabPanel
