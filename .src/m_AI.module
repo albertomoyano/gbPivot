@@ -106,7 +106,7 @@ Public Sub GuardarPrompt()
 
   Message.Info("Nueva entrada guardada.")
   cargargrid()
-  ' LimpiarCamposNotas()
+  LimpiarCampos()
 
   FMain.txtIdentificador.ReadOnly = True
   FMain.txtIdentificador.Background = Color.Background

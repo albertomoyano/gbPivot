@@ -249,7 +249,7 @@
         Spacing = True
         Margin = True
         Padding = 4
-        Count = 5
+        Count = 6
         Index = 0
         Text = ("Metadatos")
         Picture = Picture["iconos/metadatos.svg"]
@@ -557,6 +557,9 @@
           }
         }
         Index = 3
+        Text = ("Chart")
+        Picture = Picture["iconos/chart.svg"]
+        Index = 4
         Text = ("Asistente AI")
         Picture = Picture["iconos/AI.svg"]
         { Panel11 Panel
@@ -702,8 +705,8 @@
             }
           }
         }
-        Index = 4
-        Text = ("GitPages p/corrección")
+        Index = 5
+        Text = ("GitPages")
         Picture = Picture["iconos/ChatGPT_logo.svg"]
         Index = 0
       }

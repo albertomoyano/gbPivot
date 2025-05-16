@@ -28,7 +28,7 @@ Public Sub Form_Open()
 
   txtRecordatorios.Visible = False
   Mostrar_Lista_Tareas
-  m_AI.gridviewAI' diseñamos el grid de AI
+  m_AI.gridviewAI()' diseñamos el grid de AI
   m_AI.cargargrid()
   btnPromptNuevo.Visible = True
   btnPromptBorrar.Visible = False
