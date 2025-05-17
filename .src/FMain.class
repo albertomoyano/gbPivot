@@ -1,5 +1,6 @@
 ' Gambas class file
 
+Private rPrompt As Result
 Private Item_Seleccionado As Integer
 Public segundos As Integer
 Public minutos As Integer
@@ -28,8 +29,8 @@ Public Sub Form_Open()
 
   txtRecordatorios.Visible = False
   Mostrar_Lista_Tareas
-  m_AI.gridviewAI()' diseñamos el grid de AI
-  m_AI.cargargrid()
+  gridviewAI()  ' Configura la estructura del grid
+  cargargrid()  ' Carga los datos
   btnPromptNuevo.Visible = True
   btnPromptBorrar.Visible = False
   btnPromptGuardar.Visible = False
@@ -500,8 +501,185 @@ Public Sub btnPromptGuardar_Click()
 
 End
 
+Public Sub gridviewAI()
+
+  gridAI.Header = True
+  gridAI.Grid = True
+  gridAI.Columns.Count = 3
+  gridAI.Columns[0].Title = "id"
+  gridAI.Columns[0].Width = 0
+  gridAI.Columns[1].Title = "Identificador"
+  gridAI.Columns[1].Width = 300
+  gridAI.Columns[2].Title = "Prompt"
+  gridAI.Columns[2].Width = 300
+
+End
+
+' Función para cargar y actualizar la grilla
+Public Sub cargargrid()
+  ' Guardamos el resultado en la variable de módulo
+
+  rPrompt = m_OnOff_y_Red.meConn.Exec("SELECT * FROM asistente_ai ORDER BY id")
+  gridAI.Rows.Count = rPrompt.Count
+  gridAI.Refresh()
+
+End
+
+Public Sub gridAI_Data(Row As Integer, Column As Integer)
+  ' Verificamos que tengamos resultados
+
+  If rPrompt And If rPrompt.Available Then
+    If Row >= 0 And Row < rPrompt.Count Then
+      ' Movemos el cursor al registro correspondiente
+      rPrompt.MoveTo(Row)
+      ' Asignamos el valor de la columna correspondiente
+      Try gridAI.Data.Text = Str(rPrompt[Column])
+    Endif
+  Endif
+
+  ' Alternamos colores en las filas
+  If row Mod 2 = 0 Then
+    gridAI.Data.Background = Color.RGB(230, 230, 230)
+  Endif
+
+End
+
+Public Sub PromptNuevo()
+  ' Habilitamos los campos de entrada
+
+  LimpiarCampos()
+  ' Ocultamos/mostramos botones según sea necesario
+  btnPromptNuevo.Visible = False
+  btnPromptBorrar.Visible = False
+  btnPromptGuardar.Visible = True
+  btnPromptGuardarMod.Visible = False
+  ' Obtenemos el último ID y sumamos +1 para el nuevo registro
+  Dim resultado As Result
+  resultado = m_OnOff_y_Red.meConn.Exec("SELECT MAX(id) FROM asistente_ai LIMIT 1")
+  Dim Idn As Integer
+  ' Si no hay ninguna entrada entonces arrancamos desde 0
+  If resultado["MAX(id)"] = Null Then
+    Idn = 0
+  Else
+    Idn = CInt(resultado["MAX(id)"]) + 1
+  Endif
+  txtIdPrompt.Text = Idn
+  txtIdentificador.ReadOnly = False
+  txtIdentificador.Background = Color.White
+  txtIdentificador.SetFocus
+
+End
+
+Public Sub GuardarPrompt()
+
+  Dim miCreate As Result
+
+  Try miCreate = m_OnOff_y_Red.meConn.Create("asistente_ai")
+  If Error Then
+    Message.Error("Error al crear: " & Error.Text)
+    Return
+  Endif
+  With miCreate
+    !id = txtIdPrompt.Text
+    !identificador = txtIdentificador.Text
+    !prompt = txtAreaPrompt1.Text
+    Try .Update()
+    If Error Then
+      Message.Error("Error al guardar: " & Error.Text)
+      Return
+    Endif
+  End With
+  Message.Info("Nueva entrada guardada.")
+  cargargrid()  ' Actualizamos la grilla después de guardar
+  LimpiarCampos()
+  txtIdentificador.ReadOnly = True
+  txtIdentificador.Background = Color.Background
+  btnPromptNuevo.Visible = True
+  btnPromptBorrar.Visible = False
+  btnPromptGuardar.Visible = False
+  btnPromptGuardarMod.Visible = False
+
+End
+
+Public Sub gridAI_Click()
+
+  txtIdentificador.Enabled = True
+  txtAreaPrompt1.Enabled = True
+  btnPromptNuevo.Visible = True
+  btnPromptBorrar.Visible = True
+  btnPromptGuardar.Visible = False
+  btnPromptGuardarMod.Visible = True
+  ' Rellenar los campos de texto con los valores de la fila seleccionada
+  txtIdPrompt.Text = gridAI[gridAI.row, 0].Text
+  txtIdentificador.Text = gridAI[gridAI.row, 1].Text
+  txtAreaPrompt1.Text = gridAI[gridAI.row, 2].Text
+
+End
+
+Public Sub LimpiarCampos()
+
+  txtIdPrompt.Text = ""
+  txtIdentificador.Text = ""
+  txtAreaPrompt1.Text = ""
+
+End
+
 Public Sub Form_Activate()
 
-  m_AI.cargargrid()
+  cargargrid()
+
+End
+
+Public Sub btnPromptBorrar_Click()
+
+  Dim id As Integer = Val(txtIdPrompt.Text)
+
+  If Message.Question("¿Está seguro que desea eliminar este registro?", "Sí", "No") = 1 Then
+    Try m_OnOff_y_Red.meConn.Exec("DELETE FROM asistente_ai WHERE id = &1", id)
+    If Error Then
+      Message.Error("Error al eliminar: " & Error.Text)
+      Return
+    Endif
+
+    Message.Info("Registro eliminado correctamente.")
+    cargargrid()  ' Actualizamos la grilla después de eliminar
+    LimpiarCampos()
+    btnPromptNuevo.Visible = True
+    btnPromptBorrar.Visible = False
+    btnPromptGuardar.Visible = False
+    btnPromptGuardarMod.Visible = False
+  Endif
+
+End
+
+Public Sub btnPromptGuardarMod_Click()
+
+  Dim miModify As Result
+  Dim id As Integer = Val(txtIdPrompt.Text)
+
+  ' Buscamos el registro a modificar
+  Try miModify = m_OnOff_y_Red.meConn.Edit("asistente_ai", "id = &1", id)
+  If Error Then
+    Message.Error("Error al buscar registro: " & Error.Text)
+    Return
+  Endif
+
+  With miModify
+    !identificador = txtIdentificador.Text
+    !prompt = txtAreaPrompt1.Text
+    Try .Update()
+    If Error Then
+      Message.Error("Error al actualizar: " & Error.Text)
+      Return
+    Endif
+  End With
+
+  Message.Info("Registro actualizado correctamente.")
+  cargargrid()  ' Actualizamos la grilla después de modificar
+  LimpiarCampos()
+  btnPromptNuevo.Visible = True
+  btnPromptBorrar.Visible = False
+  btnPromptGuardar.Visible = False
+  btnPromptGuardarMod.Visible = False
 
 End

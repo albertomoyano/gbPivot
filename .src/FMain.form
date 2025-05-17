@@ -136,12 +136,12 @@
     }
   }
   { SplitterPrincipal Splitter
-    MoveScaled(0,1,176,87)
+    MoveScaled(1,1,176,87)
     Expand = True
     Centered = True
     Border = False
     { Panel1 Panel
-      MoveScaled(-64,5,89,49)
+      MoveScaled(-24,6,71,49)
       Expand = True
       Arrangement = Arrange.Vertical
       Padding = 4
@@ -180,7 +180,7 @@
         }
       }
       { HBox1 HBox
-        MoveScaled(1,44,80,4)
+        MoveScaled(1,44,69,4)
         { Label1 Label
           MoveScaled(1,0,11,4)
           AutoResize = True
@@ -564,12 +564,15 @@
           { MenuButton2 MenuButton
             MoveScaled(0,0,23,4)
           }
+          { MenuButton3 MenuButton
+            MoveScaled(23,0,23,4)
+          }
         }
-        { WebView1 WebView
-          MoveScaled(3,8,48,16)
+        { WebViewChart WebView
+          MoveScaled(3,8,22,7)
           Expand = True
         }
-        { DataBrowser1 DataBrowser
+        { DataBrowserChart DataBrowser
           MoveScaled(2,25,75,28)
           Editable = True
           Grid = True
@@ -603,8 +606,9 @@
               Alignment = Align.Right
               Text = ("Temperatura ")
             }
-            { txtTemperatura ValueBox
+            { txtTemperatura TextBox
               MoveScaled(63,0,4,4)
+              Placeholder = ("0.5")
             }
             { !txtIdPrompt TextBox
               MoveScaled(69,0,10,4)
@@ -680,19 +684,21 @@
               }
             }
           }
-          { !gridAI GridView
+          { !gridAI TableView
             MoveScaled(1,12,47,20)
             #Public = True
             #Translate = False
+            NoTabFocus = True
             Mode = Select.Single
             ShowCursor = True
+            Header = GridView.Horizontal
             ScrollBar = Scroll.Vertical
           }
           { TextLabel8 TextLabel
             MoveScaled(2,33,49,7)
             Padding = 4
             AutoResize = True
-            Text = ("En el prompt puedes (y es recomendable) instruir al modelo para que priorice y se comporte como si consultara fuentes específicas como PubMed, SciELO, LatIndex, etc., añadiendo esto a tus prompts. Esto mejora la relevancia y calidad de las respuestas, especialmente para tareas académicas, y ayuda a reducir errores en las respuestas, <span style=\"color: #df0101;\"><strong>pero no reemplaza la necesidad de verificación humana</strong></span>, ya que no es una consulta en tiempo real a dichas bases de datos.\n")
+            Text = ("En el prompt puedes (y es recomendable) instruir al modelo para que priorice y se comporte como si consultara fuentes específicas como PubMed o SciELO, añadiendo esto a tus prompts. Esto mejora la relevancia y calidad de las respuestas, especialmente para tareas académicas, y ayuda a reducir errores en las respuestas, <span style=\"color: #df0101;\"><strong>pero no reemplaza la necesidad de verificación humana</strong></span>, ya que no es una consulta en tiempo real a dichas bases de datos.\n")
             Alignment = Align.Normal
           }
           { !txtAreaPrompt1 TextArea
