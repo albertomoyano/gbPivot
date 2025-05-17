@@ -1,34 +1,59 @@
 # Gambas Form File 3.0
 
 { Form Form
-  MoveScaled(0,0,71,31)
+  MoveScaled(0,0,58,51)
   Text = ("Conectarse al servidor de la red")
   Resizable = False
-  { PictureBox1 PictureBox
-    MoveScaled(5,4,8,8)
-    Picture = Picture.Load("iconos/login.svg")
-    Alignment = Align.Center
+  Arrangement = Arrange.Vertical
+  AutoResize = True
+  Spacing = True
+  Margin = True
+  Padding = 4
+  { Panel2 Panel
+    MoveScaled(0,0,57,8)
+    { PictureBox1 PictureBox
+      MoveScaled(0,0,8,8)
+      Picture = Picture.Load("iconos/login.svg")
+      Alignment = Align.Center
+    }
   }
-  { Button1 Button
-    MoveScaled(48,21,18,4)
-    Text = ("     Conectarse")
-    Picture = Picture["iconos/comp.svg"]
+  { Separator1 Separator
+    MoveScaled(4,11,47,1)
   }
-  { TextBox1 TextBox
-    MoveScaled(32,13,34,4)
-    Password = True
+  { HBox1 HBox
+    MoveScaled(8,14,49,4)
+    { TextLabel1 TextLabel
+      MoveScaled(1,0,14,4)
+      Text = ("Usuario  ")
+      Alignment = Align.Right
+    }
+    { TextBox2 TextBox
+      MoveScaled(16,0,15,4)
+      Expand = True
+    }
   }
-  { TextBox2 TextBox
-    MoveScaled(32,7,34,4)
+  { HBox2 HBox
+    MoveScaled(8,18,49,4)
+    { TextLabel2 TextLabel
+      MoveScaled(0,0,14,4)
+      Text = ("Contraseña  ")
+      Alignment = Align.Right
+    }
+    { TextBox1 TextBox
+      MoveScaled(15,0,16,4)
+      Expand = True
+      Password = True
+    }
   }
-  { TextLabel1 TextLabel
-    MoveScaled(15,7,14,4)
-    Text = ("Usuario")
-    Alignment = Align.Right
-  }
-  { TextLabel2 TextLabel
-    MoveScaled(15,13,14,4)
-    Text = ("Contraseña")
-    Alignment = Align.Right
+  { HBox3 HBox
+    MoveScaled(8,22,49,4)
+    { Spring1 Spring
+      MoveScaled(7,0,13,3)
+    }
+    { Button1 Button
+      MoveScaled(29,0,18,4)
+      Text = ("     Conectarse")
+      Picture = Picture["iconos/comp.svg"]
+    }
   }
 }

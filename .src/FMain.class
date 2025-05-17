@@ -491,13 +491,13 @@ End
 
 Public Sub btnPromptNuevo_Click()
 
-  m_AI.PromptNuevo()
+  PromptNuevo()
 
 End
 
 Public Sub btnPromptGuardar_Click()
 
-  m_AI.GuardarPrompt()
+  GuardarPrompt()
 
 End
 
@@ -605,10 +605,12 @@ Public Sub gridAI_Click()
 
   txtIdentificador.Enabled = True
   txtAreaPrompt1.Enabled = True
-  btnPromptNuevo.Visible = True
+  btnPromptNuevo.Visible = False
   btnPromptBorrar.Visible = True
   btnPromptGuardar.Visible = False
   btnPromptGuardarMod.Visible = True
+  txtIdentificador.Background = Color.White
+  txtIdentificador.ReadOnly = False
   ' Rellenar los campos de texto con los valores de la fila seleccionada
   txtIdPrompt.Text = gridAI[gridAI.row, 0].Text
   txtIdentificador.Text = gridAI[gridAI.row, 1].Text
@@ -681,5 +683,7 @@ Public Sub btnPromptGuardarMod_Click()
   btnPromptBorrar.Visible = False
   btnPromptGuardar.Visible = False
   btnPromptGuardarMod.Visible = False
+  txtIdentificador.ReadOnly = True
+  txtIdentificador.Background = Color.Background
 
 End

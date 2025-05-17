@@ -1,6 +1,6 @@
 # Gambas Project File 3.0
 Title=gbPivot
-Startup=FMain
+Startup=f_Login
 Icon=iconos/pivote.png
 Version=0.0.1
 Component=gb.image
