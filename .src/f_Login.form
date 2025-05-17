@@ -1,0 +1,34 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,71,31)
+  Text = ("Conectarse al servidor de la red")
+  Resizable = False
+  { PictureBox1 PictureBox
+    MoveScaled(5,4,8,8)
+    Picture = Picture.Load("iconos/login.svg")
+    Alignment = Align.Center
+  }
+  { Button1 Button
+    MoveScaled(48,21,18,4)
+    Text = ("     Conectarse")
+    Picture = Picture["iconos/comp.svg"]
+  }
+  { TextBox1 TextBox
+    MoveScaled(32,13,34,4)
+    Password = True
+  }
+  { TextBox2 TextBox
+    MoveScaled(32,7,34,4)
+  }
+  { TextLabel1 TextLabel
+    MoveScaled(15,7,14,4)
+    Text = ("Usuario")
+    Alignment = Align.Right
+  }
+  { TextLabel2 TextLabel
+    MoveScaled(15,13,14,4)
+    Text = ("Contraseña")
+    Alignment = Align.Right
+  }
+}
