@@ -45,13 +45,21 @@
       Password = True
     }
   }
+  { HBox4 HBox
+    MoveScaled(0,22,49,4)
+  }
   { HBox3 HBox
-    MoveScaled(8,22,49,4)
+    MoveScaled(1,26,56,4)
     { Spring1 Spring
-      MoveScaled(7,0,13,3)
+      MoveScaled(0,0,8,3)
+    }
+    { btnPreferencias Button
+      MoveScaled(12,0,18,4)
+      Text = ("     Preferencias")
+      Picture = Picture["iconos/logfile.svg"]
     }
     { Button1 Button
-      MoveScaled(29,0,18,4)
+      MoveScaled(37,0,18,4)
       Text = ("     Conectarse")
       Picture = Picture["iconos/comp.svg"]
     }

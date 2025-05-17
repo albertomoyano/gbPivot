@@ -5,3 +5,9 @@ Public Sub Button1_Click()
   FMain.ShowModal()
 
 End
+
+Public Sub btnPreferencias_Click()
+
+  f_Preferencias.ShowModal()
+
+End
