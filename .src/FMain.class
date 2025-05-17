@@ -18,8 +18,6 @@ Public Sub Form_Open()
 
   $Bash = TerminalView.Shell("/usr/bin/bash")
 
-  SplitterPanel3.Layout = [1, 1]
-
   ' Inicializamos los contadores de minutos y segundos
   horas = 0
   minutos = 0
@@ -36,12 +34,6 @@ Public Sub Form_Open()
   btnPromptBorrar.Visible = False
   btnPromptGuardar.Visible = False
   btnPromptGuardarMod.Visible = False
-
-End
-
-Public Sub SplitterPanel3_Resize()
-
-  SplitterPanel3.Layout = [1, 1]
 
 End
 

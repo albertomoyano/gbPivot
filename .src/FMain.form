@@ -39,7 +39,7 @@
   { Menu1 Menu
     Text = ("Archivo")
     { Menu6 Menu
-      Text = ("Abrir archivo")
+      Text = ("Nuevo proyecto")
       Picture = Picture["iconos/abrirBuscar.svg"]
     }
     { Menu5 Menu
@@ -133,7 +133,7 @@
     }
   }
   { VBoxProyectos Panel
-    MoveScaled(-6,11,26,77)
+    MoveScaled(0,3,26,77)
     Visible = False
     Arrangement = Arrange.Vertical
     { HBox15 HBox
@@ -149,13 +149,34 @@
       MoveScaled(5,8,13,8)
       Expand = True
     }
+    { HBox19 HBox
+      MoveScaled(1,18,19,1)
+    }
+    { HBox14 HBox
+      MoveScaled(1,22,19,4)
+      { Button1 Button
+        MoveScaled(0,0,4,4)
+      }
+      { Button3 Button
+        MoveScaled(4,0,4,4)
+      }
+      { Button7 Button
+        MoveScaled(8,0,4,4)
+      }
+      { Button8 Button
+        MoveScaled(12,0,4,4)
+      }
+    }
+    { HBox21 HBox
+      MoveScaled(1,26,19,0.4444)
+    }
     { !DirViewProyecto DirView
-      MoveScaled(4,18,13,10)
+      MoveScaled(6,31,13,10)
       #Public = True
       Expand = True
     }
     { FileViewProyecto FileView
-      MoveScaled(4,30,12,10)
+      MoveScaled(7,42,12,10)
       Expand = True
       View = FileView.Detailed
     }
@@ -170,7 +191,7 @@
     }
   }
   { SplitterPrincipal Splitter
-    MoveScaled(21,3,176,87)
+    MoveScaled(26,3,176,87)
     Expand = True
     Centered = True
     Border = False
