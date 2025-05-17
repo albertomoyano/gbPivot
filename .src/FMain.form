@@ -4,7 +4,7 @@
   MoveScaled(0,0,180,93)
   Expand = True
   Maximized = True
-  Arrangement = Arrange.Vertical
+  Arrangement = Arrange.Horizontal
   Centered = True
   Spacing = True
   Margin = True
@@ -132,35 +132,76 @@
       Picture = Picture["iconos/pivote.png"]
     }
   }
+  { VBoxProyectos Panel
+    MoveScaled(-6,11,26,77)
+    Visible = False
+    Arrangement = Arrange.Vertical
+    { HBox15 HBox
+      MoveScaled(0,0,25,4.4444)
+      { Label4 Label
+        MoveScaled(4,0,18,4.4444)
+        Font = Font["Bold"]
+        Alignment = Align.BottomNormal
+        Text = ("Proyectos")
+      }
+    }
+    { ViewProyectos FileView
+      MoveScaled(5,8,13,8)
+      Expand = True
+    }
+    { !DirViewProyecto DirView
+      MoveScaled(4,18,13,10)
+      #Public = True
+      Expand = True
+    }
+    { FileViewProyecto FileView
+      MoveScaled(4,30,12,10)
+      Expand = True
+      View = FileView.Detailed
+    }
+    { HBox18 HBox
+      MoveScaled(0,70,25,4.4444)
+      { Label1 Label
+        MoveScaled(0,0,11,4)
+        Expand = True
+        Alignment = Align.Right
+        Text = ("Proyecto en curso")
+      }
+    }
+  }
   { SplitterPrincipal Splitter
-    MoveScaled(1,1,176,87)
+    MoveScaled(21,3,176,87)
     Expand = True
     Centered = True
     Border = False
     { Panel1 Panel
-      MoveScaled(-24,6,71,49)
+      MoveScaled(0,7,71,49)
       Expand = True
       Arrangement = Arrange.Vertical
       Padding = 4
       { HBox2 HBox
-        MoveScaled(0,0,47,4)
-        { Button3 Button
+        MoveScaled(1,0,47,4)
+        { btnVerProyectos ToggleButton
           MoveScaled(0,0,4,4)
+          Picture = Picture["iconos/document.svg"]
+        }
+        { Separator1 Separator
+          MoveScaled(5,0,2,4)
         }
         { Button4 Button
-          MoveScaled(4,0,4,4)
-        }
-        { Button5 Button
           MoveScaled(8,0,4,4)
         }
-        { Button6 Button
+        { Button5 Button
           MoveScaled(12,0,4,4)
         }
+        { Button6 Button
+          MoveScaled(16,0,4,4)
+        }
         { Spring1 Spring
-          MoveScaled(17,0,4,4)
+          MoveScaled(20,0,4,4)
         }
         { MenuButton1 MenuButton
-          MoveScaled(21,0,16,4)
+          MoveScaled(24,0,16,4)
         }
         { Button2 Button
           MoveScaled(37,0,4,4)
@@ -168,7 +209,7 @@
         }
       }
       { Panel2 Panel
-        MoveScaled(2,4,30,13)
+        MoveScaled(1,4,30,13)
         Expand = True
         Arrangement = Arrange.Fill
         Border = Border.Sunken
@@ -178,11 +219,6 @@
       }
       { HBox1 HBox
         MoveScaled(1,44,69,4)
-        { Label1 Label
-          MoveScaled(1,0,11,4)
-          AutoResize = True
-          Text = ("Proyecto en curso:  ")
-        }
         { !txtProyecto TextBox
           MoveScaled(13,0,6,4)
           #Public = True
@@ -235,7 +271,7 @@
       }
     }
     { Panel3 Panel
-      MoveScaled(48,2,125,85)
+      MoveScaled(71,1,125,85)
       Expand = True
       Arrangement = Arrange.Vertical
       Padding = 4
@@ -729,24 +765,17 @@
         Index = 0
       }
       { TabPanel2 TabPanel
-        MoveScaled(2,70,74,34)
+        MoveScaled(2,63,74,34)
         Visible = False
         Arrangement = Arrange.Fill
-        Count = 3
+        Count = 2
         Index = 0
-        Text = ("Archivos del proyecto")
-        Picture = Picture["iconos/document.svg"]
-        { SplitterPanel3 Splitter
-          MoveScaled(4,1,48,17)
-          Border = False
-          { !DirViewProyecto DirView
-            MoveScaled(1,5,26,10)
-            #Public = True
-          }
-          { FileViewProyecto FileView
-            MoveScaled(28,5,19,10)
-            View = FileView.Detailed
-          }
+        Text = ("Terminal     ")
+        Picture = Picture["iconos/terminal.svg"]
+        { !TerminalView TerminalView
+          MoveScaled(8,5,24,9)
+          #Public = True
+          ShowLink = True
         }
         Index = 1
         Text = ("Recordatorios     ")
@@ -765,14 +794,6 @@
             Wrap = True
             ScrollBar = Scroll.Vertical
           }
-        }
-        Index = 2
-        Text = ("Terminal     ")
-        Picture = Picture["iconos/terminal.svg"]
-        { !TerminalView TerminalView
-          MoveScaled(8,5,24,9)
-          #Public = True
-          ShowLink = True
         }
         Index = 0
       }

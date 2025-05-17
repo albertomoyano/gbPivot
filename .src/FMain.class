@@ -12,6 +12,7 @@ Public segundosTotal As Integer
 
 Public Sub Form_Open()
 
+  FMain.Title = "gbPivot (usuario: " ")"
   'nos conectamos a la base de datos
   m_OnOff_y_Red.OnRed()
 
@@ -685,5 +686,16 @@ Public Sub btnPromptGuardarMod_Click()
   btnPromptGuardarMod.Visible = False
   txtIdentificador.ReadOnly = True
   txtIdentificador.Background = Color.Background
+
+End
+
+Public Sub btnVerProyectos_Click()
+
+  ' Cambiar visibilidad del TabPanel2 según el estado del botón
+  If btnVerProyectos.Value Then
+    VBoxProyectos.Visible = True
+  Else
+    VBoxProyectos.Visible = False
+  End If
 
 End
