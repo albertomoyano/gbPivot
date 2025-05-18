@@ -152,7 +152,7 @@
       MoveScaled(1,18,19,1)
     }
     { HBox14 HBox
-      MoveScaled(1,22,24,4)
+      MoveScaled(0,21,27,4)
       { Button1 Button
         MoveScaled(0,0,4,4)
         Picture = Picture["iconos/agregarcarpeta.svg"]
@@ -175,6 +175,9 @@
       { Button9 Button
         MoveScaled(18,0,4,4)
         Picture = Picture["iconos/agregardocumento.svg"]
+      }
+      { Spring2 Spring
+        MoveScaled(24,1,4,2)
       }
     }
     { HBox21 HBox
