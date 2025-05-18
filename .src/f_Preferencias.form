@@ -1,9 +1,9 @@
 # Gambas Form File 3.0
 
 { Form Form
-  Move(0,0,747,378)
+  Move(0,0,747,657)
   #Scaled = False
-  Text = ("Preferencias")
+  Text = ("Configuraciones")
   Resizable = False
   Arrangement = Arrange.Vertical
   Spacing = True
@@ -19,5 +19,44 @@
   }
   { Separator1 Separator
     Move(9,90,504,9)
+  }
+  { TabPanel1 TabPanel
+    Move(9,108,729,486)
+    Expand = True
+    Arrangement = Arrange.Fill
+    Border = False
+    Count = 2
+    Index = 0
+    Text = ("Proyectos     ")
+    Picture = Picture["iconos/basededatos.svg"]
+    { SplitterConfiguraciones Splitter
+      Move(9,9,666,432)
+      Arrangement = Arrange.Vertical
+      Border = False
+      { TableViewConfig TableView
+        Move(72,45,549,126)
+        Mode = Select.Single
+        ShowCursor = True
+        Header = GridView.Horizontal
+      }
+      { Panel2 Panel
+        Move(54,207,576,207)
+      }
+    }
+    Index = 1
+    Text = ("Usuarios     ")
+    Picture = Picture["iconos/autores.svg"]
+    Index = 0
+  }
+  { HBox1 HBox
+    Move(18,603,477,36)
+    { Spring1 Spring
+      Move(90,0,126,36)
+    }
+    { btnCerrar Button
+      Move(279,0,160,36)
+      Text = ("Cerrar")
+      Picture = Picture["iconos/salir.svg"]
+    }
   }
 }

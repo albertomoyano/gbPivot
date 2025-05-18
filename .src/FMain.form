@@ -114,7 +114,7 @@
       Picture = Picture["iconos/logo-python.svg"]
     }
     { Menu2 Menu
-      Text = ("Configuraciones del sistema")
+      Text = ("Configuraciones")
       Picture = Picture["iconos/logfile.svg"]
     }
   }
