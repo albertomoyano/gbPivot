@@ -152,7 +152,7 @@
       MoveScaled(1,18,19,1)
     }
     { HBox14 HBox
-      MoveScaled(1,22,19,4)
+      MoveScaled(1,22,24,4)
       { Button1 Button
         MoveScaled(0,0,4,4)
         Picture = Picture["iconos/agregarcarpeta.svg"]
@@ -163,11 +163,18 @@
       }
       { Button7 Button
         MoveScaled(8,0,4,4)
-        Picture = Picture["iconos/agregararchivo.svg"]
+        Picture = Picture["iconos/agregardarchivo.svg"]
       }
       { Button8 Button
         MoveScaled(12,0,4,4)
         Picture = Picture["iconos/borrararchivo.svg"]
+      }
+      { Separator2 Separator
+        MoveScaled(16,0,2,4)
+      }
+      { Button9 Button
+        MoveScaled(18,0,4,4)
+        Picture = Picture["iconos/agregardocumento.svg"]
       }
     }
     { HBox21 HBox
