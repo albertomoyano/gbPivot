@@ -140,3 +140,23 @@
     Type=db.String
   }
 }
+{ Table
+  Name="usuarios"
+  PrimaryKey=["id"]
+  { Field
+    Name="id"
+    Type=db.Integer
+  }
+  { Field
+    Name="usuario"
+    Type=db.String
+  }
+  { Field
+    Name="clave"
+    Type=db.String
+  }
+  { Field
+    Name="rol"
+    Type=db.String
+  }
+}

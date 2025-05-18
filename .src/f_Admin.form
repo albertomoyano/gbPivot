@@ -2,7 +2,7 @@
 
 { Form Form
   MoveScaled(0,0,58,51)
-  Text = ("Conectarse al servidor de la red")
+  Text = ("Conectarse como administrador")
   Resizable = False
   Arrangement = Arrange.Vertical
   AutoResize = True
@@ -19,18 +19,6 @@
   }
   { Separator1 Separator
     MoveScaled(4,11,47,1)
-  }
-  { HBox5 HBox
-    MoveScaled(4,15,49,4)
-    { TextLabel3 TextLabel
-      MoveScaled(1,0,14,4)
-      Text = ("IP  ")
-      Alignment = Align.Right
-    }
-    { txtIP TextBox
-      MoveScaled(16,0,15,4)
-      Expand = True
-    }
   }
   { HBox1 HBox
     MoveScaled(8,19,49,4)
@@ -51,7 +39,7 @@
       Text = ("Contraseña  ")
       Alignment = Align.Right
     }
-    { txtClave TextBox
+    { txtPassword TextBox
       MoveScaled(15,0,16,4)
       Expand = True
       Password = True
@@ -65,12 +53,7 @@
     { Spring1 Spring
       MoveScaled(0,0,8,3)
     }
-    { btnPreferencias Button
-      MoveScaled(12,0,18,4)
-      Text = ("     Preferencias")
-      Picture = Picture["iconos/logfile.svg"]
-    }
-    { Button1 Button
+    { btnAceptar Button
       MoveScaled(37,0,18,4)
       Text = ("     Conectarse")
       Picture = Picture["iconos/comp.svg"]

@@ -1,0 +1,100 @@
+' Gambas class file
+
+' Gambas class file para el formulario de login
+
+' Variable de clase para contar los intentos fallidos
+Private iIntentosFallidos As Integer = 0
+Private Const MAX_INTENTOS As Integer = 3
+
+Public Sub Form_Open()
+  ' Centrar el formulario
+
+  Me.Center
+  ' Enfocar el campo de usuario
+  txtUsuario.SetFocus
+  ' Inicializar el contador de intentos
+  iIntentosFallidos = 0
+
+  ' Asegurar que existe una conexión a la base de datos
+  If m_OnOff_y_Red.meConn = Null Or If m_OnOff_y_Red.meConn.Opened = False Then
+    Try m_OnOff_y_Red.OnRed()
+    If Error Then
+      Message.Error("No se pudo abrir la conexión con la base de datos")
+      Me.Close(False)
+      Quit
+    Endif
+  Endif
+
+End
+
+Public Sub btnAceptar_Click()
+
+  ValidarCredenciales()
+
+End
+
+Public Sub txtPassword_KeyPress()
+
+  If Key.Code = Key.Return Then ValidarCredenciales()
+
+End
+
+Private Sub ValidarCredenciales()
+
+  Dim sUsuario As String = txtUsuario.Text
+  Dim sPassword As String = txtPassword.Text
+  Dim hResult As Result
+  Dim bAutenticado As Boolean = False
+  Dim sRol As String = ""
+
+  ' Validar las credenciales contra la base de datos
+  Try hResult = m_OnOff_y_Red.meConn.Exec("SELECT id, usuario, rol FROM usuarios WHERE usuario = &1 AND clave = &2", sUsuario, sPassword)
+
+  ' Verificar si hubo un error en la consulta
+  If Error Then
+    Message.Error("Error al consultar la base de datos: " & Error.Text)
+    Return
+  Endif
+
+  ' Verificar si se encontró el usuario
+  If Not hResult.Available Then
+    ' Autenticación fallida - Usuario no encontrado o clave incorrecta
+    iIntentosFallidos += 1
+
+    If iIntentosFallidos >= MAX_INTENTOS Then
+      ' Si alcanza el número máximo de intentos, mostrar mensaje y cerrar la aplicación
+      Message.Error("Número máximo de intentos alcanzado. El programa se cerrará.")
+      Me.Close(False)
+      Quit ' Cierra toda la aplicación
+    Else
+      ' Si todavía tiene intentos disponibles, mostrar mensaje con intentos restantes
+      Message.Error("Usuario o contraseña incorrectos. Intentos restantes: " & (MAX_INTENTOS - iIntentosFallidos))
+      txtPassword.Text = ""
+      txtPassword.SetFocus
+    Endif
+  Else
+    ' Autenticación exitosa
+    sRol = hResult["rol"]
+
+    ' Verificar si el usuario tiene rol de administrador
+    If LCase(sRol) = "admin" Or LCase(sRol) = "administrador" Then
+      ' Usuario administrador - permitir acceso a configuración
+      Me.Close(True)
+      f_Preferencias.ShowModal()
+    Else
+      ' Usuario no administrador - denegar acceso
+      Message.Warning("No tienes permisos de administrador para acceder a esta sección.")
+      txtUsuario.Text = ""
+      txtPassword.Text = ""
+      txtUsuario.SetFocus
+    Endif
+  Endif
+
+End
+
+' Opcional: Si deseas agregar un botón de cancelar
+Public Sub btnCancelar_Click()
+
+  Me.Close(False)
+
+End

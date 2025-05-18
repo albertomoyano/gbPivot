@@ -51,7 +51,7 @@ End
 
 Public Sub Menu2_Click()
 
-  f_Preferencias.ShowModal()
+  f_Admin.ShowModal()
 
 End
 
