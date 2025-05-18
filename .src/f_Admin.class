@@ -98,3 +98,48 @@ Public Sub btnCancelar_Click()
   Me.Close(False)
 
 End
+
+' ---------------------------------------------------------------------------
+' MEJORA DE SEGURIDAD: Usar hash en lugar de contraseñas en texto plano
+' ---------------------------------------------------------------------------
+' Función para validar con hash (reemplazaría a ValidarCredenciales)
+' Private Sub ValidarCredencialesConHash()
+'   Dim sUsuario As String = txtUsuario.Text
+'   Dim sPassword As String = txtPassword.Text
+'   Dim hResult As Result
+'   Dim sHashAlmacenado As String
+'   Dim sHashIngresado As String
+'
+'   ' Primero, buscar el usuario para obtener su hash de contraseña
+'   Try hResult = m_OnOff_y_Red.meConn.Exec("SELECT id, usuario, clave, rol FROM usuarios WHERE usuario = &1", sUsuario)
+'
+'   If Error Or If Not hResult.Available Then
+'     ' Usuario no encontrado, pero por seguridad no informamos esto específicamente
+'     iIntentosFallidos += 1
+'     MostrarErrorAutenticacion()
+'     Return
+'   Endif
+'
+'   ' Obtener el hash almacenado en la BD
+'   sHashAlmacenado = hResult["clave"]
+'
+'   ' Generar hash de la contraseña ingresada (usando sha256 o similar)
+'   ' Nota: debes usar la misma sal (salt) que usaste al guardar la contraseña
+'   sHashIngresado = Hash.Digest(sPassword & "tu_sal_secreta", "sha256")
+'
+'   ' Comparar los hashes
+'   If sHashIngresado = sHashAlmacenado Then
+'     ' Autenticación exitosa
+'     If LCase(hResult["rol"]) = "admin" Or LCase(hResult["rol"]) = "administrador" Then
+'       Me.Close(True)
+'       f_Preferencias.ShowModal()
+'     Else
+'       Message.Warning("No tienes permisos de administrador para acceder a esta sección.")
+'       ReiniciarCampos()
+'     Endif
+'   Else
+'     ' Hash no coincide
+'     iIntentosFallidos += 1
+'     MostrarErrorAutenticacion()
+'   Endif
+' End

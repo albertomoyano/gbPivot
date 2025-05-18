@@ -20,6 +20,30 @@
   }
 }
 { Table
+  Name="asignaciones_proyecto_usuario"
+  PrimaryKey=["id"]
+  { Field
+    Name="id"
+    Type=db.Integer
+  }
+  { Field
+    Name="proyecto_id"
+    Type=db.String
+  }
+  { Field
+    Name="usuario_id"
+    Type=db.String
+  }
+  { Field
+    Name="fecha_asignacion"
+    Type=db.Date
+  }
+  { Field
+    Name="estado"
+    Type=db.Boolean
+  }
+}
+{ Table
   Name="asistente_ai"
   PrimaryKey=["id"]
   { Field
