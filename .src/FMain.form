@@ -139,10 +139,9 @@
     { HBox15 HBox
       MoveScaled(0,0,25,4.4444)
       { Label4 Label
-        MoveScaled(4,0,18,4.4444)
-        Font = Font["Bold"]
+        MoveScaled(1,0,18,4.4444)
         Alignment = Align.BottomNormal
-        Text = ("Proyectos")
+        Text = ("Proyectos disponibles")
       }
     }
     { ViewProyectos FileView
@@ -156,15 +155,19 @@
       MoveScaled(1,22,19,4)
       { Button1 Button
         MoveScaled(0,0,4,4)
+        Picture = Picture["iconos/agregarcarpeta.svg"]
       }
       { Button3 Button
         MoveScaled(4,0,4,4)
+        Picture = Picture["iconos/borrarcarpeta.svg"]
       }
       { Button7 Button
         MoveScaled(8,0,4,4)
+        Picture = Picture["iconos/agregararchivo.svg"]
       }
       { Button8 Button
         MoveScaled(12,0,4,4)
+        Picture = Picture["iconos/borrararchivo.svg"]
       }
     }
     { HBox21 HBox
@@ -174,6 +177,7 @@
       MoveScaled(6,31,13,10)
       #Public = True
       Expand = True
+      HideRoot = True
     }
     { FileViewProyecto FileView
       MoveScaled(7,42,12,10)
@@ -240,13 +244,11 @@
       }
       { HBox1 HBox
         MoveScaled(1,44,69,4)
-        { !txtProyecto TextBox
-          MoveScaled(13,0,6,4)
+        { !txtProyecto Button
+          MoveScaled(2,0,7,4)
           #Public = True
-          Background = Color.Background
           Foreground = Color.Blue
           Expand = True
-          ReadOnly = True
         }
         { HBox4 HBox
           MoveScaled(20,0,33,4)

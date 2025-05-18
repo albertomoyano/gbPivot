@@ -20,36 +20,48 @@
   { Separator1 Separator
     MoveScaled(4,11,47,1)
   }
+  { HBox5 HBox
+    MoveScaled(4,15,49,4)
+    { TextLabel3 TextLabel
+      MoveScaled(1,0,14,4)
+      Text = ("IP  ")
+      Alignment = Align.Right
+    }
+    { txtIP TextBox
+      MoveScaled(16,0,15,4)
+      Expand = True
+    }
+  }
   { HBox1 HBox
-    MoveScaled(8,14,49,4)
+    MoveScaled(8,19,49,4)
     { TextLabel1 TextLabel
       MoveScaled(1,0,14,4)
       Text = ("Usuario  ")
       Alignment = Align.Right
     }
-    { TextBox2 TextBox
+    { txtUsuario TextBox
       MoveScaled(16,0,15,4)
       Expand = True
     }
   }
   { HBox2 HBox
-    MoveScaled(8,18,49,4)
+    MoveScaled(8,23,49,4)
     { TextLabel2 TextLabel
       MoveScaled(0,0,14,4)
       Text = ("Contraseña  ")
       Alignment = Align.Right
     }
-    { TextBox1 TextBox
+    { txtClave TextBox
       MoveScaled(15,0,16,4)
       Expand = True
       Password = True
     }
   }
   { HBox4 HBox
-    MoveScaled(0,22,49,4)
+    MoveScaled(0,27,49,4)
   }
   { HBox3 HBox
-    MoveScaled(1,26,56,4)
+    MoveScaled(1,31,56,4)
     { Spring1 Spring
       MoveScaled(0,0,8,3)
     }
