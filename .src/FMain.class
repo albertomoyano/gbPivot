@@ -12,9 +12,21 @@ Public segundosTotal As Integer
 
 Public Sub Form_Open()
 
+  Dim RutaArchivoActual As String
+
   FMain.Title = "gbPivot (usuario: " ")"
   'nos conectamos a la base de datos
   m_OnOff_y_Red.OnRed()
+
+  ' Usar la ruta existente para el editor ACE
+  Dim ruta As String
+  Dim rutaAce As String = User.Home & "/.gbpivot/www/editor.html"
+
+  ruta = "file://" & rutaAce
+  WebViewEditor.url = ruta
+
+  ' Inicializar variables necesarias
+  RutaArchivoActual = ""
 
   $Bash = TerminalView.Shell("/usr/bin/bash")
 

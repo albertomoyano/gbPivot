@@ -338,7 +338,7 @@
         Spacing = True
         Margin = True
         Padding = 4
-        Count = 6
+        Count = 5
         Index = 0
         Text = ("Metadatos")
         Picture = Picture["iconos/metadatos.svg"]
@@ -815,9 +815,6 @@
             }
           }
         }
-        Index = 5
-        Text = ("GitPages")
-        Picture = Picture["iconos/ChatGPT_logo.svg"]
         Index = 0
       }
       { TabPanel2 TabPanel
