@@ -9,7 +9,7 @@ Public Sub OnRed() As Connection
   meConn.Host = User.Home & "/.gbpivot/"
   meConn.Name = "gbpivot.sqlite"
   meConn.Open()
-  ' Configurar el modo de journal a DELETE
+  ' Configurar el modo de journal a DELETE para SQLite
   meConn.Exec("PRAGMA journal_mode=DELETE")
   Return meConn
   'verificamos

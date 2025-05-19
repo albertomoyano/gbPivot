@@ -65,13 +65,8 @@
     { Spring1 Spring
       MoveScaled(0,0,8,3)
     }
-    { btnPreferencias Button
-      MoveScaled(12,0,18,4)
-      Text = ("     Preferencias")
-      Picture = Picture["iconos/logfile.svg"]
-    }
     { Button1 Button
-      MoveScaled(37,0,18,4)
+      MoveScaled(36,0,18,4)
       Text = ("     Conectarse")
       Picture = Picture["iconos/comp.svg"]
     }

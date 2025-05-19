@@ -821,7 +821,7 @@
         MoveScaled(2,63,74,34)
         Visible = False
         Arrangement = Arrange.Fill
-        Count = 2
+        Count = 3
         Index = 0
         Text = ("Terminal     ")
         Picture = Picture["iconos/terminal.svg"]
@@ -848,6 +848,9 @@
             ScrollBar = Scroll.Vertical
           }
         }
+        Index = 2
+        Text = ("Post-It     ")
+        Picture = Picture["iconos/notitas.svg"]
         Index = 0
       }
     }
