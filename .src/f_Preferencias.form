@@ -21,26 +21,110 @@
     Move(9,90,504,9)
   }
   { TabPanel1 TabPanel
-    Move(9,108,729,486)
+    Move(9,108,729,468)
     Expand = True
-    Arrangement = Arrange.Fill
-    Border = False
+    Arrangement = Arrange.Vertical
+    Spacing = True
+    Margin = True
+    Padding = 4
     Count = 2
     Index = 0
     Text = ("Proyectos     ")
     Picture = Picture["iconos/basededatos.svg"]
-    { SplitterConfiguraciones Splitter
-      Move(9,9,666,432)
-      Arrangement = Arrange.Vertical
-      Border = False
-      { TableViewConfig TableView
-        Move(72,45,549,126)
-        Mode = Select.Single
-        ShowCursor = True
-        Header = GridView.Horizontal
+    { HBox16 HBox
+      Move(27,18,414,36)
+      { BtnNuevoGlo Button
+        Move(0,0,36,36)
+        NoTabFocus = True
+        ToolTip = ("Agregar una nueva referencia")
+        Picture = Picture["iconos/+nuevo.svg"]
       }
-      { Panel2 Panel
-        Move(54,207,576,207)
+      { BtnEliminarGlo Button
+        Move(36,0,36,36)
+        NoTabFocus = True
+        ToolTip = ("Borrar entrada")
+        Picture = Picture["iconos/borrar.svg"]
+      }
+      { btnGuardarGlo Button
+        Move(72,0,36,36)
+        ToolTip = ("Guardar modificaciones")
+        Picture = Picture["iconos/guardar.svg"]
+      }
+      { btnGuardarCambiosGlo Button
+        Move(108,0,36,36)
+        ToolTip = ("Guardar modificaciones")
+        Picture = Picture["iconos/guardarComo.svg"]
+      }
+      { txtIDproyectos TextBox
+        Move(153,0,90,36)
+        Visible = False
+        Background = Color.Background
+        NoTabFocus = True
+        ReadOnly = True
+      }
+    }
+    { TableViewConfig TableView
+      Move(27,54,549,99)
+      Expand = True
+      Mode = Select.Single
+      ShowCursor = True
+      Header = GridView.Horizontal
+    }
+    { HBox2 HBox
+      Move(27,153,693,36)
+      { Label1 Label
+        Move(9,0,144,36)
+        Alignment = Align.Right
+        Text = ("Proyecto  ")
+      }
+      { TextBox1 TextBox
+        Move(180,0,126,36)
+        Expand = True
+      }
+    }
+    { HBox3 HBox
+      Move(27,189,693,36)
+      { Label2 Label
+        Move(9,0,144,36)
+        Alignment = Align.Right
+        Text = ("Fecha creación  ")
+      }
+      { TextBox2 TextBox
+        Move(180,0,126,36)
+        Expand = True
+      }
+      { Label7 Label
+        Move(306,0,144,36)
+        Alignment = Align.Right
+        Text = ("Fecha cierre  ")
+      }
+      { TextBox7 TextBox
+        Move(477,0,126,36)
+        Expand = True
+      }
+    }
+    { HBox5 HBox
+      Move(27,225,477,36)
+      { Label4 Label
+        Move(9,0,144,36)
+        Alignment = Align.Right
+        Text = ("Horas empleadas  ")
+      }
+      { TextBox4 TextBox
+        Move(180,0,126,36)
+        Expand = True
+      }
+    }
+    { HBox4 HBox
+      Move(27,261,477,36)
+      { Label3 Label
+        Move(9,0,144,36)
+        Alignment = Align.Right
+        Text = ("Asignaciones  ")
+      }
+      { TextBox3 TextBox
+        Move(180,0,126,36)
+        Expand = True
       }
     }
     Index = 1
@@ -49,7 +133,7 @@
     Index = 0
   }
   { HBox1 HBox
-    Move(18,603,477,36)
+    Move(18,612,477,36)
     { Spring1 Spring
       Move(90,0,126,36)
     }
