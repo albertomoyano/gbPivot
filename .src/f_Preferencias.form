@@ -81,6 +81,14 @@
         Move(180,0,126,36)
         Expand = True
       }
+      { Separator2 Separator
+        Move(486,9,9,36)
+      }
+      { CheckBox1 CheckBox
+        Move(513,0,144,36)
+        AutoResize = True
+        Text = ("Terminado")
+      }
     }
     { HBox3 HBox
       Move(27,189,693,36)
