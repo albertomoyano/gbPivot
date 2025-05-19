@@ -89,8 +89,8 @@
         Alignment = Align.Right
         Text = ("Fecha creación  ")
       }
-      { TextBox2 TextBox
-        Move(180,0,126,36)
+      { DateBox2 DateBox
+        Move(171,0,144,36)
         Expand = True
       }
       { Label7 Label
@@ -98,32 +98,48 @@
         Alignment = Align.Right
         Text = ("Fecha cierre  ")
       }
-      { TextBox7 TextBox
-        Move(477,0,126,36)
+      { DateBox1 DateBox
+        Move(495,0,144,36)
         Expand = True
       }
     }
     { HBox5 HBox
-      Move(27,225,477,36)
+      Move(27,225,693,36)
+      { Label3 Label
+        Move(0,0,144,36)
+        Alignment = Align.Right
+        Text = ("Asignaciones  ")
+      }
+      { ComboBox1 ComboBox
+        Move(153,0,189,36)
+        Expand = True
+        ReadOnly = True
+      }
       { Label4 Label
-        Move(9,0,144,36)
+        Move(360,0,144,36)
         Alignment = Align.Right
         Text = ("Horas empleadas  ")
       }
       { TextBox4 TextBox
-        Move(180,0,126,36)
+        Move(531,0,126,36)
+        Background = Color.Background
         Expand = True
+        ReadOnly = True
       }
     }
     { HBox4 HBox
-      Move(27,261,477,36)
-      { Label3 Label
+      Move(27,261,693,36)
+      { Label5 Label
         Move(9,0,144,36)
         Alignment = Align.Right
-        Text = ("Asignaciones  ")
+        Text = ("Notas  ")
       }
-      { TextBox3 TextBox
-        Move(180,0,126,36)
+      { Button1 Button
+        Move(189,0,36,36)
+        Picture = Picture["iconos/schedule.svg"]
+      }
+      { TextBox2 TextBox
+        Move(261,0,126,36)
         Expand = True
       }
     }
