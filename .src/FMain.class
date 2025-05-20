@@ -337,7 +337,7 @@ Public Sub Menu6_Click() ' abrir archivo
     ' Solo actualizamos la interfaz SI el proyecto no estaba en uso
     txtProyecto.Text = sRuta
     DirViewProyecto.Root = File.Dir(sRuta)
-    TerminalView.Input("cd " & File.Dir(sRuta) & "\n") ' movemos la consola a la ruta del archivo
+    ' TerminalView.Input("cd " & File.Dir(sRuta) & "\n") ' movemos la consola a la ruta del archivo
     ' Solo procedemos si el proyecto se pudo abrir
     If bProyectoAbierto Then
       ' [código existente sin modificar]

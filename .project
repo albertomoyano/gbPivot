@@ -2,7 +2,7 @@
 Title=gbPivot
 Startup=f_Login
 Icon=iconos/pivote.png
-Version=0.0.3
+Version=0.0.4
 Component=gb.image
 Component=gb.qt5
 Component=gb.form
