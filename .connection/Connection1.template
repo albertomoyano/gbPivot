@@ -121,6 +121,22 @@
   }
 }
 { Table
+  Name="metadatos_a"
+  PrimaryKey=["id"]
+  { Field
+    Name="id"
+    Type=db.Integer
+  }
+}
+{ Table
+  Name="metadatos_b"
+  PrimaryKey=["id"]
+  { Field
+    Name="id"
+    Type=db.Integer
+  }
+}
+{ Table
   Name="nombre_proyecto"
   PrimaryKey=["id"]
   { Field
@@ -162,6 +178,38 @@
   { Field
     Name="contenido"
     Type=db.String
+  }
+}
+{ Table
+  Name="relacion_bibtex_proyectos"
+  PrimaryKey=["id"]
+  { Field
+    Name="id"
+    Type=db.Integer
+  }
+}
+{ Table
+  Name="relacion_glosarios_proyectos"
+  PrimaryKey=["id"]
+  { Field
+    Name="id"
+    Type=db.Integer
+  }
+}
+{ Table
+  Name="relacion_metadatos_proyectos"
+  PrimaryKey=["id"]
+  { Field
+    Name="id"
+    Type=db.Integer
+  }
+}
+{ Table
+  Name="relacion_usuarios_proyectos"
+  PrimaryKey=["id"]
+  { Field
+    Name="id"
+    Type=db.Integer
   }
 }
 { Table

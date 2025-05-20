@@ -5,7 +5,7 @@ Private Item_Seleccionado As Integer
 Public segundos As Integer
 Public minutos As Integer
 Public horas As Integer
-Public $Bash As Process
+Public $Bash As Process = TerminalView.Shell("/usr/bin/bash")
 Public horasTotal As Integer
 Public minutosTotal As Integer
 Public segundosTotal As Integer
@@ -28,7 +28,7 @@ Public Sub Form_Open()
   ' Inicializar variables necesarias
   RutaArchivoActual = ""
 
-  $Bash = TerminalView.Shell("/usr/bin/bash")
+  ' $Bash = TerminalView.Shell("/usr/bin/bash")
 
   ' Inicializamos los contadores de minutos y segundos
   horas = 0

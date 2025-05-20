@@ -44,7 +44,7 @@ Private Sub ValidarCredenciales()
   Dim sUsuario As String = txtUsuario.Text
   Dim sPassword As String = txtPassword.Text
   Dim hResult As Result
-  Dim bAutenticado As Boolean = False
+  ' Dim bAutenticado As Boolean = False
   Dim sRol As String = ""
 
   ' Validar las credenciales contra la base de datos

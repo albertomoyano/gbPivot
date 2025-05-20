@@ -48,7 +48,7 @@
     }
   }
   { Menu15 Menu
-    Text = ("Salidas en local")
+    Text = ("Salidas")
     { Menu16 Menu
       Text = ("Generar PDFs")
     }
@@ -66,6 +66,11 @@
     }
     { Menu21 Menu
       Text = ("Generar XML-JATS PMD")
+    }
+    { Menu25 Menu
+    }
+    { Menu26 Menu
+      Text = ("Construir todas las salidas desde el servidor")
     }
   }
   { Menu28 Menu
