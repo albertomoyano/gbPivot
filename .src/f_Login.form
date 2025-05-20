@@ -14,7 +14,6 @@
     { PictureBox1 PictureBox
       MoveScaled(0,0,8,8)
       Picture = Picture.Load("iconos/login2.png")
-      Alignment = Align.Center
     }
   }
   { Separator1 Separator

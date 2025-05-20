@@ -5,7 +5,7 @@ Private Item_Seleccionado As Integer
 Public segundos As Integer
 Public minutos As Integer
 Public horas As Integer
-Public $Bash As Process = TerminalView.Shell("/usr/bin/bash")
+Public $Bash As Process
 Public horasTotal As Integer
 Public minutosTotal As Integer
 Public segundosTotal As Integer
@@ -28,7 +28,7 @@ Public Sub Form_Open()
   ' Inicializar variables necesarias
   RutaArchivoActual = ""
 
-  ' $Bash = TerminalView.Shell("/usr/bin/bash")
+  $Bash = TerminalView.Shell("/usr/bin/bash")
 
   ' Inicializamos los contadores de minutos y segundos
   horas = 0
@@ -337,7 +337,7 @@ Public Sub Menu6_Click() ' abrir archivo
     ' Solo actualizamos la interfaz SI el proyecto no estaba en uso
     txtProyecto.Text = sRuta
     DirViewProyecto.Root = File.Dir(sRuta)
-    ' TerminalView.Input("cd " & File.Dir(sRuta) & "\n") ' movemos la consola a la ruta del archivo
+    TerminalView.Input("cd " & File.Dir(sRuta) & "\n") ' movemos la consola a la ruta del archivo
     ' Solo procedemos si el proyecto se pudo abrir
     If bProyectoAbierto Then
       ' [código existente sin modificar]

@@ -27,7 +27,7 @@
     Spacing = True
     Margin = True
     Padding = 4
-    Count = 2
+    Count = 3
     Index = 0
     Text = ("Proyectos     ")
     Picture = Picture["iconos/basededatos.svg"]
@@ -154,6 +154,9 @@
     Index = 1
     Text = ("Usuarios     ")
     Picture = Picture["iconos/autores.svg"]
+    Index = 2
+    Text = ("GitHub     ")
+    Picture = Picture["iconos/gitremoto.svg"]
     Index = 0
   }
   { HBox1 HBox
