@@ -25,7 +25,7 @@
      showgrid="false"
      inkscape:zoom="13.5625"
      inkscape:cx="26.764977"
-     inkscape:cy="20.202765"
+     inkscape:cy="21.308756"
      inkscape:window-width="1920"
      inkscape:window-height="1052"
      inkscape:window-x="0"
@@ -34,7 +34,7 @@
      inkscape:current-layer="svg29" />
   <g
      id="g27"
-     transform="matrix(0.43406312,0,0,0.43406312,0.22119816,0.19242308)">
+     transform="matrix(0.43643483,0,0,0.43643483,0,0.2505712)">
     <path
        style="fill:#010101;fill-opacity:0.5019"
        d="m 36,61 h 5 l 23,-31 -6,-3 1,4 z"
@@ -52,11 +52,11 @@
        y2="-27.700001">
       <stop
          offset="0"
-         stop-color="#ffffff"
+         stop-color="#dcffb3"
          id="stop6" />
       <stop
          offset="1"
-         stop-color="#ffefa5"
+         stop-color="#5cf578"
          id="stop8" />
     </linearGradient>
     <path
@@ -66,17 +66,17 @@
     <linearGradient
        id="gradient1"
        gradientUnits="userSpaceOnUse"
-       x1="51.59"
-       y1="-14.77"
-       x2="92.980003"
-       y2="3.6300001">
+       x1="44.720001"
+       y1="-7.9000001"
+       x2="86.099998"
+       y2="10.51">
       <stop
          offset="0"
-         stop-color="#f1b704"
+         stop-color="#015751"
          id="stop13" />
       <stop
          offset="1"
-         stop-color="#fcffac"
+         stop-color="#04aba1"
          id="stop15" />
     </linearGradient>
     <path
@@ -91,12 +91,12 @@
        x2="-14.6"
        y2="67.290001">
       <stop
-         offset="0.0076"
-         stop-color="#f2ee90"
+         offset="0"
+         stop-color="#03a197"
          id="stop20" />
       <stop
          offset="1"
-         stop-color="#fffeac"
+         stop-color="#02d47d"
          id="stop22" />
     </linearGradient>
     <path

@@ -92,35 +92,6 @@
   }
 }
 { Table
-  Name="block_notas"
-  PrimaryKey=["id"]
-  { Field
-    Name="id"
-    Type=db.Integer
-  }
-  { Field
-    Name="asunto"
-    Type=db.String
-  }
-  { Field
-    Name="contenido"
-    Type=db.String
-  }
-  { Index 
-    Name="idx_notas"
-    Unique=False
-    Fields=["id"]
-  }
-}
-{ Table
-  Name="glosarios"
-  PrimaryKey=["id"]
-  { Field
-    Name="id"
-    Type=db.Integer
-  }
-}
-{ Table
   Name="metadatos_a"
   PrimaryKey=["id"]
   { Field
@@ -210,25 +181,5 @@
   { Field
     Name="id"
     Type=db.Integer
-  }
-}
-{ Table
-  Name="usuarios"
-  PrimaryKey=["id"]
-  { Field
-    Name="id"
-    Type=db.Integer
-  }
-  { Field
-    Name="usuario"
-    Type=db.String
-  }
-  { Field
-    Name="clave"
-    Type=db.String
-  }
-  { Field
-    Name="rol"
-    Type=db.String
   }
 }

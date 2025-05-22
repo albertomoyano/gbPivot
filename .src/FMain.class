@@ -14,9 +14,7 @@ Public Sub Form_Open()
 
   Dim RutaArchivoActual As String
 
-  FMain.Title = "gbPivot (usuario: " ")"
-  'nos conectamos a la base de datos
-  m_OnOff_y_Red.OnRed()
+  FMain.Title = "gbPivot (usuario en curso: " & m_OnOff_y_Red.UsuarioActual & ")"
 
   ' Usar la ruta existente para el editor ACE
   Dim ruta As String
@@ -39,9 +37,9 @@ Public Sub Form_Open()
   TimerParcial.Stop' No iniciamos el Timer hasta abrir un proyecto
 
   txtRecordatorios.Visible = False
-  Mostrar_Lista_Tareas
-  gridviewAI()  ' Configura la estructura del grid
-  cargargrid()  ' Carga los datos
+  ' Mostrar_Lista_Tareas
+  ' gridviewAI()  ' Configura la estructura del grid
+  ' cargargrid()  ' Carga los datos
   btnPromptNuevo.Visible = True
   btnPromptBorrar.Visible = False
   btnPromptGuardar.Visible = False
@@ -80,12 +78,6 @@ Public Sub TimerParcial_Timer()
 
   ' Actualizamos el display del tiempo
   ActualizarDisplay()
-
-End
-
-Public Sub Menu22_Click()
-
-  f_BlockNotas.ShowModal()
 
 End
 
@@ -158,7 +150,7 @@ Public Sub mnMarcarIncompleto_Click()
 
   'Limpiamos lista y recargamos
   ViewRecordatorios.Clear
-  Mostrar_Lista_Tareas
+  ' Mostrar_Lista_Tareas
 
 End
 
@@ -178,7 +170,7 @@ Public Sub mnMarcarCompletado_Click()
 
   'Limpiamos lista y recargamos
   ViewRecordatorios.Clear
-  Mostrar_Lista_Tareas
+  ' Mostrar_Lista_Tareas
 
 End
 
@@ -203,83 +195,83 @@ Public Sub menuBORRARtarea_Click()
 
   'Limpiamos lista y recargamos
   ViewRecordatorios.Clear
-  Mostrar_Lista_Tareas
+  ' Mostrar_Lista_Tareas
 
   txtRecordatorios.Visible = False 'Cerramos el panel lateral para que no quede abierto tras borrar ítem que pueda conetener
 
 End
 
-Public Sub Mostrar_Lista_Tareas() ' Función para popular la lista de eventos
+' Public Sub Mostrar_Lista_Tareas() ' Función para popular la lista de eventos
+'
+'   Dim listar As Result
+'
+'   listar = m_OnOff_y_Red.meConn.Exec("select id, completado, titulo from recordatorios")
+'   If listar.Available Then
+'     ViewRecordatorios.Clear
+'     While (listar.Available)
+'       If listar!completado = False Then
+'         ViewRecordatorios.Add(CInt(listar!id), listar!titulo, Picture["./iconos/incomp.svg"])
+'       Else
+'         ViewRecordatorios.Add(CInt(listar!id), listar!titulo, Picture["./iconos/comp.svg"])
+'       Endif
+'       listar.MoveNext
+'     Wend
+'
+'   End If
+'
+'   If ViewRecordatorios.Count = 0 Then 'Si no hay ningún contenido en la lista limpiar ocultar el panel de contenido y desactivar menú borrar todos
+'     txtRecordatorios.Text = ""
+'     txtRecordatorios.Visible = False
+'     mnuBorrarTODOS.Enabled = False
+'   Else
+'     mnuBorrarTODOS.Enabled = True
+'   End If
+'
+'   Chequear_Realizados()
+'
+' End
 
-  Dim listar As Result
+' Public Sub mnuBorrarTODOS_Click()
+'
+'   If Message.Question("¿Está seguro de que desea borrar todos los ítems marcados como completados?") = 1 Then
+'     ' Conn.Exec("delete from tareas where completado=True")
+'     m_OnOff_y_Red.meConn.Exec("delete from recordatorios where completado=True")
+'     'Limpiamos lista y recargamos
+'     ViewRecordatorios.Clear
+'     Mostrar_Lista_Tareas
+'   Else
+'     Return
+'
+'   Endif
+'
+'   txtRecordatorios.Visible = False ' Cerramos el panel lateral por si queda abierto tras borrar ítem realizado
+'
+' End
 
-  listar = m_OnOff_y_Red.meConn.Exec("select id, completado, titulo from recordatorios")
-  If listar.Available Then
-    ViewRecordatorios.Clear
-    While (listar.Available)
-      If listar!completado = False Then
-        ViewRecordatorios.Add(CInt(listar!id), listar!titulo, Picture["./iconos/incomp.svg"])
-      Else
-        ViewRecordatorios.Add(CInt(listar!id), listar!titulo, Picture["./iconos/comp.svg"])
-      Endif
-      listar.MoveNext
-    Wend
+' Public Sub ViewRecordatorios_Select() ' Función que nos muestra el contenido del título elegido en la ListView
+'
+'   Dim vistacompleta As Result
+'
+'   vistacompleta = m_OnOff_y_Red.meConn.Exec("select contenido from recordatorios where id = " & ViewRecordatorios.Item.key)
+'   If vistacompleta!contenido <> "" Then
+'     txtRecordatorios.Text = vistacompleta!contenido
+'     txtRecordatorios.pos = 0
+'     txtRecordatorios.Visible = True
+'   Else
+'     txtRecordatorios.Visible = False
+'   Endif
+'
+'   Item_Seleccionado = ViewRecordatorios.Item.key
+'
+'   Print (Item_Seleccionado)
+'
+' End
 
-  End If
-
-  If ViewRecordatorios.Count = 0 Then 'Si no hay ningún contenido en la lista limpiar ocultar el panel de contenido y desactivar menú borrar todos
-    txtRecordatorios.Text = ""
-    txtRecordatorios.Visible = False
-    mnuBorrarTODOS.Enabled = False
-  Else
-    mnuBorrarTODOS.Enabled = True
-  End If
-
-  Chequear_Realizados()
-
-End
-
-Public Sub mnuBorrarTODOS_Click()
-
-  If Message.Question("¿Está seguro de que desea borrar todos los ítems marcados como completados?") = 1 Then
-    ' Conn.Exec("delete from tareas where completado=True")
-    m_OnOff_y_Red.meConn.Exec("delete from recordatorios where completado=True")
-    'Limpiamos lista y recargamos
-    ViewRecordatorios.Clear
-    Mostrar_Lista_Tareas
-  Else
-    Return
-
-  Endif
-
-  txtRecordatorios.Visible = False ' Cerramos el panel lateral por si queda abierto tras borrar ítem realizado
-
-End
-
-Public Sub ViewRecordatorios_Select() ' Función que nos muestra el contenido del título elegido en la ListView
-
-  Dim vistacompleta As Result
-
-  vistacompleta = m_OnOff_y_Red.meConn.Exec("select contenido from recordatorios where id = " & ViewRecordatorios.Item.key)
-  If vistacompleta!contenido <> "" Then
-    txtRecordatorios.Text = vistacompleta!contenido
-    txtRecordatorios.pos = 0
-    txtRecordatorios.Visible = True
-  Else
-    txtRecordatorios.Visible = False
-  Endif
-
-  Item_Seleccionado = ViewRecordatorios.Item.key
-
-  Print (Item_Seleccionado)
-
-End
-
-Public Sub menuADD_Click()
-
-  f_Recordatorios.ShowModal()
-
-End
+' Public Sub menuADD_Click()
+'
+'   f_Recordatorios.ShowModal()
+'
+' End
 
 Public Sub Menu6_Click() ' abrir archivo
 
@@ -494,204 +486,204 @@ Public Sub Menu5_Click()' salir de la aplicacion
 
 End
 
-Public Sub btnPromptNuevo_Click()
+' Public Sub btnPromptNuevo_Click()
+'
+'   PromptNuevo()
+'
+' End
 
-  PromptNuevo()
+' Public Sub btnPromptGuardar_Click()
+'
+'   GuardarPrompt()
+'
+' End
 
-End
+' Public Sub gridviewAI()
+'
+'   gridAI.Header = True
+'   gridAI.Grid = True
+'   gridAI.Columns.Count = 3
+'   gridAI.Columns[0].Title = "id"
+'   gridAI.Columns[0].Width = 0
+'   gridAI.Columns[1].Title = "Identificador"
+'   gridAI.Columns[1].Width = 300
+'   gridAI.Columns[2].Title = "Prompt"
+'   gridAI.Columns[2].Width = 300
+'
+' End
 
-Public Sub btnPromptGuardar_Click()
+' ' Función para cargar y actualizar la grilla
+' Public Sub cargargrid()
+'   ' Guardamos el resultado en la variable de módulo
+'
+'   rPrompt = m_OnOff_y_Red.meConn.Exec("SELECT * FROM asistente_ai ORDER BY id")
+'   gridAI.Rows.Count = rPrompt.Count
+'   gridAI.Refresh()
+'
+' End
 
-  GuardarPrompt()
+' Public Sub gridAI_Data(Row As Integer, Column As Integer)
+'   ' Verificamos que tengamos resultados
+'
+'   If rPrompt And If rPrompt.Available Then
+'     If Row >= 0 And Row < rPrompt.Count Then
+'       ' Movemos el cursor al registro correspondiente
+'       rPrompt.MoveTo(Row)
+'       ' Asignamos el valor de la columna correspondiente
+'       Try gridAI.Data.Text = Str(rPrompt[Column])
+'     Endif
+'   Endif
+'
+'   ' Alternamos colores en las filas
+'   If row Mod 2 = 0 Then
+'     gridAI.Data.Background = Color.RGB(230, 230, 230)
+'   Endif
+'
+' End
 
-End
+' Public Sub PromptNuevo()
+'   ' Habilitamos los campos de entrada
+'
+'   LimpiarCampos()
+'   ' Ocultamos/mostramos botones según sea necesario
+'   btnPromptNuevo.Visible = False
+'   btnPromptBorrar.Visible = False
+'   btnPromptGuardar.Visible = True
+'   btnPromptGuardarMod.Visible = False
+'   ' Obtenemos el último ID y sumamos +1 para el nuevo registro
+'   Dim resultado As Result
+'   resultado = m_OnOff_y_Red.meConn.Exec("SELECT MAX(id) FROM asistente_ai LIMIT 1")
+'   Dim Idn As Integer
+'   ' Si no hay ninguna entrada entonces arrancamos desde 0
+'   If resultado["MAX(id)"] = Null Then
+'     Idn = 0
+'   Else
+'     Idn = CInt(resultado["MAX(id)"]) + 1
+'   Endif
+'   txtIdPrompt.Text = Idn
+'   txtIdentificador.ReadOnly = False
+'   txtIdentificador.Background = Color.White
+'   txtIdentificador.SetFocus
+'
+' End
 
-Public Sub gridviewAI()
+' Public Sub GuardarPrompt()
+'
+'   Dim miCreate As Result
+'
+'   Try miCreate = m_OnOff_y_Red.meConn.Create("asistente_ai")
+'   If Error Then
+'     Message.Error("Error al crear: " & Error.Text)
+'     Return
+'   Endif
+'   With miCreate
+'     !id = txtIdPrompt.Text
+'     !identificador = txtIdentificador.Text
+'     !prompt = txtAreaPrompt1.Text
+'     Try .Update()
+'     If Error Then
+'       Message.Error("Error al guardar: " & Error.Text)
+'       Return
+'     Endif
+'   End With
+'   Message.Info("Nueva entrada guardada.")
+'   cargargrid()  ' Actualizamos la grilla después de guardar
+'   LimpiarCampos()
+'   txtIdentificador.ReadOnly = True
+'   txtIdentificador.Background = Color.Background
+'   btnPromptNuevo.Visible = True
+'   btnPromptBorrar.Visible = False
+'   btnPromptGuardar.Visible = False
+'   btnPromptGuardarMod.Visible = False
+'
+' End
 
-  gridAI.Header = True
-  gridAI.Grid = True
-  gridAI.Columns.Count = 3
-  gridAI.Columns[0].Title = "id"
-  gridAI.Columns[0].Width = 0
-  gridAI.Columns[1].Title = "Identificador"
-  gridAI.Columns[1].Width = 300
-  gridAI.Columns[2].Title = "Prompt"
-  gridAI.Columns[2].Width = 300
+' Public Sub gridAI_Click()
+'
+'   txtIdentificador.Enabled = True
+'   txtAreaPrompt1.Enabled = True
+'   btnPromptNuevo.Visible = False
+'   btnPromptBorrar.Visible = True
+'   btnPromptGuardar.Visible = False
+'   btnPromptGuardarMod.Visible = True
+'   txtIdentificador.Background = Color.White
+'   txtIdentificador.ReadOnly = False
+'   ' Rellenar los campos de texto con los valores de la fila seleccionada
+'   txtIdPrompt.Text = gridAI[gridAI.row, 0].Text
+'   txtIdentificador.Text = gridAI[gridAI.row, 1].Text
+'   txtAreaPrompt1.Text = gridAI[gridAI.row, 2].Text
+'
+' End
 
-End
+' Public Sub LimpiarCampos()
+'
+'   txtIdPrompt.Text = ""
+'   txtIdentificador.Text = ""
+'   txtAreaPrompt1.Text = ""
+'
+' End
 
-' Función para cargar y actualizar la grilla
-Public Sub cargargrid()
-  ' Guardamos el resultado en la variable de módulo
+' Public Sub Form_Activate()
+'
+'   cargargrid()
+'
+' End
 
-  rPrompt = m_OnOff_y_Red.meConn.Exec("SELECT * FROM asistente_ai ORDER BY id")
-  gridAI.Rows.Count = rPrompt.Count
-  gridAI.Refresh()
+' Public Sub btnPromptBorrar_Click()
+'
+'   Dim id As Integer = Val(txtIdPrompt.Text)
+'
+'   If Message.Question("¿Está seguro que desea eliminar este registro?", "Sí", "No") = 1 Then
+'     Try m_OnOff_y_Red.meConn.Exec("DELETE FROM asistente_ai WHERE id = &1", id)
+'     If Error Then
+'       Message.Error("Error al eliminar: " & Error.Text)
+'       Return
+'     Endif
+'
+'     Message.Info("Registro eliminado correctamente.")
+'     cargargrid()  ' Actualizamos la grilla después de eliminar
+'     LimpiarCampos()
+'     btnPromptNuevo.Visible = True
+'     btnPromptBorrar.Visible = False
+'     btnPromptGuardar.Visible = False
+'     btnPromptGuardarMod.Visible = False
+'   Endif
+'
+' End
 
-End
-
-Public Sub gridAI_Data(Row As Integer, Column As Integer)
-  ' Verificamos que tengamos resultados
-
-  If rPrompt And If rPrompt.Available Then
-    If Row >= 0 And Row < rPrompt.Count Then
-      ' Movemos el cursor al registro correspondiente
-      rPrompt.MoveTo(Row)
-      ' Asignamos el valor de la columna correspondiente
-      Try gridAI.Data.Text = Str(rPrompt[Column])
-    Endif
-  Endif
-
-  ' Alternamos colores en las filas
-  If row Mod 2 = 0 Then
-    gridAI.Data.Background = Color.RGB(230, 230, 230)
-  Endif
-
-End
-
-Public Sub PromptNuevo()
-  ' Habilitamos los campos de entrada
-
-  LimpiarCampos()
-  ' Ocultamos/mostramos botones según sea necesario
-  btnPromptNuevo.Visible = False
-  btnPromptBorrar.Visible = False
-  btnPromptGuardar.Visible = True
-  btnPromptGuardarMod.Visible = False
-  ' Obtenemos el último ID y sumamos +1 para el nuevo registro
-  Dim resultado As Result
-  resultado = m_OnOff_y_Red.meConn.Exec("SELECT MAX(id) FROM asistente_ai LIMIT 1")
-  Dim Idn As Integer
-  ' Si no hay ninguna entrada entonces arrancamos desde 0
-  If resultado["MAX(id)"] = Null Then
-    Idn = 0
-  Else
-    Idn = CInt(resultado["MAX(id)"]) + 1
-  Endif
-  txtIdPrompt.Text = Idn
-  txtIdentificador.ReadOnly = False
-  txtIdentificador.Background = Color.White
-  txtIdentificador.SetFocus
-
-End
-
-Public Sub GuardarPrompt()
-
-  Dim miCreate As Result
-
-  Try miCreate = m_OnOff_y_Red.meConn.Create("asistente_ai")
-  If Error Then
-    Message.Error("Error al crear: " & Error.Text)
-    Return
-  Endif
-  With miCreate
-    !id = txtIdPrompt.Text
-    !identificador = txtIdentificador.Text
-    !prompt = txtAreaPrompt1.Text
-    Try .Update()
-    If Error Then
-      Message.Error("Error al guardar: " & Error.Text)
-      Return
-    Endif
-  End With
-  Message.Info("Nueva entrada guardada.")
-  cargargrid()  ' Actualizamos la grilla después de guardar
-  LimpiarCampos()
-  txtIdentificador.ReadOnly = True
-  txtIdentificador.Background = Color.Background
-  btnPromptNuevo.Visible = True
-  btnPromptBorrar.Visible = False
-  btnPromptGuardar.Visible = False
-  btnPromptGuardarMod.Visible = False
-
-End
-
-Public Sub gridAI_Click()
-
-  txtIdentificador.Enabled = True
-  txtAreaPrompt1.Enabled = True
-  btnPromptNuevo.Visible = False
-  btnPromptBorrar.Visible = True
-  btnPromptGuardar.Visible = False
-  btnPromptGuardarMod.Visible = True
-  txtIdentificador.Background = Color.White
-  txtIdentificador.ReadOnly = False
-  ' Rellenar los campos de texto con los valores de la fila seleccionada
-  txtIdPrompt.Text = gridAI[gridAI.row, 0].Text
-  txtIdentificador.Text = gridAI[gridAI.row, 1].Text
-  txtAreaPrompt1.Text = gridAI[gridAI.row, 2].Text
-
-End
-
-Public Sub LimpiarCampos()
-
-  txtIdPrompt.Text = ""
-  txtIdentificador.Text = ""
-  txtAreaPrompt1.Text = ""
-
-End
-
-Public Sub Form_Activate()
-
-  cargargrid()
-
-End
-
-Public Sub btnPromptBorrar_Click()
-
-  Dim id As Integer = Val(txtIdPrompt.Text)
-
-  If Message.Question("¿Está seguro que desea eliminar este registro?", "Sí", "No") = 1 Then
-    Try m_OnOff_y_Red.meConn.Exec("DELETE FROM asistente_ai WHERE id = &1", id)
-    If Error Then
-      Message.Error("Error al eliminar: " & Error.Text)
-      Return
-    Endif
-
-    Message.Info("Registro eliminado correctamente.")
-    cargargrid()  ' Actualizamos la grilla después de eliminar
-    LimpiarCampos()
-    btnPromptNuevo.Visible = True
-    btnPromptBorrar.Visible = False
-    btnPromptGuardar.Visible = False
-    btnPromptGuardarMod.Visible = False
-  Endif
-
-End
-
-Public Sub btnPromptGuardarMod_Click()
-
-  Dim miModify As Result
-  Dim id As Integer = Val(txtIdPrompt.Text)
-
-  ' Buscamos el registro a modificar
-  Try miModify = m_OnOff_y_Red.meConn.Edit("asistente_ai", "id = &1", id)
-  If Error Then
-    Message.Error("Error al buscar registro: " & Error.Text)
-    Return
-  Endif
-
-  With miModify
-    !identificador = txtIdentificador.Text
-    !prompt = txtAreaPrompt1.Text
-    Try .Update()
-    If Error Then
-      Message.Error("Error al actualizar: " & Error.Text)
-      Return
-    Endif
-  End With
-
-  Message.Info("Registro actualizado correctamente.")
-  cargargrid()  ' Actualizamos la grilla después de modificar
-  LimpiarCampos()
-  btnPromptNuevo.Visible = True
-  btnPromptBorrar.Visible = False
-  btnPromptGuardar.Visible = False
-  btnPromptGuardarMod.Visible = False
-  txtIdentificador.ReadOnly = True
-  txtIdentificador.Background = Color.Background
-
-End
+' Public Sub btnPromptGuardarMod_Click()
+'
+'   Dim miModify As Result
+'   Dim id As Integer = Val(txtIdPrompt.Text)
+'
+'   ' Buscamos el registro a modificar
+'   Try miModify = m_OnOff_y_Red.meConn.Edit("asistente_ai", "id = &1", id)
+'   If Error Then
+'     Message.Error("Error al buscar registro: " & Error.Text)
+'     Return
+'   Endif
+'
+'   With miModify
+'     !identificador = txtIdentificador.Text
+'     !prompt = txtAreaPrompt1.Text
+'     Try .Update()
+'     If Error Then
+'       Message.Error("Error al actualizar: " & Error.Text)
+'       Return
+'     Endif
+'   End With
+'
+'   Message.Info("Registro actualizado correctamente.")
+'   cargargrid()  ' Actualizamos la grilla después de modificar
+'   LimpiarCampos()
+'   btnPromptNuevo.Visible = True
+'   btnPromptBorrar.Visible = False
+'   btnPromptGuardar.Visible = False
+'   btnPromptGuardarMod.Visible = False
+'   txtIdentificador.ReadOnly = True
+'   txtIdentificador.Background = Color.Background
+'
+' End
 
 Public Sub btnVerProyectos_Click()
 
@@ -701,5 +693,11 @@ Public Sub btnVerProyectos_Click()
   Else
     VBoxProyectos.Visible = False
   End If
+
+End
+
+Public Sub btnBlockNotas_Click()
+
+  f_BlockNotas.ShowModal()
 
 End

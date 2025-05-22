@@ -12,16 +12,22 @@ Public Sub Form_Open()
 
   CargarNotas()
 
+  f_BlockNotas.Title = "Block de notas (usuario: " & m_OnOff_y_Red.UsuarioActual & ")"
+
   With gridNotas
     .Header = True
     .Grid = True
-    .Columns.Count = 3
+    .Columns.Count = 5
     .Columns[0].Title = "id"
     .Columns[0].Width = 0
     .Columns[1].Title = "Asunto"
     .Columns[1].Width = 1000
     .Columns[2].Title = "Contenido"
     .Columns[2].Width = 0
+    .Columns[3].Title = ""
+    .Columns[3].Width = 0
+    .Columns[4].Title = ""
+    .Columns[4].Width = 0
   End With
 
   txtAsunto.Enabled = False
@@ -50,6 +56,12 @@ Public Sub btnCerrar_Click()
 End
 
 Public Sub btnGuardarMod_Click()
+
+  ' Verificar si el usuario logueado es el creador de la nota
+  If m_OnOff_y_Red.usuarioActual <> txtUsuario.Text Then
+    Message.Error("No tienes permiso para modificar esta nota. Solo el autor puede hacerlo.")
+    Return
+  Endif
 
   Dim miEdit As Result
 
@@ -84,10 +96,14 @@ Public Sub btnGuardarMod_Click()
 End
 
 Public Sub tbNuevo_Click()
-  ' Habilitamos los campos de entrada
 
+  ' Limpiamos los campos
+  LimpiarCamposNotas()
+
+  ' Habilitamos los campos de entrada
   txtAsunto.Enabled = True
   txtContenido.Enabled = True
+  txtBuscar.Enabled = False
 
   ' Ocultamos/mostramos botones según sea necesario
   tbNuevo.Visible = False
@@ -95,8 +111,10 @@ Public Sub tbNuevo_Click()
   btnGuardar.Visible = True
   btnGuardarMod.Visible = False
 
-  ' Limpiamos los campos
-  LimpiarCamposNotas()
+  Dim fecha As String
+  fecha = Format(Date(), "dd-mm-yyyy") ' Obtener la fecha actual
+  txtFecha.Text = fecha
+  txtUsuario.Text = m_OnOff_y_Red.UsuarioActual
 
   ' Obtenemos el último ID y sumamos +1 para el nuevo registro
   Dim resultado As Result
@@ -129,6 +147,8 @@ Public Sub btnGuardar_Click()
     !id = ID_block.Text
     !asunto = txtAsunto.Text
     !contenido = txtContenido.Text
+    !fecha = txtFecha.Text
+    !usuario = txtUsuario.Text
     Try .Update()
     If Error Then
       Message.Error("Error al guardar: " & Error.Text)
@@ -142,6 +162,7 @@ Public Sub btnGuardar_Click()
 
   txtAsunto.Enabled = False
   txtContenido.Enabled = False
+  txtBuscar.Enabled = True
 
   tbNuevo.Visible = True
   tbBorrar.Visible = False
@@ -151,10 +172,16 @@ Public Sub btnGuardar_Click()
 End
 
 Public Sub tbBorrar_Click()
-  'Chequeamos primero que se haya elegido una entrada
 
+  'Chequeamos primero que se haya elegido una entrada
   If ID_block.Text = "" Then
     Message.Info("Debe primero seleccionarse la entrada a borrar.")
+    Return
+  Endif
+
+  ' Verificar si el usuario logueado es el creador de la nota
+  If m_OnOff_y_Red.usuarioActual <> txtUsuario.Text Then
+    Message.Error("No tienes permiso para eliminar esta nota. Solo el autor puede hacerlo.")
     Return
   Endif
 
@@ -174,6 +201,7 @@ Public Sub tbBorrar_Click()
 
   txtAsunto.Enabled = False
   txtContenido.Enabled = False
+  txtBuscar.Enabled = True
 
   tbNuevo.Visible = True
   tbBorrar.Visible = False
@@ -247,6 +275,8 @@ Public Sub gridNotas_Click()
   ID_block.Text = gridNotas[gridNotas.row, 0].Text
   txtAsunto.Text = gridNotas[gridNotas.row, 1].Text
   txtContenido.Text = gridNotas[gridNotas.row, 2].Text
+  txtUsuario.Text = gridNotas[gridNotas.row, 3].Text
+  txtFecha.Text = gridNotas[gridNotas.row, 4].Text
 
 End
 
@@ -283,5 +313,7 @@ Public Sub LimpiarCamposNotas()
   ID_block.Text = ""
   txtAsunto.Text = ""
   txtContenido.Text = ""
+  txtFecha.Text = ""
+  txtUsuario.Text = ""
 
 End

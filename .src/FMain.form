@@ -289,7 +289,7 @@
           ReadOnly = True
         }
         { HBox4 HBox
-          MoveScaled(20,0,33,4)
+          MoveScaled(12,0,33,4)
           { PictureBox37 PictureBox
             MoveScaled(1,0,4,4)
             Picture = Picture.Load("iconos/reloj.svg")
@@ -322,12 +322,22 @@
             Alignment = Align.Center
           }
         }
-        { ToggleButtonMostrar ToggleButton
+        { btnPostIt Button
+          MoveScaled(51,0,4,4)
+          ToolTip = ("Block de notas")
+          Picture = Picture["iconos/notitas.svg"]
+        }
+        { btnBlockNotas Button
           MoveScaled(61,0,4,4)
+          ToolTip = ("Block de notas")
+          Picture = Picture["iconos/textnormal.svg"]
+        }
+        { ToggleButtonMostrar ToggleButton
+          MoveScaled(65,0,4,4)
           Picture = Picture["iconos/hide.png"]
         }
         { TimerParcial #Timer
-          #MoveScaled(54,-1)
+          #MoveScaled(45,-1)
         }
       }
     }
@@ -826,7 +836,7 @@
         MoveScaled(2,63,74,34)
         Visible = False
         Arrangement = Arrange.Fill
-        Count = 3
+        Count = 2
         Index = 0
         Text = ("Terminal     ")
         Picture = Picture["iconos/terminal.svg"]
@@ -853,9 +863,6 @@
             ScrollBar = Scroll.Vertical
           }
         }
-        Index = 2
-        Text = ("Post-It     ")
-        Picture = Picture["iconos/notitas.svg"]
         Index = 0
       }
     }

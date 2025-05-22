@@ -2,4 +2,15 @@
 
 Public Sub btnConectarseMy_Click()
 
+  Dim ip As String = TextBoxIP.Text
+  Dim usuario As String = TextBoxUsuario.Text
+  Dim clave As String = TextBoxClave.Text
+
+  If m_OnOff_y_Red.OnRed(ip, usuario, clave) Then
+    Me.Hide()
+    FMain.ShowModal()
+  Else
+    Message.Error("Usuario o clave incorrectos.")
+  End If
+
 End

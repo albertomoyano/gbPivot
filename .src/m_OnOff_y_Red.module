@@ -1,36 +1,35 @@
 ' Gambas module file
 
-' módulo de connexión a la red y de cerrar todos los rocesos abiertos para salir de la aplicación
-Public meConn As New Connection
+' Módulo: m_OnOff_y_Red
+Public meConn As Connection
+Public UsuarioActual As String
 
-Public Sub OnRed() As Connection
+Public Function OnRed(ip As String, usuario As String, clave As String) As Boolean
 
-  Dim sIP As String = f_Login.TextBoxIP.Text
-  Dim sUsuario As String = f_Login.TextBoxUsuario.Text
-  Dim sClave As String = f_Login.TextBoxClave.Text
   Dim hResultado As Result
   Dim sSQL As String
 
-  ' Conexión como usuario MySQL fijo
+  meConn = New Connection
   meConn.Type = "mysql"
-  meConn.Host = sIP
-  meConn.Login = "adminphp" ' Usuario de MySQL
-  meConn.Password = "mares" ' Contraseña del usuario MySQL
+  meConn.Host = ip
+  meConn.Login = "adminphp"
+  meConn.Password = "mares"
   meConn.Name = "gbpivot"
   meConn.Open
 
-  ' Consulta de validación
   sSQL = "SELECT * FROM usuarios WHERE usuario = &1 AND clave = &2"
-  hResultado = meConn.Exec(sSQL, sUsuario, sClave)
+  hResultado = meConn.Exec(sSQL, usuario, clave)
+  UsuarioActual = usuario
 
   If hResultado.Available Then
-    Message.Info("¡Bienvenido, " & sUsuario & "!")
+    Return True
   Else
-    Message.Error("Usuario o clave incorrectos.")
+    Return False
   End If
 
 Catch
   Message.Error("Error: " & Error.Text)
+  Return False
 
 End
 
