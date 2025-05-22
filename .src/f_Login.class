@@ -1,7 +1,5 @@
 ' Gambas class file
 
-Public Sub Button1_Click()
-
-  FMain.ShowModal()
+Public Sub btnConectarseMy_Click()
 
 End

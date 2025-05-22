@@ -5,17 +5,32 @@ Public meConn As New Connection
 
 Public Sub OnRed() As Connection
 
-  meConn.Type = "sqlite3"
-  meConn.Host = User.Home & "/.gbpivot/"
-  meConn.Name = "gbpivot.sqlite"
-  meConn.Open()
-  ' Configurar el modo de journal a DELETE para SQLite
-  meConn.Exec("PRAGMA journal_mode=DELETE")
-  Return meConn
-  'verificamos
+  Dim sIP As String = f_Login.TextBoxIP.Text
+  Dim sUsuario As String = f_Login.TextBoxUsuario.Text
+  Dim sClave As String = f_Login.TextBoxClave.Text
+  Dim hResultado As Result
+  Dim sSQL As String
+
+  ' Conexión como usuario MySQL fijo
+  meConn.Type = "mysql"
+  meConn.Host = sIP
+  meConn.Login = "adminphp" ' Usuario de MySQL
+  meConn.Password = "mares" ' Contraseña del usuario MySQL
+  meConn.Name = "gbpivot"
+  meConn.Open
+
+  ' Consulta de validación
+  sSQL = "SELECT * FROM usuarios WHERE usuario = &1 AND clave = &2"
+  hResultado = meConn.Exec(sSQL, sUsuario, sClave)
+
+  If hResultado.Available Then
+    Message.Info("¡Bienvenido, " & sUsuario & "!")
+  Else
+    Message.Error("Usuario o clave incorrectos.")
+  End If
+
 Catch
-  Message.Error("No se pudo conectar a la base de datos <strong>gbpivot.sqlite</strong>\n en: " & User.Home & "/.gbpivot/")
-  Quit
+  Message.Error("Error: " & Error.Text)
 
 End
 

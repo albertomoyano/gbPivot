@@ -26,7 +26,7 @@
       Text = ("IP  ")
       Alignment = Align.Right
     }
-    { txtIP TextBox
+    { TextBoxIP TextBox
       MoveScaled(16,0,15,4)
       Expand = True
     }
@@ -38,7 +38,7 @@
       Text = ("Usuario  ")
       Alignment = Align.Right
     }
-    { txtUsuario TextBox
+    { TextBoxUsuario TextBox
       MoveScaled(16,0,15,4)
       Expand = True
     }
@@ -50,7 +50,7 @@
       Text = ("Contraseña  ")
       Alignment = Align.Right
     }
-    { txtClave TextBox
+    { TextBoxClave TextBox
       MoveScaled(15,0,16,4)
       Expand = True
       Password = True
@@ -64,7 +64,7 @@
     { Spring1 Spring
       MoveScaled(0,0,8,3)
     }
-    { Button1 Button
+    { btnConectarseMy Button
       MoveScaled(36,0,18,4)
       Text = ("     Conectarse")
       Picture = Picture["iconos/comp.svg"]
