@@ -1,0 +1,63 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  Move(0,0,531,342)
+  #Scaled = False
+  Text = ("Nueva nota de escritorio")
+  Resizable = False
+  Arrangement = Arrange.Vertical
+  AutoResize = True
+  Spacing = True
+  Margin = True
+  Padding = 4
+  { HBox2 HBox
+    Move(9,18,477,36)
+    { Label1 Label
+      Move(0,0,189,36)
+      Expand = True
+      Alignment = Align.Right
+      Text = ("Seleccionar destinatario  ")
+    }
+    { para ComboBox
+      Move(216,0,288,36)
+      ReadOnly = True
+    }
+  }
+  { texto TextEdit
+    Move(9,54,315,153)
+    Foreground = Color.Black
+  }
+  { cp1 ColorPalette
+    Move(9,207,333,36)
+  }
+  { HBox1 HBox
+    Move(9,243,513,36)
+    { Label2 Label
+      Move(36,0,117,36)
+      Expand = True
+      AutoResize = True
+      Alignment = Align.Right
+      Text = ("Mostrar desde  ")
+    }
+    { dSince DateBox
+      Move(171,0,198,36)
+      Mode = DateChooser.DateTime
+    }
+  }
+  { HBox3 HBox
+    Move(9,279,513,36)
+    Invert = True
+    { bSend Button
+      Move(342,0,144,36)
+      Text = ("Enviar")
+    }
+    { bCancel Button
+      Move(198,0,144,36)
+      Text = ("Cancelar")
+      Picture = Picture["iconos/salir.svg"]
+    }
+    { Spring1 Spring
+      Move(36,0,117,36)
+    }
+  }
+}

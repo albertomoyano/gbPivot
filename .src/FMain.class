@@ -701,3 +701,9 @@ Public Sub btnBlockNotas_Click()
   f_BlockNotas.ShowModal()
 
 End
+
+Public Sub btnPostIt_Click()
+
+  f_PostIt.ShowModal()
+
+End

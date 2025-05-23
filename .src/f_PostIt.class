@@ -1,0 +1,183 @@
+' Gambas class file
+
+' ' Gambas class file
+'
+' Public Visibles As String[]
+'
+' Private hConn As Connection
+' Private $usuario As String
+'
+' Public Sub Form_Open()
+'
+'   ' Dim r As Result
+'   '
+'   ' Visibles = New String[]
+'   ' Me.Center
+'   ' hConn = Connections[Application.Name]
+'   ' hConn.Password = "notitas22"
+'   ' Try hConn.open()
+'   ' If Not hConn.Opened Then
+'   '   Message("No hay conexión a la base de datos")
+'   '   Me.Close()
+'   ' Endif
+'   ' llenalista()
+'
+' End
+'
+' Public Sub Timer1_Timer()
+'
+'   Dim cNota As Collection
+'   Dim r As Result
+'   Dim campo As ResultField
+'   Dim n As Integer
+'
+'   r = hConn.Exec("select id as 'id',de as 'de',para as 'para',fecha as 'fecha',texto as 'texto',desde as 'desde',oculto as 'oculto',x as 'x',y as 'y',color as 'color',leido as 'leido',cuenta as 'cuenta' from postits where oculto = 0 and para = &1", $usuario)
+'   While r.available
+'     cNota = New Collection
+'     For Each campo In r.fields
+'       If campo.name = "texto" Then
+'         cNota[campo.name] = r[campo.Name]
+'       Else
+'         cNota[campo.name] = r[campo.name]
+'       Endif
+'     Next
+'     If r!desde <= Now() Then
+'       If Visibles.Find(cNota["id"]) = True 'si no está en los visibles, se añade y se muestra.
+'         Visibles.Add(cNota["id"])
+'         ShowNote(cNota)
+'       Endif
+'     Endif
+'     r.MoveNext
+'   Wend
+'
+' End
+'
+' Public Sub ShowNote(cNote As Collection)
+'
+'   Dim f As Nota
+'
+'   If metodo.Text = "Postit" Then
+'     f = New Nota(cNote)
+'     f.show()
+'   Else
+'     Exec ["notify-send", ("\"" & cNote["texto"] & "\"")] '
+'   Endif
+'   If cbsonido.value Then
+'     Try sound.Load("receive.wav").Play 'Si falla no hacemos nada. Es un fallo menor
+'   Endif
+'
+' Catch
+'
+'   Message.Error(Error.text & "-" & Error.Where)
+'
+' End
+'
+' Private Sub llenalista()
+'
+'   ' Dim r As Result
+'   '
+'   ' r = hConn.Exec("select * from usuarios order by nick")
+'   ' nick.List = r.All("nick")
+'   ' nick.Index = -1
+'   ' $usuario = ""
+'
+' End
+'
+' Public Sub mDelete_Click()
+'
+'   Dim r As Result
+'
+'   r = hConn.Exec("select * from usuarios where nick=&1", nick.text)
+'   If clave.text <> r!clave Then
+'     Message.Error("La Clave no es correcta")
+'     Return
+'   Endif
+'   hConn.Exec("delete from usuarios where nick=&1", nick.text)
+'   llenalista()
+'   Wait
+'
+' End
+'
+' Public Sub bPostit_Click()
+'
+'   Dim f As Notanueva
+'   Dim spara As String
+'
+'   Timer1.Stop
+'   f = New Notanueva(nick.text)
+'   f.ShowModal()
+'   Timer1.start
+'
+' End
+'
+' Public Sub Form_Close()
+'
+'   Dim w As Window
+'
+'   ' Timer1.Stop()
+'   ' For Each w In Windows
+'   '   w.Close()
+'   ' Next
+'
+' End
+'
+' Public Sub bOcultos_Click()
+'
+'   ' Connections[Application.Name].Exec("update postits set oculto = 0 where para = &1", nick.Text)
+'
+' End
+'
+' Public Sub intervaloNotas_Change()
+'
+'   Timer1.Delay = intervaloNotas.Value * 1000
+'
+' End
+'
+' ' Public Sub bConectar_Click()
+' '
+' '   Dim r As Result
+' '   Dim n As Integer
+' '
+' '   If bConectar.Text = "Conectado" Then
+' '     Message("Ya está conectado como " & $usuario)
+' '     Return
+' '   Endif
+' '   r = Connections[Application.Name].Exec("select * from usuarios where nick=&1", nick.Text)
+' '   If Not r.Available Then
+' '     n = Message.Question("El usuario no existe ¿Desea añadirlo?", "Sí", "No")
+' '     If n = 1 Then
+' '       Connections[Application.name].Exec("insert into usuarios  (id,nick,clave) values (null,&1,&2)", nick.text, clave.text)
+' '       llenalista
+' '     Endif
+' '     Return
+' '   Endif
+' '   If clave.text <> r!clave Then
+' '     Message.Error("La Clave no es correcta")
+' '     Return
+' '   Endif
+' '   $usuario = nick.Text
+' '   Me.Text = Application.Name & ": Notas de " & $usuario
+' '   clave.Text = ""
+' '   bConectar.Text = "Conectado"
+' '
+' '   Timer1.start
+' '
+' ' End
+'
+' Public Sub nick_Change()
+'
+'   clave.Text = ""
+'
+' End
+
+Public Sub btnSalir_Click()
+
+  Me.Close
+
+End
+
+Public Sub bPostit_Click()
+
+  f_NotaNueva.ShowModal()
+
+End

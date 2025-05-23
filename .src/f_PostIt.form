@@ -1,0 +1,124 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  Move(0,0,513,369)
+  #Scaled = False
+  Text = ("Posits")
+  Resizable = False
+  Arrangement = Arrange.Vertical
+  AutoResize = True
+  Spacing = True
+  Margin = True
+  Padding = 4
+  { mLista Menu
+    { mDelete Menu
+      Text = ("Eliminar Usuario")
+    }
+  }
+  { Label1 Label
+    Move(198,9,63,36)
+    Visible = False
+    Alignment = Align.Right
+    Text = ("Clave")
+  }
+  { clave TextBox
+    Move(279,9,207,36)
+    Visible = False
+    Password = True
+  }
+  { bConectar Button
+    Move(351,54,135,36)
+    Visible = False
+    Text = ("Conectar")
+    Picture = Picture["icon:/24/connect"]
+  }
+  { cbsonido CheckBox
+    Move(117,81,234,18)
+    Visible = False
+    Text = ("Sonido al recibir")
+    Value = CheckBox.True
+  }
+  { HBox4 HBox
+    Move(18,117,459,36)
+    { Label7 Label
+      Move(0,0,198,36)
+      Expand = True
+      Alignment = Align.Right
+      Text = ("Comprobar notas cada  ")
+    }
+    { intervaloNotas SpinBox
+      Move(225,0,54,36)
+      ToolTip = ("Intervalo entre comprobaciones de Correo y de Notas de Escritorio")
+      MinValue = 1
+      MaxValue = 120
+      Step = 5
+      Value = 1
+    }
+    { Label11 Label
+      Move(306,0,90,36)
+      AutoResize = True
+      Text = ("  segundos")
+    }
+  }
+  { HBox2 HBox
+    Move(18,153,369,36)
+    { Label9 Label
+      Move(0,0,117,36)
+      Expand = True
+      Alignment = Align.Right
+      Text = ("Recibir como  ")
+    }
+    { metodo ComboBox
+      Move(153,0,288,36)
+      ToolTip = ("recibir las notas por éste método")
+      ReadOnly = True
+      List = [("Postit"), ("Notificación de escritorio")]
+      Text = ("Postit")
+    }
+  }
+  { HBox3 HBox
+    Move(27,189,468,36)
+    Visible = False
+    { Label2 Label
+      Move(0,0,189,36)
+      Expand = True
+      Alignment = Align.Right
+      Text = ("Seleccionar destinatario  ")
+    }
+    { nick ComboBox
+      Move(207,0,126,36)
+      ToolTip = ("Botón derecho para Añadir / Eliminar usuario")
+      PopupMenu = "mLista"
+      ReadOnly = True
+    }
+  }
+  { HBox5 HBox
+    Move(18,261,144,36)
+  }
+  { HBox1 HBox
+    Move(18,306,486,36)
+    { Spring1 Spring
+      Move(-27,9,63,18)
+    }
+    { btnSalir Button
+      Move(54,0,144,36)
+      NoTabFocus = True
+      Text = ("Cerrar")
+      Picture = Picture["iconos/salir.svg"]
+    }
+    { bPostit Button
+      Move(198,0,144,36)
+      Text = ("Nueva Nota")
+      Picture = Picture["iconos/notitas.svg"]
+    }
+    { bOcultos Button
+      Move(342,0,144,36)
+      ToolTip = ("Guardar Configuración y continuar")
+      Text = ("Ver Ocultos")
+      Picture = Picture["iconos/search.svg"]
+    }
+  }
+  { Timer1 #Timer
+    #Move(9,36)
+  }
+}
