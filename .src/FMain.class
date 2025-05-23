@@ -347,10 +347,8 @@ Public Sub cargarTiempoTotal(sNombreProyecto As String)
   Dim rResultado As Result
   Dim tiempoTotalSegundos As Integer = 0
 
-  ' Verificar primero si la columna existe en la tabla
-  Try rResultado = m_OnOff_y_Red.meConn.Exec("PRAGMA table_info(nombre_proyecto)")
-
   Dim columnaExiste As Boolean = False
+
   While rResultado.Available
     If rResultado["name"] = "tiempo_total_segundos" Then
       columnaExiste = True
