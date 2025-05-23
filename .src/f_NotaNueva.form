@@ -1,7 +1,7 @@
 # Gambas Form File 3.0
 
 { Form Form
-  Move(0,0,531,342)
+  Move(0,0,531,387)
   #Scaled = False
   Text = ("Nueva nota de escritorio")
   Resizable = False
@@ -10,8 +10,51 @@
   Spacing = True
   Margin = True
   Padding = 4
+  { HBox4 HBox
+    Move(0,0,369,36)
+    { Label9 Label
+      Move(0,0,117,36)
+      Expand = True
+      Alignment = Align.Right
+      Text = ("Recibir como  ")
+    }
+    { metodo ComboBox
+      Move(153,0,288,36)
+      ToolTip = ("recibir las notas por éste método")
+      ReadOnly = True
+      List = [("Postit"), ("Notificación de escritorio")]
+      Text = ("Postit")
+    }
+  }
+  { HBox1 HBox
+    Move(0,36,513,36)
+    { Label2 Label
+      Move(9,0,117,36)
+      Expand = True
+      AutoResize = True
+      Alignment = Align.Right
+      Text = ("Mostrar desde  ")
+    }
+    { dSince DateBox
+      Move(135,0,198,36)
+      Mode = DateChooser.DateTime
+    }
+    { bOcultos Button
+      Move(351,0,144,36)
+      ToolTip = ("Guardar Configuración y continuar")
+      Text = ("Ver ocultos")
+      Picture = Picture["iconos/search.svg"]
+    }
+  }
+  { texto TextEdit
+    Move(9,108,315,153)
+    Foreground = Color.Black
+  }
+  { cp1 ColorPalette
+    Move(9,261,333,36)
+  }
   { HBox2 HBox
-    Move(9,18,477,36)
+    Move(9,297,477,36)
     { Label1 Label
       Move(0,0,189,36)
       Expand = True
@@ -19,45 +62,28 @@
       Text = ("Seleccionar destinatario  ")
     }
     { para ComboBox
-      Move(216,0,288,36)
+      Move(162,0,288,36)
       ReadOnly = True
     }
   }
-  { texto TextEdit
-    Move(9,54,315,153)
-    Foreground = Color.Black
-  }
-  { cp1 ColorPalette
-    Move(9,207,333,36)
-  }
-  { HBox1 HBox
-    Move(9,243,513,36)
-    { Label2 Label
-      Move(36,0,117,36)
-      Expand = True
-      AutoResize = True
-      Alignment = Align.Right
-      Text = ("Mostrar desde  ")
-    }
-    { dSince DateBox
-      Move(171,0,198,36)
-      Mode = DateChooser.DateTime
-    }
-  }
   { HBox3 HBox
-    Move(9,279,513,36)
+    Move(9,333,513,36)
     Invert = True
     { bSend Button
-      Move(342,0,144,36)
+      Move(360,0,144,36)
       Text = ("Enviar")
+      Picture = Picture["iconos/notitas.svg"]
     }
     { bCancel Button
-      Move(198,0,144,36)
+      Move(216,0,144,36)
       Text = ("Cancelar")
       Picture = Picture["iconos/salir.svg"]
     }
     { Spring1 Spring
-      Move(36,0,117,36)
+      Move(9,0,63,36)
     }
+  }
+  { Timer1 #Timer
+    #Move(333,180)
   }
 }

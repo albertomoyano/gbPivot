@@ -78,3 +78,9 @@
 '   ' texto.Foreground = Color.Black
 '
 ' End
+
+Public Sub bCancel_Click()
+
+  Me.Close
+
+End

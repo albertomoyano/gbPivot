@@ -108,13 +108,13 @@
     }
     { bPostit Button
       Move(198,0,144,36)
-      Text = ("Nueva Nota")
+      Text = ("Nueva nota")
       Picture = Picture["iconos/notitas.svg"]
     }
     { bOcultos Button
       Move(342,0,144,36)
       ToolTip = ("Guardar Configuración y continuar")
-      Text = ("Ver Ocultos")
+      Text = ("Ver ocultos")
       Picture = Picture["iconos/search.svg"]
     }
   }

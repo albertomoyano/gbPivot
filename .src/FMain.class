@@ -704,6 +704,6 @@ End
 
 Public Sub btnPostIt_Click()
 
-  f_PostIt.ShowModal()
+  f_NotaNueva.ShowModal()
 
 End
