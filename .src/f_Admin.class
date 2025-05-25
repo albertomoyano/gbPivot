@@ -1,6 +1,8 @@
 ' Gambas class file
 
-' Gambas class file para el formulario de login
+Public sAdminUsuario As String
+Public sAdminEmail As String
+Public sAdminClave As String  ' Solo temporal si usás texto plano. Con hash esto no se guarda.
 
 ' Variable de clase para contar los intentos fallidos
 Private iIntentosFallidos As Integer = 0
@@ -44,49 +46,36 @@ Private Sub ValidarCredenciales()
   Dim sUsuario As String = txtUsuario.Text
   Dim sPassword As String = txtPassword.Text
   Dim hResult As Result
-  ' Dim bAutenticado As Boolean = False
-  Dim sRol As String = ""
 
-  ' Validar las credenciales contra la base de datos
-  Try hResult = m_OnOff_y_Red.meConn.Exec("SELECT id, usuario, rol FROM usuarios WHERE usuario = &1 AND clave = &2", sUsuario, sPassword)
+  ' Validar credenciales contra tabla usuarios_admin
+  Try hResult = m_OnOff_y_Red.meConn.Exec("SELECT * FROM usuarios_admin WHERE usuario = &1 AND clave = &2", sUsuario, sPassword)
 
-  ' Verificar si hubo un error en la consulta
   If Error Then
     Message.Error("Error al consultar la base de datos: " & Error.Text)
     Return
   Endif
 
-  ' Verificar si se encontró el usuario
   If Not hResult.Available Then
-    ' Autenticación fallida - Usuario no encontrado o clave incorrecta
+    ' Falló el login
     iIntentosFallidos += 1
 
     If iIntentosFallidos >= MAX_INTENTOS Then
-      ' Si alcanza el número máximo de intentos, mostrar mensaje y cerrar la aplicación
       Message.Error("Número máximo de intentos alcanzado. El programa se cerrará.")
       Me.Close(False)
-      Quit ' Cierra toda la aplicación
+      Quit
     Else
-      ' Si todavía tiene intentos disponibles, mostrar mensaje con intentos restantes
       Message.Error("Usuario o contraseña incorrectos. Intentos restantes: " & (MAX_INTENTOS - iIntentosFallidos))
       txtPassword.Text = ""
       txtPassword.SetFocus
     Endif
   Else
-    ' Autenticación exitosa
-    sRol = hResult["rol"]
-
-    ' Verificar si el usuario tiene rol de administrador
-    If LCase(sRol) = "admin" Or LCase(sRol) = "administrador" Then
-      ' Usuario administrador - permitir acceso a configuración
+    If hResult.Available Then
+      sAdminUsuario = hResult["usuario"]
+      sAdminEmail = hResult["email"]
+      sAdminClave = hResult["clave"]  ' Solo si estás trabajando aún en texto plano
+      ' Login exitoso
       Me.Close(True)
       f_Preferencias.ShowModal()
-    Else
-      ' Usuario no administrador - denegar acceso
-      Message.Warning("No tienes permisos de administrador para acceder a esta sección.")
-      txtUsuario.Text = ""
-      txtPassword.Text = ""
-      txtUsuario.SetFocus
     Endif
   Endif
 

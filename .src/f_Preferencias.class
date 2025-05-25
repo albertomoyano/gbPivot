@@ -5,3 +5,24 @@ Public Sub btnCerrar_Click()
   Me.Close
 
 End
+
+Public Sub ToggleButtonMostrar_Click()
+  ' Cambiar visibilidad del TabPanel2 según el estado del botón
+
+  txtClaveAdministrador.Password = Not ToggleButtonMostrar.Value
+
+  If ToggleButtonMostrar.Value Then
+    ToggleButtonMostrar.Tooltip = "Ocultar contraseña"
+  Else
+    ToggleButtonMostrar.Tooltip = "Mostrar contraseña"
+  End If
+
+End
+
+Public Sub Form_Open()
+
+  f_Admin.sAdminUsuario = txtAdministrador.Text
+  f_Admin.sAdminEmail = txtAdministradorEmail.Text
+  f_Admin.sAdminClave = txtClaveAdministrador.Text
+
+End
