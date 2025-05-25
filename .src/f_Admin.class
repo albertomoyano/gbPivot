@@ -40,13 +40,13 @@ End
 
 Private Sub ValidarCredenciales()
 
-  Dim sUsuario As String = txtUsuario.Text
-  Dim sPassword As String = txtPassword.Text
+  Dim sUsuarioAdmin As String = txtUsuario.Text
+  Dim sClaveAdmin As String = txtPassword.Text
+  Dim sEmailAdmin As String = txtEmail.Text
   Dim hResult As Result
 
   ' Validar credenciales contra tabla usuarios_admin
-  Try hResult = m_OnOff_y_Red.meConn.Exec("SELECT * FROM usuarios_admin WHERE usuario = &1 AND clave = &2", sUsuario, sPassword)
-
+  Try hResult = m_OnOff_y_Red.meConn.Exec("SELECT * FROM usuarios_admin WHERE usuario = &1 AND clave = &2 AND email = &3", sUsuarioAdmin, sClaveAdmin, sEmailAdmin)
   If Error Then
     Message.Error("Error al consultar la base de datos: " & Error.Text)
     Return
@@ -55,7 +55,6 @@ Private Sub ValidarCredenciales()
   If Not hResult.Available Then
     ' Falló el login
     iIntentosFallidos += 1
-
     If iIntentosFallidos >= MAX_INTENTOS Then
       Message.Error("Número máximo de intentos alcanzado. El programa se cerrará.")
       Me.Close(False)
@@ -66,11 +65,14 @@ Private Sub ValidarCredenciales()
       txtPassword.SetFocus
     Endif
   Else
-    If hResult.Available Then
-      ' Login exitoso
-      Me.Close(True)
-      f_Preferencias.ShowModal()
-    Endif
+    ' Guardar los datos en las variables globales del módulo
+    m_OnOff_y_Red.sUsuarioAdmin = sUsuarioAdmin
+    m_OnOff_y_Red.sClaveAdmin = sClaveAdmin
+    m_OnOff_y_Red.sEmailAdmin = sEmailAdmin
+
+    ' Cerrar el formulario y abrir preferencias
+    Me.Close(True)
+    f_Preferencias.ShowModal()
   Endif
 
 End

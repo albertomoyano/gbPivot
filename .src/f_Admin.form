@@ -27,8 +27,9 @@
       Text = ("Usuario  ")
       Alignment = Align.Right
     }
-    { txtUsuario TextBox
+    { !txtUsuario TextBox
       MoveScaled(16,0,15,4)
+      #Public = True
       Expand = True
     }
   }
@@ -39,14 +40,19 @@
       Text = ("Contraseña  ")
       Alignment = Align.Right
     }
-    { txtPassword TextBox
+    { !txtPassword TextBox
       MoveScaled(15,0,16,4)
+      #Public = True
       Expand = True
-      Password = True
     }
   }
   { HBox4 HBox
     MoveScaled(0,27,49,4)
+    { !txtEmail TextBox
+      MoveScaled(24,0,11,4)
+      #Public = True
+      Visible = False
+    }
   }
   { HBox3 HBox
     MoveScaled(1,31,56,4)
