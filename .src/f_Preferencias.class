@@ -1,5 +1,7 @@
 ' Gambas class file
 
+Public UsuarioAdmin As String
+
 Public Sub btnCerrar_Click()
 
   Me.Close
@@ -20,9 +22,5 @@ Public Sub ToggleButtonMostrar_Click()
 End
 
 Public Sub Form_Open()
-
-  f_Admin.sAdminUsuario = txtAdministrador.Text
-  f_Admin.sAdminEmail = txtAdministradorEmail.Text
-  f_Admin.sAdminClave = txtClaveAdministrador.Text
 
 End

@@ -172,8 +172,9 @@
         Alignment = Align.Right
         Text = ("Administrador  ")
       }
-      { txtAdministrador TextBox
+      { !txtAdministrador TextBox
         Move(270,0,81,36)
+        #Public = True
         Expand = True
       }
     }
@@ -184,8 +185,9 @@
         Alignment = Align.Right
         Text = ("Email  ")
       }
-      { txtAdministradorEmail TextBox
+      { !txtAdministradorEmail TextBox
         Move(270,0,81,36)
+        #Public = True
         Expand = True
       }
     }
@@ -200,8 +202,9 @@
         Move(171,0,36,36)
         Picture = Picture["iconos/hide.png"]
       }
-      { txtClaveAdministrador TextBox
+      { !txtClaveAdministrador TextBox
         Move(360,0,81,36)
+        #Public = True
         Expand = True
         Password = True
       }

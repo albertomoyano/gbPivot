@@ -1,9 +1,5 @@
 ' Gambas class file
 
-Public sAdminUsuario As String
-Public sAdminEmail As String
-Public sAdminClave As String  ' Solo temporal si usás texto plano. Con hash esto no se guarda.
-
 ' Variable de clase para contar los intentos fallidos
 Private iIntentosFallidos As Integer = 0
 Private Const MAX_INTENTOS As Integer = 3
@@ -20,6 +16,7 @@ Public Sub Form_Open()
   ' Asegurar que existe una conexión a la base de datos
   If m_OnOff_y_Red.meConn = Null Or If m_OnOff_y_Red.meConn.Opened = False Then
     Try m_OnOff_y_Red.OnRed()
+
     If Error Then
       Message.Error("No se pudo abrir la conexión con la base de datos")
       Me.Close(False)
@@ -70,9 +67,6 @@ Private Sub ValidarCredenciales()
     Endif
   Else
     If hResult.Available Then
-      sAdminUsuario = hResult["usuario"]
-      sAdminEmail = hResult["email"]
-      sAdminClave = hResult["clave"]  ' Solo si estás trabajando aún en texto plano
       ' Login exitoso
       Me.Close(True)
       f_Preferencias.ShowModal()
