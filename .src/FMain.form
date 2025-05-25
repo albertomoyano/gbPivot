@@ -206,7 +206,7 @@
     }
   }
   { SplitterPrincipal Splitter
-    MoveScaled(26,3,176,87)
+    MoveScaled(27,1,176,87)
     Expand = True
     Centered = True
     Border = False
@@ -343,7 +343,7 @@
       Arrangement = Arrange.Vertical
       Padding = 4
       { TabPanel1 TabPanel
-        MoveScaled(1,2,124,59)
+        MoveScaled(1,-17,124,77)
         Expand = True
         Arrangement = Arrange.Vertical
         Spacing = True
@@ -358,19 +358,13 @@
           Expand = True
           Arrangement = Arrange.Fill
           Border = False
-          Count = 4
+          Count = 2
           Index = 0
+          Text = ("Libro     ")
+          Picture = Picture["iconos/titulo.svg"]
+          Index = 1
           Text = ("Revista     ")
           Picture = Picture["iconos/revista.svg"]
-          Index = 1
-          Text = ("Artículos     ")
-          Picture = Picture["iconos/textnormal.svg"]
-          Index = 2
-          Text = ("Autores     ")
-          Picture = Picture["iconos/autores.svg"]
-          Index = 3
-          Text = ("Otros     ")
-          Picture = Picture["iconos/face.svg"]
           Index = 0
         }
         Index = 1
@@ -389,7 +383,7 @@
             Padding = 4
             Count = 3
             Index = 0
-            Text = ("Caja de texto temporal     ")
+            Text = ("Caja de txt temp.")
             Picture = Picture["iconos/textnormal.svg"]
             { txtTMPbiblio TextArea
               MoveScaled(2,2,36,13)
@@ -400,7 +394,7 @@
               ScrollBar = Scroll.Vertical
             }
             Index = 1
-            Text = ("Referencias bibliográficas (archivo en curso)     ")
+            Text = ("Referencias (en curso)     ")
             Picture = Picture["iconos/face.svg"]
             { gridListaBIBactual TableView
               MoveScaled(2,1,44,12)
@@ -413,7 +407,7 @@
               Resizable = False
             }
             Index = 2
-            Text = ("Referencias bibliográficas (todas)     ")
+            Text = ("Referencias (todas)     ")
             Picture = Picture["iconos/bibtex.svg"]
             { VListaBIB TableView
               MoveScaled(1,10,44,8)
@@ -573,7 +567,7 @@
           }
         }
         { TabPanel6 TabPanel
-          MoveScaled(0,43,155,66)
+          MoveScaled(1,43,155,66)
           Expand = True
           Arrangement = Arrange.Vertical
           Margin = True
@@ -583,7 +577,7 @@
           Text = ("Autoría     ")
           Picture = Picture["iconos/candado-abierto.svg"]
           { ScrollView2 ScrollView
-            MoveScaled(2,3,108,55)
+            MoveScaled(2,2,108,55)
             Expand = True
             Arrangement = Arrange.Vertical
             Spacing = True
@@ -593,7 +587,7 @@
             ScrollBar = Scroll.Vertical
             Shadow = True
             { HBox25 HBox
-              MoveScaled(0,5,97,4)
+              MoveScaled(1,1,97,4)
               { BtnBuscarAuthor Button
                 MoveScaled(1,0,4,4)
                 NoTabFocus = True
@@ -625,7 +619,7 @@
               }
             }
             { HBox26 HBox
-              MoveScaled(0,9,97,4)
+              MoveScaled(1,5,97,4)
               { lblBOOKAUTHOR2 Label
                 MoveScaled(0,0,16,3.5556)
                 Alignment = Align.Right
@@ -651,7 +645,7 @@
               }
             }
             { HBox27 HBox
-              MoveScaled(0,13,97,4)
+              MoveScaled(1,9,97,4)
               { BtnBuscarAuthor2 Button
                 MoveScaled(0,0,4,4)
                 NoTabFocus = True
@@ -680,7 +674,7 @@
               }
             }
             { HBox28 HBox
-              MoveScaled(0,17,97,4)
+              MoveScaled(1,13,97,4)
               { lblEDITOR2 Label
                 MoveScaled(-1,0,16,3.5556)
                 Alignment = Align.Right
@@ -704,7 +698,7 @@
               }
             }
             { HBox29 HBox
-              MoveScaled(0,21,97,4)
+              MoveScaled(1,17,97,4)
               { lblEDITOR3 Label
                 MoveScaled(-1,0,16,3.5556)
                 Alignment = Align.Right
@@ -728,7 +722,7 @@
               }
             }
             { HBox30 HBox
-              MoveScaled(0,25,97,4)
+              MoveScaled(1,21,97,4)
               { lblEDITOR4 Label
                 MoveScaled(0,0,16,3.5556)
                 Alignment = Align.Right
@@ -752,7 +746,7 @@
               }
             }
             { HBox39 HBox
-              MoveScaled(0,29,97,4)
+              MoveScaled(1,25,97,4)
               { lblAFTERWORD Label
                 MoveScaled(1,0,16,4)
                 Alignment = Align.Right
@@ -779,7 +773,7 @@
               }
             }
             { HBox40 HBox
-              MoveScaled(0,33,97,4)
+              MoveScaled(1,29,97,4)
               { lblCOMMENTATOR Label
                 MoveScaled(0,0,16,4)
                 Alignment = Align.Right
@@ -806,7 +800,7 @@
               }
             }
             { HBox38 HBox
-              MoveScaled(0,37,97,4)
+              MoveScaled(1,33,97,4)
               { lblTRANSLATOR Label
                 MoveScaled(1,0,16,4)
                 ToolTip = ("Traductor")
@@ -834,7 +828,7 @@
               }
             }
             { HBox31 HBox
-              MoveScaled(0,41,97,4)
+              MoveScaled(1,37,97,4)
               { lblANNOTATOR2 Label
                 MoveScaled(0,0,16,4)
                 Alignment = Align.Right
@@ -1204,8 +1198,9 @@
                 }
                 { lblISBN6 Label
                   MoveScaled(13,0,16,4)
+                  AutoResize = True
                   Alignment = Align.Right
-                  Text = ("Eid ")
+                  Text = ("    Eid ")
                 }
                 { txtEID TextBox AllTextBoxes
                   Name = "txtEID"
@@ -1565,7 +1560,16 @@
           { Splitter8 Splitter
             MoveScaled(3,2,123,36)
             Expand = True
+            Arrangement = Arrange.Vertical
             Border = False
+            { Panel10 Panel
+              MoveScaled(101,5,21,18)
+              Arrangement = Arrange.Fill
+              Border = Border.Sunken
+              { WebView1 WebView
+                MoveScaled(3,1,16,16)
+              }
+            }
             { ScrollView6 ScrollView
               MoveScaled(14,0,82,34)
               Expand = True
@@ -1732,14 +1736,6 @@
                   ToolTip = ("Resetear el browser")
                   Picture = Picture["iconos/google.svg"]
                 }
-              }
-            }
-            { Panel10 Panel
-              MoveScaled(101,5,21,18)
-              Arrangement = Arrange.Fill
-              Border = Border.Sunken
-              { WebView1 WebView
-                MoveScaled(3,1,16,16)
               }
             }
           }

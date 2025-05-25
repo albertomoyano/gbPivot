@@ -78,16 +78,19 @@
         Text = ("Proyecto  ")
       }
       { TextBox1 TextBox
-        Move(180,0,126,36)
+        Move(153,0,81,36)
         Expand = True
       }
-      { Separator2 Separator
-        Move(486,9,9,36)
+      { Label6 Label
+        Move(234,0,144,36)
+        Alignment = Align.Right
+        Text = ("Tipo  ")
       }
-      { CheckBox1 CheckBox
-        Move(513,0,144,36)
-        AutoResize = True
-        Text = ("Terminado")
+      { ComboBox2 ComboBox
+        Move(387,0,126,36)
+        Expand = True
+        ReadOnly = True
+        List = [("Libro"), ("Revista")]
       }
     }
     { HBox3 HBox
@@ -149,6 +152,14 @@
       { TextBox2 TextBox
         Move(261,0,126,36)
         Expand = True
+      }
+      { Separator2 Separator
+        Move(387,0,9,36)
+      }
+      { CheckBox1 CheckBox
+        Move(405,0,144,36)
+        AutoResize = True
+        Text = ("Terminado")
       }
     }
     Index = 1
