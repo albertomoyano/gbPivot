@@ -20,12 +20,3 @@ Public Sub ToggleButtonMostrar_Click()
   End If
 
 End
-
-' f_Preferencias.class
-Public Sub Form_Open()
-
-  txtAdministrador.Text = m_OnOff_y_Red.sUsuarioAdmin
-  txtClaveAdministrador.Text = m_OnOff_y_Red.sClaveAdmin
-  txtAdministradorEmail.Text = m_OnOff_y_Red.sEmailAdmin
-
-End

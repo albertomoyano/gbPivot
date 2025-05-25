@@ -40,9 +40,6 @@ End
 
 Private Sub ValidarCredenciales()
 
-  Dim sUsuarioAdmin As String = txtUsuario.Text
-  Dim sClaveAdmin As String = txtPassword.Text
-  Dim sEmailAdmin As String = txtEmail.Text
   Dim hResult As Result
 
   ' Validar credenciales contra tabla usuarios_admin
@@ -65,11 +62,6 @@ Private Sub ValidarCredenciales()
       txtPassword.SetFocus
     Endif
   Else
-    ' Guardar los datos en las variables globales del módulo
-    m_OnOff_y_Red.sUsuarioAdmin = sUsuarioAdmin
-    m_OnOff_y_Red.sClaveAdmin = sClaveAdmin
-    m_OnOff_y_Red.sEmailAdmin = sEmailAdmin
-
     ' Cerrar el formulario y abrir preferencias
     Me.Close(True)
     f_Preferencias.ShowModal()

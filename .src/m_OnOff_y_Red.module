@@ -3,9 +3,6 @@
 ' Módulo: m_OnOff_y_Red
 Public meConn As Connection
 Public UsuarioActual As String
-Public sUsuarioAdmin As String
-Public sClaveAdmin As String
-Public sEmailAdmin As String
 
 Public Function OnRed(ip As String, usuario As String, clave As String) As Boolean
 
