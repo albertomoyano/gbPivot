@@ -38,10 +38,6 @@
   }
   { Menu1 Menu
     Text = ("Archivo")
-    { Menu6 Menu
-      Text = ("Nuevo proyecto")
-      Picture = Picture["iconos/abrirBuscar.svg"]
-    }
     { Menu5 Menu
       Text = ("Salir de la aplicación")
       Picture = Picture["iconos/salir.svg"]
