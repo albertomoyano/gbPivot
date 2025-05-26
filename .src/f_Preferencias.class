@@ -3,6 +3,54 @@
 Public UsuarioAdmin As String
 Public sRefrescar As Result
 
+Public Sub Form_Open()
+
+  f_Preferencias.Title = "Preferencias (usuario: " & m_OnOff_y_Red.UsuarioActual & ")"
+
+  With TableViewusuarios
+    .Header = True
+    .Grid = True
+    .Columns.Count = 5
+    .Columns[0].Title = "id"
+    .Columns[0].Width = 0
+    .Columns[1].Title = ""
+    .Columns[1].Width = 200
+    .Columns[2].Title = ""
+    .Columns[2].Width = 200
+    .Columns[3].Title = ""
+    .Columns[3].Width = 200
+    .Columns[4].Title = ""
+    .Columns[4].Width = 200
+  End With
+
+  btnNuevoUsuario.Visible = True
+  btnBorrarUsuario.Visible = False
+  btnGuardarUsuario.Visible = False
+  btnGuardarCambios.Visible = False
+
+  With TableViewConfig
+    .Header = True
+    .Grid = True
+    .Columns.Count = 5
+    .Columns[0].Title = "id"
+    .Columns[0].Width = 0
+    .Columns[1].Title = ""
+    .Columns[1].Width = 200
+    .Columns[2].Title = ""
+    .Columns[2].Width = 200
+    .Columns[3].Title = ""
+    .Columns[3].Width = 200
+    .Columns[4].Title = ""
+    .Columns[4].Width = 200
+  End With
+
+  btnNuevoProyecto.Visible = True
+  btnBorrarProyecto.Visible = False
+  btnGuardarProyecto.Visible = False
+  btnGuardarCambiosProyecto.Visible = False
+
+End
+
 Public Sub btnCerrar_Click()
 
   Me.Close

@@ -33,24 +33,24 @@
     Picture = Picture["iconos/basededatos.svg"]
     { HBox16 HBox
       Move(27,18,414,36)
-      { BtnNuevoGlo Button
+      { btnNuevoProyecto Button
         Move(0,0,36,36)
         NoTabFocus = True
         ToolTip = ("Agregar una nueva referencia")
         Picture = Picture["iconos/+nuevo.svg"]
       }
-      { BtnEliminarGlo Button
+      { btnBorrarProyecto Button
         Move(36,0,36,36)
         NoTabFocus = True
         ToolTip = ("Borrar entrada")
         Picture = Picture["iconos/borrar.svg"]
       }
-      { btnGuardarGlo Button
+      { btnGuardarProyecto Button
         Move(72,0,36,36)
         ToolTip = ("Guardar modificaciones")
         Picture = Picture["iconos/guardar.svg"]
       }
-      { btnGuardarCambiosGlo Button
+      { btnGuardarCambiosProyecto Button
         Move(108,0,36,36)
         ToolTip = ("Guardar modificaciones")
         Picture = Picture["iconos/guardarComo.svg"]
@@ -65,10 +65,12 @@
     }
     { TableViewConfig TableView
       Move(27,54,549,99)
+      NoTabFocus = True
       Expand = True
       Mode = Select.Single
       ShowCursor = True
       Header = GridView.Horizontal
+      ScrollBar = Scroll.Vertical
     }
     { HBox2 HBox
       Move(27,153,693,36)
@@ -230,24 +232,24 @@
     }
     { HBox9 HBox
       Move(9,198,414,36)
-      { BtnNuevoGlo2 Button
+      { btnNuevoUsuario Button
         Move(0,0,36,36)
         NoTabFocus = True
         ToolTip = ("Agregar una nueva referencia")
         Picture = Picture["iconos/+nuevo.svg"]
       }
-      { BtnEliminarGlo2 Button
+      { btnBorrarUsuario Button
         Move(36,0,36,36)
         NoTabFocus = True
         ToolTip = ("Borrar entrada")
         Picture = Picture["iconos/borrar.svg"]
       }
-      { btnGuardarGlo2 Button
+      { btnGuardarUsuario Button
         Move(72,0,36,36)
         ToolTip = ("Guardar modificaciones")
         Picture = Picture["iconos/guardar.svg"]
       }
-      { btnGuardarCambiosGlo2 Button
+      { btnGuardarCambios Button
         Move(108,0,36,36)
         ToolTip = ("Guardar modificaciones")
         Picture = Picture["iconos/guardarComo.svg"]
@@ -262,10 +264,12 @@
     }
     { TableViewusuarios TableView
       Move(9,234,549,81)
+      NoTabFocus = True
       Expand = True
       Mode = Select.Single
       ShowCursor = True
       Header = GridView.Horizontal
+      ScrollBar = Scroll.Vertical
     }
     { HBox12 HBox
       Move(9,315,693,36)
