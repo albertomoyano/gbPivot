@@ -262,7 +262,7 @@
         ReadOnly = True
       }
     }
-    { TableViewusuarios TableView
+    { TableViewUsuarios TableView
       Move(9,234,549,81)
       NoTabFocus = True
       Expand = True

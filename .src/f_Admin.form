@@ -44,6 +44,7 @@
       MoveScaled(15,0,16,4)
       #Public = True
       Expand = True
+      Password = True
     }
   }
   { HBox4 HBox
