@@ -12,9 +12,30 @@ Public segundosTotal As Integer
 
 Public Sub Form_Open()
 
+  Dim versionRemota As String
+  Dim versionLocal As String = Application.Version
+  Dim name As String
+
+  ' Comprobación de versión
+  versionRemota = m_Inicio.GitVersion("https://raw.githubusercontent.com/albertomoyano/gbpivot/refs/heads/main/.project")
+  If versionRemota <> "" And versionRemota <> versionLocal Then
+    Message.Info("Tu versión instalada difiere de la versión disponible en el repositorio: " & versionRemota)
+  Endif
+
+  ' Verificación de ejecuciones múltiples
+  Exec ["pgrep", "-fl", Application.Name] Wait To name
+  If Split(Trim$(name), gb.NewLine, "", True).Count > 1 Then
+    Message.Warning(Application.Name & " ya se está ejecutando en este equipo.")
+    Quit
+  Endif
+
   Dim RutaArchivoActual As String
 
   FMain.Title = "gbPivot (usuario en curso: " & m_OnOff_y_Red.UsuarioActual & ")"
+
+  ' Damos inicio al control de archivos
+  m_Inicio.ControlDeInicio()
+  m_Inicio.CopiandoArchivos()
 
   ' Usar la ruta existente para el editor ACE
   Dim ruta As String

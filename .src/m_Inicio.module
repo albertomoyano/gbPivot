@@ -1,0 +1,140 @@
+' Gambas module file
+
+Public Sub ControlDeInicio()
+
+  Dim rutasNecesarias As String[] = [
+    User.Home & "/.gbpivot",
+    User.Home & "/.gbpivot/ScriptsExternos",
+    User.Home & "/.gbpivot/ScriptsBash",
+    User.Home & "/.gbpivot/www",
+    User.Home & "/.gbpivot/www/ace"
+
+  ]
+
+  ' Verificar y crear rutas si no existen
+  For Each rutaDirSys As String In rutasNecesarias
+    If Not Exist(rutaDirSys) Then
+      Try Mkdir rutaDirSys  ' ← Intenta crear el directorio
+      If Error Then
+        Message.Error("Error al intentar crear los directorios del sistema.")
+      Else
+        Print "Directorio creado: " & rutaDirSys
+      Endif
+    End If
+  Next
+
+  'copiamos los archivos de configuracion general
+  If Not File.RealPath(User.Home & "/.gbpivot/filtro.lua") Then
+    Copy "./filtro.lua" To User.Home & "/.gbpivot/filtro.lua"
+  End If
+
+End
+
+' Función para chequear si hay versiones nuevas
+Public Sub GitVersion(raw As String) As String
+
+  Dim s As String
+  Dim stx As String[]
+  Dim r As String
+  Dim v As String = ""
+
+  Shell "wget -qO- '" & raw & "'" To s
+
+  If s <> "" Then
+    stx = Split(s, "\n")
+    For Each r In stx
+      If InStr(r, "Version=") Then
+        If Split(r, "=")[0] = "Version" Then
+          v = Split(r, "=")[1]
+          Break
+        Endif
+      Endif
+    Next
+  Endif
+
+  Return v
+
+End
+
+Public Sub CopiandoArchivos()
+
+  If Not File.RealPath(User.Home & "/.gbpivot/www/editor.html") Then
+    Copy "./editor.html" To User.Home & "/.gbpivot/www/editor.html"
+  End If
+
+  Dim archivos As String[] = [
+    "ace.js", "ext-beautify.js", "ext-code_lens.js", "ext-command_bar.js",
+    "ext-elastic_tabstops_lite.js", "ext-emmet.js", "ext-error_marker.js", "ext-hardwrap.js",
+    "ext-inline_autocomplete.js", "ext-keybinding_menu.js", "ext-language_tools.js", "ext-linking.js",
+    "ext-modelist.js", "ext-options.js", "ext-prompt.js", "ext-rtl.js", "ext-searchbox.js",
+    "ext-settings_menu.js", "ext-simple_tokenizer.js", "ext-spellcheck.js", "ext-split.js",
+    "ext-static_highlight.js", "ext-statusbar.js", "ext-textarea.js", "ext-themelist.js",
+    "ext-whitespace.js", "keybinding-emacs.js", "keybinding-sublime.js", "keybinding-vim.js",
+    "keybinding-vscode.js", "mode-abap.js", "mode-abc.js", "mode-actionscript.js", "mode-ada.js",
+    "mode-alda.js", "mode-apache_conf.js", "mode-apex.js", "mode-applescript.js", "mode-aql.js",
+    "mode-asciidoc.js", "mode-asl.js", "mode-assembly_arm32.js", "mode-assembly_x86.js",
+    "mode-astro.js", "mode-autohotkey.js", "mode-basic.js", "mode-batchfile.js", "mode-c9search.js",
+    "mode-c_cpp.js", "mode-cirru.js", "mode-clojure.js", "mode-cobol.js", "mode-coffee.js",
+    "mode-coldfusion.js", "mode-crystal.js", "mode-csharp.js", "mode-csound_document.js",
+    "mode-csound_orchestra.js", "mode-csound_score.js", "mode-csp.js", "mode-css.js", "mode-csv.js",
+    "mode-curly.js", "mode-cuttlefish.js", "mode-d.js", "mode-dart.js", "mode-diff.js", "mode-django.js",
+    "mode-dockerfile.js", "mode-dot.js", "mode-drools.js", "mode-edifact.js", "mode-eiffel.js",
+    "mode-ejs.js", "mode-elixir.js", "mode-elm.js", "mode-erlang.js", "mode-flix.js", "mode-forth.js",
+    "mode-fortran.js", "mode-fsharp.js", "mode-fsl.js", "mode-ftl.js", "mode-gcode.js", "mode-gherkin.js",
+    "mode-gitignore.js", "mode-glsl.js", "mode-gobstones.js", "mode-golang.js", "mode-graphqlschema.js",
+    "mode-groovy.js", "mode-haml.js", "mode-handlebars.js", "mode-haskell.js", "mode-haskell_cabal.js",
+    "mode-haxe.js", "mode-hjson.js", "mode-html.js", "mode-html_elixir.js", "mode-html_ruby.js",
+    "mode-ini.js", "mode-io.js", "mode-ion.js", "mode-jack.js", "mode-jade.js", "mode-java.js",
+    "mode-javascript.js", "mode-jexl.js", "mode-json.js", "mode-json5.js", "mode-jsoniq.js",
+    "mode-jsp.js", "mode-jssm.js", "mode-jsx.js", "mode-julia.js", "mode-kotlin.js", "mode-latex.js",
+    "mode-latte.js", "mode-less.js", "mode-liquid.js", "mode-lisp.js", "mode-livescript.js",
+    "mode-logiql.js", "mode-logtalk.js", "mode-lsl.js", "mode-lua.js", "mode-luapage.js",
+    "mode-lucene.js", "mode-makefile.js", "mode-markdown.js", "mode-mask.js", "mode-matlab.js",
+    "mode-maze.js", "mode-mediawiki.js", "mode-mel.js", "mode-mips.js", "mode-mixal.js",
+    "mode-mushcode.js", "mode-mysql.js", "mode-nasal.js", "mode-nginx.js", "mode-nim.js",
+    "mode-nix.js", "mode-nsis.js", "mode-nunjucks.js", "mode-objectivec.js", "mode-ocaml.js",
+    "mode-odin.js", "mode-partiql.js", "mode-pascal.js", "mode-perl.js", "mode-pgsql.js",
+    "mode-php.js", "mode-php_laravel_blade.js", "mode-pig.js", "mode-plain_text.js",
+    "mode-plsql.js", "mode-powershell.js", "mode-praat.js", "mode-prisma.js", "mode-prolog.js",
+    "mode-properties.js", "mode-protobuf.js", "mode-prql.js", "mode-puppet.js", "mode-python.js",
+    "mode-qml.js", "mode-r.js", "mode-raku.js", "mode-razor.js", "mode-rdoc.js", "mode-red.js",
+    "mode-redshift.js", "mode-rhtml.js", "mode-robot.js", "mode-rst.js", "mode-ruby.js",
+    "mode-rust.js", "mode-sac.js", "mode-sass.js", "mode-scad.js", "mode-scala.js", "mode-scheme.js",
+    "mode-scrypt.js", "mode-scss.js", "mode-sh.js", "mode-sjs.js", "mode-slim.js", "mode-smarty.js",
+    "mode-smithy.js", "mode-snippets.js", "mode-space.js", "mode-sparql.js",
+    "mode-sql.js", "mode-sqlserver.js", "mode-stylus.js", "mode-svg.js", "mode-swift.js",
+    "mode-tcl.js", "mode-terraform.js", "mode-tex.js", "mode-text.js", "mode-textile.js",
+    "mode-toml.js", "mode-tsv.js", "mode-tsx.js", "mode-turtle.js", "mode-twig.js", "mode-typescript.js",
+    "mode-vala.js", "mode-vbscript.js", "mode-velocity.js", "mode-verilog.js", "mode-vhdl.js",
+    "mode-visualforce.js", "mode-vue.js", "mode-wollok.js", "mode-xml.js", "mode-xquery.js",
+    "mode-yaml.js", "mode-zeek.js", "mode-zig.js", "theme-ambiance.js", "theme-chaos.js",
+    "theme-chrome.js", "theme-cloud9_day.js", "theme-cloud9_night.js", "theme-cloud9_night_low_color.js",
+    "theme-cloud_editor.js", "theme-cloud_editor_dark.js", "theme-clouds.js", "theme-clouds_midnight.js",
+    "theme-cobalt.js", "theme-crimson_editor.js", "theme-dawn.js", "theme-dracula.js",
+    "theme-dreamweaver.js", "theme-eclipse.js", "theme-github.js", "theme-github_dark.js",
+    "theme-github_light_default.js", "theme-gob.js", "theme-gruvbox.js", "theme-gruvbox_dark_hard.js",
+    "theme-gruvbox_light_hard.js", "theme-idle_fingers.js", "theme-iplastic.js", "theme-katzenmilch.js",
+    "theme-kr_theme.js", "theme-kuroir.js", "theme-merbivore.js", "theme-merbivore_soft.js",
+    "theme-mono_industrial.js", "theme-monokai.js", "theme-nord_dark.js", "theme-one_dark.js",
+    "theme-pastel_on_dark.js", "theme-solarized_dark.js", "theme-solarized_light.js",
+    "theme-sqlserver.js", "theme-terminal.js", "theme-textmate.js", "theme-tomorrow.js",
+    "theme-tomorrow_night.js", "theme-tomorrow_night_blue.js", "theme-tomorrow_night_bright.js",
+    "theme-tomorrow_night_eighties.js", "theme-twilight.js", "theme-vibrant_ink.js",
+    "theme-xcode.js", "worker-base.js", "worker-coffee.js", "worker-css.js", "worker-html.js",
+    "worker-javascript.js", "worker-json.js", "worker-lua.js", "worker-php.js", "worker-xml.js",
+    "worker-xquery.js", "worker-yaml.js"
+  ]
+
+  Dim rutaDestino As String = User.Home & "/.gbpivot/www/ace/"
+  Dim archivoDestino As String
+  Dim nombreArchivo As String
+
+  For Each nombreArchivo In archivos
+    archivoDestino = rutaDestino & nombreArchivo
+
+    If Not File.RealPath(archivoDestino) Then
+      Copy "./" & nombreArchivo To archivoDestino
+    End If
+  Next
+
+End Sub
