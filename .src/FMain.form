@@ -223,6 +223,7 @@
         { cmbTheme ComboBox
           MoveScaled(29,0,23,4)
           ReadOnly = True
+          Text = ("Theme del editor")
         }
       }
       { HBox22 HBox
