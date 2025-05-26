@@ -48,8 +48,13 @@
   }
   { HBox4 HBox
     MoveScaled(0,27,49,4)
-    { !txtEmail TextBox
-      MoveScaled(24,0,11,4)
+    { !txtIDadmin TextBox
+      MoveScaled(2,0,11,4)
+      #Public = True
+      Visible = False
+    }
+    { !txtEmailAdmin TextBox
+      MoveScaled(32,0,11,4)
       #Public = True
       Visible = False
     }

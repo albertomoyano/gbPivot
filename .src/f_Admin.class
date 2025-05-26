@@ -32,24 +32,25 @@ Public Sub btnAceptar_Click()
 
 End
 
-Public Sub txtPassword_KeyPress()
-
-  If Key.Code = Key.Return Then ValidarCredenciales()
-
-End
-
 Private Sub ValidarCredenciales()
 
-  Dim hResult As Result
+  Dim hResultado As Result
+  Dim sSQL As String
+  Dim usuario As String
+  Dim clave As String
 
-  ' Validar credenciales contra tabla usuarios_admin
-  Try hResult = m_OnOff_y_Red.meConn.Exec("SELECT * FROM usuarios_admin WHERE usuario = &1 AND clave = &2 AND email = &3", sUsuarioAdmin, sClaveAdmin, sEmailAdmin)
+  usuario = Trim(txtUsuario.Text)
+  clave = Trim(txtPassword.Text)
+
+  sSQL = "SELECT * FROM usuarios_admin WHERE usuario = '" & usuario & "' AND clave = '" & clave & "';"
+  Try hResultado = m_OnOff_y_Red.meConn.Exec(sSQL, usuario, clave)
+
   If Error Then
     Message.Error("Error al consultar la base de datos: " & Error.Text)
     Return
   Endif
 
-  If Not hResult.Available Then
+  If Not hResultado.Available Then
     ' Falló el login
     iIntentosFallidos += 1
     If iIntentosFallidos >= MAX_INTENTOS Then
@@ -57,12 +58,16 @@ Private Sub ValidarCredenciales()
       Me.Close(False)
       Quit
     Else
-      Message.Error("Usuario o contraseña incorrectos. Intentos restantes: " & (MAX_INTENTOS - iIntentosFallidos))
+      Message.Error("Usuario y/o contraseña incorrectos. Intentos restantes: " & (MAX_INTENTOS - iIntentosFallidos))
+      txtUsuario.Text = ""
       txtPassword.Text = ""
-      txtPassword.SetFocus
+      txtUsuario.SetFocus
     Endif
   Else
-    ' Cerrar el formulario y abrir preferencias
+    f_Preferencias.txtIdAdmin.Text = hResultado!id
+    f_Preferencias.txtAdministrador.Text = hResultado!usuario
+    f_Preferencias.txtClaveAdministrador.Text = hResultado!clave
+    f_Preferencias.txtAdministradorEmail.Text = hResultado!email
     Me.Close(True)
     f_Preferencias.ShowModal()
   Endif

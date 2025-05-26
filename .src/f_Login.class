@@ -10,7 +10,7 @@ Public Sub btnConectarseMy_Click()
     Me.Hide()
     FMain.ShowModal()
   Else
-    Message.Error("Usuario o clave incorrectos.")
+    Message.Error("Usuario y/o clave incorrectos.")
   End If
 
 End

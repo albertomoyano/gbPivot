@@ -173,9 +173,14 @@
         Text = ("Administrador  ")
       }
       { !txtAdministrador TextBox
-        Move(270,0,81,36)
+        Move(270,0,207,36)
         #Public = True
         Expand = True
+      }
+      { !txtIdAdmin TextBox
+        Move(594,0,81,36)
+        #Public = True
+        Visible = False
       }
     }
     { HBox13 HBox
@@ -186,7 +191,7 @@
         Text = ("Email  ")
       }
       { !txtAdministradorEmail TextBox
-        Move(270,0,81,36)
+        Move(270,0,243,36)
         #Public = True
         Expand = True
       }
@@ -203,7 +208,7 @@
         Picture = Picture["iconos/hide.png"]
       }
       { !txtClaveAdministrador TextBox
-        Move(360,0,81,36)
+        Move(360,0,198,36)
         #Public = True
         Expand = True
         Password = True
