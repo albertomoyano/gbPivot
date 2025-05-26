@@ -178,7 +178,7 @@
         Expand = True
       }
       { !txtIdAdmin TextBox
-        Move(594,0,81,36)
+        Move(621,0,81,36)
         #Public = True
         Visible = False
       }
