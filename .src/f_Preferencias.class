@@ -1,6 +1,7 @@
 ' Gambas class file
 
 Public UsuarioAdmin As String
+Public sRefrescar As Result
 
 Public Sub btnCerrar_Click()
 
@@ -18,5 +19,47 @@ Public Sub ToggleButtonMostrar_Click()
   Else
     ToggleButtonMostrar.Tooltip = "Mostrar contraseña"
   End If
+
+End
+
+Public Sub btnReferescarAdmin_Click()
+
+  ' Intentar obtener el registro de la base de datos
+  sRefrescar = m_OnOff_y_Red.meConn.Edit("usuarios_admin", "id=" & txtIdAdmin.Text)
+
+  ' Verificar si se obtuvo una respuesta válida
+  If sRefrescar Is Null Then
+    Message.Error("Error: No se encontró el registro con ese ID o la conexión falló.")
+    Return
+  End If
+
+  ' Si todo está bien, proceder a guardar cambios
+  guardarCambios()
+
+  ' Verificar si sRefrescar puede hacer update sin error
+  Try sRefrescar.Update()
+  If Error Then
+    Message.Error("Error al actualizar los datos.")
+    Return
+  End If
+
+  ' Confirmar cambios en la base de datos
+  Try m_OnOff_y_Red.meConn.Commit()
+  If Error Then
+    Message.Error("Error al confirmar los cambios en la base de datos.")
+    Return
+  End If
+
+  ' Informar al usuario que los cambios se guardaron con éxito
+  Message.Info("Los cambios se guardaron con éxito.")
+
+End
+
+Public Sub guardarCambios()
+
+  sRefrescar!id = txtIdAdmin.Text
+  sRefrescar!usuario = txtAdministrador.Text
+  sRefrescar!clave = txtClaveAdministrador.Text
+  sRefrescar!email = txtAdministradorEmail.Text
 
 End

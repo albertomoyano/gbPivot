@@ -1,6 +1,6 @@
 ' Gambas class file
 
-Private rPrompt As Result
+' Private rPrompt As Result
 Private Item_Seleccionado As Integer
 Public segundos As Integer
 Public minutos As Integer
