@@ -212,7 +212,7 @@
       Arrangement = Arrange.Vertical
       Padding = 4
       { HBox2 HBox
-        MoveScaled(1,0,47,4)
+        MoveScaled(1,0,66,4)
         { btnVerProyectos ToggleButton
           MoveScaled(0,0,4,4)
           Picture = Picture["iconos/document.svg"]
@@ -221,7 +221,7 @@
           MoveScaled(20,0,4,4)
         }
         { cmbTheme ComboBox
-          MoveScaled(29,0,16,4)
+          MoveScaled(29,0,23,4)
           ReadOnly = True
         }
       }
