@@ -36,6 +36,7 @@ Public Sub Form_Open()
   ' Damos inicio al control de archivos
   m_Inicio.ControlDeInicio()
   m_Inicio.CopiandoArchivos()
+  m_glosarios.ConfigurarGridGlosario(ViewGridGlosarioTotal)
 
   ' Usar la ruta existente para el editor ACE
   Dim ruta As String
@@ -65,6 +66,12 @@ Public Sub Form_Open()
   btnPromptBorrar.Visible = False
   btnPromptGuardar.Visible = False
   btnPromptGuardarMod.Visible = False
+
+  ' botonera de glosario
+  btnNuevoGlosario.Visible = True
+  btnBorrarGlosario.Visible = False
+  btnGuardarGlosario.Visible = False
+  btnGuardarCambiosGlosario.Visible = False
 
 End
 
@@ -724,5 +731,11 @@ End
 Public Sub btnPostIt_Click()
 
   f_NotaNueva.ShowModal()
+
+End
+
+Public Sub btnNuevoGlosario_Click()
+
+  m_glosarios.NuevoGlosario()
 
 End
