@@ -1,6 +1,7 @@
 ' Gambas module file
 
-' Módulo para configurar los GridView
+Private hResultado As Result
+
 Public Sub ConfigurarGridGlosario(grid As GridView)
 
   With grid
@@ -82,37 +83,6 @@ Public Sub LimpiarCamposGlosarios()
 End
 
 '
-' Public Sub BtnNuevoGlo_Click()
-'
-'   Dim Idn As Integer
-'
-'   BtnNuevoGlo.Visible = False
-'   BtnEliminarGlo.Visible = False
-'   btnGuardarGlo.Visible = True
-'   btnGuardarCambiosGlo.Visible = False
-'   btnAgregarGloKey.Visible = True
-'   TabPanel3.Index = 0
-'   txtTMPglosario.Enabled = True
-'   txtTMPglosario.Background = Color.White
-'   txtTMPglosario.Clear 'limpiamos el campo temporal
-'   txtTMPglosario.SetFocus()
-'   Mod_LimpiarTextBox.LimpiarCamposGLO()
-'
-'   ' Obtenemos el último ID y sumamos +1 para el nuevo registro
-'   Contenido = Form_ConectarBBDD.meConn.Exec("SELECT MAX(id) FROM glosarios LIMIT 1")
-'
-'   ' Si no hay ninguna entrada entonces arrancamos desde 0
-'   If Contenido["MAX(id)"] = Null Then
-'     Idn = 0
-'   Else
-'     Idn = CInt(Contenido["MAX(id)"]) + 1
-'   Endif
-'   txtIDglosario.Text = Idn
-'   txtCLAVEglo.Text = "@glo" & Idn & "-" 'colocamos el prefijo de la clave bib
-'   txtARCHIVO.Text = "," & BaseName & "," 'colocamos el key con el nombre del archivo
-'
-' End
-'
 ' Public Sub BtnEliminarGlo_Click()
 '
 '   'Chequeamos primero que se haya elegido una entrada
@@ -133,62 +103,58 @@ End
 '
 ' End
 '
-' Public Sub guardarCamposGLO()
-'
-'   Contenido!id = txtIDglosario.Text
-'   Contenido!key = txtCLAVEglo.Text
-'   Contenido!type = cbTYPEentradaGlo.Text
-'   Contenido!archivo = txtARCHIVO.Text
-'   Contenido!name = txtNAME.Text
-'   Contenido!description = txtDESCRIPTION.Text
-'   Contenido!first = txtFIRST.Text
-'   Contenido!text = txtTEXT.Text
-'   Contenido!plural = txtPLURAL.Text
-'   Contenido!firstplural = txtFPLURAL.Text
-'   Contenido!sort = txtSORT.Text
-'
-' End
-'
-' Public Sub btnGuardarGlo_Click()
-'
-'   Dim Comando As String
-'
-'   ' Escapa los caracteres especiales(comilla simple)en el título
-'   Dim tituloEscapado As String
-'
-'   tituloEscapado = Replace(txtTEXT.Text, "'", "''")
-'
-'   Mod_LimpiarTextBox.eliminarBlancosGLO
-'
-'   Comando = "SELECT * FROM glosarios WHERE text = '" & tituloEscapado & "'"
-'   Busqueda = Form_ConectarBBDD.meConn.Exec(Comando)
-'
-'   ' Verificar si se encontraron resultados en la consulta
-'   If Busqueda.Count > 0 Then
-'     Message.Warning("La sigla que desea agregar ya existe en la base de datos.")
-'     Return ' Salir de la función si el título ya existe
-'   Endif
-'
-'   Contenido = Form_ConectarBBDD.meConn.Create("glosarios")
-'
-'   guardarCamposGLO
-'
-'   Contenido.Update
-'   Message.Info("Nueva entrada guardada.")
-'   RefrescarGrid()
-'
-'   Mod_LimpiarTextBox.LimpiarCamposGLO()
-'
-'   btnGuardarCambiosGlo.Visible = False
-'   btnGuardarGlo.Visible = False
-'   BtnNuevoGlo.Visible = True
-'   BtnEliminarGlo.Visible = False
-'   btnAgregarGloKey.Visible = False
-'
-'   ' Mostrar_ListaGLO()
-'
-' End
-'
+Public Sub GuardarGlosario()
+
+  hResultado!id = FMain.txtIDglosario.Text
+  hResultado!clave = FMain.txtCLAVEglosario.Text
+  hResultado!tipo = FMain.cbTypeEntradaGlosario.Text
+  hResultado!filtro = FMain.txtARCHIVOglosario.Text
+  hResultado!nombre = FMain.txtNAMEglosario.Text
+  hResultado!descripcion = FMain.txtDESCRIPTIONglosario.Text
+  hResultado!primera_vez = FMain.txtFIRSTglosario.Text
+  hResultado!texto = FMain.txtTEXTglosario.Text
+  hResultado!plural = FMain.txtPLURALglosario.Text
+  hResultado!primer_plural = FMain.txtFIRSTPLURALglosario.Text
+  hResultado!ordenar = FMain.txtSORTglosario.Text
+
+End
+
+Public Sub GuardarPrimeraVezGlosario()
+
+  Dim BuscarGlos As String
+
+  ' Escapa los caracteres especiales(comilla simple)en el título
+  Dim tituloEscapado As String
+
+  tituloEscapado = Replace(FMain.txtTEXTglosario.Text, "'", "''")
+
+  BuscarGlos = "SELECT * FROM glosarios WHERE texto = '" & tituloEscapado & "'"
+  hResultado = m_OnOff_y_Red.meConn.Exec(BuscarGlos)
+
+  ' Verificar si se encontraron resultados en la consulta
+  If hResultado.Count > 0 Then
+    Message.Warning("La sigla que desea agregar ya existe en la base de datos.")
+    Return ' Salir de la función si el título ya existe
+  Endif
+
+  hResultado = m_OnOff_y_Red.meConn.Create("glosarios")
+
+  GuardarGlosario()
+
+  hResultado.Update
+  Message.Info("Nueva entrada guardada.")
+
+  LimpiarCamposGlosarios()
+
+  FMain.btnNuevoGlosario.Visible = True
+  FMain.btnBorrarGlosario.Visible = False
+  FMain.btnGuardarGlosario.Visible = False
+  FMain.btnGuardarCambiosGlosario.Visible = False
+
+  ' RefrescarGrid()
+
+End
+
 ' Public Sub btnGuardarCambiosGlo_Click()
 '
 '   BtnNuevoGlo.Visible = True

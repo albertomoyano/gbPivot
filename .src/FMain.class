@@ -1,6 +1,7 @@
 ' Gambas class file
 
 ' Private rPrompt As Result
+Private hResultadoGlosario As Result
 Private Item_Seleccionado As Integer
 Public segundos As Integer
 Public minutos As Integer
@@ -68,6 +69,7 @@ Public Sub Form_Open()
   btnPromptGuardarMod.Visible = False
 
   ' botonera de glosario
+  hResultadoGlosario = m_OnOff_y_Red.meConn.Exec("SELECT * FROM glosarios ORDER BY nombre ASC")
   btnNuevoGlosario.Visible = True
   btnBorrarGlosario.Visible = False
   btnGuardarGlosario.Visible = False
@@ -737,5 +739,53 @@ End
 Public Sub btnNuevoGlosario_Click()
 
   m_glosarios.NuevoGlosario()
+
+End
+
+Public Sub btnAgregarClaveGlosario_Click()
+
+  Dim sTexto As String = Trim(txtProyecto.Text)
+  Dim algounico As String
+
+  algounico = Format(Now, "yymmddhhmm") & CInt(Rnd(1, 9999))
+
+  txtCLAVEglosario.Text = "@glo" & algounico & "-" & sTexto
+
+End
+
+Public Sub btnAgregarClaveGlosarioProyecto_Click()
+
+  Dim sTexto As String = Trim(txtProyecto.Text)
+
+  If sTexto = "" Then
+    txtARCHIVOglosario.Text = "," & sTexto & ","
+  Else
+    If Left(sTexto, 1) = "," Then
+      txtARCHIVOglosario.Text = sTexto & ","
+    Else
+      txtARCHIVOglosario.Text = "," & sTexto & ","
+    End If
+  End If
+
+End
+
+Public Sub btnGuardarGlosario_Click()
+
+  m_glosarios.GuardarPrimeraVezGlosario()
+
+End
+
+Public Sub ViewGridGlosarioTotal_Data(Row As Integer, Column As Integer)
+
+  If (hResultadoGlosario <> Null) Then
+    If Row >= 0 Then
+      hResultadoGlosario.moveTo(Row)
+      Try ViewGridGlosarioTotal.Data.Text = Str(hResultadoGlosario[Column])
+    Endif
+  Endif
+
+  If row Mod 2 = 0 Then
+    ViewGridGlosarioTotal.Data.Background = Color.RGB(230, 230, 230)
+  Endif
 
 End

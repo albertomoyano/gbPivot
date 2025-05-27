@@ -132,7 +132,7 @@
     }
   }
   { VBoxProyectos Panel
-    Move(-189,36,234,693)
+    Move(-153,72,234,693)
     Visible = False
     Arrangement = Arrange.Vertical
     { HBox15 HBox
@@ -282,6 +282,7 @@
           Background = Color.Background
           Foreground = Color.Blue
           Expand = True
+          Text = ("holamundo")
           ReadOnly = True
         }
         { HBox4 HBox
@@ -2636,7 +2637,7 @@
             Spacing = True
             Margin = True
             Padding = 4
-            Count = 3
+            Count = 2
             Index = 0
             Text = ("Caja de texto temporal     ")
             Picture = Picture["iconos/textnormal.svg"]
@@ -2650,23 +2651,11 @@
               ScrollBar = Scroll.Vertical
             }
             Index = 1
-            Text = ("Siglas y glosarios (archivo en curso)     ")
-            Picture = Picture["iconos/face.svg"]
-            { ViewGridGlosarioProyecto TableView
-              Move(27,36,270,90)
-              Font = Font["-1"]
-              Expand = True
-              Mode = Select.Single
-              ShowCursor = True
-              Header = GridView.Horizontal
-              ScrollBar = Scroll.Vertical
-              Resizable = False
-            }
-            Index = 2
             Text = ("Siglas y glosarios (todas)     ")
             Picture = Picture["iconos/bibtex.svg"]
-            { ViewGridGlosarioTotal TableView
+            { !ViewGridGlosarioTotal TableView
               Move(36,27,270,90)
+              #Public = True
               Font = Font["-1"]
               Expand = True
               Mode = Select.Single
@@ -2733,7 +2722,7 @@
             Alignment = Align.Right
             Text = ("Clave  ")
           }
-          { !btnAgregarGloKey Button
+          { !btnAgregarClaveGlosario Button
             Move(162,0,36,36)
             #Public = True
             ToolTip = ("Agregar clave")
@@ -2765,7 +2754,7 @@
             Alignment = Align.Right
             Text = ("Tipo de entrada  ")
           }
-          { !cbTYPEentradaGlo ComboBox
+          { !cbTypeEntradaGlosario ComboBox
             Move(153,0,216,36)
             #Public = True
             NoTabFocus = True
@@ -2783,7 +2772,7 @@
             #Public = True
             Picture = Picture["iconos/search.svg"]
           }
-          { !btnAgregarClaveProyecto Button
+          { !btnAgregarClaveGlosarioProyecto Button
             Move(558,0,36,36)
             #Public = True
             ToolTip = ("Agregar clave")
