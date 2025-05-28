@@ -852,3 +852,24 @@ Public Sub btnBuscarClaveGLO_Click()
   m_glosarios.BuscarClaveGlosario()
 
 End
+
+Public Sub btnBuscarFiltroGlosario_Click()
+
+  tbPanelGlosarios.Index = 0
+  m_glosarios.BuscarFiltroGlosario()
+
+End
+
+Public Sub btnBuscarNombreGlosario_Click()
+
+  tbPanelGlosarios.Index = 0
+  m_glosarios.BuscarNombreGlosario()
+
+End
+
+Public Sub btnBuscarTextoGlosario_Click()
+
+  tbPanelGlosarios.Index = 0
+  m_glosarios.BuscarTextoGlosario()
+
+End

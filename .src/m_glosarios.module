@@ -210,6 +210,7 @@ Public Sub BuscarClaveGlosario()
   Else
     FMain.ViewGridGlosarioTotal.Clear()
     FMain.ViewGridGlosarioTotal.Columns.Count = 11
+    FMain.ViewGridGlosarioTotal.Rows.Count = hResultadoGlosario.Count
     rowIndex = 0
 
     While (hResultadoGlosario.Available)
@@ -226,6 +227,133 @@ Public Sub BuscarClaveGlosario()
       FMain.ViewGridGlosarioTotal[rowIndex, 10].Text = hResultadoGlosario!ordenar
 
       hResultadoGlosario.MoveNext
+      rowIndex += 1
+    Wend
+  Endif
+
+End
+
+Public Sub BuscarFiltroGlosario()
+
+  Dim rowIndex As Integer
+  Dim Buscar As String
+
+  If FMain.txtARCHIVOglosario.Text = "" Then
+    Message.Warning("Debe introducir contenido a buscar.")
+    Return
+  Else
+    Buscar = "SELECT * FROM glosarios WHERE filtro LIKE '%" & FMain.txtARCHIVOglosario.Text & "%' ORDER BY id DESC;"
+    hResultadoGlosario = m_OnOff_y_Red.meConn.Exec(Buscar)
+  Endif
+
+  If hResultadoGlosario.Count = 0 Then
+    Message.Info("No se ha encontrado ningún resultado.")
+    Return
+  Else
+    FMain.ViewGridGlosarioTotal.Clear()
+    FMain.ViewGridGlosarioTotal.Columns.Count = 11
+    FMain.ViewGridGlosarioTotal.Rows.Count = hResultadoGlosario.Count
+    rowIndex = 0
+
+    While (hResultadoGlosario.Available)
+      FMain.ViewGridGlosarioTotal[rowIndex, 0].Text = hResultadoGlosario!id
+      FMain.ViewGridGlosarioTotal[rowIndex, 1].Text = hResultadoGlosario!tipo
+      FMain.ViewGridGlosarioTotal[rowIndex, 2].Text = hResultadoGlosario!clave
+      FMain.ViewGridGlosarioTotal[rowIndex, 3].Text = hResultadoGlosario!filtro
+      FMain.ViewGridGlosarioTotal[rowIndex, 4].Text = hResultadoGlosario!nombre
+      FMain.ViewGridGlosarioTotal[rowIndex, 5].Text = hResultadoGlosario!descripcion
+      FMain.ViewGridGlosarioTotal[rowIndex, 6].Text = hResultadoGlosario!primera_vez
+      FMain.ViewGridGlosarioTotal[rowIndex, 7].Text = hResultadoGlosario!texto
+      FMain.ViewGridGlosarioTotal[rowIndex, 8].Text = hResultadoGlosario!plural
+      FMain.ViewGridGlosarioTotal[rowIndex, 9].Text = hResultadoGlosario!primer_plural
+      FMain.ViewGridGlosarioTotal[rowIndex, 10].Text = hResultadoGlosario!ordenar
+
+      hResultadoGlosario.MoveNext
+      rowIndex += 1
+    Wend
+  Endif
+
+End
+
+Public Sub BuscarNombreGlosario()
+
+  Dim rowIndex As Integer
+  Dim Buscar As String
+
+  If FMain.txtNAMEglosario.Text = "" Then
+    Message.Warning("Debe introducir contenido a buscar.")
+    Return
+  Else
+    Buscar = "SELECT * FROM glosarios WHERE nombre LIKE '%" & FMain.txtNAMEglosario.Text & "%' ORDER BY id DESC;"
+    hResultadoGlosario = m_OnOff_y_Red.meConn.Exec(Buscar)
+  Endif
+
+  If hResultadoGlosario.Count = 0 Then
+    Message.Info("No se ha encontrado ningún resultado.")
+    Return
+  Else
+    FMain.ViewGridGlosarioTotal.Clear()
+    FMain.ViewGridGlosarioTotal.Columns.Count = 11
+    FMain.ViewGridGlosarioTotal.Rows.Count = hResultadoGlosario.Count
+    rowIndex = 0
+
+    While (hResultadoGlosario.Available)
+      FMain.ViewGridGlosarioTotal[rowIndex, 0].Text = hResultadoGlosario!id
+      FMain.ViewGridGlosarioTotal[rowIndex, 1].Text = hResultadoGlosario!tipo
+      FMain.ViewGridGlosarioTotal[rowIndex, 2].Text = hResultadoGlosario!clave
+      FMain.ViewGridGlosarioTotal[rowIndex, 3].Text = hResultadoGlosario!filtro
+      FMain.ViewGridGlosarioTotal[rowIndex, 4].Text = hResultadoGlosario!nombre
+      FMain.ViewGridGlosarioTotal[rowIndex, 5].Text = hResultadoGlosario!descripcion
+      FMain.ViewGridGlosarioTotal[rowIndex, 6].Text = hResultadoGlosario!primera_vez
+      FMain.ViewGridGlosarioTotal[rowIndex, 7].Text = hResultadoGlosario!texto
+      FMain.ViewGridGlosarioTotal[rowIndex, 8].Text = hResultadoGlosario!plural
+      FMain.ViewGridGlosarioTotal[rowIndex, 9].Text = hResultadoGlosario!primer_plural
+      FMain.ViewGridGlosarioTotal[rowIndex, 10].Text = hResultadoGlosario!ordenar
+
+      hResultadoGlosario.MoveNext
+      rowIndex += 1
+    Wend
+  Endif
+
+End
+
+Public Sub BuscarTextoGlosario()
+
+  Dim rowIndex As Integer
+  Dim Buscar As String
+
+  If FMain.txtTEXTglosario.Text = "" Then
+    Message.Warning("Debe introducir contenido a buscar.")
+    Return
+  Else
+    Buscar = "SELECT * FROM glosarios WHERE texto LIKE '%" & FMain.txtTEXTglosario.Text & "%' ORDER BY id DESC;"
+    hResultadoGlosario = m_OnOff_y_Red.meConn.Exec(Buscar)
+  Endif
+
+  If hResultadoGlosario.Count = 0 Then
+    Message.Info("No se ha encontrado ningún resultado.")
+    Return
+  Else
+    FMain.ViewGridGlosarioTotal.Clear()
+    FMain.ViewGridGlosarioTotal.Columns.Count = 11
+    FMain.ViewGridGlosarioTotal.Rows.Count = hResultadoGlosario.Count
+    rowIndex = 0
+
+    While (hResultadoGlosario.Available)
+      FMain.ViewGridGlosarioTotal[rowIndex, 0].Text = hResultadoGlosario!id
+      FMain.ViewGridGlosarioTotal[rowIndex, 1].Text = hResultadoGlosario!tipo
+      FMain.ViewGridGlosarioTotal[rowIndex, 2].Text = hResultadoGlosario!clave
+      FMain.ViewGridGlosarioTotal[rowIndex, 3].Text = hResultadoGlosario!filtro
+      FMain.ViewGridGlosarioTotal[rowIndex, 4].Text = hResultadoGlosario!nombre
+      FMain.ViewGridGlosarioTotal[rowIndex, 5].Text = hResultadoGlosario!descripcion
+      FMain.ViewGridGlosarioTotal[rowIndex, 6].Text = hResultadoGlosario!primera_vez
+      FMain.ViewGridGlosarioTotal[rowIndex, 7].Text = hResultadoGlosario!texto
+      FMain.ViewGridGlosarioTotal[rowIndex, 8].Text = hResultadoGlosario!plural
+      FMain.ViewGridGlosarioTotal[rowIndex, 9].Text = hResultadoGlosario!primer_plural
+      FMain.ViewGridGlosarioTotal[rowIndex, 10].Text = hResultadoGlosario!ordenar
+
+      hResultadoGlosario.MoveNext
+      rowIndex += 1
     Wend
   Endif
 

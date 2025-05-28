@@ -2790,7 +2790,7 @@
           ScrollBar = Scroll.Vertical
           { HBox17 HBox
             Move(0,0,783,36)
-            { !btnBuscarNombreGLO Button
+            { !btnBuscarNombreGlosario Button
               Move(9,0,36,36)
               #Public = True
               Picture = Picture["iconos/search.svg"]
@@ -2844,7 +2844,7 @@
           }
           { HBox10 HBox
             Move(0,108,783,36)
-            { !btnBuscarTextoGLO Button
+            { !btnBuscarTextoGlosario Button
               Move(9,0,36,36)
               #Public = True
               Picture = Picture["iconos/search.svg"]
