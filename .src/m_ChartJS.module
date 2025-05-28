@@ -1,0 +1,19 @@
+' Gambas module file
+
+Public Sub InitializeDataBrowser()
+  ' Configurar DataBrowser para carga dinámica de datos
+
+  ' With FMain.DataBrowserChart
+  '   .Columns.Count = 5  ' Ajustar según necesidades
+  '   .Columns.Add[0].Title = "Etiqueta"
+  '   .Columns.Add[1].Title = "Valor"
+  '   .Columns.Add[2].Title = "Color"
+  '   .Columns.Add[3].Title = "Dataset"
+  '   .Columns.Add[4].Title = "Activo"
+  '
+  '   ' Permitir edición
+  '   .Editable = True
+  '   .ShowHeaders = True
+  ' End With
+
+End
