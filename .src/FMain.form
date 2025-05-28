@@ -355,17 +355,260 @@
         Text = ("Metadatos")
         Picture = Picture["iconos/metadatos.svg"]
         { TabPanel3 TabPanel
-          Move(9,9,657,261)
+          Move(9,9,1062,612)
           Expand = True
           Arrangement = Arrange.Fill
+          Spacing = True
+          Margin = True
+          Padding = 4
           Border = False
           Count = 2
           Index = 0
-          Text = ("Libro     ")
-          Picture = Picture["iconos/titulo.svg"]
-          Index = 1
           Text = ("Revista     ")
           Picture = Picture["iconos/revista.svg"]
+          { ScrollView10 ScrollView
+            Move(9,18,909,270)
+            Expand = True
+            Arrangement = Arrange.Vertical
+            Spacing = True
+            Padding = 4
+            Border = False
+            ScrollBar = Scroll.Vertical
+            { HBox84 HBox
+              Move(0,0,783,36)
+              { !btnBuscarNombreGlosario3 Button
+                Move(9,0,36,36)
+                #Public = True
+                Picture = Picture["iconos/search.svg"]
+              }
+              { lblKEYWORDS7 Label
+                Move(90,0,112,36)
+                #Translate = False
+                Alignment = Align.Right
+                Text = "Nombre "
+              }
+              { !txtNAMEglosario3 TextBox
+                Move(252,0,216,36)
+                #Public = True
+                NoTabFocus = True
+                Expand = True
+              }
+            }
+            { HBox85 HBox
+              Move(0,36,783,36)
+              { Label36 Label
+                Move(9,0,148,32)
+                Alignment = Align.Right
+                Text = ("Description ")
+              }
+              { !txtDESCRIPTIONglosario3 TextBox AllTextBoxes
+                Name = "txtDESCRIPTIONglosario3"
+                Move(171,0,135,36)
+                #Public = True
+                Expand = True
+                Placeholder = ("La descripción del término.")
+              }
+            }
+            { HBox86 HBox
+              Move(0,72,783,36)
+              { Label37 Label
+                Move(18,0,148,32)
+                Alignment = Align.Right
+                Text = ("Primera vez ")
+              }
+              { !txtFIRSTglosario3 TextBox
+                Move(171,0,135,36)
+                #Public = True
+                Expand = True
+                Placeholder = ("Esta entrada aparecerá en el texto del documento la primera vez que se use.")
+              }
+            }
+            { HBox87 HBox
+              Move(0,108,783,36)
+              { !btnBuscarTextoGlosario3 Button
+                Move(9,0,36,36)
+                #Public = True
+                Picture = Picture["iconos/search.svg"]
+              }
+              { Label38 Label
+                Move(153,0,112,32)
+                Alignment = Align.Right
+                Text = ("Text ")
+              }
+              { !txtTEXTglosario3 TextBox
+                Move(297,0,135,36)
+                #Public = True
+                Expand = True
+                Placeholder = ("Esta entrada aparecerá en el texto del documento.")
+              }
+            }
+            { HBox90 HBox
+              Move(0,144,783,36)
+              { Label41 Label
+                Move(18,0,148,32)
+                Alignment = Align.Right
+                Text = ("Firstplural ")
+              }
+              { !txtFIRSTPLURALglosario3 TextBox AllTextBoxes
+                Name = "txtFIRSTPLURALglosario3"
+                Move(171,0,135,36)
+                #Public = True
+                Expand = True
+                Placeholder = ("Esta entrada es igual que plural, pero es solo válida para la primera vez que se llame a \\glspl.")
+              }
+            }
+            { HBox91 HBox
+              Move(0,180,783,36)
+              { lblLANGID6 Label
+                Move(0,0,148,36)
+                Alignment = Align.Right
+                Text = ("Plural ")
+              }
+              { !txtPLURALglosario3 TextBox
+                Move(162,0,216,36)
+                #Public = True
+                Expand = True
+                Placeholder = ("Esta entrada aparecerá en el texto cuando se utilice \\glspl.")
+              }
+            }
+            { HBox92 HBox
+              Move(0,216,783,36)
+              { lblLANGID7 Label
+                Move(0,0,148,36)
+                Alignment = Align.Right
+                Text = ("Sort ")
+              }
+              { !txtSORTglosario3 TextBox
+                Move(162,0,216,36)
+                #Public = True
+                Expand = True
+                Placeholder = ("Este valor indica como makeindex deberı́a ordenar las entradas.")
+              }
+            }
+          }
+          Index = 1
+          Text = ("Libro     ")
+          Picture = Picture["iconos/titulo.svg"]
+          { ScrollView1 ScrollView
+            Move(9,18,909,270)
+            Expand = True
+            Arrangement = Arrange.Vertical
+            Spacing = True
+            Padding = 4
+            Border = False
+            ScrollBar = Scroll.Vertical
+            { HBox73 HBox
+              Move(0,0,783,36)
+              { !btnBuscarNombreGlosario2 Button
+                Move(9,0,36,36)
+                #Public = True
+                Picture = Picture["iconos/search.svg"]
+              }
+              { lblKEYWORDS6 Label
+                Move(90,0,112,36)
+                #Translate = False
+                Alignment = Align.Right
+                Text = "Nombre "
+              }
+              { !txtNAMEglosario2 TextBox
+                Move(252,0,216,36)
+                #Public = True
+                NoTabFocus = True
+                Expand = True
+              }
+            }
+            { HBox74 HBox
+              Move(0,36,783,36)
+              { Label32 Label
+                Move(9,0,148,32)
+                Alignment = Align.Right
+                Text = ("Description ")
+              }
+              { !txtDESCRIPTIONglosario2 TextBox AllTextBoxes
+                Name = "txtDESCRIPTIONglosario2"
+                Move(171,0,135,36)
+                #Public = True
+                Expand = True
+                Placeholder = ("La descripción del término.")
+              }
+            }
+            { HBox75 HBox
+              Move(0,72,783,36)
+              { Label33 Label
+                Move(18,0,148,32)
+                Alignment = Align.Right
+                Text = ("Primera vez ")
+              }
+              { !txtFIRSTglosario2 TextBox
+                Move(171,0,135,36)
+                #Public = True
+                Expand = True
+                Placeholder = ("Esta entrada aparecerá en el texto del documento la primera vez que se use.")
+              }
+            }
+            { HBox76 HBox
+              Move(0,108,783,36)
+              { !btnBuscarTextoGlosario2 Button
+                Move(9,0,36,36)
+                #Public = True
+                Picture = Picture["iconos/search.svg"]
+              }
+              { Label34 Label
+                Move(153,0,112,32)
+                Alignment = Align.Right
+                Text = ("Text ")
+              }
+              { !txtTEXTglosario2 TextBox
+                Move(297,0,135,36)
+                #Public = True
+                Expand = True
+                Placeholder = ("Esta entrada aparecerá en el texto del documento.")
+              }
+            }
+            { HBox78 HBox
+              Move(0,144,783,36)
+              { Label35 Label
+                Move(18,0,148,32)
+                Alignment = Align.Right
+                Text = ("Firstplural ")
+              }
+              { !txtFIRSTPLURALglosario2 TextBox AllTextBoxes
+                Name = "txtFIRSTPLURALglosario2"
+                Move(171,0,135,36)
+                #Public = True
+                Expand = True
+                Placeholder = ("Esta entrada es igual que plural, pero es solo válida para la primera vez que se llame a \\glspl.")
+              }
+            }
+            { HBox82 HBox
+              Move(0,180,783,36)
+              { lblLANGID4 Label
+                Move(0,0,148,36)
+                Alignment = Align.Right
+                Text = ("Plural ")
+              }
+              { !txtPLURALglosario2 TextBox
+                Move(162,0,216,36)
+                #Public = True
+                Expand = True
+                Placeholder = ("Esta entrada aparecerá en el texto cuando se utilice \\glspl.")
+              }
+            }
+            { HBox83 HBox
+              Move(0,216,783,36)
+              { lblLANGID5 Label
+                Move(0,0,148,36)
+                Alignment = Align.Right
+                Text = ("Sort ")
+              }
+              { !txtSORTglosario2 TextBox
+                Move(162,0,216,36)
+                #Public = True
+                Expand = True
+                Placeholder = ("Este valor indica como makeindex deberı́a ordenar las entradas.")
+              }
+            }
+          }
           Index = 0
         }
         Index = 1
@@ -2668,7 +2911,7 @@
           }
         }
         { HBox16 HBox
-          Move(9,243,675,36)
+          Move(18,243,675,36)
           { HBox70 HBox
             Move(0,0,144,36)
             { !btnNuevoGlosario Button
@@ -2714,7 +2957,7 @@
           }
         }
         { HBox3 HBox
-          Move(9,279,675,36)
+          Move(18,279,675,36)
           { !btnBuscarClaveGLO Button
             Move(0,0,36,36)
             #Public = True
@@ -2741,7 +2984,7 @@
           }
         }
         { HBox7 HBox
-          Move(9,315,927,36)
+          Move(18,315,729,36)
           { Label11 Label
             Move(0,0,148,36)
             Font = Font["Bold"]
@@ -2781,7 +3024,7 @@
           }
         }
         { ScrollView9 ScrollView
-          Move(9,360,909,270)
+          Move(27,369,909,270)
           Expand = True
           Arrangement = Arrange.Vertical
           Spacing = True
