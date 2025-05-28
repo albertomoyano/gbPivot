@@ -222,8 +222,9 @@
         { Spring1 Spring
           Move(180,0,36,36)
         }
-        { cmbTheme ComboBox
-          Move(261,0,207,36)
+        { !cmbTheme ComboBox
+          Move(261,0,270,36)
+          #Public = True
           ReadOnly = True
           Text = ("Theme del editor")
         }
@@ -3065,7 +3066,7 @@
               Expand = True
               Placeholder = ("La descripción del término.")
             }
-            { !ButtonMostrarTextoGlo Button
+            { !btnMostrarTextoExtendido Button
               Move(333,0,36,36)
               #Public = True
               Picture = Picture["iconos/schedule.svg"]

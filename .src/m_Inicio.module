@@ -138,3 +138,40 @@ Public Sub CopiandoArchivos()
   Next
 
 End Sub
+
+Public Sub LevantarThemes()
+
+  Dim sDirectorio As String = User.Home & "/.gbpivot/www/ace"
+  Dim aArchivos As String[]
+  Dim sArchivo As String
+  Dim sRutaCompleta As String
+
+  ' Limpiar el ComboBox antes de cargar
+  FMain.cmbTheme.Clear()
+
+  ' Verificar si el directorio existe
+  If Not Exist(sDirectorio) Then
+    Message.Warning("El directorio " & sDirectorio & " no existe")
+    Return
+  Endif
+
+  ' Obtener la lista de archivos del directorio
+  aArchivos = Dir(sDirectorio, "*", gb.File)
+
+  ' Recorrer los archivos y filtrar los que coincidan con el patrón theme-*.js
+  For Each sArchivo In aArchivos
+    If sArchivo Like "theme-*.js" Then
+      ' Agregar solo el nombre del archivo al ComboBox
+      FMain.cmbTheme.Add(sArchivo)
+    Endif
+  Next
+
+  ' Seleccionar el primer elemento si hay archivos cargados
+  If FMain.cmbTheme.Count > 0 Then
+    FMain.cmbTheme.Index = 0
+  Endif
+
+Catch
+  Message.Error("Error al leer el directorio: " & Error.Text)
+
+End

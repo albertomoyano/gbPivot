@@ -38,6 +38,7 @@ Public Sub Form_Open()
   m_Inicio.ControlDeInicio()
   m_Inicio.CopiandoArchivos()
   m_glosarios.ConfigurarGridGlosario(ViewGridGlosarioTotal)
+  m_Inicio.LevantarThemes()
 
   ' Usar la ruta existente para el editor ACE
   Dim ruta As String
@@ -871,5 +872,47 @@ Public Sub btnBuscarTextoGlosario_Click()
 
   tbPanelGlosarios.Index = 0
   m_glosarios.BuscarTextoGlosario()
+
+End
+
+Public Sub cmbTheme_Click()
+  ' Evento cuando cambia la selección del ComboBox
+
+  Dim sThemeFile As String
+
+  ' Obtener el archivo de tema seleccionado
+  If cmbTheme.Index >= 0 Then
+    sThemeFile = cmbTheme[cmbTheme.Index].Text
+
+    ' Llamar a la función JavaScript para cambiar el tema
+    ' Asumiendo que tu WebView se llama WebView1
+    WebViewEditor.Eval("cambiarTema('" & sThemeFile & "');")
+
+    Print "Cambiando tema a: " & sThemeFile
+  Endif
+
+End
+
+' ' Alternativa si prefieres usar el evento Change en lugar de Click
+' Public Sub cmbTheme_Change()
+'
+'   Dim sThemeFile As String
+'
+'   ' Obtener el archivo de tema seleccionado
+'   If cmbTheme.Index >= 0 Then
+'     sThemeFile = cmbTheme[cmbTheme.Index].Text
+'
+'     ' Llamar a la función JavaScript para cambiar el tema
+'     WebViewEditor.Eval("cambiarTema('" & sThemeFile & "');")
+'
+'     Print "Cambiando tema a: " & sThemeFile
+'   Endif
+'
+' End
+
+Public Sub btnMostrarTextoExtendido_Click()
+
+  f_TXTextendido.OriginalTextBox = txtDESCRIPTIONglosario
+  f_TXTextendido.ShowModal
 
 End
