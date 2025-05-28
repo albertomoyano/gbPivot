@@ -1,6 +1,6 @@
 ' Gambas module file
 
-Private hResultado As Result
+Public hResultadoGlosario As Result
 
 Public Sub ConfigurarGridGlosario(grid As GridView)
 
@@ -16,14 +16,14 @@ Public Sub ConfigurarGridGlosario(grid As GridView)
           .Columns[i].Title = "Id"
           .Columns[i].Width = 0
         Case 1
-          .Columns[i].Title = "Clave"
-          .Columns[i].Width = 200
-        Case 2
           .Columns[i].Title = "Tipo"
           .Columns[i].Width = 100
+        Case 2
+          .Columns[i].Title = "Clave"
+          .Columns[i].Width = 300
         Case 4
           .Columns[i].Title = "Nombre"
-          .Columns[i].Width = 100
+          .Columns[i].Width = 150
         Case 6
           .Columns[i].Title = "Primera vez"
           .Columns[i].Width = 800
@@ -33,6 +33,15 @@ Public Sub ConfigurarGridGlosario(grid As GridView)
       End Select
     Next
   End With
+
+End
+
+Public Sub ConsultaBBDDglo()
+
+  hResultadoGlosario = m_OnOff_y_Red.meConn.Exec("SELECT * FROM glosarios ORDER BY id DESC")
+  FMain.ViewGridGlosarioTotal.Rows.Count = hResultadoGlosario.Count
+  FMain.lblGlosarioTotales.Text = "La base de datos contiene <strong>" & hResultadoGlosario.Count & "</strong> entradas."
+  FMain.ViewGridGlosarioTotal.Refresh()
 
 End
 
@@ -51,15 +60,14 @@ Public Sub NuevoGlosario()
   LimpiarCamposGlosarios()
 
   ' Obtenemos el último ID y sumamos +1 para el nuevo registro
-  Dim resultado As Result
-  resultado = m_OnOff_y_Red.meConn.Exec("SELECT MAX(id) FROM glosarios LIMIT 1")
+  hResultadoGlosario = m_OnOff_y_Red.meConn.Exec("SELECT MAX(id) FROM glosarios LIMIT 1")
 
   Dim Idn As Integer
   ' Si no hay ninguna entrada entonces arrancamos desde 0
-  If resultado["MAX(id)"] = Null Then
+  If hResultadoGlosario["MAX(id)"] = Null Then
     Idn = 0
   Else
-    Idn = CInt(resultado["MAX(id)"]) + 1
+    Idn = CInt(hResultadoGlosario["MAX(id)"]) + 1
   Endif
 
   FMain.txtIDglosario.Text = Idn
@@ -82,40 +90,53 @@ Public Sub LimpiarCamposGlosarios()
 
 End
 
-'
-' Public Sub BtnEliminarGlo_Click()
-'
-'   'Chequeamos primero que se haya elegido una entrada
-'   If txtIDglosario.Text = "" Then
-'     Message.Info("Debe primero seleccionarse la entrada a borrar.")
-'     Return
-'   Endif
-'
-'   If Message.Question("¿Desea borrar la entrada?", "Si", "No") = 1 Then
-'     Contenido = Form_ConectarBBDD.meConn.Exec("delete from glosarios where id=" & txtIDglosario.Text)
-'   Endif
-'
-'   Mod_LimpiarTextBox.LimpiarCamposGLO()
-'
-'   BtnEliminarGlo.Visible = False
-'   btnGuardarCambiosGlo.Visible = False
-'   btnAgregarGloKey.Visible = False
-'
-' End
-'
+Public Sub VerGlosarioEnViewGridGlosarioTotal()
+
+  With FMain
+    .txtIDglosario.Text = FMain.ViewGridGlosarioTotal[FMain.ViewGridGlosarioTotal.Row, 0].Text
+    .cbTypeEntradaGlosario.Text = FMain.ViewGridGlosarioTotal[FMain.ViewGridGlosarioTotal.Row, 1].Text
+    .txtCLAVEglosario.Text = FMain.ViewGridGlosarioTotal[FMain.ViewGridGlosarioTotal.Row, 2].Text
+    .txtARCHIVOglosario.Text = FMain.ViewGridGlosarioTotal[FMain.ViewGridGlosarioTotal.Row, 3].Text
+    .txtNAMEglosario.Text = FMain.ViewGridGlosarioTotal[FMain.ViewGridGlosarioTotal.Row, 4].Text
+    .txtDESCRIPTIONglosario.Text = FMain.ViewGridGlosarioTotal[FMain.ViewGridGlosarioTotal.Row, 5].Text
+    .txtFIRSTglosario.Text = FMain.ViewGridGlosarioTotal[FMain.ViewGridGlosarioTotal.Row, 6].Text
+    .txtTEXTglosario.Text = FMain.ViewGridGlosarioTotal[FMain.ViewGridGlosarioTotal.Row, 7].Text
+    .txtPLURALglosario.Text = FMain.ViewGridGlosarioTotal[FMain.ViewGridGlosarioTotal.Row, 8].Text
+    .txtFIRSTPLURALglosario.Text = FMain.ViewGridGlosarioTotal[FMain.ViewGridGlosarioTotal.Row, 9].Text
+    .txtSORTglosario.Text = FMain.ViewGridGlosarioTotal[FMain.ViewGridGlosarioTotal.Row, 10].Text
+  End With
+
+End
+
+Public Sub BorrarGlosario()
+
+  'Chequeamos primero que se haya elegido una entrada
+  If FMain.txtIDglosario.Text = "" Then
+    Message.Info("Debe primero seleccionarse la entrada a borrar.")
+    Return
+  Endif
+
+  If Message.Question("¿Desea borrar la entrada?", "Si", "No") = 1 Then
+    hResultadoGlosario = m_OnOff_y_Red.meConn.Exec("delete from glosarios where id=" & FMain.txtIDglosario.Text)
+  Endif
+
+  LimpiarCamposGlosarios()
+
+End
+
 Public Sub GuardarGlosario()
 
-  hResultado!id = FMain.txtIDglosario.Text
-  hResultado!clave = FMain.txtCLAVEglosario.Text
-  hResultado!tipo = FMain.cbTypeEntradaGlosario.Text
-  hResultado!filtro = FMain.txtARCHIVOglosario.Text
-  hResultado!nombre = FMain.txtNAMEglosario.Text
-  hResultado!descripcion = FMain.txtDESCRIPTIONglosario.Text
-  hResultado!primera_vez = FMain.txtFIRSTglosario.Text
-  hResultado!texto = FMain.txtTEXTglosario.Text
-  hResultado!plural = FMain.txtPLURALglosario.Text
-  hResultado!primer_plural = FMain.txtFIRSTPLURALglosario.Text
-  hResultado!ordenar = FMain.txtSORTglosario.Text
+  hResultadoGlosario!id = FMain.txtIDglosario.Text
+  hResultadoGlosario!clave = FMain.txtCLAVEglosario.Text
+  hResultadoGlosario!tipo = FMain.cbTypeEntradaGlosario.Text
+  hResultadoGlosario!filtro = FMain.txtARCHIVOglosario.Text
+  hResultadoGlosario!nombre = FMain.txtNAMEglosario.Text
+  hResultadoGlosario!descripcion = FMain.txtDESCRIPTIONglosario.Text
+  hResultadoGlosario!primera_vez = FMain.txtFIRSTglosario.Text
+  hResultadoGlosario!texto = FMain.txtTEXTglosario.Text
+  hResultadoGlosario!plural = FMain.txtPLURALglosario.Text
+  hResultadoGlosario!primer_plural = FMain.txtFIRSTPLURALglosario.Text
+  hResultadoGlosario!ordenar = FMain.txtSORTglosario.Text
 
 End
 
@@ -129,193 +150,83 @@ Public Sub GuardarPrimeraVezGlosario()
   tituloEscapado = Replace(FMain.txtTEXTglosario.Text, "'", "''")
 
   BuscarGlos = "SELECT * FROM glosarios WHERE texto = '" & tituloEscapado & "'"
-  hResultado = m_OnOff_y_Red.meConn.Exec(BuscarGlos)
+  hResultadoGlosario = m_OnOff_y_Red.meConn.Exec(BuscarGlos)
 
   ' Verificar si se encontraron resultados en la consulta
-  If hResultado.Count > 0 Then
+  If hResultadoGlosario.Count > 0 Then
     Message.Warning("La sigla que desea agregar ya existe en la base de datos.")
     Return ' Salir de la función si el título ya existe
   Endif
 
-  hResultado = m_OnOff_y_Red.meConn.Create("glosarios")
+  hResultadoGlosario = m_OnOff_y_Red.meConn.Create("glosarios")
 
   GuardarGlosario()
+  m_OnOff_y_Red.meConn.Commit()
+  hResultadoGlosario.Update()
+  FMain.ViewGridGlosarioTotal.Refresh()
 
-  hResultado.Update
   Message.Info("Nueva entrada guardada.")
 
   LimpiarCamposGlosarios()
 
-  FMain.btnNuevoGlosario.Visible = True
-  FMain.btnBorrarGlosario.Visible = False
-  FMain.btnGuardarGlosario.Visible = False
-  FMain.btnGuardarCambiosGlosario.Visible = False
+End
 
-  ' RefrescarGrid()
+Public Sub GuardarCambiosGlosario()
+
+  ' Escapa los caracteres especiales(comilla simple)en el título
+  Dim tituloEscapado As String
+
+  tituloEscapado = Replace(FMain.txtTEXTglosario.Text, "'", "''")
+
+  hResultadoGlosario = m_OnOff_y_Red.meConn.Edit("glosarios", "id=" & FMain.txtIDglosario.Text)
+
+  GuardarGlosario()
+  m_OnOff_y_Red.meConn.Commit()
+  hResultadoGlosario.Update()
+  FMain.ViewGridGlosarioTotal.Refresh()
+
+  Message.Info("Los cambios se guardaron con éxito.")
+
+  LimpiarCamposGlosarios()
 
 End
 
-' Public Sub btnGuardarCambiosGlo_Click()
-'
-'   BtnNuevoGlo.Visible = True
-'   btnGuardarGlo.Visible = False
-'   btnGuardarCambiosGlo.Visible = False
-'   BtnEliminarGlo.Visible = False
-'   btnAgregarGloKey.Visible = False
-'
-'   'eliminamos blancos de inicio y final de cadena en los textbox
-'   Mod_LimpiarTextBox.eliminarBlancosGLO
-'
-'   Contenido = Form_ConectarBBDD.meConn.Edit("glosarios", "id=" & txtIDglosario.Text)
-'   guardarCamposGLO
-'   Contenido.Update
-'   RefrescarGrid()
-'
-'   Message.Info("Los cambios se guardaron con éxito.")
-'
-'   Mod_LimpiarTextBox.LimpiarCamposGLO()
-'
-'   ' Mostrar_ListaGLO()
-'
-' End
-'
-' Public Sub btnBuscarNombreGLO_Click()
-'
-'   Dim Comando As String
-'   Dim rowIndex As Integer
-'
-'   Comando = "SELECT * FROM glosarios WHERE name = '" & txtNAME.Text & "%' ORDER BY id DESC;"
-'
-'   If txtNAME.Text = "" Then
-'     Message.Warning("Debe introducir contenido a buscar.")
-'     Return
-'   Endif
-'
-'   Busqueda = Form_ConectarBBDD.meConn.Exec(Comando)
-'
-'   ' Limpia el VGridGLO antes de mostrar los resultados de la búsqueda
-'   VGridGLO.Clear()
-'
-'   ' Si la búsqueda no arroja resultados
-'   If Busqueda.Count = 0 Then
-'     Message.Info("No se ha encontrado ningún resultado.")
-'     Return
-'   Endif
-'
-'   ' Configura las columnas en el VGridGLO
-'   VGridGLO.Columns.Count = 11
-'
-'   ' Inicializa rowIndex a 0
-'   rowIndex = 0
-'
-'   While (Busqueda.Available)
-'     ' Llena las celdas de la fila con los datos del resultado
-'     VGridGLO[rowIndex, 0].Text = Busqueda!id
-'     VGridGLO[rowIndex, 1].Text = Busqueda!key
-'     VGridGLO[rowIndex, 2].Text = Busqueda!type
-'     VGridGLO[rowIndex, 3].Text = Busqueda!archivo
-'     VGridGLO[rowIndex, 4].Text = Busqueda!name
-'     VGridGLO[rowIndex, 5].Text = Busqueda!description
-'     VGridGLO[rowIndex, 6].Text = Busqueda!first
-'     VGridGLO[rowIndex, 7].Text = Busqueda!text
-'     VGridGLO[rowIndex, 8].Text = Busqueda!plural
-'     VGridGLO[rowIndex, 9].Text = Busqueda!firstplural
-'     VGridGLO[rowIndex, 10].Text = Busqueda!sort
-'     Busqueda.MoveNext
-'   Wend
-'
-' End
-'
-' Public Sub btnBuscarTextoGLO_Click()
-'
-'   Dim Comando As String
-'   Dim rowIndex As Integer
-'
-'   Comando = "select * from glosarios where name " & " like " & "'%" & txtTEXT.Text & "%' ORDER BY id DESC;"
-'
-'   If txtTEXT.Text = "" Then
-'     Message.Warning("Debe introducir contenido a buscar.")
-'     Return
-'   Endif
-'
-'   Busqueda = Form_ConectarBBDD.meConn.Exec(Comando)
-'
-'   ' Limpia el VGridGLO antes de mostrar los resultados de la búsqueda
-'   VGridGLO.Clear()
-'
-'   ' Si la búsqueda no arroja resultados
-'   If Busqueda.Count = 0 Then
-'     Message.Info("No se ha encontrado ningún resultado.")
-'     Return
-'   Endif
-'
-'   ' Configura las columnas en el VGridGLO
-'   VGridGLO.Columns.Count = 11
-'
-'   ' Inicializa rowIndex a 0
-'   rowIndex = 0
-'
-'   While (Busqueda.Available)
-'     ' Llena las celdas de la fila con los datos del resultado
-'     VGridGLO[rowIndex, 0].Text = Busqueda!id
-'     VGridGLO[rowIndex, 1].Text = Busqueda!key
-'     VGridGLO[rowIndex, 2].Text = Busqueda!type
-'     VGridGLO[rowIndex, 3].Text = Busqueda!archivo
-'     VGridGLO[rowIndex, 4].Text = Busqueda!name
-'     VGridGLO[rowIndex, 5].Text = Busqueda!description
-'     VGridGLO[rowIndex, 6].Text = Busqueda!first
-'     VGridGLO[rowIndex, 7].Text = Busqueda!text
-'     VGridGLO[rowIndex, 8].Text = Busqueda!plural
-'     VGridGLO[rowIndex, 9].Text = Busqueda!firstplural
-'     VGridGLO[rowIndex, 10].Text = Busqueda!sort
-'     Busqueda.MoveNext
-'   Wend
-'
-' End
-'
-' Public Sub btnBuscarClaveGLO_Click()
-'
-'   Dim Comando As String
-'   Dim rowIndex As Integer
-'
-'   Comando = "SELECT * FROM glosarios WHERE key LIKE '%" & txtCLAVEglo.Text & "%' ORDER BY id DESC;"
-'
-'   If txtCLAVEglo.Text = "" Then
-'     Message.Warning("Debe introducir contenido a buscar.")
-'     Return
-'   Endif
-'
-'   Busqueda = Form_ConectarBBDD.meConn.Exec(Comando)
-'
-'   ' Limpia el VGridGLO antes de mostrar los resultados de la búsqueda
-'   VGridGLO.Clear()
-'
-'   ' Si la búsqueda no arroja resultados
-'   If Busqueda.Count = 0 Then
-'     Message.Info("No se ha encontrado ningún resultado.")
-'     Return
-'   Endif
-'
-'   ' Configura las columnas en el VGridGLO
-'   VGridGLO.Columns.Count = 11
-'
-'   ' Inicializa rowIndex a 0
-'   rowIndex = 0
-'
-'   While (Busqueda.Available)
-'     ' Llena las celdas de la fila con los datos del resultado
-'     VGridGLO[rowIndex, 0].Text = Busqueda!id
-'     VGridGLO[rowIndex, 1].Text = Busqueda!key
-'     VGridGLO[rowIndex, 2].Text = Busqueda!type
-'     VGridGLO[rowIndex, 3].Text = Busqueda!archivo
-'     VGridGLO[rowIndex, 4].Text = Busqueda!name
-'     VGridGLO[rowIndex, 5].Text = Busqueda!description
-'     VGridGLO[rowIndex, 6].Text = Busqueda!first
-'     VGridGLO[rowIndex, 7].Text = Busqueda!text
-'     VGridGLO[rowIndex, 8].Text = Busqueda!plural
-'     VGridGLO[rowIndex, 9].Text = Busqueda!firstplural
-'     VGridGLO[rowIndex, 10].Text = Busqueda!sort
-'     Busqueda.MoveNext
-'   Wend
-'
-' End
+Public Sub BuscarClaveGlosario()
+
+  Dim rowIndex As Integer
+  Dim Buscar As String
+
+  If FMain.txtCLAVEglosario.Text = "" Then
+    Message.Warning("Debe introducir contenido a buscar.")
+    Return
+  Else
+    Buscar = "SELECT * FROM glosarios WHERE clave LIKE '%" & FMain.txtCLAVEglosario.Text & "%' ORDER BY id DESC;"
+    hResultadoGlosario = m_OnOff_y_Red.meConn.Exec(Buscar)
+  Endif
+
+  If hResultadoGlosario.Count = 0 Then
+    Message.Info("No se ha encontrado ningún resultado.")
+    Return
+  Else
+    FMain.ViewGridGlosarioTotal.Clear()
+    FMain.ViewGridGlosarioTotal.Columns.Count = 11
+    rowIndex = 0
+
+    While (hResultadoGlosario.Available)
+      FMain.ViewGridGlosarioTotal[rowIndex, 0].Text = hResultadoGlosario!id
+      FMain.ViewGridGlosarioTotal[rowIndex, 1].Text = hResultadoGlosario!tipo
+      FMain.ViewGridGlosarioTotal[rowIndex, 2].Text = hResultadoGlosario!clave
+      FMain.ViewGridGlosarioTotal[rowIndex, 3].Text = hResultadoGlosario!filtro
+      FMain.ViewGridGlosarioTotal[rowIndex, 4].Text = hResultadoGlosario!nombre
+      FMain.ViewGridGlosarioTotal[rowIndex, 5].Text = hResultadoGlosario!descripcion
+      FMain.ViewGridGlosarioTotal[rowIndex, 6].Text = hResultadoGlosario!primera_vez
+      FMain.ViewGridGlosarioTotal[rowIndex, 7].Text = hResultadoGlosario!texto
+      FMain.ViewGridGlosarioTotal[rowIndex, 8].Text = hResultadoGlosario!plural
+      FMain.ViewGridGlosarioTotal[rowIndex, 9].Text = hResultadoGlosario!primer_plural
+      FMain.ViewGridGlosarioTotal[rowIndex, 10].Text = hResultadoGlosario!ordenar
+
+      hResultadoGlosario.MoveNext
+    Wend
+  Endif
+
+End

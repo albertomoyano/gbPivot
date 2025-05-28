@@ -2630,7 +2630,7 @@
           Move(18,0,1098,243)
           NoTabFocus = True
           Arrangement = Arrange.Horizontal
-          { TabPanel4 TabPanel
+          { tbPanelGlosarios TabPanel
             Move(9,9,1071,225)
             Expand = True
             Arrangement = Arrange.Vertical
@@ -2639,18 +2639,6 @@
             Padding = 4
             Count = 2
             Index = 0
-            Text = ("Caja de texto temporal     ")
-            Picture = Picture["iconos/textnormal.svg"]
-            { !txtTMPglosario TextArea
-              Move(9,9,117,54)
-              #Public = True
-              Enabled = False
-              Background = Color.LightGray
-              Expand = True
-              Wrap = True
-              ScrollBar = Scroll.Vertical
-            }
-            Index = 1
             Text = ("Siglas y glosarios (todas)     ")
             Picture = Picture["iconos/bibtex.svg"]
             { !ViewGridGlosarioTotal TableView
@@ -2664,50 +2652,65 @@
               ScrollBar = Scroll.Vertical
               Resizable = False
             }
+            Index = 1
+            Text = ("Caja de texto temporal     ")
+            Picture = Picture["iconos/textnormal.svg"]
+            { !txtTMPglosario TextArea
+              Move(9,9,117,54)
+              #Public = True
+              Enabled = False
+              Background = Color.LightGray
+              Expand = True
+              Wrap = True
+              ScrollBar = Scroll.Vertical
+            }
             Index = 0
           }
         }
         { HBox16 HBox
           Move(9,243,675,36)
-          { !btnNuevoGlosario Button
-            Move(0,0,36,36)
-            #Public = True
-            NoTabFocus = True
-            ToolTip = ("Agregar una nueva referencia")
-            Picture = Picture["iconos/+nuevo.svg"]
+          { HBox70 HBox
+            Move(0,0,144,36)
+            { !btnNuevoGlosario Button
+              Move(-9,0,36,36)
+              #Public = True
+              NoTabFocus = True
+              ToolTip = ("Agregar una nueva referencia")
+              Picture = Picture["iconos/+nuevo.svg"]
+            }
+            { !btnBorrarGlosario Button
+              Move(27,0,36,36)
+              #Public = True
+              NoTabFocus = True
+              ToolTip = ("Borrar entrada")
+              Picture = Picture["iconos/borrar.svg"]
+            }
+            { !btnGuardarGlosario Button
+              Move(63,0,36,36)
+              #Public = True
+              ToolTip = ("Guardar modificaciones")
+              Picture = Picture["iconos/guardar.svg"]
+            }
+            { !btnGuardarCambiosGlosario Button
+              Move(117,0,36,36)
+              #Public = True
+              ToolTip = ("Guardar modificaciones")
+              Picture = Picture["iconos/guardarComo.svg"]
+            }
           }
-          { !btnBorrarGlosario Button
-            Move(36,0,36,36)
+          { !lblGlosarioTotales TextLabel
+            Move(324,0,218,36)
             #Public = True
-            NoTabFocus = True
-            ToolTip = ("Borrar entrada")
-            Picture = Picture["iconos/borrar.svg"]
-          }
-          { !btnGuardarGlosario Button
-            Move(72,0,36,36)
-            #Public = True
-            ToolTip = ("Guardar modificaciones")
-            Picture = Picture["iconos/guardar.svg"]
-          }
-          { !btnGuardarCambiosGlosario Button
-            Move(108,0,36,36)
-            #Public = True
-            ToolTip = ("Guardar modificaciones")
-            Picture = Picture["iconos/guardarComo.svg"]
+            Expand = True
+            Alignment = Align.Center
           }
           { !txtIDglosario TextBox
-            Move(153,0,90,36)
+            Move(567,0,90,36)
             #Public = True
             Visible = False
             Background = Color.Background
             NoTabFocus = True
             ReadOnly = True
-          }
-          { !lblTotalesGLO TextLabel
-            Move(270,0,218,36)
-            #Public = True
-            Expand = True
-            Alignment = Align.Center
           }
         }
         { HBox3 HBox
@@ -2736,14 +2739,6 @@
             Alignment = Align.Left
             Placeholder = ("Clave GLO única")
           }
-          { Separator7 Separator
-            Move(351,0,21,36)
-          }
-          { !btnParcialGLO Button
-            Move(396,0,144,36)
-            #Public = True
-            Picture = Picture["iconos/face.svg"]
-          }
         }
         { HBox7 HBox
           Move(9,315,927,36)
@@ -2755,7 +2750,7 @@
             Text = ("Tipo de entrada  ")
           }
           { !cbTypeEntradaGlosario ComboBox
-            Move(153,0,216,36)
+            Move(153,0,162,36)
             #Public = True
             NoTabFocus = True
             ReadOnly = True

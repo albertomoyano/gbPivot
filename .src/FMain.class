@@ -1,7 +1,7 @@
 ' Gambas class file
 
 ' Private rPrompt As Result
-Private hResultadoGlosario As Result
+Public hResultadoGlosario As Result
 Private Item_Seleccionado As Integer
 Public segundos As Integer
 Public minutos As Integer
@@ -68,8 +68,8 @@ Public Sub Form_Open()
   btnPromptGuardar.Visible = False
   btnPromptGuardarMod.Visible = False
 
-  ' botonera de glosario
-  hResultadoGlosario = m_OnOff_y_Red.meConn.Exec("SELECT * FROM glosarios ORDER BY nombre ASC")
+  ' glosario
+  m_glosarios.ConsultaBBDDglo()
   btnNuevoGlosario.Visible = True
   btnBorrarGlosario.Visible = False
   btnGuardarGlosario.Visible = False
@@ -738,6 +738,7 @@ End
 
 Public Sub btnNuevoGlosario_Click()
 
+  tbPanelGlosarios.Index = 1
   m_glosarios.NuevoGlosario()
 
 End
@@ -756,36 +757,98 @@ End
 Public Sub btnAgregarClaveGlosarioProyecto_Click()
 
   Dim sTexto As String = Trim(txtProyecto.Text)
+  Dim sArchivo As String = txtARCHIVOglosario.Text
 
-  If sTexto = "" Then
-    txtARCHIVOglosario.Text = "," & sTexto & ","
-  Else
-    If Left(sTexto, 1) = "," Then
-      txtARCHIVOglosario.Text = sTexto & ","
-    Else
-      txtARCHIVOglosario.Text = "," & sTexto & ","
-    End If
+  If sTexto = "" Then Return ' No hacemos nada si está vacío
+
+  ' Aseguramos que el contenido existente termine en coma
+  If Right(sArchivo, 1) <> "," And sArchivo <> "" Then
+    sArchivo &= ","
   End If
+
+  ' Aseguramos que el texto nuevo no empiece con coma
+  If Left(sTexto, 1) = "," Then
+    sTexto = Mid(sTexto, 2)
+  End If
+
+  ' Aseguramos que el texto nuevo termine en coma
+  If Right(sTexto, 1) <> "," Then
+    sTexto &= ","
+  End If
+
+  ' Agregamos al campo
+  txtARCHIVOglosario.Text = sArchivo & sTexto
 
 End
 
 Public Sub btnGuardarGlosario_Click()
 
   m_glosarios.GuardarPrimeraVezGlosario()
+  m_glosarios.ConsultaBBDDglo()
+
+  tbPanelGlosarios.Index = 0
+  btnNuevoGlosario.Visible = True
+  btnBorrarGlosario.Visible = False
+  btnGuardarGlosario.Visible = False
+  btnGuardarCambiosGlosario.Visible = False
 
 End
 
 Public Sub ViewGridGlosarioTotal_Data(Row As Integer, Column As Integer)
 
-  If (hResultadoGlosario <> Null) Then
+  If (m_glosarios.hResultadoGlosario <> Null) Then
     If Row >= 0 Then
-      hResultadoGlosario.moveTo(Row)
-      Try ViewGridGlosarioTotal.Data.Text = Str(hResultadoGlosario[Column])
+      m_glosarios.hResultadoGlosario.moveTo(Row)
+      Try ViewGridGlosarioTotal.Data.Text = Str(m_glosarios.hResultadoGlosario[Column])
     Endif
   Endif
 
   If row Mod 2 = 0 Then
     ViewGridGlosarioTotal.Data.Background = Color.RGB(230, 230, 230)
   Endif
+
+End
+
+Public Sub ViewGridGlosarioTotal_Click()
+
+  m_glosarios.VerGlosarioEnViewGridGlosarioTotal()
+
+  btnNuevoGlosario.Visible = True
+  btnBorrarGlosario.Visible = True
+  btnGuardarGlosario.Visible = False
+  btnGuardarCambiosGlosario.Visible = True
+
+End
+
+Public Sub btnBorrarGlosario_Click()
+
+  tbPanelGlosarios.Index = 0
+  m_glosarios.BorrarGlosario()
+  m_glosarios.ConsultaBBDDglo()
+
+  btnNuevoGlosario.Visible = True
+  btnBorrarGlosario.Visible = False
+  btnGuardarGlosario.Visible = False
+  btnGuardarCambiosGlosario.Visible = False
+
+End
+
+Public Sub btnGuardarCambiosGlosario_Click()
+
+  tbPanelGlosarios.Index = 0
+  m_glosarios.GuardarCambiosGlosario()
+  m_glosarios.ConsultaBBDDglo()
+
+  btnNuevoGlosario.Visible = True
+  btnBorrarGlosario.Visible = False
+  btnGuardarGlosario.Visible = False
+  btnGuardarCambiosGlosario.Visible = False
+
+End
+
+Public Sub btnBuscarClaveGLO_Click()
+
+  tbPanelGlosarios.Index = 0
+  m_glosarios.BuscarClaveGlosario()
 
 End
