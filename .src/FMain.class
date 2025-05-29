@@ -63,8 +63,6 @@ Public Sub Form_Open()
 
   txtRecordatorios.Visible = False
   ' Mostrar_Lista_Tareas
-  ' gridviewAI()  ' Configura la estructura del grid
-  ' cargargrid()  ' Carga los datos
   btnPromptNuevo.Visible = True
   btnPromptBorrar.Visible = False
   btnPromptGuardar.Visible = False
@@ -76,6 +74,13 @@ Public Sub Form_Open()
   btnBorrarGlosario.Visible = False
   btnGuardarGlosario.Visible = False
   btnGuardarCambiosGlosario.Visible = False
+
+  ' inteligencia
+  m_Inteligencia.ConsultaBBDDinteligencia()
+  btnPromptNuevo.Visible = True
+  btnPromptBorrar.Visible = False
+  btnPromptGuardar.Visible = False
+  btnPromptGuardarCambios.Visible = False
 
 End
 
@@ -740,6 +745,17 @@ End
 
 Public Sub btnNuevoGlosario_Click()
 
+  ' Ocultamos/mostramos botones según sea necesario
+  btnNuevoGlosario.Visible = False
+  btnBorrarGlosario.Visible = False
+  btnGuardarGlosario.Visible = True
+  btnGuardarCambiosGlosario.Visible = False
+
+  ' Habilitamos los campos de entrada
+  txtTMPglosario.Enabled = True
+  txtTMPglosario.Background = Color.White
+  txtTMPglosario.Clear
+
   tbPanelGlosarios.Index = 1
   m_glosarios.NuevoGlosario()
 
@@ -824,14 +840,14 @@ End
 
 Public Sub btnBorrarGlosario_Click()
 
-  tbPanelGlosarios.Index = 0
-  m_glosarios.BorrarGlosario()
-  m_glosarios.ConsultaBBDDglo()
-
   btnNuevoGlosario.Visible = True
   btnBorrarGlosario.Visible = False
   btnGuardarGlosario.Visible = False
   btnGuardarCambiosGlosario.Visible = False
+
+  tbPanelGlosarios.Index = 0
+  m_glosarios.BorrarGlosario()
+  m_glosarios.ConsultaBBDDglo()
 
 End
 
@@ -920,6 +936,72 @@ End
 
 Public Sub btnPromptNuevo_Click()
 
+  ' Ocultamos/mostramos botones según sea necesario
+  btnPromptNuevo.Visible = False
+  btnPromptBorrar.Visible = False
+  btnPromptGuardar.Visible = True
+  btnPromptGuardarCambios.Visible = False
+
+  ' Habilitamos los campos de entrada
+  txtIdentificador.Enabled = True
+  txtIdentificador.ReadOnly = False
+  txtIdentificador.Background = Color.White
+  txtAreaPrompt1.Clear
+
   m_Inteligencia.PromptNuevo()
+
+End
+
+Public Sub btnPromptBorrar_Click()
+
+  btnPromptNuevo.Visible = True
+  btnPromptBorrar.Visible = False
+  btnPromptGuardar.Visible = False
+  btnPromptGuardarCambios.Visible = False
+
+  m_Inteligencia.BorrarInteligencia()
+  m_Inteligencia.ConsultaBBDDinteligencia()
+
+End
+
+Public Sub btnPromptGuardar_Click()
+
+  btnPromptNuevo.Visible = True
+  btnPromptBorrar.Visible = False
+  btnPromptGuardar.Visible = False
+  btnPromptGuardarCambios.Visible = False
+
+  m_Inteligencia.GuardarPrimeraVezInteligencia()
+  m_Inteligencia.ConsultaBBDDinteligencia()
+
+End
+
+Public Sub ViewgridAI_Data(Row As Integer, Column As Integer)
+
+  If (m_Inteligencia.hResultadoInteligencia <> Null) Then
+    If Row >= 0 Then
+      m_Inteligencia.hResultadoInteligencia.moveTo(Row)
+      Try ViewgridAI.Data.Text = Str(m_Inteligencia.hResultadoInteligencia[Column])
+    Endif
+  Endif
+
+  If row Mod 2 = 0 Then
+    ViewgridAI.Data.Background = Color.RGB(230, 230, 230)
+  Endif
+
+End
+
+Public Sub ViewgridAI_Click()
+
+  m_Inteligencia.VerInteligenciaEnViewgridAI()
+
+  ' Habilitamos los campos de entrada
+  txtIdentificador.Enabled = True
+  txtIdentificador.ReadOnly = False
+  txtIdentificador.Background = Color.White
+  btnPromptNuevo.Visible = True
+  btnPromptBorrar.Visible = True
+  btnPromptGuardar.Visible = False
+  btnPromptGuardarCambios.Visible = True
 
 End

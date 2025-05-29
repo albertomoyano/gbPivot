@@ -47,16 +47,6 @@ End
 
 Public Sub NuevoGlosario()
 
-  ' Ocultamos/mostramos botones según sea necesario
-  FMain.btnNuevoGlosario.Visible = False
-  FMain.btnBorrarGlosario.Visible = False
-  FMain.btnGuardarGlosario.Visible = True
-  FMain.btnGuardarCambiosGlosario.Visible = False
-
-  ' Habilitamos los campos de entrada
-  FMain.txtTMPglosario.Enabled = True
-  FMain.txtTMPglosario.Background = Color.White
-  FMain.txtTMPglosario.Clear
   LimpiarCamposGlosarios()
 
   ' Obtenemos el último ID y sumamos +1 para el nuevo registro

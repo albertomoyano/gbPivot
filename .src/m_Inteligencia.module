@@ -39,7 +39,6 @@ Public Sub LimpiarCamposInteligencia()
 
   FMain.txtIdPrompt.Text = ""
   FMain.txtTemperatura.Text = ""
-  FMain.txtAsistenteAI.Clear
   FMain.txtIdentificador.Clear
   FMain.txtAreaPrompt1.Clear
 
@@ -47,17 +46,6 @@ End
 
 Public Sub PromptNuevo()
 
-  ' Ocultamos/mostramos botones según sea necesario
-  FMain.btnPromptNuevo.Visible = False
-  FMain.btnPromptBorrar.Visible = False
-  FMain.btnPromptGuardar.Visible = True
-  FMain.btnPromptGuardarCambios.Visible = False
-
-  ' Habilitamos los campos de entrada
-  FMain.txtIdentificador.Enabled = True
-  FMain.txtIdentificador.ReadOnly = False
-  FMain.txtIdentificador.Background = Color.White
-  FMain.txtAreaPrompt1.Clear
   LimpiarCamposInteligencia()
 
   ' Obtenemos el último ID y sumamos +1 para el nuevo registro
@@ -73,5 +61,90 @@ Public Sub PromptNuevo()
 
   FMain.txtIdPrompt.Text = Idn
   FMain.txtIdentificador.SetFocus
+
+End
+
+Public Sub VerInteligenciaEnViewgridAI()
+
+  With FMain
+    .txtIdPrompt.Text = FMain.ViewgridAI[FMain.ViewgridAI.Row, 0].Text
+    .txtIdentificador.Text = FMain.ViewgridAI[FMain.ViewgridAI.Row, 1].Text
+    .txtAreaPrompt1.Text = FMain.ViewgridAI[FMain.ViewgridAI.Row, 2].Text
+  End With
+
+End
+
+Public Sub BorrarInteligencia()
+
+  'Chequeamos primero que se haya elegido una entrada
+  If FMain.txtIdPrompt.Text = "" Then
+    Message.Info("Debe primero seleccionarse la entrada a borrar.")
+    Return
+  Endif
+
+  If Message.Question("¿Desea borrar la entrada?", "Si", "No") = 1 Then
+    hResultadoInteligencia = m_OnOff_y_Red.meConn.Exec("delete from inteligencia_artificial where id_inteligencia=" & FMain.txtIdPrompt.Text)
+  Endif
+
+  LimpiarCamposInteligencia()
+
+End
+
+Public Sub GuardarInteligencia()
+
+  hResultadoInteligencia!id_inteligencia = FMain.txtIdPrompt.Text
+  hResultadoInteligencia!identificador = FMain.txtIdentificador.Text
+  hResultadoInteligencia!prompt = FMain.txtAreaPrompt1.Text
+
+End
+
+Public Sub GuardarPrimeraVezInteligencia()
+
+  Dim BuscarInteligencia As String
+
+  ' Escapa los caracteres especiales(comilla simple)en el título
+  Dim tituloEscapado As String
+
+  tituloEscapado = Replace(FMain.txtIdentificador.Text, "'", "''")
+
+  BuscarInteligencia = "SELECT * FROM inteligencia_artificial WHERE identificador = '" & tituloEscapado & "'"
+  hResultadoInteligencia = m_OnOff_y_Red.meConn.Exec(BuscarInteligencia)
+
+  ' Verificar si se encontraron resultados en la consulta
+  If hResultadoInteligencia.Count > 0 Then
+    Message.Warning("La sigla que desea agregar ya existe en la base de datos.")
+    Return ' Salir de la función si el título ya existe
+  Endif
+
+  hResultadoInteligencia = m_OnOff_y_Red.meConn.Create("inteligencia_artificial")
+
+  GuardarInteligencia()
+  m_OnOff_y_Red.meConn.Commit()
+  hResultadoInteligencia.Update()
+  FMain.ViewgridAI.Refresh()
+
+  Message.Info("Nueva entrada guardada.")
+
+  LimpiarCamposInteligencia()
+
+End
+
+Public Sub GuardarCambiosInteligencia()
+
+  ' Escapa los caracteres especiales(comilla simple)en el título
+  Dim tituloEscapado As String
+
+  tituloEscapado = Replace(FMain.txtIdentificador.Text, "'", "''")
+
+  hResultadoInteligencia = m_OnOff_y_Red.meConn.Edit("inteligencia_artificial", "id_inteligencia=" & FMain.txtIdPrompt.Text)
+
+  GuardarInteligencia()
+  m_OnOff_y_Red.meConn.Commit()
+  hResultadoInteligencia.Update()
+  FMain.ViewgridAI.Refresh()
+
+  Message.Info("Los cambios se guardaron con éxito.")
+
+  LimpiarCamposInteligencia()
 
 End
