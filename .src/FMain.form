@@ -804,7 +804,7 @@
           Text = ("Autoría     ")
           Picture = Picture["iconos/candado-abierto.svg"]
           { ScrollView2 ScrollView
-            Move(18,18,972,495)
+            Move(9,9,972,495)
             Expand = True
             Arrangement = Arrange.Vertical
             Spacing = True
@@ -832,21 +832,24 @@
                 PopupMenu = "menuTEXTBOX"
                 Placeholder = ("Autor principal")
               }
+            }
+            { HBox95 HBox
+              Move(9,45,873,36)
               { lblNAMEADDON Label
-                Move(387,0,144,32)
+                Move(0,0,144,32)
                 Alignment = Align.Right
                 Text = ("NameAddOn ")
               }
               { txtNAMEADDON TextBox AllTextBoxes
                 Name = "txtNAMEADDON"
-                Move(567,0,144,36)
+                Move(180,0,144,36)
                 Expand = True
                 PopupMenu = "menuTEXTBOX"
                 Placeholder = ("Sigla, es conveniente hacer un enroque con el campo author")
               }
             }
             { HBox26 HBox
-              Move(9,45,873,36)
+              Move(9,90,873,36)
               { lblBOOKAUTHOR2 Label
                 Move(0,0,144,32)
                 Alignment = Align.Right
@@ -872,7 +875,7 @@
               }
             }
             { HBox27 HBox
-              Move(9,81,873,36)
+              Move(9,126,873,36)
               { BtnBuscarAuthor2 Button
                 Move(0,0,36,36)
                 NoTabFocus = True
@@ -901,7 +904,7 @@
               }
             }
             { HBox28 HBox
-              Move(9,117,873,36)
+              Move(9,162,873,36)
               { lblEDITOR2 Label
                 Move(-9,0,144,32)
                 Alignment = Align.Right
@@ -925,7 +928,7 @@
               }
             }
             { HBox29 HBox
-              Move(9,153,873,36)
+              Move(9,198,873,36)
               { lblEDITOR3 Label
                 Move(-9,0,144,32)
                 Alignment = Align.Right
@@ -949,7 +952,7 @@
               }
             }
             { HBox30 HBox
-              Move(9,189,873,36)
+              Move(9,234,873,36)
               { lblEDITOR4 Label
                 Move(0,0,144,32)
                 Alignment = Align.Right
@@ -973,7 +976,7 @@
               }
             }
             { HBox39 HBox
-              Move(9,225,873,36)
+              Move(9,270,873,36)
               { lblAFTERWORD Label
                 Move(9,0,144,36)
                 Alignment = Align.Right
@@ -1000,7 +1003,7 @@
               }
             }
             { HBox40 HBox
-              Move(9,261,873,36)
+              Move(9,306,873,36)
               { lblCOMMENTATOR Label
                 Move(0,0,144,36)
                 Alignment = Align.Right
@@ -1027,7 +1030,7 @@
               }
             }
             { HBox38 HBox
-              Move(9,297,873,36)
+              Move(9,342,873,36)
               { lblTRANSLATOR Label
                 Move(9,0,144,36)
                 ToolTip = ("Traductor")
@@ -1055,7 +1058,7 @@
               }
             }
             { HBox31 HBox
-              Move(9,333,873,36)
+              Move(9,378,873,36)
               { lblANNOTATOR2 Label
                 Move(0,0,144,36)
                 Alignment = Align.Right
