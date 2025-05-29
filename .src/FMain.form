@@ -357,6 +357,7 @@
         Spacing = True
         Margin = True
         Padding = 4
+        Border = False
         Count = 5
         Index = 0
         Text = ("Metadatos")
@@ -3152,24 +3153,49 @@
         Index = 3
         Text = ("Chart")
         Picture = Picture["iconos/chart.svg"]
-        { HBox6 HBox
-          Move(18,9,594,36)
-          { MenuButton2 MenuButton
-            Move(0,0,207,36)
+        { HBox93 HBox
+          Move(9,9,594,36)
+          { Spring5 Spring
+            Move(18,0,72,36)
           }
-          { MenuButton3 MenuButton
-            Move(207,0,207,36)
+          { Button18 Button
+            Move(279,0,144,36)
+            Text = ("Importar CSV")
           }
-        }
-        { WebViewChart WebView
-          Move(27,72,198,63)
-          Expand = True
+          { Button17 Button
+            Move(432,0,144,36)
+            Text = ("Generar")
+          }
         }
         { !DataBrowserChart DataBrowser
-          Move(18,225,675,252)
+          Move(9,54,675,252)
           #Public = True
           Editable = True
           Grid = True
+        }
+        { HBox6 HBox
+          Move(9,315,720,36)
+          { Button19 Button
+            Move(0,0,144,36)
+            Text = ("Exportar PNG")
+          }
+          { Button20 Button
+            Move(144,0,144,36)
+            Text = ("Exportar JS")
+          }
+          { Spring6 Spring
+            Move(297,0,72,36)
+          }
+          { MenuButton2 MenuButton
+            Move(378,0,162,36)
+          }
+          { MenuButton3 MenuButton
+            Move(549,0,162,36)
+          }
+        }
+        { WebViewChart WebView
+          Move(180,513,198,63)
+          Expand = True
         }
         Index = 4
         Text = ("Asistente AI")
