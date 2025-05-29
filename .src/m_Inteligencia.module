@@ -1,0 +1,46 @@
+' Gambas module file
+
+Public hResultadoInteligencia As Result
+
+Public Sub ConfigurarGridInteligencia(grid As GridView)
+
+  With grid
+    .Header = True
+    .Grid = True
+    .Columns.Count = 3
+
+    ' Configuración de columnas
+    For i As Integer = 0 To 3
+      Select Case i
+        Case 0
+          .Columns[i].Title = "Id"
+          .Columns[i].Width = 0
+        Case 1
+          .Columns[i].Title = "Identificador"
+          .Columns[i].Width = 400
+        Case 2
+          .Columns[i].Title = "Prompt"
+          .Columns[i].Width = 300
+      End Select
+    Next
+  End With
+
+End
+
+Public Sub ConsultaBBDDinteligencia()
+
+  hResultadoInteligencia = m_OnOff_y_Red.meConn.Exec("SELECT * FROM inteligencia_artificial ORDER BY id_inteligencia DESC")
+  FMain.ViewgridAI.Rows.Count = hResultadoInteligencia.Count
+  FMain.ViewgridAI.Refresh()
+
+End
+
+Public Sub LimpiarCamposInteligencia()
+
+  FMain.txtIdPrompt.Text = ""
+  FMain.txtTemperatura.Clear
+  FMain.txtAsistenteAI.Clear
+  FMain.txtIdentificador.Clear
+  FMain.txtAreaPrompt1.Clear
+
+End

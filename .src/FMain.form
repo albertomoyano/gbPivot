@@ -3278,7 +3278,7 @@
               }
             }
           }
-          { !gridAI TableView
+          { !ViewgridAI TableView
             Move(9,108,423,180)
             #Public = True
             #Translate = False

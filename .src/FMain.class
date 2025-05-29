@@ -39,6 +39,7 @@ Public Sub Form_Open()
   m_Inicio.CopiandoArchivos()
   m_glosarios.ConfigurarGridGlosario(ViewGridGlosarioTotal)
   m_Inicio.LevantarThemes()
+  m_Inteligencia.ConfigurarGridInteligencia(ViewgridAI)
 
   ' Usar la ruta existente para el editor ACE
   Dim ruta As String
