@@ -993,8 +993,6 @@ End
 
 Public Sub ViewgridAI_Click()
 
-  m_Inteligencia.VerInteligenciaEnViewgridAI()
-
   ' Habilitamos los campos de entrada
   txtIdentificador.Enabled = True
   txtIdentificador.ReadOnly = False
@@ -1003,6 +1001,8 @@ Public Sub ViewgridAI_Click()
   btnPromptBorrar.Visible = True
   btnPromptGuardar.Visible = False
   btnPromptGuardarCambios.Visible = True
+
+  m_Inteligencia.VerInteligenciaEnViewgridAI()
 
 End
 
