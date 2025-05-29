@@ -68,7 +68,7 @@ Public Sub Form_Open()
   btnPromptNuevo.Visible = True
   btnPromptBorrar.Visible = False
   btnPromptGuardar.Visible = False
-  btnPromptGuardarMod.Visible = False
+  btnPromptGuardarCambios.Visible = False
 
   ' glosario
   m_glosarios.ConsultaBBDDglo()
@@ -915,5 +915,11 @@ Public Sub btnMostrarTextoExtendido_Click()
 
   f_TXTextendido.OriginalTextBox = txtDESCRIPTIONglosario
   f_TXTextendido.ShowModal
+
+End
+
+Public Sub btnPromptNuevo_Click()
+
+  m_Inteligencia.PromptNuevo()
 
 End

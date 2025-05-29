@@ -38,9 +38,40 @@ End
 Public Sub LimpiarCamposInteligencia()
 
   FMain.txtIdPrompt.Text = ""
-  FMain.txtTemperatura.Clear
+  FMain.txtTemperatura.Text = ""
   FMain.txtAsistenteAI.Clear
   FMain.txtIdentificador.Clear
   FMain.txtAreaPrompt1.Clear
+
+End
+
+Public Sub PromptNuevo()
+
+  ' Ocultamos/mostramos botones según sea necesario
+  FMain.btnPromptNuevo.Visible = False
+  FMain.btnPromptBorrar.Visible = False
+  FMain.btnPromptGuardar.Visible = True
+  FMain.btnPromptGuardarCambios.Visible = False
+
+  ' Habilitamos los campos de entrada
+  FMain.txtIdentificador.Enabled = True
+  FMain.txtIdentificador.ReadOnly = False
+  FMain.txtIdentificador.Background = Color.White
+  FMain.txtAreaPrompt1.Clear
+  LimpiarCamposInteligencia()
+
+  ' Obtenemos el último ID y sumamos +1 para el nuevo registro
+  hResultadoInteligencia = m_OnOff_y_Red.meConn.Exec("SELECT MAX(id_inteligencia) FROM inteligencia_artificial LIMIT 1")
+
+  Dim Idn As Integer
+  ' Si no hay ninguna entrada entonces arrancamos desde 0
+  If hResultadoInteligencia["MAX(id_inteligencia)"] = Null Then
+    Idn = 0
+  Else
+    Idn = CInt(hResultadoInteligencia["MAX(id_inteligencia)"]) + 1
+  Endif
+
+  FMain.txtIdPrompt.Text = Idn
+  FMain.txtIdentificador.SetFocus
 
 End
