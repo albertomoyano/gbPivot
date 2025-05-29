@@ -971,6 +971,11 @@ Public Sub btnPromptGuardar_Click()
   btnPromptGuardar.Visible = False
   btnPromptGuardarCambios.Visible = False
 
+  ' Habilitamos los campos de entrada
+  txtIdentificador.Enabled = False
+  txtIdentificador.ReadOnly = True
+  txtIdentificador.Background = Color.Background
+
   m_Inteligencia.GuardarPrimeraVezInteligencia()
   m_Inteligencia.ConsultaBBDDinteligencia()
 
