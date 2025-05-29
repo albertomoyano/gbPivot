@@ -1005,3 +1005,15 @@ Public Sub ViewgridAI_Click()
   btnPromptGuardarCambios.Visible = True
 
 End
+
+Public Sub btnPromptGuardarCambios_Click()
+
+  btnPromptNuevo.Visible = True
+  btnPromptBorrar.Visible = False
+  btnPromptGuardar.Visible = False
+  btnPromptGuardarCambios.Visible = False
+
+  m_Inteligencia.GuardarCambiosInteligencia()
+  m_Inteligencia.ConsultaBBDDinteligencia()
+
+End
