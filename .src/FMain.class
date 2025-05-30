@@ -1022,3 +1022,45 @@ Public Sub btnPromptGuardarCambios_Click()
   m_Inteligencia.ConsultaBBDDinteligencia()
 
 End
+
+Public Sub MostrarAyuda()
+
+  Dim oControl As Object
+  Dim sNombreCampo As String
+  Dim fAyuda As F_Ayudas
+
+  ' Obtener el control que tiene el foco con manejo de errores
+  Try oControl = Me.ActiveControl
+
+  If Error Then
+    Message.Info("No se pudo determinar el control activo.")
+    Return
+  Endif
+
+  If oControl = Null Then
+    Message.Info("No hay ningún control seleccionado.")
+    Return
+  Endif
+
+  ' Verificar si es un TextBox
+  If TypeOf(oControl) = "TextBox" Then
+    sNombreCampo = oControl.Name
+
+    ' Crear y mostrar formulario de ayuda
+    fAyuda = New F_Ayudas
+    fAyuda.CargarAyuda(sNombreCampo)
+    fAyuda.ShowModal()
+
+  Else
+    Message.Info("Seleccione un campo de texto para obtener ayuda.")
+  Endif
+
+End
+
+Public Sub Form_KeyRelease()
+
+  If Key.code = Key.F1 Then
+    f_Ayudas.ShowModal()
+  Endif
+
+End

@@ -1,0 +1,19 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  Move(0,0,702,423)
+  #Scaled = False
+  Resizable = False
+  Arrangement = Arrange.Fill
+  Spacing = True
+  Margin = True
+  Padding = 4
+  { contenido TextArea
+    Move(18,18,513,243)
+    Background = Color.SoftOrange
+    Expand = True
+    ReadOnly = True
+    Wrap = True
+    ScrollBar = Scroll.Vertical
+  }
+}

@@ -351,7 +351,7 @@
       Arrangement = Arrange.Vertical
       Padding = 4
       { TabPanel1 TabPanel
-        Move(18,18,1116,693)
+        Move(18,18,1116,774)
         Expand = True
         Arrangement = Arrange.Vertical
         Spacing = True
@@ -363,7 +363,7 @@
         Text = ("Metadatos")
         Picture = Picture["iconos/metadatos.svg"]
         { TabPanel3 TabPanel
-          Move(9,9,1062,612)
+          Move(9,9,1062,711)
           Expand = True
           Arrangement = Arrange.Fill
           Spacing = True
@@ -375,7 +375,7 @@
           Text = ("Libro     ")
           Picture = Picture["iconos/titulo.svg"]
           { ScrollViewLibro ScrollView
-            Move(9,18,909,540)
+            Move(9,18,909,639)
             Expand = True
             Arrangement = Arrange.Vertical
             Spacing = True
@@ -385,7 +385,7 @@
             { HBox73 HBox
               Move(0,0,783,36)
               { lblKEYWORDS6 Label
-                Move(9,0,162,36)
+                Move(0,0,162,36)
                 #Translate = False
                 Alignment = Align.Right
                 Text = "Imagen de tapa "
@@ -407,7 +407,7 @@
             { HBox74 HBox
               Move(0,36,783,36)
               { Label32 Label
-                Move(9,0,162,36)
+                Move(0,0,162,36)
                 Alignment = Align.Right
                 Text = ("Título ")
               }
@@ -422,7 +422,7 @@
             { HBox75 HBox
               Move(0,72,783,36)
               { Label33 Label
-                Move(18,0,162,36)
+                Move(0,0,162,36)
                 Alignment = Align.Right
                 Text = ("Subtítulo ")
               }
@@ -507,11 +507,11 @@
                 #Public = True
                 Picture = Picture["iconos/sincronizar.svg"]
               }
-              { !txtSORTglosario5 TextBox
+              { !txtURLMetadatosLibro TextBox
                 Move(216,0,216,36)
                 #Public = True
                 Expand = True
-                Placeholder = ("Este valor indica como makeindex deberı́a ordenar las entradas.")
+                Placeholder = ("Ctrol + F1 para obtener ayuda")
               }
             }
             { HBox82 HBox
@@ -547,8 +547,22 @@
                 Placeholder = ("Este valor indica como makeindex deberı́a ordenar las entradas.")
               }
             }
-            { HBox99 HBox
+            { HBox101 HBox
               Move(0,360,783,36)
+              { lblLANGID13 Label
+                Move(0,0,162,36)
+                Alignment = Align.Right
+                Text = ("Palabras clave (es) ")
+              }
+              { !txtSORTglosario9 TextBox
+                Move(171,0,216,36)
+                #Public = True
+                Expand = True
+                Placeholder = ("Este valor indica como makeindex deberı́a ordenar las entradas.")
+              }
+            }
+            { HBox99 HBox
+              Move(0,396,783,36)
               { lblLANGID11 Label
                 Move(0,0,162,36)
                 Alignment = Align.Right
@@ -566,8 +580,22 @@
                 Placeholder = ("Este valor indica como makeindex deberı́a ordenar las entradas.")
               }
             }
+            { HBox102 HBox
+              Move(0,432,783,36)
+              { lblLANGID14 Label
+                Move(0,0,162,36)
+                Alignment = Align.Right
+                Text = ("Palabras clave (en) ")
+              }
+              { !txtSORTglosario10 TextBox
+                Move(171,0,216,36)
+                #Public = True
+                Expand = True
+                Placeholder = ("Este valor indica como makeindex deberı́a ordenar las entradas.")
+              }
+            }
             { HBox100 HBox
-              Move(0,396,783,36)
+              Move(0,468,783,36)
               { lblLANGID12 Label
                 Move(0,0,162,36)
                 Alignment = Align.Right
@@ -580,6 +608,20 @@
               }
               { !txtSORTglosario8 TextBox
                 Move(216,0,216,36)
+                #Public = True
+                Expand = True
+                Placeholder = ("Este valor indica como makeindex deberı́a ordenar las entradas.")
+              }
+            }
+            { HBox103 HBox
+              Move(0,504,783,36)
+              { lblLANGID15 Label
+                Move(0,0,162,36)
+                Alignment = Align.Right
+                Text = ("Palabras clave (pt) ")
+              }
+              { !txtSORTglosario11 TextBox
+                Move(171,0,216,36)
                 #Public = True
                 Expand = True
                 Placeholder = ("Este valor indica como makeindex deberı́a ordenar las entradas.")
@@ -3431,7 +3473,7 @@
         Index = 0
       }
       { TabPanel2 TabPanel
-        Move(18,729,666,261)
+        Move(27,801,666,261)
         Visible = False
         Arrangement = Arrange.Fill
         Count = 2

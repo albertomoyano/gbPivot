@@ -1,0 +1,26 @@
+' Gambas class file
+
+Public Sub CargarAyuda(sCampo As String)
+
+  Dim hResult As Result
+  Dim sQuery As String
+
+  ' Consulta para obtener la ayuda del campo específico
+  sQuery = "SELECT contenido FROM ayudas WHERE campo = ?"
+
+  Try hResult = m_OnOff_y_Red.meConn.Exec(sQuery, sCampo)
+
+  If Error Then
+    Message.Error("Error al cargar ayuda: " & Error.Text)
+    Return
+  Endif
+
+  If hResult.Available Then
+    contenido.Text = hResult!contenido
+    Me.Title = "Ayuda para: " & sCampo
+  Else
+    contenido.Text = "No hay ayuda disponible para este campo."
+    Me.Title = "Ayuda para: " & sCampo
+  Endif
+
+End
