@@ -375,7 +375,7 @@
           Text = ("Libro     ")
           Picture = Picture["iconos/titulo.svg"]
           { ScrollViewLibro ScrollView
-            Move(9,18,909,378)
+            Move(9,18,909,540)
             Expand = True
             Arrangement = Arrange.Vertical
             Spacing = True
@@ -385,7 +385,7 @@
             { HBox73 HBox
               Move(0,0,783,36)
               { lblKEYWORDS6 Label
-                Move(9,0,144,36)
+                Move(9,0,162,36)
                 #Translate = False
                 Alignment = Align.Right
                 Text = "Imagen de tapa "
@@ -407,9 +407,9 @@
             { HBox74 HBox
               Move(0,36,783,36)
               { Label32 Label
-                Move(9,0,144,32)
+                Move(9,0,162,36)
                 Alignment = Align.Right
-                Text = ("Description ")
+                Text = ("Título ")
               }
               { !txtDESCRIPTIONglosario2 TextBox AllTextBoxes
                 Name = "txtDESCRIPTIONglosario2"
@@ -422,9 +422,9 @@
             { HBox75 HBox
               Move(0,72,783,36)
               { Label33 Label
-                Move(18,0,144,32)
+                Move(18,0,162,36)
                 Alignment = Align.Right
-                Text = ("Primera vez ")
+                Text = ("Subtítulo ")
               }
               { !txtFIRSTglosario2 TextBox
                 Move(171,0,135,36)
@@ -433,26 +433,12 @@
                 Placeholder = ("Esta entrada aparecerá en el texto del documento la primera vez que se use.")
               }
             }
-            { HBox76 HBox
-              Move(0,108,783,36)
-              { Label34 Label
-                Move(36,0,144,32)
-                Alignment = Align.Right
-                Text = ("Text ")
-              }
-              { !txtTEXTglosario2 TextBox
-                Move(297,0,135,36)
-                #Public = True
-                Expand = True
-                Placeholder = ("Esta entrada aparecerá en el texto del documento.")
-              }
-            }
             { HBox78 HBox
-              Move(0,144,783,36)
+              Move(0,108,783,36)
               { Label35 Label
-                Move(18,0,144,32)
+                Move(0,0,162,36)
                 Alignment = Align.Right
-                Text = ("Firstplural ")
+                Text = ("Idioma ")
               }
               { !txtFIRSTPLURALglosario2 TextBox AllTextBoxes
                 Name = "txtFIRSTPLURALglosario2"
@@ -462,29 +448,138 @@
                 Placeholder = ("Esta entrada es igual que plural, pero es solo válida para la primera vez que se llame a \\glspl.")
               }
             }
-            { HBox82 HBox
-              Move(0,180,783,36)
-              { lblLANGID4 Label
-                Move(0,0,144,36)
+            { HBox76 HBox
+              Move(0,144,783,36)
+              { Label34 Label
+                Move(0,0,162,36)
                 Alignment = Align.Right
-                Text = ("Plural ")
+                Text = ("ISBN ")
+              }
+              { !btnMostrarTextoExtendido6 Button
+                Move(171,0,36,36)
+                #Public = True
+                Picture = Picture["iconos/comp.svg"]
+              }
+              { !txtTEXTglosario2 TextBox
+                Move(297,0,135,36)
+                #Public = True
+                Expand = True
+                Placeholder = ("Esta entrada aparecerá en el texto del documento.")
+              }
+            }
+            { HBox83 HBox
+              Move(0,180,783,36)
+              { lblLANGID5 Label
+                Move(0,0,162,36)
+                Alignment = Align.Right
+                Text = ("eISBN ")
+              }
+              { !txtSORTglosario2 TextBox
+                Move(171,0,216,36)
+                #Public = True
+                Expand = True
+                Placeholder = ("Este valor indica como makeindex deberı́a ordenar las entradas.")
+              }
+            }
+            { HBox96 HBox
+              Move(0,216,783,36)
+              { lblLANGID8 Label
+                Move(0,0,162,36)
+                Alignment = Align.Right
+                Text = ("DOI ")
+              }
+              { !txtSORTglosario4 TextBox
+                Move(171,0,216,36)
+                #Public = True
+                Expand = True
+                Placeholder = ("Este valor indica como makeindex deberı́a ordenar las entradas.")
+              }
+            }
+            { HBox97 HBox
+              Move(0,252,783,36)
+              { lblLANGID9 Label
+                Move(0,0,162,36)
+                Alignment = Align.Right
+                Text = ("URL ")
+              }
+              { !btnMostrarTextoExtendido5 Button
+                Move(171,0,36,36)
+                #Public = True
+                Picture = Picture["iconos/sincronizar.svg"]
+              }
+              { !txtSORTglosario5 TextBox
+                Move(216,0,216,36)
+                #Public = True
+                Expand = True
+                Placeholder = ("Este valor indica como makeindex deberı́a ordenar las entradas.")
+              }
+            }
+            { HBox82 HBox
+              Move(0,288,783,36)
+              { lblLANGID4 Label
+                Move(0,0,162,36)
+                Alignment = Align.Right
+                Text = ("Total de páginas ")
               }
               { !txtPLURALglosario2 TextBox
-                Move(162,0,216,36)
+                Move(171,0,216,36)
                 #Public = True
                 Expand = True
                 Placeholder = ("Esta entrada aparecerá en el texto cuando se utilice \\glspl.")
               }
             }
-            { HBox83 HBox
-              Move(0,216,783,36)
-              { lblLANGID5 Label
-                Move(0,0,144,36)
+            { HBox98 HBox
+              Move(0,324,783,36)
+              { lblLANGID10 Label
+                Move(0,0,162,36)
                 Alignment = Align.Right
-                Text = ("Sort ")
+                Text = ("Resumen (español) ")
               }
-              { !txtSORTglosario2 TextBox
-                Move(162,0,216,36)
+              { !btnMostrarTextoExtendido2 Button
+                Move(171,0,36,36)
+                #Public = True
+                Picture = Picture["iconos/schedule.svg"]
+              }
+              { !txtSORTglosario6 TextBox
+                Move(216,0,216,36)
+                #Public = True
+                Expand = True
+                Placeholder = ("Este valor indica como makeindex deberı́a ordenar las entradas.")
+              }
+            }
+            { HBox99 HBox
+              Move(0,360,783,36)
+              { lblLANGID11 Label
+                Move(0,0,162,36)
+                Alignment = Align.Right
+                Text = ("Resumen (inglés) ")
+              }
+              { !btnMostrarTextoExtendido3 Button
+                Move(171,0,36,36)
+                #Public = True
+                Picture = Picture["iconos/schedule.svg"]
+              }
+              { !txtSORTglosario7 TextBox
+                Move(216,0,216,36)
+                #Public = True
+                Expand = True
+                Placeholder = ("Este valor indica como makeindex deberı́a ordenar las entradas.")
+              }
+            }
+            { HBox100 HBox
+              Move(0,396,783,36)
+              { lblLANGID12 Label
+                Move(0,0,162,36)
+                Alignment = Align.Right
+                Text = ("Resumen (portugues) ")
+              }
+              { !btnMostrarTextoExtendido4 Button
+                Move(171,0,36,36)
+                #Public = True
+                Picture = Picture["iconos/schedule.svg"]
+              }
+              { !txtSORTglosario8 TextBox
+                Move(216,0,216,36)
                 #Public = True
                 Expand = True
                 Placeholder = ("Este valor indica como makeindex deberı́a ordenar las entradas.")
