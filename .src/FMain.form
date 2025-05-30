@@ -363,7 +363,7 @@
         Text = ("Metadatos")
         Picture = Picture["iconos/metadatos.svg"]
         { TabPanel3 TabPanel
-          Move(9,9,1062,711)
+          Move(18,18,1062,711)
           Expand = True
           Arrangement = Arrange.Fill
           Spacing = True
@@ -375,7 +375,7 @@
           Text = ("Libro     ")
           Picture = Picture["iconos/titulo.svg"]
           { ScrollViewLibro ScrollView
-            Move(9,18,909,639)
+            Move(9,18,837,1278)
             Expand = True
             Arrangement = Arrange.Vertical
             Spacing = True
@@ -383,7 +383,7 @@
             Border = False
             ScrollBar = Scroll.Vertical
             { HBox73 HBox
-              Move(0,0,783,36)
+              Move(27,0,783,36)
               { lblKEYWORDS6 Label
                 Move(0,0,162,36)
                 #Translate = False
@@ -416,7 +416,6 @@
                 Move(171,0,135,36)
                 #Public = True
                 Expand = True
-                Placeholder = ("La descripción del término.")
               }
             }
             { HBox75 HBox
@@ -430,7 +429,6 @@
                 Move(171,0,135,36)
                 #Public = True
                 Expand = True
-                Placeholder = ("Esta entrada aparecerá en el texto del documento la primera vez que se use.")
               }
             }
             { HBox78 HBox
@@ -445,7 +443,6 @@
                 Move(171,0,135,36)
                 #Public = True
                 Expand = True
-                Placeholder = ("Esta entrada es igual que plural, pero es solo válida para la primera vez que se llame a \\glspl.")
               }
             }
             { HBox76 HBox
@@ -464,7 +461,6 @@
                 Move(297,0,135,36)
                 #Public = True
                 Expand = True
-                Placeholder = ("Esta entrada aparecerá en el texto del documento.")
               }
             }
             { HBox83 HBox
@@ -478,7 +474,6 @@
                 Move(171,0,216,36)
                 #Public = True
                 Expand = True
-                Placeholder = ("Este valor indica como makeindex deberı́a ordenar las entradas.")
               }
             }
             { HBox96 HBox
@@ -492,7 +487,6 @@
                 Move(171,0,216,36)
                 #Public = True
                 Expand = True
-                Placeholder = ("Este valor indica como makeindex deberı́a ordenar las entradas.")
               }
             }
             { HBox97 HBox
@@ -511,7 +505,6 @@
                 Move(216,0,216,36)
                 #Public = True
                 Expand = True
-                Placeholder = ("Ctrol + F1 para obtener ayuda")
               }
             }
             { HBox82 HBox
@@ -525,11 +518,36 @@
                 Move(171,0,216,36)
                 #Public = True
                 Expand = True
-                Placeholder = ("Esta entrada aparecerá en el texto cuando se utilice \\glspl.")
               }
             }
             { HBox98 HBox
               Move(0,324,783,36)
+              { lblLANGID19 Label
+                Move(0,0,162,36)
+                Alignment = Align.Right
+                Text = ("Formato ")
+              }
+              { !txtPLURALglosario10 TextBox
+                Move(171,0,216,36)
+                #Public = True
+                Expand = True
+              }
+            }
+            { HBox99 HBox
+              Move(0,360,783,36)
+              { lblLANGID20 Label
+                Move(0,0,162,36)
+                Alignment = Align.Right
+                Text = ("Colección/Serie ")
+              }
+              { !txtPLURALglosario11 TextBox
+                Move(171,0,216,36)
+                #Public = True
+                Expand = True
+              }
+            }
+            { HBox100 HBox
+              Move(0,396,783,36)
               { lblLANGID10 Label
                 Move(0,0,162,36)
                 Alignment = Align.Right
@@ -544,11 +562,10 @@
                 Move(216,0,216,36)
                 #Public = True
                 Expand = True
-                Placeholder = ("Este valor indica como makeindex deberı́a ordenar las entradas.")
               }
             }
             { HBox101 HBox
-              Move(0,360,783,36)
+              Move(0,432,783,36)
               { lblLANGID13 Label
                 Move(0,0,162,36)
                 Alignment = Align.Right
@@ -558,11 +575,10 @@
                 Move(171,0,216,36)
                 #Public = True
                 Expand = True
-                Placeholder = ("Este valor indica como makeindex deberı́a ordenar las entradas.")
               }
             }
-            { HBox99 HBox
-              Move(0,396,783,36)
+            { HBox102 HBox
+              Move(0,468,783,36)
               { lblLANGID11 Label
                 Move(0,0,162,36)
                 Alignment = Align.Right
@@ -577,11 +593,10 @@
                 Move(216,0,216,36)
                 #Public = True
                 Expand = True
-                Placeholder = ("Este valor indica como makeindex deberı́a ordenar las entradas.")
               }
             }
-            { HBox102 HBox
-              Move(0,432,783,36)
+            { HBox103 HBox
+              Move(0,504,783,36)
               { lblLANGID14 Label
                 Move(0,0,162,36)
                 Alignment = Align.Right
@@ -591,11 +606,10 @@
                 Move(171,0,216,36)
                 #Public = True
                 Expand = True
-                Placeholder = ("Este valor indica como makeindex deberı́a ordenar las entradas.")
               }
             }
-            { HBox100 HBox
-              Move(0,468,783,36)
+            { HBox104 HBox
+              Move(0,540,783,36)
               { lblLANGID12 Label
                 Move(0,0,162,36)
                 Alignment = Align.Right
@@ -610,11 +624,10 @@
                 Move(216,0,216,36)
                 #Public = True
                 Expand = True
-                Placeholder = ("Este valor indica como makeindex deberı́a ordenar las entradas.")
               }
             }
-            { HBox103 HBox
-              Move(0,504,783,36)
+            { HBox105 HBox
+              Move(0,576,783,36)
               { lblLANGID15 Label
                 Move(0,0,162,36)
                 Alignment = Align.Right
@@ -624,7 +637,429 @@
                 Move(171,0,216,36)
                 #Public = True
                 Expand = True
-                Placeholder = ("Este valor indica como makeindex deberı́a ordenar las entradas.")
+              }
+            }
+            { HBox106 HBox
+              Move(27,612,783,36)
+              { lblLANGID16 Label
+                Move(0,0,162,36)
+                Alignment = Align.Right
+                Text = ("Licencia ")
+              }
+              { ComboBox1 ComboBox
+                Move(171,0,162,36)
+                ReadOnly = True
+              }
+            }
+            { HBox108 HBox
+              Move(0,648,783,36)
+              { lblLANGID18 Label
+                Move(0,0,162,36)
+                Alignment = Align.Right
+                Text = ("URL licencia ")
+              }
+              { !txtPLURALglosario5 TextBox
+                Move(171,0,216,36)
+                #Public = True
+                Expand = True
+              }
+            }
+            { HBox109 HBox
+              Move(0,684,783,36)
+              { lblLANGID21 Label
+                Move(0,0,162,36)
+                Alignment = Align.Right
+                Text = ("Editorial ")
+              }
+              { !txtPLURALglosario6 TextBox
+                Move(171,0,216,36)
+                #Public = True
+                Expand = True
+              }
+            }
+            { HBox110 HBox
+              Move(0,720,783,36)
+              { lblLANGID22 Label
+                Move(0,0,162,36)
+                Alignment = Align.Right
+                Text = ("URL editorial ")
+              }
+              { !txtPLURALglosario7 TextBox
+                Move(171,0,216,36)
+                #Public = True
+                Expand = True
+              }
+            }
+            { HBox111 HBox
+              Move(0,756,783,36)
+              { lblLANGID23 Label
+                Move(0,0,162,36)
+                Alignment = Align.Right
+                Text = ("Tipo de documento ")
+              }
+              { ComboBox2 ComboBox
+                Move(171,0,162,36)
+                ReadOnly = True
+              }
+            }
+            { HBox112 HBox
+              Move(0,792,783,477)
+              { TabPanel4 TabPanel
+                Move(18,9,1071,369)
+                Expand = True
+                Arrangement = Arrange.Fill
+                Spacing = True
+                Margin = True
+                Padding = 4
+                Border = False
+                Count = 2
+                Highlight = True
+                Index = 0
+                Text = ("Autor(es) y colaboradores del libro     ")
+                Picture = Picture["iconos/autores.svg"]
+                { TabStrip2 TabPanel
+                  Move(18,27,1026,288)
+                  Expand = True
+                  Arrangement = Arrange.Fill
+                  Spacing = True
+                  Margin = True
+                  Padding = 4
+                  Border = False
+                  Count = 2
+                  Highlight = True
+                  Index = 0
+                  Text = ("Autoría     ")
+                  Picture = Picture["iconos/candado-abierto.svg"]
+                  { HBox200 VBox
+                    Move(9,0,999,234)
+                    { HBox227 HBox
+                      Move(9,0,990,36)
+                      { btnNuevoAutor Button
+                        Move(0,0,36,36)
+                        NoTabFocus = True
+                        Picture = Picture["iconos/+nuevo.svg"]
+                      }
+                      { btnGuardarAutor Button
+                        Move(36,0,36,36)
+                        Picture = Picture["iconos/guardar.svg"]
+                      }
+                      { btnGuardarCambiosAutor Button
+                        Move(72,0,36,36)
+                        Picture = Picture["iconos/guardarComo.svg"]
+                      }
+                      { btnBorrarAutor Button
+                        Move(117,0,36,36)
+                        NoTabFocus = True
+                        Picture = Picture["iconos/borrar.svg"]
+                      }
+                      { Spring12 Spring
+                        Move(279,0,171,36)
+                      }
+                    }
+                    { HBox228 HBox
+                      Move(9,45,990,4)
+                    }
+                    { HBox201 HBox
+                      Move(9,63,990,36)
+                      { Label150 Label
+                        Move(-99,0,203,36)
+                        Alignment = Align.Right
+                        Text = ("Rol  ")
+                      }
+                      { !cmbRolAutores ComboBox
+                        Move(108,0,180,36)
+                        #Public = True
+                        ReadOnly = True
+                      }
+                      { Separator22 Separator
+                        Move(306,0,8,36)
+                        Foreground = Color.Transparent
+                      }
+                      { txtDescripcion TextBox
+                        Move(342,0,171,36)
+                        Background = Color.Background
+                        Expand = True
+                        ReadOnly = True
+                      }
+                      { txtnombreAutorGHP TextLabel
+                        Move(549,0,144,36)
+                        Visible = False
+                        Enabled = False
+                        Alignment = Align.Normal
+                      }
+                      { txtIdAutorNuevo TextLabel
+                        Move(720,0,162,36)
+                        Visible = False
+                        Enabled = False
+                        Alignment = Align.Normal
+                      }
+                    }
+                    { HBox212 HBox
+                      Move(9,108,990,4)
+                    }
+                    { HBox203 HBox
+                      Move(9,117,990,36)
+                      { Label149 Label
+                        Move(45,0,203,36)
+                        Alignment = Align.Right
+                        Text = ("Autor  ")
+                      }
+                      { !txtAutor TextBox
+                        Move(252,0,203,36)
+                        #Public = True
+                        Enabled = False
+                        Expand = True
+                      }
+                      { btnBuscarORCID Button
+                        Move(459,0,36,36)
+                        NoTabFocus = True
+                      }
+                      { Label154 Label
+                        Move(549,0,207,36)
+                        AutoResize = True
+                        Alignment = Align.Right
+                        Text = ("    ORCID  ")
+                      }
+                      { !txtORCID TextBox
+                        Move(765,0,203,36)
+                        #Public = True
+                        Enabled = False
+                        Expand = True
+                      }
+                    }
+                    { HBox219 HBox
+                      Move(9,162,990,4)
+                    }
+                    { tblAutores TableView
+                      Move(9,171,243,108)
+                      Expand = True
+                      Mode = Select.Single
+                      ShowCursor = True
+                      Header = GridView.Horizontal
+                      ScrollBar = Scroll.Vertical
+                      AutoResize = False
+                      Resizable = False
+                    }
+                  }
+                  Index = 1
+                  Text = ("Colaboraciones     ")
+                  Picture = Picture["iconos/candado-abierto.svg"]
+                  { HBox216 VBox
+                    Move(9,9,999,234)
+                    { HBox225 HBox
+                      Move(9,0,990,36)
+                      { btnNuevoColaborador Button
+                        Move(0,0,36,36)
+                        NoTabFocus = True
+                        Picture = Picture["iconos/+nuevo.svg"]
+                      }
+                      { btnGuardarColaborador Button
+                        Move(36,0,36,36)
+                        Picture = Picture["iconos/guardar.svg"]
+                      }
+                      { btnGuardarCambiosColaborador Button
+                        Move(72,0,36,36)
+                        Picture = Picture["iconos/guardarComo.svg"]
+                      }
+                      { btnBorrarColaborador Button
+                        Move(117,0,36,36)
+                        NoTabFocus = True
+                        Picture = Picture["iconos/borrar.svg"]
+                      }
+                      { Spring11 Spring
+                        Move(288,0,117,36)
+                      }
+                    }
+                    { HBox221 HBox
+                      Move(18,45,990,4)
+                    }
+                    { HBox217 HBox
+                      Move(18,54,990,36)
+                      { Label229 Label
+                        Move(-81,0,203,36)
+                        Alignment = Align.Right
+                        Text = ("Rol  ")
+                      }
+                      { !cmbRolColaborador ComboBox
+                        Move(135,0,180,36)
+                        #Public = True
+                        ReadOnly = True
+                      }
+                      { Separator23 Separator
+                        Move(333,0,8,36)
+                        Foreground = Color.Transparent
+                      }
+                      { txtDescripcionColaboradores TextBox
+                        Move(369,0,171,36)
+                        Background = Color.Background
+                        Expand = True
+                        ReadOnly = True
+                      }
+                      { txtnombreColaboradorGHP TextLabel
+                        Move(549,0,207,36)
+                        Visible = False
+                        Enabled = False
+                        Alignment = Align.Normal
+                      }
+                      { txtIdColaboradorNuevo TextLabel
+                        Move(756,0,162,36)
+                        Visible = False
+                        Enabled = False
+                        Alignment = Align.Normal
+                      }
+                    }
+                    { HBox220 HBox
+                      Move(18,99,990,4)
+                    }
+                    { HBox267 HBox
+                      Move(18,108,990,36)
+                      { Label230 Label
+                        Move(27,0,203,36)
+                        Alignment = Align.Right
+                        Text = ("Colaborador/a  ")
+                      }
+                      { !txtColaborador TextBox
+                        Move(243,0,203,36)
+                        #Public = True
+                        Enabled = False
+                        Expand = True
+                      }
+                      { btnBuscarORCIDcolaborador Button
+                        Move(450,0,36,36)
+                        NoTabFocus = True
+                      }
+                      { Label231 Label
+                        Move(495,0,207,36)
+                        AutoResize = True
+                        Alignment = Align.Right
+                        Text = ("    ORCID  ")
+                      }
+                      { !txtORCIDcolaborador TextBox
+                        Move(765,0,203,36)
+                        #Public = True
+                        Enabled = False
+                        Expand = True
+                      }
+                    }
+                    { HBox226 HBox
+                      Move(18,153,990,4)
+                    }
+                    { tblColaboradores TableView
+                      Move(18,171,243,108)
+                      Expand = True
+                      Mode = Select.Single
+                      ShowCursor = True
+                      Header = GridView.Horizontal
+                      ScrollBar = Scroll.Vertical
+                      AutoResize = False
+                      Resizable = False
+                    }
+                  }
+                  Index = 0
+                }
+                Index = 1
+                Text = ("Capítulos del libro     ")
+                Picture = Picture["iconos/titulo.svg"]
+                { HBox199 VBox
+                  Move(27,36,774,270)
+                  { HBox198 HBox
+                    Move(18,0,720,36)
+                    { btnNuevoCapitulo Button
+                      Move(27,0,36,36)
+                      NoTabFocus = True
+                      Picture = Picture["iconos/+nuevo.svg"]
+                    }
+                    { btnGuardarCapitulo Button
+                      Move(63,0,36,36)
+                      Picture = Picture["iconos/guardar.svg"]
+                    }
+                    { btnGuardarCambiosCapitulo Button
+                      Move(99,0,36,36)
+                      Picture = Picture["iconos/guardarComo.svg"]
+                    }
+                    { btnBorrarCapitulo Button
+                      Move(135,0,36,36)
+                      NoTabFocus = True
+                      Picture = Picture["iconos/borrar.svg"]
+                    }
+                    { txtnombreArchivoCapNuevo TextLabel
+                      Move(216,0,207,36)
+                      Visible = False
+                      Enabled = False
+                      Alignment = Align.Normal
+                    }
+                    { txtIdCapituloNuevo TextLabel
+                      Move(441,0,162,36)
+                      Visible = False
+                      Alignment = Align.Normal
+                    }
+                    { Spring8 Spring
+                      Move(603,0,45,36)
+                    }
+                  }
+                  { HBox222 HBox
+                    Move(18,45,990,4)
+                  }
+                  { HBox190 HBox
+                    Move(18,54,486,36)
+                    { Label151 Label
+                      Move(0,0,203,36)
+                      Alignment = Align.Right
+                      Text = ("Capítulo  ")
+                    }
+                    { !txtCapitulo TextBox
+                      Move(243,0,207,36)
+                      #Public = True
+                      Enabled = False
+                      Expand = True
+                    }
+                  }
+                  { HBox223 HBox
+                    Move(18,99,990,4)
+                  }
+                  { HBox202 HBox
+                    Move(9,117,738,36)
+                    { Label152 Label
+                      Move(0,0,203,36)
+                      Alignment = Align.Right
+                      Text = ("Rango de páginas  ")
+                    }
+                    { !txtRangoPaginas TextBox
+                      Move(243,0,144,36)
+                      #Public = True
+                      Enabled = False
+                    }
+                    { Separator3 Separator
+                      Move(396,0,16,36)
+                      Foreground = Color.Transparent
+                    }
+                    { chkURLdescarga CheckBox
+                      Move(477,0,117,36)
+                      AutoResize = True
+                      Text = ("URL de descarga  ")
+                    }
+                    { !txtURLdescarga TextBox
+                      Move(603,0,144,36)
+                      #Public = True
+                      Enabled = False
+                      Expand = True
+                    }
+                  }
+                  { HBox224 HBox
+                    Move(18,162,990,4)
+                  }
+                  { tblArticulos TableView
+                    Move(9,180,171,108)
+                    Expand = True
+                    Mode = Select.Single
+                    Padding = 0
+                    ShowCursor = True
+                    Header = GridView.Horizontal
+                    ScrollBar = Scroll.Vertical
+                    AutoResize = False
+                  }
+                }
+                Index = 0
               }
             }
           }

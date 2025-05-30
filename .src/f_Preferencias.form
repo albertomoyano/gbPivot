@@ -83,41 +83,57 @@
         Move(153,0,81,36)
         Expand = True
       }
+    }
+    { HBox14 HBox
+      Move(27,189,693,36)
       { Label6 Label
-        Move(234,0,144,36)
+        Move(0,0,144,36)
         Alignment = Align.Right
         Text = ("Tipo  ")
       }
       { cmbTipoProyecto ComboBox
-        Move(387,0,126,36)
+        Move(153,0,126,36)
         Expand = True
         ReadOnly = True
         List = [("Libro"), ("Revista")]
       }
+      { Label16 Label
+        Move(279,0,144,36)
+        Alignment = Align.Right
+        Text = ("Lenguaje  ")
+      }
+      { cmbTipoLenguaje ComboBox
+        Move(432,0,126,36)
+        Expand = True
+        ReadOnly = True
+        List = [("Asciidoc"), ("LaTeX")]
+      }
     }
     { HBox3 HBox
-      Move(27,189,693,36)
+      Move(27,225,693,36)
       { Label2 Label
         Move(9,0,144,36)
         Alignment = Align.Right
-        Text = ("Fecha creación  ")
+        Text = ("Fecha de inicio  ")
       }
-      { DateBox2 DateBox
-        Move(171,0,144,36)
+      { txtProyecto2 TextBox
+        Move(153,0,81,36)
+        Background = Color.Background
         Expand = True
+        ReadOnly = True
       }
       { Label7 Label
-        Move(306,0,144,36)
+        Move(315,0,144,36)
         Alignment = Align.Right
-        Text = ("Fecha cierre  ")
+        Text = ("Fecha de cierre  ")
       }
-      { DateBox1 DateBox
-        Move(495,0,144,36)
+      { txtProyecto3 TextBox
+        Move(486,0,81,36)
         Expand = True
       }
     }
     { HBox5 HBox
-      Move(27,225,693,36)
+      Move(27,261,693,36)
       { Label3 Label
         Move(0,0,144,36)
         Alignment = Align.Right
@@ -141,7 +157,7 @@
       }
     }
     { HBox4 HBox
-      Move(27,261,693,36)
+      Move(27,297,693,36)
       { Label5 Label
         Move(9,0,144,36)
         Alignment = Align.Right
@@ -328,8 +344,7 @@
       }
     }
     Index = 2
-    Text = ("GitHub     ")
-    Picture = Picture["iconos/gitremoto.svg"]
+    Text = ("Ayudas     ")
     Index = 0
   }
   { HBox1 HBox
