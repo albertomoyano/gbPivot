@@ -4,8 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>gbPivot</title>
-  <link rel="stylesheet" href="//unpkg.com/docsify/themes/vue.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+  
+  <style>
+      :root {
+        --theme-hue: 347;
+        --theme-color: #ce002b;
+      }
+  </style>
+
 </head>
+
 <body>
   <div id="app">Cargando documentación...</div>
   <script>
@@ -13,9 +23,16 @@
       name: 'gbPivot',
       repo: 'albertomoyano/gbPivot',
       loadSidebar: true,
-      loadNavbar: true
+      loadNavbar: true,
+	  logo: '/images/logotipo.png',
+	  loadFooter: true,
+      plugins: [
+      popup,
+      hideFromSideBar
+      ]
     };
   </script>
+	
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
 </body>
 </html>
