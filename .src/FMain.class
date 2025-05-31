@@ -1023,9 +1023,4 @@ Public Sub btnPromptGuardarCambios_Click()
 
 End
 
-Public Sub btnAyuda_Click()
-
-  f_Ayudas.CargarAyuda()
-  f_Ayudas.ShowModal
-
 End
