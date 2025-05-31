@@ -177,11 +177,13 @@
     <script>
       window.$docsify = {
         loadSidebar: true,
-        subMaxLevel: 2,
+        <!-- subMaxLevel: 2, -->
         loadFooter: true,
         repo: 'albertomoyano/gbPivot',
-        auto2top: true,
+		maxLevel: 2,  <!-- Maximum Table of content level. -->
+        <!-- auto2top: true, -->
         name: 'gbPivot',
+		nameLink: '/',  <!-- url for name -->
         logo: '/images/logotipo.png',
         plugins: [
           popup,
