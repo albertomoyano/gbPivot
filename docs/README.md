@@ -1,4 +1,4 @@
-<img alt="gbPivot" id="readme-logo" src="/images/logotipo.png"/>
+<img alt="gbPivot" id="readme-logo" src="https://github.com/albertomoyano/gbPivot/tree/main/docs/images/logotipo.png"/>
 
 <p id="lang-ver">Documentation para gbPivot (version: <code>0.8.0</code>)</p>
 
