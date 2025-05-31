@@ -1,19 +1,16 @@
 # Gambas Form File 3.0
 
 { Form Form
-  Move(0,0,702,423)
+  Move(0,0,846,540)
   #Scaled = False
   Resizable = False
   Arrangement = Arrange.Fill
   Spacing = True
   Margin = True
   Padding = 4
-  { contenido TextArea
-    Move(18,18,513,243)
-    Background = Color.SoftOrange
+  { WebViewAyuda WebView
+    Move(189,162,459,216)
     Expand = True
-    ReadOnly = True
-    Wrap = True
-    ScrollBar = Scroll.Vertical
+    Url = "https://albertomoyano.github.io/gbPivot/"
   }
 }

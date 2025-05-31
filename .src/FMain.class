@@ -1022,3 +1022,10 @@ Public Sub btnPromptGuardarCambios_Click()
   m_Inteligencia.ConsultaBBDDinteligencia()
 
 End
+
+Public Sub btnAyuda_Click()
+
+  f_Ayudas.CargarAyuda()
+  f_Ayudas.ShowModal
+
+End

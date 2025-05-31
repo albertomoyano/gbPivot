@@ -1,1 +1,11 @@
 ' Gambas class file
+
+Public Sub CargarAyuda()
+
+  Dim url As String
+
+  url = "https://albertomoyano.github.io/gbPivot/" '& pagina & ".html"
+
+  WebViewAyuda.Url = url
+
+End
