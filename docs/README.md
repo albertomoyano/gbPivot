@@ -1,6 +1,6 @@
 <img alt="gbPivot" id="readme-logo" src="images/logotipo.png"/>
 
-<p id="lang-ver">Documentation para gbPivot (version: <code>0.8.0</code>)</p>
+<p id="lang-ver">Documentation para gbPivot (version: <code>0.9.0</code>)</p>
 
 # gbPivot
 
