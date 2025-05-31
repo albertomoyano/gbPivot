@@ -1,5 +1,7 @@
 # Metadatos
 
-## Introducción a los Metadatos
+## Segundo Nivel
 
-Los metadatos en gbPivot permiten gestionar información estructurada sobre tus documentos en Asciidoc y LaTeX.
+Los metadatos en gbPivot permiten gestionar informaciÃ³n estructurada sobre tus documentos en Asciidoc y LaTeX.
+
+### Tercer nivel
