@@ -2,5 +2,5 @@
 - [Metadatos](metadatos.md)
 - [BibLaTeX](biblatex.md)
 - [Glosarios](glosarios.md)
+- [Apuntes](apuntes.md)
 - [Descarga](descarga.md)
-
