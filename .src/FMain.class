@@ -1022,5 +1022,3 @@ Public Sub btnPromptGuardarCambios_Click()
   m_Inteligencia.ConsultaBBDDinteligencia()
 
 End
-
-End
