@@ -351,39 +351,47 @@
       Arrangement = Arrange.Vertical
       Padding = 4
       { TabPanel1 TabPanel
-        Move(18,18,1116,774)
+        Move(27,63,1116,774)
         Expand = True
         Arrangement = Arrange.Vertical
         Spacing = True
         Margin = True
         Padding = 4
-        Border = False
         Count = 5
         Index = 0
         Text = ("Metadatos")
         Picture = Picture["iconos/metadatos.svg"]
         { TabPanel3 TabPanel
-          Move(18,18,1062,711)
+          Move(9,18,1062,711)
           Expand = True
           Arrangement = Arrange.Fill
           Spacing = True
           Margin = True
           Padding = 4
-          Border = False
           Count = 2
           Index = 0
           Text = ("Libro     ")
           Picture = Picture["iconos/titulo.svg"]
           { ScrollViewLibro ScrollView
-            Move(9,18,837,1278)
+            Move(9,9,837,1278)
             Expand = True
             Arrangement = Arrange.Vertical
             Spacing = True
             Padding = 4
             Border = False
             ScrollBar = Scroll.Vertical
+            { HBox107 HBox
+              Move(27,9,990,36)
+              { btnGuardarCambiosAutor2 Button
+                Move(0,0,36,36)
+                Picture = Picture["iconos/guardarComo.svg"]
+              }
+              { Spring9 Spring
+                Move(279,0,171,36)
+              }
+            }
             { HBox73 HBox
-              Move(27,0,783,36)
+              Move(27,45,783,36)
               { lblKEYWORDS6 Label
                 Move(0,0,162,36)
                 #Translate = False
@@ -405,7 +413,7 @@
               }
             }
             { HBox74 HBox
-              Move(0,36,783,36)
+              Move(0,81,783,36)
               { Label32 Label
                 Move(0,0,162,36)
                 Alignment = Align.Right
@@ -419,7 +427,7 @@
               }
             }
             { HBox75 HBox
-              Move(0,72,783,36)
+              Move(0,117,783,36)
               { Label33 Label
                 Move(0,0,162,36)
                 Alignment = Align.Right
@@ -432,7 +440,7 @@
               }
             }
             { HBox78 HBox
-              Move(0,108,783,36)
+              Move(0,153,783,36)
               { Label35 Label
                 Move(0,0,162,36)
                 Alignment = Align.Right
@@ -446,7 +454,7 @@
               }
             }
             { HBox76 HBox
-              Move(0,144,783,36)
+              Move(0,189,783,36)
               { Label34 Label
                 Move(0,0,162,36)
                 Alignment = Align.Right
@@ -458,13 +466,13 @@
                 Picture = Picture["iconos/comp.svg"]
               }
               { !txtTEXTglosario2 TextBox
-                Move(297,0,135,36)
+                Move(216,0,135,36)
                 #Public = True
                 Expand = True
               }
             }
             { HBox83 HBox
-              Move(0,180,783,36)
+              Move(0,225,783,36)
               { lblLANGID5 Label
                 Move(0,0,162,36)
                 Alignment = Align.Right
@@ -477,7 +485,7 @@
               }
             }
             { HBox96 HBox
-              Move(0,216,783,36)
+              Move(0,261,783,36)
               { lblLANGID8 Label
                 Move(0,0,162,36)
                 Alignment = Align.Right
@@ -490,7 +498,7 @@
               }
             }
             { HBox97 HBox
-              Move(0,252,783,36)
+              Move(0,297,783,36)
               { lblLANGID9 Label
                 Move(0,0,162,36)
                 Alignment = Align.Right
@@ -508,7 +516,7 @@
               }
             }
             { HBox82 HBox
-              Move(0,288,783,36)
+              Move(0,333,783,36)
               { lblLANGID4 Label
                 Move(0,0,162,36)
                 Alignment = Align.Right
@@ -521,33 +529,33 @@
               }
             }
             { HBox98 HBox
-              Move(0,324,783,36)
+              Move(0,369,783,36)
               { lblLANGID19 Label
                 Move(0,0,162,36)
                 Alignment = Align.Right
                 Text = ("Formato ")
               }
-              { !txtPLURALglosario10 TextBox
+              { !txtFormato TextBox
                 Move(171,0,216,36)
                 #Public = True
                 Expand = True
               }
             }
             { HBox99 HBox
-              Move(0,360,783,36)
+              Move(0,405,783,36)
               { lblLANGID20 Label
                 Move(0,0,162,36)
                 Alignment = Align.Right
                 Text = ("Colección/Serie ")
               }
-              { !txtPLURALglosario11 TextBox
+              { !txtColeccion TextBox
                 Move(171,0,216,36)
                 #Public = True
                 Expand = True
               }
             }
             { HBox100 HBox
-              Move(0,396,783,36)
+              Move(0,441,783,36)
               { lblLANGID10 Label
                 Move(0,0,162,36)
                 Alignment = Align.Right
@@ -558,14 +566,14 @@
                 #Public = True
                 Picture = Picture["iconos/schedule.svg"]
               }
-              { !txtSORTglosario6 TextBox
+              { !txtResumenES TextBox
                 Move(216,0,216,36)
                 #Public = True
                 Expand = True
               }
             }
             { HBox101 HBox
-              Move(0,432,783,36)
+              Move(0,477,783,36)
               { lblLANGID13 Label
                 Move(0,0,162,36)
                 Alignment = Align.Right
@@ -578,7 +586,7 @@
               }
             }
             { HBox102 HBox
-              Move(0,468,783,36)
+              Move(0,513,783,36)
               { lblLANGID11 Label
                 Move(0,0,162,36)
                 Alignment = Align.Right
@@ -589,14 +597,14 @@
                 #Public = True
                 Picture = Picture["iconos/schedule.svg"]
               }
-              { !txtSORTglosario7 TextBox
+              { !txtResumenEN TextBox
                 Move(216,0,216,36)
                 #Public = True
                 Expand = True
               }
             }
             { HBox103 HBox
-              Move(0,504,783,36)
+              Move(36,549,783,36)
               { lblLANGID14 Label
                 Move(0,0,162,36)
                 Alignment = Align.Right
@@ -609,7 +617,7 @@
               }
             }
             { HBox104 HBox
-              Move(0,540,783,36)
+              Move(0,585,783,36)
               { lblLANGID12 Label
                 Move(0,0,162,36)
                 Alignment = Align.Right
@@ -620,14 +628,14 @@
                 #Public = True
                 Picture = Picture["iconos/schedule.svg"]
               }
-              { !txtSORTglosario8 TextBox
+              { !txtResumenPT TextBox
                 Move(216,0,216,36)
                 #Public = True
                 Expand = True
               }
             }
             { HBox105 HBox
-              Move(0,576,783,36)
+              Move(0,621,783,36)
               { lblLANGID15 Label
                 Move(0,0,162,36)
                 Alignment = Align.Right
@@ -640,70 +648,73 @@
               }
             }
             { HBox106 HBox
-              Move(27,612,783,36)
+              Move(27,657,783,36)
               { lblLANGID16 Label
                 Move(0,0,162,36)
                 Alignment = Align.Right
                 Text = ("Licencia ")
               }
-              { ComboBox1 ComboBox
+              { cmbLicencia ComboBox
                 Move(171,0,162,36)
+                Expand = True
                 ReadOnly = True
               }
             }
             { HBox108 HBox
-              Move(0,648,783,36)
+              Move(0,693,783,36)
               { lblLANGID18 Label
                 Move(0,0,162,36)
                 Alignment = Align.Right
                 Text = ("URL licencia ")
               }
-              { !txtPLURALglosario5 TextBox
+              { !txtURLLicencia TextBox
                 Move(171,0,216,36)
                 #Public = True
+                Background = Color.Background
                 Expand = True
+                ReadOnly = True
               }
             }
             { HBox109 HBox
-              Move(0,684,783,36)
+              Move(0,729,783,36)
               { lblLANGID21 Label
                 Move(0,0,162,36)
                 Alignment = Align.Right
                 Text = ("Editorial ")
               }
-              { !txtPLURALglosario6 TextBox
+              { !txtEditorial TextBox
                 Move(171,0,216,36)
                 #Public = True
                 Expand = True
               }
             }
             { HBox110 HBox
-              Move(0,720,783,36)
+              Move(0,765,783,36)
               { lblLANGID22 Label
                 Move(0,0,162,36)
                 Alignment = Align.Right
                 Text = ("URL editorial ")
               }
-              { !txtPLURALglosario7 TextBox
+              { !txtURLEditorial TextBox
                 Move(171,0,216,36)
                 #Public = True
                 Expand = True
               }
             }
             { HBox111 HBox
-              Move(0,756,783,36)
+              Move(0,801,783,36)
               { lblLANGID23 Label
                 Move(0,0,162,36)
                 Alignment = Align.Right
                 Text = ("Tipo de documento ")
               }
-              { ComboBox2 ComboBox
+              { cmbTipoDocumento ComboBox
                 Move(171,0,162,36)
                 ReadOnly = True
               }
             }
             { HBox112 HBox
-              Move(0,792,783,477)
+              Move(0,837,783,477)
               { TabPanel4 TabPanel
                 Move(18,9,1071,369)
                 Expand = True
@@ -711,7 +722,6 @@
                 Spacing = True
                 Margin = True
                 Padding = 4
-                Border = False
                 Count = 2
                 Highlight = True
                 Index = 0
@@ -724,7 +734,6 @@
                   Spacing = True
                   Margin = True
                   Padding = 4
-                  Border = False
                   Count = 2
                   Highlight = True
                   Index = 0
