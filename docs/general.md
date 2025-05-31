@@ -1,6 +1,6 @@
 # General
 
-## Introducción a gbPivot
+## Introducción
 
 
 ### Tercer nivel
