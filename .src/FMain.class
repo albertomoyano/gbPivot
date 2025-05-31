@@ -1022,3 +1022,12 @@ Public Sub btnPromptGuardarCambios_Click()
   m_Inteligencia.ConsultaBBDDinteligencia()
 
 End
+
+Public Sub Menu9_Click()
+
+  Dim alberto As String
+
+  alberto = "https://albertomoyano.github.io/gbPivot/#/"
+  Shell "xdg-open " & Quote$(alberto) Wait
+
+End

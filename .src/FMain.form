@@ -389,10 +389,6 @@
               { Spring9 Spring
                 Move(279,0,171,36)
               }
-              { btnAyuda Button
-                Move(531,0,36,36)
-                Picture = Picture["iconos/ayuda.svg"]
-              }
             }
             { HBox73 HBox
               Move(27,45,783,36)
@@ -1323,10 +1319,6 @@
             Expand = True
             Alignment = Align.Center
             Wrap = False
-          }
-          { btnAyudaRevista2 Button
-            Move(972,0,36,36)
-            Picture = Picture["iconos/ayuda.svg"]
           }
         }
         { HBox24 HBox
@@ -3540,10 +3532,6 @@
             Expand = True
             Alignment = Align.Center
           }
-          { btnAyuda2 Button
-            Move(504,0,36,36)
-            Picture = Picture["iconos/ayuda.svg"]
-          }
           { !txtIDglosario TextBox
             Move(567,0,90,36)
             #Public = True
@@ -3761,10 +3749,6 @@
           { Spring5 Spring
             Move(432,0,72,36)
           }
-          { btnAyuda3 Button
-            Move(756,0,36,36)
-            Picture = Picture["iconos/ayuda.svg"]
-          }
         }
         { !DataBrowserChart DataBrowser
           Move(9,54,675,252)
@@ -3904,10 +3888,6 @@
                 ToolTip = ("Guardar cambios")
                 Picture = Picture["iconos/guardarComo.svg"]
               }
-            }
-            { btnAyuda4 Button
-              Move(720,0,36,36)
-              Picture = Picture["iconos/ayuda.svg"]
             }
           }
           { !ViewgridAI TableView
