@@ -1,15 +1,13 @@
 # Gambas Form File 3.0
 
 { Form Form
-  Move(0,0,846,540)
-  #Scaled = False
-  Resizable = False
+  MoveScaled(0,0,113.7778,71.1111)
   Arrangement = Arrange.Fill
   Spacing = True
   Margin = True
   Padding = 4
   { WebViewAyuda WebView
-    Move(189,162,459,216)
+    MoveScaled(21,18,51,24)
     Expand = True
     Url = "https://albertomoyano.github.io/gbPivot/"
   }
