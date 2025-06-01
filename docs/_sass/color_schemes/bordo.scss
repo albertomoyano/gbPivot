@@ -1,0 +1,16 @@
+// _sass/color_schemes/bordo.scss
+
+// Define el color bordo
+$bordo: #800000;
+
+// Reemplaza los colores violeta por bordo
+$purple-000: $bordo;
+$purple-100: $bordo;
+$purple-200: $bordo;
+$purple-300: $bordo;
+$purple-400: $bordo;
+$purple-500: $bordo;
+
+// Asegúrate de que los elementos que usan $purple utilicen el nuevo color
+$link-color: $purple-000;
+$btn-primary-color: $purple-000;
