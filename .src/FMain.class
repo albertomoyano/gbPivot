@@ -1027,7 +1027,7 @@ Public Sub Menu9_Click()
 
   Dim alberto As String
 
-  alberto = "https://albertomoyano.github.io/gbPivot/#/"
+  alberto = "https://albertomoyano.github.io/gbPivot/"
   Shell "xdg-open " & Quote$(alberto) Wait
 
 End
