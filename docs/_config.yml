@@ -11,10 +11,3 @@ search:
   previews: 2
   preview_words_before: 3
   preview_words_after: 3
-
-# Custom head con Google Fonts y CSS inline
-  <style>
-    body {
-      font-size: 18px !important;
-    }
-  </style>
