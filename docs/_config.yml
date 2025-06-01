@@ -1,6 +1,8 @@
 title: gbPivot
 description: A starter template for a Jeykll site using the Just the Docs theme!
 remote_theme: just-the-docs/just-the-docs
+plugins:
+  - jekyll-remote-theme
 color_scheme: bordo
 url: https://albertomoyano.github.io/gbPivot/
 search_enabled: true
