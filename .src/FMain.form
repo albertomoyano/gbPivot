@@ -1104,18 +1104,14 @@
               { Spring13 Spring
                 Move(279,0,171,36)
               }
-              { btnAyudaRevista Button
-                Move(531,0,36,36)
-                Picture = Picture["iconos/ayuda.svg"]
-              }
             }
             { HBox84 HBox
               Move(0,54,783,36)
               { lblKEYWORDS7 Label
-                Move(9,0,144,36)
+                Move(0,0,162,36)
                 #Translate = False
                 Alignment = Align.Right
-                Text = "Imagen "
+                Text = "Imagen de tapa "
               }
               { btbBuscarTapita Button
                 Move(198,0,36,36)
@@ -1134,7 +1130,7 @@
             { HBox85 HBox
               Move(0,90,783,36)
               { Label36 Label
-                Move(9,0,144,32)
+                Move(9,0,162,32)
                 Alignment = Align.Right
                 Text = ("Description ")
               }
@@ -1149,7 +1145,7 @@
             { HBox86 HBox
               Move(0,126,783,36)
               { Label37 Label
-                Move(18,0,144,32)
+                Move(18,0,162,32)
                 Alignment = Align.Right
                 Text = ("Primera vez ")
               }
@@ -1163,7 +1159,7 @@
             { HBox87 HBox
               Move(0,162,783,36)
               { Label38 Label
-                Move(153,0,144,32)
+                Move(27,-9,162,32)
                 Alignment = Align.Right
                 Text = ("Text ")
               }
@@ -1177,7 +1173,7 @@
             { HBox90 HBox
               Move(0,198,783,36)
               { Label41 Label
-                Move(18,0,144,32)
+                Move(18,0,162,32)
                 Alignment = Align.Right
                 Text = ("Firstplural ")
               }
@@ -1192,7 +1188,7 @@
             { HBox91 HBox
               Move(0,234,783,36)
               { lblLANGID6 Label
-                Move(0,0,144,36)
+                Move(0,0,162,36)
                 Alignment = Align.Right
                 Text = ("Plural ")
               }
@@ -1206,7 +1202,7 @@
             { HBox92 HBox
               Move(0,270,783,36)
               { lblLANGID7 Label
-                Move(0,0,144,36)
+                Move(0,0,162,36)
                 Alignment = Align.Right
                 Text = ("Sort ")
               }
@@ -1276,7 +1272,7 @@
           }
         }
         { HBox23 HBox
-          Move(9,261,1017,36)
+          Move(9,261,648,36)
           { BtnNuevoBib Button
             Move(0,0,36,36)
             NoTabFocus = True
@@ -1315,7 +1311,7 @@
             ReadOnly = True
           }
           { txtTOTALbib TextLabel
-            Move(495,0,218,36)
+            Move(441,0,218,36)
             Expand = True
             Alignment = Align.Center
             Wrap = False
