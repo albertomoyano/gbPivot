@@ -1,6 +1,6 @@
 <div style="text-align: center;">
   <img alt="gbPivot" id="readme-logo" src="images/logotipo.png" width="600" />
-<p id="lang-ver">Documentación para gbPivot (version: <code>0.14.0</code>)</p>
+<p id="lang-ver">Documentaci√≥n para gbPivot (version: <code>0.15.0</code>)</p>
 </div>
 
 # Inicio

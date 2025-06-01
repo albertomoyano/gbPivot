@@ -2,4 +2,4 @@
 
 ## Informe
 
-### [Homeoarchy](homeoarchy.md)
+[Homeoarchy](homeoarchy.md)
