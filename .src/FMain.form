@@ -40,7 +40,7 @@
   }
   { Menu1 Menu
     Text = ("Archivo")
-    { Menu10 Menu
+    { menuAbrirProyecto Menu
       Text = ("Abrir Proyecto")
     }
     { Menu5 Menu
@@ -125,7 +125,6 @@
       Move(27,135,189,90)
       #Public = True
       Expand = True
-      HideRoot = True
     }
     { HBox19 HBox
       Move(27,234,171,9)

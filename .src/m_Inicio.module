@@ -146,7 +146,6 @@ Public Sub LevantarThemes()
   Dim sDirectorio As String = User.Home & "/.gbpivot/www/ace"
   Dim aArchivos As String[]
   Dim sArchivo As String
-  Dim sRutaCompleta As String
 
   ' Limpiar el ComboBox antes de cargar
   FMain.cmbTheme.Clear()
@@ -393,45 +392,3 @@ Private Sub Copiar(archivos As String[], rutaDestino As String)
   Next
 
 End Sub
-
-' Public Sub CopiandoArchivosBashRevista()
-'
-'   Dim archivos As String[] = [
-'     "epub-revista.sh", "pdf-revista.sh", "xml-jats-pmd-revista.sh", "xml-jats-scielo-revista.sh"
-'
-'   ]
-'
-'   Dim rutaDestino As String = User.Home & "/.gbpivot/CompilarRevista"
-'   Dim archivoDestino As String
-'   Dim nombreArchivo As String
-'
-'   For Each nombreArchivo In archivos
-'     archivoDestino = rutaDestino & nombreArchivo
-'
-'     If Not File.RealPath(archivoDestino) Then
-'       Copy "./" & nombreArchivo To archivoDestino
-'     End If
-'   Next
-'
-' End Sub
-'
-' Public Sub CopiandoArchivosBashLibro()
-'
-'   Dim archivos As String[] = [
-'     "docbook-libro.sh", "epub-libro.sh", "pdf-libro-imprenta.sh", "pdf-libro-pantalla.sh", "pdf-libro-capitulos.sh"
-'
-'   ]
-'
-'   Dim rutaDestino As String = User.Home & "/.gbpivot/CompilarLibro"
-'   Dim archivoDestino As String
-'   Dim nombreArchivo As String
-'
-'   For Each nombreArchivo In archivos
-'     archivoDestino = rutaDestino & nombreArchivo
-'
-'     If Not File.RealPath(archivoDestino) Then
-'       Copy "./" & nombreArchivo To archivoDestino
-'     End If
-'   Next
-'
-' End Sub
