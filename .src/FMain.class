@@ -11,6 +11,7 @@ Public horasTotal As Integer
 Public minutosTotal As Integer
 Public segundosTotal As Integer
 Public NombreProyecto As String
+Public RutaProyecto As String
 
 Public Sub Form_Open()
 
@@ -983,13 +984,14 @@ Public Sub menuAbrirProyecto_Click()
   If Dialog.OpenFile() Then
     Return
   Else
+    Shell Quote$("rm -rf " & User.Home & "/.local/share/org.gambas.*") & "\n" Wait
     txtProyecto.Text = Dialog.Path
+    RutaProyecto = File.Dir(txtProyecto.Text)
     NombreProyecto = File.BaseName(txtProyecto.Text)
     DirViewProyecto.Root = File.Dir(txtProyecto.Text)
     ControlarCarpetas()
-    Shell Quote$("rm -rf " & User.Home & "/.local/share/org.gambas.*") & "\n" Wait
     ImageViewProyecto.Image = Null
-    TerminalView.Input("cd " & File.Dir(txtProyecto.Text) & "\n")
+    TerminalView.Input("cd " & RutaProyecto & "\n")
     TerminalView.Input("clear" & "\n")
     DirViewProyecto.Refresh
     FileViewProyecto.Refresh
@@ -999,14 +1001,13 @@ End
 
 Public Sub ControlarCarpetas()
 
-  Dim RutaOrigen As String = File.Dir(txtProyecto.Text)
   ' Lista de directorios que deseas crear
   Dim directorios As String[] = ["artcap", "correcciones", "media", "originales", "tapa", "config", "salidas", ".github", ".github/workflows"]
 
   ' Crear los directorios si no existen
   For Each directorio As String In directorios
-    If Not Exist(RutaOrigen & "/" & directorio) Then
-      Mkdir RutaOrigen & "/" & directorio
+    If Not Exist(RutaProyecto & "/" & directorio) Then
+      Mkdir RutaProyecto & "/" & directorio
     End If
   Next
 
