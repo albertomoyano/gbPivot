@@ -2,7 +2,7 @@
 
 ' Private rPrompt As Result
 Public hResultadoGlosario As Result
-Private Item_Seleccionado As Integer
+Private Item_Seleccionado As Integer = -1
 Public segundos As Integer
 Public minutos As Integer
 Public horas As Integer
@@ -57,7 +57,7 @@ Public Sub Form_Open()
   ' Inicializar variables necesarias
   RutaArchivoActual = ""
 
-  $Bash = TerminalView.Shell("/usr/bin/bash")
+  $Bash = tvProyecto.Shell("/usr/bin/bash")
 
   ' Inicializamos los contadores de minutos y segundos
   horas = 0
@@ -991,8 +991,8 @@ Public Sub menuAbrirProyecto_Click()
     DirViewProyecto.Root = File.Dir(txtProyecto.Text)
     ControlarCarpetas()
     ImageViewProyecto.Image = Null
-    TerminalView.Input("cd " & RutaProyecto & "\n")
-    TerminalView.Input("clear" & "\n")
+    tvProyecto.Input("cd " & RutaProyecto & "\n")
+    tvProyecto.Input("clear" & "\n")
     DirViewProyecto.Refresh
     FileViewProyecto.Refresh
   Endif

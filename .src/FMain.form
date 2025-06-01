@@ -3928,7 +3928,7 @@
         Index = 0
         Text = ("Terminal     ")
         Picture = Picture["iconos/terminal.svg"]
-        { !TerminalView TerminalView
+        { !tvProyecto TerminalView
           Move(72,45,216,81)
           #Public = True
           ShowLink = True

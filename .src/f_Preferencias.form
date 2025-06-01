@@ -27,7 +27,7 @@
     Spacing = True
     Margin = True
     Padding = 4
-    Count = 3
+    Count = 2
     Index = 0
     Text = ("Proyectos     ")
     Picture = Picture["iconos/basededatos.svg"]
@@ -56,14 +56,14 @@
         Picture = Picture["iconos/guardarComo.svg"]
       }
       { txtIDproyectos TextBox
-        Move(153,0,90,36)
+        Move(153,0,135,36)
         Visible = False
         Background = Color.Background
         NoTabFocus = True
         ReadOnly = True
       }
     }
-    { TableViewConfig TableView
+    { TableViewProyectos TableView
       Move(27,54,549,99)
       NoTabFocus = True
       Expand = True
@@ -80,7 +80,7 @@
         Text = ("Proyecto  ")
       }
       { txtProyecto TextBox
-        Move(153,0,81,36)
+        Move(153,0,189,36)
         Expand = True
       }
     }
@@ -116,8 +116,8 @@
         Alignment = Align.Right
         Text = ("Fecha de inicio  ")
       }
-      { txtProyecto2 TextBox
-        Move(153,0,81,36)
+      { txtInicioProyecto TextBox
+        Move(153,0,162,36)
         Background = Color.Background
         Expand = True
         ReadOnly = True
@@ -127,8 +127,8 @@
         Alignment = Align.Right
         Text = ("Fecha de cierre  ")
       }
-      { txtProyecto3 TextBox
-        Move(486,0,81,36)
+      { txtCierreProyecto TextBox
+        Move(486,0,162,36)
         Expand = True
       }
     }
@@ -139,7 +139,7 @@
         Alignment = Align.Right
         Text = ("Asignaciones  ")
       }
-      { ComboBox1 ComboBox
+      { cmbUsuarios ComboBox
         Move(153,0,189,36)
         Expand = True
         ReadOnly = True
@@ -150,7 +150,7 @@
         Text = ("Horas empleadas  ")
       }
       { txtHorasEmpleadas TextBox
-        Move(531,0,126,36)
+        Move(504,0,162,36)
         Background = Color.Background
         Expand = True
         ReadOnly = True
@@ -163,7 +163,7 @@
         Alignment = Align.Right
         Text = ("Notas  ")
       }
-      { Button1 Button
+      { btnAmpilarNotas Button
         Move(189,0,36,36)
         Picture = Picture["iconos/schedule.svg"]
       }
@@ -294,17 +294,17 @@
         Alignment = Align.Right
         Text = ("Fecha creación  ")
       }
-      { TextBox9 TextBox
-        Move(171,0,81,36)
+      { txtFechaCreacion TextBox
+        Move(171,0,207,36)
         Expand = True
       }
       { Label14 Label
-        Move(252,0,144,36)
+        Move(378,0,144,36)
         Alignment = Align.Right
         Text = ("Último acceso  ")
       }
-      { TextBox10 TextBox
-        Move(414,0,81,36)
+      { txtUltimoAcceso TextBox
+        Move(531,0,144,36)
         Background = Color.Background
         Expand = True
         ReadOnly = True
@@ -318,16 +318,16 @@
         Text = ("Usuario  ")
       }
       { txtUsuario TextBox
-        Move(171,0,81,36)
+        Move(171,0,207,36)
         Expand = True
       }
       { Label11 Label
-        Move(252,0,144,36)
+        Move(387,0,144,36)
         Alignment = Align.Right
         Text = ("Clave  ")
       }
       { txtClaveUsuario TextBox
-        Move(414,0,81,36)
+        Move(540,0,135,36)
         Expand = True
       }
     }
@@ -339,12 +339,10 @@
         Text = ("Email  ")
       }
       { txtEmailUsuario TextBox
-        Move(171,0,81,36)
+        Move(171,0,207,36)
         Expand = True
       }
     }
-    Index = 2
-    Text = ("Ayudas     ")
     Index = 0
   }
   { HBox1 HBox
