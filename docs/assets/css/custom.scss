@@ -1,0 +1,14 @@
+---
+---
+
+@import "just-the-docs"; // importa todo el tema base
+
+// Sobrescribimos después
+html {
+  font-size: 18px;
+}
+
+body {
+  font-size: 1rem;
+  line-height: 1.6;
+}
