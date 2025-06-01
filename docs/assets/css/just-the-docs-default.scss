@@ -1,7 +1,7 @@
 ---
 ---
-{% raw %}
-@import "{{ site.theme }}";
+
+@import "just-the-docs";
 
 // IBM Plex Sans para todo el contenido
 body {
@@ -59,4 +59,3 @@ p {
 a {
   font-weight: 500;
 }
-{% endraw %}
