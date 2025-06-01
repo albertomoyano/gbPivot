@@ -1,12 +1,10 @@
 title: gbPivot
 description: A starter template for a Jeykll site using the Just the Docs theme!
 remote_theme: just-the-docs/just-the-docs
-
 color_scheme: bordo
-
+include:
+  - assets/css/custom.scss
 url: https://albertomoyano.github.io/gbPivot/
-
-# Habilitar búsqueda
 search_enabled: true
 search:
   heading_level: 2

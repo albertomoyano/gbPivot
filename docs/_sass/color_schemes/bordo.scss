@@ -2,19 +2,11 @@
 
 $bordo: #800000;
 
-// Reemplaza los colores púrpura por bordo
-$purple-000: $bordo;
-$purple-100: $bordo;
-$purple-200: $bordo;
-$purple-300: $bordo;
-$purple-400: $bordo;
-$purple-500: $bordo;
-
-// Aplica el bordo en los elementos clave
+// Colores de énfasis
 $link-color: $bordo;
 $btn-primary-color: $bordo;
 
-// Cambiar el color de fondo del sidebar
+// Sidebar
 $sidebar-background-color: $bordo;
-$sidebar-color: #ffffff; // texto blanco para mejor contraste
+$sidebar-color: #ffffff;
 $sidebar-border-color: darken($bordo, 10%);
