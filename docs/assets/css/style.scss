@@ -1,0 +1,28 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+body {
+  font-size: 18px !important;
+  line-height: 1.6 !important;
+}
+
+p {
+  font-size: 18px !important;
+  line-height: 1.6 !important;
+}
+
+.main-content {
+  font-size: 18px !important;
+  line-height: 1.6 !important;
+}
+
+// Para asegurar que todos los elementos de texto tengan el tamaño correcto
+.main-content p,
+.main-content li,
+.main-content td,
+.main-content th {
+  font-size: 18px !important;
+  line-height: 1.6 !important;
+}
