@@ -3,5 +3,4 @@
 - [BibLaTeX](biblatex.md)
 - [Glosarios](glosarios.md)
 - [Apuntes](apuntes.md)
-	- [Homeoarchy](homeoarchy.md)
 - [Descarga](descarga.md)
