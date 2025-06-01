@@ -1,3 +1,5 @@
 // _sass/custom/custom.scss
 
-$body-font-size: 24px;
+$root-font-size: 18px;
+$body-font-size: 1rem; // 1rem = 18px si el root-font-size es 18px
+$body-line-height: 1.6;

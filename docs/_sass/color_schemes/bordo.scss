@@ -1,9 +1,8 @@
 // _sass/color_schemes/bordo.scss
 
-// Define el color bordo
 $bordo: #800000;
 
-// Reemplaza los colores violeta por bordo
+// Reemplaza los colores púrpura por bordo
 $purple-000: $bordo;
 $purple-100: $bordo;
 $purple-200: $bordo;
@@ -11,6 +10,11 @@ $purple-300: $bordo;
 $purple-400: $bordo;
 $purple-500: $bordo;
 
-// Asegúrate de que los elementos que usan $purple utilicen el nuevo color
-$link-color: $purple-000;
-$btn-primary-color: $purple-000;
+// Aplica el bordo en los elementos clave
+$link-color: $bordo;
+$btn-primary-color: $bordo;
+
+// Cambiar el color de fondo del sidebar
+$sidebar-background-color: $bordo;
+$sidebar-color: #ffffff; // texto blanco para mejor contraste
+$sidebar-border-color: darken($bordo, 10%);
