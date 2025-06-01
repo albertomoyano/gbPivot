@@ -7,7 +7,9 @@ Public Sub ControlDeInicio()
     User.Home & "/.gbpivot/ScriptsExternos",
     User.Home & "/.gbpivot/ScriptsBash",
     User.Home & "/.gbpivot/www",
-    User.Home & "/.gbpivot/www/ace"
+    User.Home & "/.gbpivot/www/ace",
+    User.Home & "/.gbpivot/CompilarLibro",
+    User.Home & "/.gbpivot/CompilarRevista"
 
   ]
 
@@ -56,7 +58,7 @@ Public Sub GitVersion(raw As String) As String
 
 End
 
-Public Sub CopiandoArchivos()
+Public Sub CopiandoArchivosAce()
 
   If Not File.RealPath(User.Home & "/.gbpivot/www/editor.html") Then
     Copy "./editor.html" To User.Home & "/.gbpivot/www/editor.html"
@@ -175,3 +177,261 @@ Catch
   Message.Error("Error al leer el directorio: " & Error.Text)
 
 End
+
+Public Sub LevantarScriptBash()
+
+  Dim sDirectorio As String = User.Home & "/.gbpivot/ScriptsBash"
+  Dim aArchivos As String[]
+  Dim sArchivo, sRutaCompleta, sPrimeraLinea, sNombreVisible As String
+  Dim hArchivo As File
+
+  ' Limpiar el ComboBox
+  FMain.cmbScriptBash.Clear()
+
+  ' Verificar si el directorio existe
+  If Not Exist(sDirectorio) Then
+    Message.Warning("El directorio " & sDirectorio & " no existe")
+    Return
+  Endif
+
+  ' Agregar la leyenda inicial
+  FMain.cmbScriptBash.Add("Elegir un script para ejecutar")
+
+  ' Obtener la lista de archivos
+  aArchivos = Dir(sDirectorio, "*.sh", gb.File)
+
+  ' Recorrer los archivos y mostrar la descripción (si existe)
+  For Each sArchivo In aArchivos
+    sRutaCompleta = sDirectorio &/ sArchivo
+
+    ' Leer las primeras líneas del archivo para buscar el nombre
+    sPrimeraLinea = ""
+    sNombreVisible = sArchivo  ' Por defecto usar el nombre del archivo
+
+    ' Intentar leer las primeras líneas con manejo de errores individual
+    If Exist(sRutaCompleta) Then
+      hArchivo = Open sRutaCompleta For Input
+      If hArchivo Then
+        Line Input #hArchivo, sPrimeraLinea  ' Primera línea (shebang)
+        If Not Eof(hArchivo) Then
+          Line Input #hArchivo, sPrimeraLinea  ' Segunda línea (donde debería estar el nombre)
+        Endif
+        Close #hArchivo
+
+        ' Extraer nombre legible si comienza con "# Nombre:"
+        If Left(Trim(sPrimeraLinea), 9) = "# Nombre:" Then
+          sNombreVisible = Trim(Mid(sPrimeraLinea, InStr(sPrimeraLinea, ":") + 1))
+        Endif
+      Endif
+    Endif
+
+    ' Agregar al ComboBox
+    FMain.cmbScriptBash.Add(sNombreVisible & " [" & sArchivo & "]")
+
+  Next
+
+  ' Seleccionar el primer elemento (la leyenda)
+  FMain.cmbScriptBash.Index = 0
+
+Catch
+  Message.Error("Error al leer el directorio: " & Error.Text)
+
+End
+
+Public Sub LevantarCompilarLibro()
+
+  Dim sDirectorio As String = User.Home & "/.gbpivot/CompilarLibro"
+  Dim aArchivos As String[]
+  Dim sArchivo, sRutaCompleta, sPrimeraLinea, sNombreVisible As String
+  Dim hArchivo As File
+
+  ' Limpiar el ComboBox
+  FMain.cmbCompilarLibro.Clear()
+
+  ' Verificar si el directorio existe
+  If Not Exist(sDirectorio) Then
+    Message.Warning("El directorio " & sDirectorio & " no existe")
+    Return
+  Endif
+
+  ' Agregar la leyenda inicial
+  FMain.cmbCompilarLibro.Add("Elegir una compilación para ejecutar")
+
+  ' Obtener la lista de archivos
+  aArchivos = Dir(sDirectorio, "*.sh", gb.File)
+
+  ' Recorrer los archivos y mostrar la descripción (si existe)
+  For Each sArchivo In aArchivos
+    sRutaCompleta = sDirectorio &/ sArchivo
+
+    ' Leer las primeras líneas del archivo para buscar el nombre
+    sPrimeraLinea = ""
+    sNombreVisible = sArchivo  ' Por defecto usar el nombre del archivo
+
+    ' Intentar leer las primeras líneas con manejo de errores individual
+    If Exist(sRutaCompleta) Then
+      hArchivo = Open sRutaCompleta For Input
+      If hArchivo Then
+        Line Input #hArchivo, sPrimeraLinea  ' Primera línea (shebang)
+        If Not Eof(hArchivo) Then
+          Line Input #hArchivo, sPrimeraLinea  ' Segunda línea (donde debería estar el nombre)
+        Endif
+        Close #hArchivo
+
+        ' Extraer nombre legible si comienza con "# Nombre:"
+        If Left(Trim(sPrimeraLinea), 9) = "# Nombre:" Then
+          sNombreVisible = Trim(Mid(sPrimeraLinea, InStr(sPrimeraLinea, ":") + 1))
+        Endif
+      Endif
+    Endif
+
+    ' Agregar al ComboBox
+    FMain.cmbCompilarLibro.Add(sNombreVisible & " [" & sArchivo & "]")
+
+  Next
+
+  ' Seleccionar el primer elemento (la leyenda)
+  FMain.cmbCompilarLibro.Index = 0
+
+Catch
+  Message.Error("Error al leer el directorio: " & Error.Text)
+
+End
+
+Public Sub LevantarCompilarRevista()
+
+  Dim sDirectorio As String = User.Home & "/.gbpivot/CompilarRevista"
+  Dim aArchivos As String[]
+  Dim sArchivo, sRutaCompleta, sPrimeraLinea, sNombreVisible As String
+  Dim hArchivo As File
+
+  ' Limpiar el ComboBox
+  FMain.cmbCompilarRevista.Clear()
+
+  ' Verificar si el directorio existe
+  If Not Exist(sDirectorio) Then
+    Message.Warning("El directorio " & sDirectorio & " no existe")
+    Return
+  Endif
+
+  ' Agregar la leyenda inicial
+  FMain.cmbCompilarRevista.Add("Elegir una compilación para ejecutar")
+
+  ' Obtener la lista de archivos
+  aArchivos = Dir(sDirectorio, "*.sh", gb.File)
+
+  ' Recorrer los archivos y mostrar la descripción (si existe)
+  For Each sArchivo In aArchivos
+    sRutaCompleta = sDirectorio &/ sArchivo
+
+    ' Leer las primeras líneas del archivo para buscar el nombre
+    sPrimeraLinea = ""
+    sNombreVisible = sArchivo  ' Por defecto usar el nombre del archivo
+
+    ' Intentar leer las primeras líneas con manejo de errores individual
+    If Exist(sRutaCompleta) Then
+      hArchivo = Open sRutaCompleta For Input
+      If hArchivo Then
+        Line Input #hArchivo, sPrimeraLinea  ' Primera línea (shebang)
+        If Not Eof(hArchivo) Then
+          Line Input #hArchivo, sPrimeraLinea  ' Segunda línea (donde debería estar el nombre)
+        Endif
+        Close #hArchivo
+
+        ' Extraer nombre legible si comienza con "# Nombre:"
+        If Left(Trim(sPrimeraLinea), 9) = "# Nombre:" Then
+          sNombreVisible = Trim(Mid(sPrimeraLinea, InStr(sPrimeraLinea, ":") + 1))
+        Endif
+      Endif
+    Endif
+
+    ' Agregar al ComboBox
+    FMain.cmbCompilarRevista.Add(sNombreVisible & " [" & sArchivo & "]")
+
+  Next
+
+  ' Seleccionar el primer elemento (la leyenda)
+  FMain.cmbCompilarRevista.Index = 0
+
+Catch
+  Message.Error("Error al leer el directorio: " & Error.Text)
+
+End
+
+Public Sub CopiarArchivosBash()
+
+  Dim archivosRevista As String[] = [
+    "epub-revista.sh", "pdf-revista.sh", "xml-jats-pmd-revista.sh", "xml-jats-scielo-revista.sh"
+
+  ]
+  Dim rutaRevista As String = User.Home & "/.gbpivot/CompilarRevista"
+
+  Dim archivosLibro As String[] = [
+    "docbook-libro.sh", "epub-libro.sh", "pdf-libro-imprenta.sh", "pdf-libro-pantalla.sh", "pdf-libro-capitulos.sh"
+  ]
+  Dim rutaLibro As String = User.Home & "/.gbpivot/CompilarLibro"
+
+  Copiar(archivosRevista, rutaRevista)
+  Copiar(archivosLibro, rutaLibro)
+
+End Sub
+
+Private Sub Copiar(archivos As String[], rutaDestino As String)
+
+  Dim archivoDestino As String
+  Dim nombreArchivo As String
+
+  ' Crear el directorio si no existe
+  If Not Exist(rutaDestino) Then Mkdir rutaDestino
+
+  For Each nombreArchivo In archivos
+    archivoDestino = rutaDestino & "/" & nombreArchivo
+
+    If Not File.RealPath(archivoDestino) Then
+      Copy "./" & nombreArchivo To archivoDestino
+    End If
+  Next
+
+End Sub
+
+' Public Sub CopiandoArchivosBashRevista()
+'
+'   Dim archivos As String[] = [
+'     "epub-revista.sh", "pdf-revista.sh", "xml-jats-pmd-revista.sh", "xml-jats-scielo-revista.sh"
+'
+'   ]
+'
+'   Dim rutaDestino As String = User.Home & "/.gbpivot/CompilarRevista"
+'   Dim archivoDestino As String
+'   Dim nombreArchivo As String
+'
+'   For Each nombreArchivo In archivos
+'     archivoDestino = rutaDestino & nombreArchivo
+'
+'     If Not File.RealPath(archivoDestino) Then
+'       Copy "./" & nombreArchivo To archivoDestino
+'     End If
+'   Next
+'
+' End Sub
+'
+' Public Sub CopiandoArchivosBashLibro()
+'
+'   Dim archivos As String[] = [
+'     "docbook-libro.sh", "epub-libro.sh", "pdf-libro-imprenta.sh", "pdf-libro-pantalla.sh", "pdf-libro-capitulos.sh"
+'
+'   ]
+'
+'   Dim rutaDestino As String = User.Home & "/.gbpivot/CompilarLibro"
+'   Dim archivoDestino As String
+'   Dim nombreArchivo As String
+'
+'   For Each nombreArchivo In archivos
+'     archivoDestino = rutaDestino & nombreArchivo
+'
+'     If Not File.RealPath(archivoDestino) Then
+'       Copy "./" & nombreArchivo To archivoDestino
+'     End If
+'   Next
+'
+' End Sub

@@ -15,7 +15,6 @@ Public Sub Form_Open()
 
   Dim versionRemota As String
   Dim versionLocal As String = Application.Version
-  Dim name As String
 
   ' Comprobación de versión
   versionRemota = m_Inicio.GitVersion("https://raw.githubusercontent.com/albertomoyano/gbpivot/refs/heads/main/.project")
@@ -23,22 +22,27 @@ Public Sub Form_Open()
     Message.Info("Tu versión instalada difiere de la versión disponible en el repositorio: " & versionRemota)
   Endif
 
-  ' Verificación de ejecuciones múltiples
-  Exec ["pgrep", "-fl", Application.Name] Wait To name
-  If Split(Trim$(name), gb.NewLine, "", True).Count > 1 Then
-    Message.Warning(Application.Name & " ya se está ejecutando en este equipo.")
-    Quit
-  Endif
+  ' ' Verificación de ejecuciones múltiples
+  ' Dim name As String
+  ' Exec ["pgrep", "-fl", Application.Name] Wait To name
+  ' If Split(Trim$(name), gb.NewLine, "", True).Count > 1 Then
+  '   Message.Warning(Application.Name & " ya se está ejecutando en este equipo.")
+  '   Quit
+  ' Endif
 
   Dim RutaArchivoActual As String
 
   FMain.Title = "gbPivot (usuario en curso: " & m_OnOff_y_Red.UsuarioActual & ")"
 
   ' Damos inicio al control de archivos
-  m_Inicio.ControlDeInicio()
-  m_Inicio.CopiandoArchivos()
+  m_Inicio.ControlDeInicio()' controlamos directorios y archivos base del programa
+  m_Inicio.CopiandoArchivosAce()
+  m_Inicio.CopiarArchivosBash()
   m_glosarios.ConfigurarGridGlosario(ViewGridGlosarioTotal)
   m_Inicio.LevantarThemes()
+  m_Inicio.LevantarScriptBash()
+  m_Inicio.LevantarCompilarRevista()
+  m_Inicio.LevantarCompilarLibro()
   m_Inteligencia.ConfigurarGridInteligencia(ViewgridAI)
 
   ' Usar la ruta existente para el editor ACE
@@ -521,216 +525,6 @@ Public Sub Menu5_Click()' salir de la aplicacion
 
 End
 
-' Public Sub btnPromptNuevo_Click()
-'
-'   PromptNuevo()
-'
-' End
-
-' Public Sub btnPromptGuardar_Click()
-'
-'   GuardarPrompt()
-'
-' End
-
-' Public Sub gridviewAI()
-'
-'   gridAI.Header = True
-'   gridAI.Grid = True
-'   gridAI.Columns.Count = 3
-'   gridAI.Columns[0].Title = "id"
-'   gridAI.Columns[0].Width = 0
-'   gridAI.Columns[1].Title = "Identificador"
-'   gridAI.Columns[1].Width = 300
-'   gridAI.Columns[2].Title = "Prompt"
-'   gridAI.Columns[2].Width = 300
-'
-' End
-
-' ' Función para cargar y actualizar la grilla
-' Public Sub cargargrid()
-'   ' Guardamos el resultado en la variable de módulo
-'
-'   rPrompt = m_OnOff_y_Red.meConn.Exec("SELECT * FROM asistente_ai ORDER BY id")
-'   gridAI.Rows.Count = rPrompt.Count
-'   gridAI.Refresh()
-'
-' End
-
-' Public Sub gridAI_Data(Row As Integer, Column As Integer)
-'   ' Verificamos que tengamos resultados
-'
-'   If rPrompt And If rPrompt.Available Then
-'     If Row >= 0 And Row < rPrompt.Count Then
-'       ' Movemos el cursor al registro correspondiente
-'       rPrompt.MoveTo(Row)
-'       ' Asignamos el valor de la columna correspondiente
-'       Try gridAI.Data.Text = Str(rPrompt[Column])
-'     Endif
-'   Endif
-'
-'   ' Alternamos colores en las filas
-'   If row Mod 2 = 0 Then
-'     gridAI.Data.Background = Color.RGB(230, 230, 230)
-'   Endif
-'
-' End
-
-' Public Sub PromptNuevo()
-'   ' Habilitamos los campos de entrada
-'
-'   LimpiarCampos()
-'   ' Ocultamos/mostramos botones según sea necesario
-'   btnPromptNuevo.Visible = False
-'   btnPromptBorrar.Visible = False
-'   btnPromptGuardar.Visible = True
-'   btnPromptGuardarMod.Visible = False
-'   ' Obtenemos el último ID y sumamos +1 para el nuevo registro
-'   Dim resultado As Result
-'   resultado = m_OnOff_y_Red.meConn.Exec("SELECT MAX(id) FROM asistente_ai LIMIT 1")
-'   Dim Idn As Integer
-'   ' Si no hay ninguna entrada entonces arrancamos desde 0
-'   If resultado["MAX(id)"] = Null Then
-'     Idn = 0
-'   Else
-'     Idn = CInt(resultado["MAX(id)"]) + 1
-'   Endif
-'   txtIdPrompt.Text = Idn
-'   txtIdentificador.ReadOnly = False
-'   txtIdentificador.Background = Color.White
-'   txtIdentificador.SetFocus
-'
-' End
-
-' Public Sub GuardarPrompt()
-'
-'   Dim miCreate As Result
-'
-'   Try miCreate = m_OnOff_y_Red.meConn.Create("asistente_ai")
-'   If Error Then
-'     Message.Error("Error al crear: " & Error.Text)
-'     Return
-'   Endif
-'   With miCreate
-'     !id = txtIdPrompt.Text
-'     !identificador = txtIdentificador.Text
-'     !prompt = txtAreaPrompt1.Text
-'     Try .Update()
-'     If Error Then
-'       Message.Error("Error al guardar: " & Error.Text)
-'       Return
-'     Endif
-'   End With
-'   Message.Info("Nueva entrada guardada.")
-'   cargargrid()  ' Actualizamos la grilla después de guardar
-'   LimpiarCampos()
-'   txtIdentificador.ReadOnly = True
-'   txtIdentificador.Background = Color.Background
-'   btnPromptNuevo.Visible = True
-'   btnPromptBorrar.Visible = False
-'   btnPromptGuardar.Visible = False
-'   btnPromptGuardarMod.Visible = False
-'
-' End
-
-' Public Sub gridAI_Click()
-'
-'   txtIdentificador.Enabled = True
-'   txtAreaPrompt1.Enabled = True
-'   btnPromptNuevo.Visible = False
-'   btnPromptBorrar.Visible = True
-'   btnPromptGuardar.Visible = False
-'   btnPromptGuardarMod.Visible = True
-'   txtIdentificador.Background = Color.White
-'   txtIdentificador.ReadOnly = False
-'   ' Rellenar los campos de texto con los valores de la fila seleccionada
-'   txtIdPrompt.Text = gridAI[gridAI.row, 0].Text
-'   txtIdentificador.Text = gridAI[gridAI.row, 1].Text
-'   txtAreaPrompt1.Text = gridAI[gridAI.row, 2].Text
-'
-' End
-
-' Public Sub LimpiarCampos()
-'
-'   txtIdPrompt.Text = ""
-'   txtIdentificador.Text = ""
-'   txtAreaPrompt1.Text = ""
-'
-' End
-
-' Public Sub Form_Activate()
-'
-'   cargargrid()
-'
-' End
-
-' Public Sub btnPromptBorrar_Click()
-'
-'   Dim id As Integer = Val(txtIdPrompt.Text)
-'
-'   If Message.Question("¿Está seguro que desea eliminar este registro?", "Sí", "No") = 1 Then
-'     Try m_OnOff_y_Red.meConn.Exec("DELETE FROM asistente_ai WHERE id = &1", id)
-'     If Error Then
-'       Message.Error("Error al eliminar: " & Error.Text)
-'       Return
-'     Endif
-'
-'     Message.Info("Registro eliminado correctamente.")
-'     cargargrid()  ' Actualizamos la grilla después de eliminar
-'     LimpiarCampos()
-'     btnPromptNuevo.Visible = True
-'     btnPromptBorrar.Visible = False
-'     btnPromptGuardar.Visible = False
-'     btnPromptGuardarMod.Visible = False
-'   Endif
-'
-' End
-
-' Public Sub btnPromptGuardarMod_Click()
-'
-'   Dim miModify As Result
-'   Dim id As Integer = Val(txtIdPrompt.Text)
-'
-'   ' Buscamos el registro a modificar
-'   Try miModify = m_OnOff_y_Red.meConn.Edit("asistente_ai", "id = &1", id)
-'   If Error Then
-'     Message.Error("Error al buscar registro: " & Error.Text)
-'     Return
-'   Endif
-'
-'   With miModify
-'     !identificador = txtIdentificador.Text
-'     !prompt = txtAreaPrompt1.Text
-'     Try .Update()
-'     If Error Then
-'       Message.Error("Error al actualizar: " & Error.Text)
-'       Return
-'     Endif
-'   End With
-'
-'   Message.Info("Registro actualizado correctamente.")
-'   cargargrid()  ' Actualizamos la grilla después de modificar
-'   LimpiarCampos()
-'   btnPromptNuevo.Visible = True
-'   btnPromptBorrar.Visible = False
-'   btnPromptGuardar.Visible = False
-'   btnPromptGuardarMod.Visible = False
-'   txtIdentificador.ReadOnly = True
-'   txtIdentificador.Background = Color.Background
-'
-' End
-
-Public Sub btnVerProyectos_Click()
-
-  ' Cambiar visibilidad del TabPanel2 según el estado del botón
-  If btnVerProyectos.Value Then
-    VBoxProyectos.Visible = True
-  Else
-    VBoxProyectos.Visible = False
-  End If
-
-End
-
 Public Sub btnBlockNotas_Click()
 
   f_BlockNotas.ShowModal()
@@ -1031,3 +825,150 @@ Public Sub Menu9_Click()
   Shell "xdg-open " & Quote$(alberto) Wait
 
 End
+
+Public Sub txtFechaPublicacionLibro_KeyRelease()
+
+  Dim texto As String = txtFechaPublicacionLibro.Text
+  Dim soloDigitos As String = ""
+  Dim textoFormateado As String = ""
+  Dim i As Integer
+  Dim c As String
+
+  ' Extraer solo los dígitos del texto actual
+  For i = 1 To Len(texto)
+    c = Mid(texto, i, 1)
+    If c >= "0" And c <= "9" Then
+      soloDigitos &= c
+    End If
+  Next
+
+  ' Limitar a máximo 8 dígitos
+  If Len(soloDigitos) > 8 Then
+    soloDigitos = Left(soloDigitos, 8)
+  End If
+
+  ' Formatear automáticamente según la cantidad de dígitos
+  Select Case Len(soloDigitos)
+    Case 0
+      textoFormateado = ""
+    Case 1, 2
+      textoFormateado = soloDigitos
+    Case 3, 4
+      textoFormateado = Left(soloDigitos, 2) & "-" & Mid(soloDigitos, 3)
+    Case 5, 6, 7, 8
+      textoFormateado = Left(soloDigitos, 2) & "-" & Mid(soloDigitos, 3, 2) & "-" & Mid(soloDigitos, 5)
+  End Select
+
+  ' Actualizar solo si cambió
+  If textoFormateado <> texto Then
+    txtFechaPublicacionLibro.Text = textoFormateado
+    ' Colocar cursor al final
+    txtFechaPublicacionLibro.Pos = Len(textoFormateado)
+  End If
+
+End Sub
+
+' Bloquear entrada de caracteres no numéricos
+Public Sub txtFechaPublicacionLibro_KeyPress()
+  ' Permitir teclas de control
+
+  If Key.Code = Key.BackSpace Or Key.Code = Key.Delete Or
+      Key.Code = Key.Left Or Key.Code = Key.Right Or
+      Key.Code = Key.Tab Or Key.Code = Key.Enter Or
+      Key.Code = Key.Home Or Key.Code = Key.End Then
+    Return
+  End If
+
+  ' Solo permitir números
+  If Key.Text < "0" Or Key.Text > "9" Then
+    Stop Event
+  End If
+
+End Sub
+
+' Validar formato completo al perder el foco
+Public Sub txtFechaPublicacionLibro_LostFocus()
+
+  Dim texto As String = txtFechaPublicacionLibro.Text
+
+  ' Solo permitir: vacío o formato completo 00-00-0000
+  If texto <> "" And Len(texto) <> 10 Then
+    Message.Error("El fecha está mal construida.\nEl campo debe estar vacío o tener el formato completo: <strong>00-00-0000</strong>", "Error de formato en la fecha")
+    txtFechaPublicacionLibro.SetFocus()
+    Return
+  End If
+
+  ' Si tiene 10 caracteres, verificar que tenga el formato correcto
+  If Len(texto) = 10 Then
+    If Mid(texto, 3, 1) <> "-" Or Mid(texto, 6, 1) <> "-" Then
+      Message.Error("El campo fecha está mal construido.\nDebe tener el formato: 00-00-0000", "Error de formato")
+      txtFechaPublicacionLibro.SetFocus()
+      Return
+    End If
+  End If
+
+End Sub
+
+Public Sub txtTotalPaginasLibro_KeyRelease()
+  ' Obtener el texto actual del TextBox
+
+  Dim texto As String = txtTotalPaginasLibro.Text
+  Dim textoFiltrado As String = ""
+  Dim i As Integer
+  Dim tecla As String
+
+  ' Filtrar solo números
+  For i = 1 To Len(texto)
+    tecla = Mid(texto, i, 1)
+    If tecla >= "0" And tecla <= "9" Then
+      textoFiltrado &= tecla
+    End If
+  Next
+
+  ' Actualizar el TextBox solo si hubo cambios
+  If textoFiltrado <> texto Then
+    txtTotalPaginasLibro.Text = textoFiltrado
+    ' Colocar cursor al final
+    txtTotalPaginasLibro.Pos = Len(textoFiltrado)
+  End If
+
+End Sub
+
+' Función adicional para bloquear caracteres no numéricos desde el teclado
+Public Sub txtTotalPaginasLibro_KeyPress()
+  ' Permitir teclas de control
+
+  If Key.Code = Key.BackSpace Or Key.Code = Key.Delete Or
+      Key.Code = Key.Left Or Key.Code = Key.Right Or
+      Key.Code = Key.Tab Or Key.Code = Key.Enter Or
+      Key.Code = Key.Home Or Key.Code = Key.End Then
+    Return
+  End If
+
+  ' Solo permitir números
+  If Key.Text < "0" Or Key.Text > "9" Then
+    Stop Event
+  End If
+
+End Sub
+
+Public Sub btnVerProyectos_Click()
+  ' Cambiar visibilidad del TabPanel2 según el estado del botón
+
+  If btnVerProyectos.Value Then
+    ' Verificar si hay un proyecto seleccionado (filtro)
+    If Trim(txtProyecto.Text) = "" Then
+      ' No hay proyecto seleccionado, mostrar advertencia
+      Message.Warning("No tiene ningún proyecto seleccionado.\nSeleccione un proyecto antes de continuar.", "Proyecto requerido")
+      ' Desactivar el botón ya que no se puede mostrar el panel
+      btnVerProyectos.Value = False
+      Return
+    End If
+    ' Si hay proyecto seleccionado, mostrar el panel
+    PanelProyectos.Visible = True
+  Else
+    ' Ocultar el panel
+    PanelProyectos.Visible = False
+  End If
+
+End Sub

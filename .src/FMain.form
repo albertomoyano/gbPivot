@@ -40,6 +40,9 @@
   }
   { Menu1 Menu
     Text = ("Archivo")
+    { Menu10 Menu
+      Text = ("Abrir Proyecto")
+    }
     { Menu5 Menu
       Text = ("Salir de la aplicación")
       Picture = Picture["iconos/salir.svg"]
@@ -77,18 +80,6 @@
       Text = ("Generar PDF para catálogo")
     }
   }
-  { Menu28 Menu
-    Text = ("Ver salidas")
-    { Menu29 Menu
-      Text = ("PDF")
-    }
-    { Menu30 Menu
-      Text = ("ePub")
-    }
-    { Menu31 Menu
-      Text = ("HTML")
-    }
-  }
   { Menu3 Menu
     Text = ("Herramientas")
     { Menu7 Menu
@@ -98,17 +89,6 @@
     { Menu8 Menu
       Text = ("Exportar referencias bibliogáficas")
       Picture = Picture["iconos/exportarbib.svg"]
-    }
-    { Menu23 Menu
-      Text = ("Control de versiones (Git)")
-      { Menu10 Menu
-        Text = ("Empujar a git logal")
-        Picture = Picture["iconos/git-local.svg"]
-      }
-      { Menu11 Menu
-        Text = ("Empujar a github y generar todos los release")
-        Picture = Picture["iconos/gitremoto.svg"]
-      }
     }
     { Menu12 Menu
       Text = ("Comprimir todo el proyecto")
@@ -137,72 +117,43 @@
       Picture = Picture["iconos/pivote.png"]
     }
   }
-  { VBoxProyectos Panel
-    Move(-153,72,234,693)
+  { PanelProyectos Panel
+    Move(9,9,234,693)
     Visible = False
     Arrangement = Arrange.Vertical
-    { HBox15 HBox
-      Move(0,0,225,40)
-      { Label4 Label
-        Move(9,0,162,40)
-        Alignment = Align.BottomNormal
-        Text = ("Proyectos disponibles")
-      }
-    }
-    { ViewProyectos FileView
-      Move(45,72,117,72)
-      Expand = True
-    }
-    { HBox19 HBox
-      Move(9,162,171,9)
-    }
-    { HBox14 HBox
-      Move(0,189,243,36)
-      { Button1 Button
-        Move(0,0,36,36)
-        Picture = Picture["iconos/agregarcarpeta.svg"]
-      }
-      { Button3 Button
-        Move(36,0,36,36)
-        Picture = Picture["iconos/borrarcarpeta.svg"]
-      }
-      { Button7 Button
-        Move(72,0,36,36)
-        Picture = Picture["iconos/agregardarchivo.svg"]
-      }
-      { Button8 Button
-        Move(108,0,36,36)
-        Picture = Picture["iconos/borrararchivo.svg"]
-      }
-      { Separator2 Separator
-        Move(144,0,18,36)
-      }
-      { Button9 Button
-        Move(162,0,36,36)
-        Picture = Picture["iconos/agregardocumento.svg"]
-      }
-      { Spring2 Spring
-        Move(216,9,36,18)
-      }
-    }
-    { HBox21 HBox
-      Move(9,234,171,4)
-    }
     { !DirViewProyecto DirView
-      Move(54,279,117,90)
+      Move(27,135,189,90)
       #Public = True
       Expand = True
       HideRoot = True
     }
+    { HBox19 HBox
+      Move(27,234,171,9)
+    }
     { FileViewProyecto FileView
-      Move(63,378,108,90)
+      Move(18,252,189,90)
       Expand = True
       View = FileView.Detailed
     }
+    { HBox15 HBox
+      Move(18,360,171,9)
+    }
+    { Panel9 Panel
+      Move(18,378,189,234)
+      Expand = True
+      Arrangement = Arrange.Fill
+      Border = Border.Raised
+      { !ImageViewProyecto ImageView
+        Move(9,36,162,108)
+        #Public = True
+        #Translate = False
+        Expand = True
+      }
+    }
     { HBox18 HBox
       Move(0,630,225,40)
-      { Label1 Label
-        Move(0,0,99,36)
+      { lblProyecto Label
+        Move(18,0,99,36)
         Expand = True
         Alignment = Align.Right
         Text = ("Proyecto en curso")
@@ -210,7 +161,7 @@
     }
   }
   { SplitterPrincipal Splitter
-    Move(90,18,1818,1026)
+    Move(252,9,1818,1026)
     Expand = True
     Centered = True
     Border = False
@@ -225,14 +176,26 @@
           Move(0,0,36,36)
           Picture = Picture["iconos/document.svg"]
         }
-        { Spring1 Spring
-          Move(180,0,36,36)
-        }
         { !cmbTheme ComboBox
-          Move(261,0,270,36)
+          Move(36,0,270,36)
           #Public = True
           ReadOnly = True
           Text = ("Theme del editor")
+        }
+        { btnEmpujarGitLocal Button
+          Move(306,0,36,36)
+          ToolTip = ("Block de notas")
+          Picture = Picture["iconos/git-local.svg"]
+        }
+        { btnEmpujarGitHub Button
+          Move(342,0,36,36)
+          ToolTip = ("Block de notas")
+          Picture = Picture["iconos/gitremoto.svg"]
+        }
+        { !txtUsuarioGit TextBox
+          Move(378,0,135,36)
+          #Public = True
+          Expand = True
         }
       }
       { HBox22 HBox
@@ -264,8 +227,14 @@
         { Button15 Button
           Move(297,0,36,36)
         }
-        { Spring3 Spring
-          Move(342,0,36,36)
+        { !cmbScriptBash ComboBox
+          Move(333,0,144,36)
+          #Public = True
+          Expand = True
+          ReadOnly = True
+        }
+        { Separator1 Separator
+          Move(558,0,18,36)
         }
         { Button2 Button
           Move(585,0,36,36)
@@ -289,7 +258,6 @@
           Background = Color.Background
           Foreground = Color.Blue
           Expand = True
-          Text = ("holamundo")
           ReadOnly = True
         }
         { HBox4 HBox
@@ -373,7 +341,7 @@
           Text = ("Libro     ")
           Picture = Picture["iconos/titulo.svg"]
           { ScrollViewLibro ScrollView
-            Move(18,9,837,1278)
+            Move(9,9,837,1278)
             Expand = True
             Arrangement = Arrange.Vertical
             Spacing = True
@@ -382,12 +350,18 @@
             ScrollBar = Scroll.Vertical
             { HBox107 HBox
               Move(27,9,567,36)
-              { btnGuardarCambiosAutor2 Button
-                Move(0,0,36,36)
-                Picture = Picture["iconos/guardarComo.svg"]
+              { !cmbCompilarLibro ComboBox
+                Move(27,0,162,36)
+                #Public = True
+                Expand = True
+                ReadOnly = True
               }
-              { Spring9 Spring
-                Move(279,0,171,36)
+              { Separator4 Separator
+                Move(495,0,18,36)
+              }
+              { btnGuardarCambiosAutor2 Button
+                Move(522,0,36,36)
+                Picture = Picture["iconos/guardarComo.svg"]
               }
             }
             { HBox73 HBox
@@ -458,7 +432,7 @@
                 Alignment = Align.Right
                 Text = ("ISBN ")
               }
-              { !btnMostrarTextoExtendido6 Button
+              { !btnConfirmarISBN Button
                 Move(171,0,36,36)
                 #Public = True
                 Picture = Picture["iconos/comp.svg"]
@@ -489,8 +463,13 @@
                 Alignment = Align.Right
                 Text = ("DOI ")
               }
+              { !btnBuscarDOI Button
+                Move(171,0,36,36)
+                #Public = True
+                Picture = Picture["iconos/sincronizar.svg"]
+              }
               { !txtDOILibro TextBox
-                Move(171,0,216,36)
+                Move(216,0,216,36)
                 #Public = True
                 Expand = True
               }
@@ -502,7 +481,7 @@
                 Alignment = Align.Right
                 Text = ("URL ")
               }
-              { !btnMostrarTextoExtendido5 Button
+              { !btnBuscarURL Button
                 Move(171,0,36,36)
                 #Public = True
                 Picture = Picture["iconos/sincronizar.svg"]
@@ -524,7 +503,7 @@
                 Move(171,0,216,36)
                 #Public = True
                 Expand = True
-                Placeholder = ("dd-mm-yyyy")
+                Placeholder = ("Fecha de publicaión del libro")
               }
             }
             { HBox82 HBox
@@ -545,12 +524,13 @@
               { lblLANGID19 Label
                 Move(0,0,162,36)
                 Alignment = Align.Right
-                Text = ("Formato ")
+                Text = ("Formato impreso ")
               }
               { !txtFormatoLibro TextBox
                 Move(171,0,216,36)
                 #Public = True
                 Expand = True
+                Placeholder = ("Formato final del libro impreso")
               }
             }
             { HBox99 HBox
@@ -705,10 +685,15 @@
               { lblLANGID22 Label
                 Move(0,0,162,36)
                 Alignment = Align.Right
-                Text = ("URL editorial ")
+                Text = ("URL de la editorial ")
+              }
+              { !btnBuscarURL2 Button
+                Move(171,0,36,36)
+                #Public = True
+                Picture = Picture["iconos/sincronizar.svg"]
               }
               { !txtURLEditorial TextBox
-                Move(171,0,216,36)
+                Move(216,0,216,36)
                 #Public = True
                 Expand = True
               }
@@ -1097,12 +1082,18 @@
             ScrollBar = Scroll.Vertical
             { HBox114 HBox
               Move(0,0,567,36)
-              { btnGuardarCambiosAutor3 Button
-                Move(0,0,36,36)
-                Picture = Picture["iconos/guardarComo.svg"]
+              { !cmbCompilarRevista ComboBox
+                Move(0,0,162,36)
+                #Public = True
+                Expand = True
+                ReadOnly = True
               }
-              { Spring13 Spring
-                Move(279,0,171,36)
+              { Separator5 Separator
+                Move(495,0,18,36)
+              }
+              { btnGuardarCambiosAutor3 Button
+                Move(522,0,36,36)
+                Picture = Picture["iconos/guardarComo.svg"]
               }
             }
             { HBox84 HBox
