@@ -10,6 +10,7 @@ Public $Bash As Process
 Public horasTotal As Integer
 Public minutosTotal As Integer
 Public segundosTotal As Integer
+Public NombreProyecto As String
 
 Public Sub Form_Open()
 
@@ -983,6 +984,7 @@ Public Sub menuAbrirProyecto_Click()
     Return
   Else
     txtProyecto.Text = Dialog.Path
+    NombreProyecto = File.BaseName(txtProyecto.Text)
     DirViewProyecto.Root = File.Dir(txtProyecto.Text)
     ControlarCarpetas()
     Shell Quote$("rm -rf " & User.Home & "/.local/share/org.gambas.*") & "\n" Wait
