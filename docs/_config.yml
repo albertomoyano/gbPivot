@@ -1,6 +1,6 @@
 title: gbPivot
 description: A starter template for a Jeykll site using the Just the Docs theme!
-theme: just-the-docs/just-the-docs
+remote_theme: just-the-docs/just-the-docs
 color_scheme: bordo
 include:
   - assets/css/custom.scss
@@ -15,3 +15,4 @@ search:
 sass:
   load_paths:
     - _sass
+    - assets
