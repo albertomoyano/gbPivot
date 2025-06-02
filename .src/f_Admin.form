@@ -23,12 +23,12 @@
   { HBox1 HBox
     MoveScaled(8,19,49,4)
     { TextLabel1 TextLabel
-      MoveScaled(1,0,14,4)
-      Text = ("Usuario  ")
+      MoveScaled(1,0,16,4)
+      Text = ("Usuario admin  ")
       Alignment = Align.Right
     }
     { !txtUsuario TextBox
-      MoveScaled(16,0,15,4)
+      MoveScaled(18,0,15,4)
       #Public = True
       Expand = True
     }
@@ -36,12 +36,12 @@
   { HBox2 HBox
     MoveScaled(8,23,49,4)
     { TextLabel2 TextLabel
-      MoveScaled(0,0,14,4)
-      Text = ("Contraseña  ")
+      MoveScaled(0,0,16,4)
+      Text = ("Contraseña admin  ")
       Alignment = Align.Right
     }
     { !txtPassword TextBox
-      MoveScaled(15,0,16,4)
+      MoveScaled(18,0,16,4)
       #Public = True
       Expand = True
       Password = True
@@ -69,6 +69,7 @@
       MoveScaled(37,0,18,4)
       Text = ("     Conectarse")
       Picture = Picture["iconos/comp.svg"]
+      Default = True
     }
   }
 }

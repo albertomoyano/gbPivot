@@ -169,8 +169,59 @@
         }
       }
     }
-    { HBox4 HBox
+    { HBox18 HBox
       Move(27,297,693,36)
+      { Label3 Label
+        Move(9,0,144,36)
+        Alignment = Align.Right
+        Text = ("GitHub  ")
+      }
+      { btnGitRemoto Button
+        Move(261,0,36,36)
+        NoTabFocus = True
+        ToolTip = ("Borrar entrada")
+        Picture = Picture["iconos/gitremoto.svg"]
+      }
+      { !txtGitHub TextBox
+        Move(306,0,126,36)
+        #Public = True
+        Expand = True
+      }
+    }
+    { HBox19 HBox
+      Move(27,333,693,36)
+      { Label17 Label
+        Move(9,0,144,36)
+        Alignment = Align.Right
+        Text = ("Token (PAT)  ")
+      }
+      { ToggleButtonMostrarToken ToggleButton
+        Move(261,0,36,36)
+        Picture = Picture["iconos/hide.png"]
+      }
+      { !txtToken TextBox
+        Move(306,0,126,36)
+        #Public = True
+        Expand = True
+        Password = True
+      }
+    }
+    { HBox20 HBox
+      Move(27,369,693,36)
+      { Label18 Label
+        Move(9,0,144,36)
+        Alignment = Align.Right
+        Text = ("Organización  ")
+      }
+      { !txtOrganizacion TextBox
+        Move(261,0,126,36)
+        #Public = True
+        Expand = True
+        Password = True
+      }
+    }
+    { HBox4 HBox
+      Move(27,405,693,36)
       { Label5 Label
         Move(9,0,144,36)
         Alignment = Align.Right

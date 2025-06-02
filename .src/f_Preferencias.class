@@ -409,3 +409,28 @@ Public Sub CheckBoxTerminado_Click()
   End If
 
 End
+
+Public Sub txtProyecto_KeyRelease()
+
+  ' Obtener el texto actual del TextBox
+  Dim texto As String
+
+  texto = txtProyecto.Text
+
+  ' Lista de caracteres permitidos
+  Dim caracteresPermitidos As String = "0123456789abcdefghijklmnopqrstuvwxyz"
+
+  ' Filtrar el texto para eliminar caracteres no permitidos
+  Dim textoFiltrado As String
+  For i As Integer = 1 To Len(texto)
+    Dim tecla As String
+    tecla = Mid(texto, i, 1)
+    If InStr(caracteresPermitidos, tecla) > 0 Then
+      textoFiltrado = textoFiltrado & tecla
+    End If
+  Next
+
+  ' Actualizar el TextBox con el texto filtrado
+  txtProyecto.Text = LCase(textoFiltrado)
+
+End
