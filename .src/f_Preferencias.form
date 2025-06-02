@@ -1,7 +1,7 @@
 # Gambas Form File 3.0
 
 { Form Form
-  Move(0,0,747,657)
+  Move(0,0,840,740)
   #Scaled = False
   Text = ("Configuraciones")
   Resizable = False
@@ -21,7 +21,7 @@
     Move(9,90,504,9)
   }
   { TabPanel1 TabPanel
-    Move(9,108,729,495)
+    Move(9,108,729,567)
     Expand = True
     Arrangement = Arrange.Vertical
     Spacing = True
@@ -187,9 +187,47 @@
         #Public = True
         Expand = True
       }
+      { Separator2 Separator
+        Move(459,0,18,36)
+      }
+      { HBox21 HBox
+        Move(486,0,162,36)
+        { !CheckBoxTerminado2 CheckBox
+          Move(0,0,108,36)
+          #Public = True
+          AutoResize = True
+          Text = ("Público")
+        }
+      }
+    }
+    { HBox22 HBox
+      Move(27,333,693,36)
+      { Label19 Label
+        Move(9,0,144,36)
+        Alignment = Align.Right
+        Text = ("Kanban  ")
+      }
+      { !txtKanban TextBox
+        Move(306,0,126,36)
+        #Public = True
+        Expand = True
+      }
+      { Separator4 Separator
+        Move(459,0,18,36)
+      }
+      { HBox23 HBox
+        Move(486,0,162,36)
+        { !CheckBoxTerminado3 CheckBox
+          Move(0,0,108,36)
+          #Public = True
+          AutoResize = True
+          Text = ("Automático")
+          Value = CheckBox.True
+        }
+      }
     }
     { HBox19 HBox
-      Move(27,333,693,36)
+      Move(27,378,693,36)
       { Label17 Label
         Move(9,0,144,36)
         Alignment = Align.Right
@@ -207,7 +245,7 @@
       }
     }
     { HBox20 HBox
-      Move(27,369,693,36)
+      Move(27,414,693,36)
       { Label18 Label
         Move(9,0,144,36)
         Alignment = Align.Right
@@ -221,7 +259,7 @@
       }
     }
     { HBox4 HBox
-      Move(27,405,693,36)
+      Move(27,450,693,36)
       { Label5 Label
         Move(9,0,144,36)
         Alignment = Align.Right
@@ -405,7 +443,7 @@
     Index = 0
   }
   { HBox1 HBox
-    Move(18,612,477,36)
+    Move(9,684,477,36)
     { Spring1 Spring
       Move(90,0,126,36)
     }
