@@ -154,12 +154,11 @@
         Expand = True
         ReadOnly = True
       }
-      { HBox17 HBox
-        Move(315,0,144,36)
+      { Separator6 Separator
+        Move(459,0,18,36)
       }
       { HBox15 HBox
-        Move(486,0,162,36)
-        Expand = True
+        Move(486,0,252,36)
         { !CheckBoxTerminado CheckBox
           Move(0,0,108,36)
           #Public = True
@@ -191,7 +190,7 @@
         Move(459,0,18,36)
       }
       { HBox21 HBox
-        Move(486,0,162,36)
+        Move(486,0,252,36)
         { !CheckBoxTerminado2 CheckBox
           Move(0,0,108,36)
           #Public = True
@@ -216,7 +215,7 @@
         Move(459,0,18,36)
       }
       { HBox23 HBox
-        Move(486,0,162,36)
+        Move(486,0,252,36)
         { !CheckBoxTerminado3 CheckBox
           Move(0,0,108,36)
           #Public = True
@@ -226,8 +225,42 @@
         }
       }
     }
+    { HBox20 HBox
+      Move(27,369,693,36)
+      { Label18 Label
+        Move(9,0,144,36)
+        Alignment = Align.Right
+        Text = ("Organización  ")
+      }
+      { !txtOrganizacion TextBox
+        Move(162,0,126,36)
+        #Public = True
+        Expand = True
+        Password = True
+      }
+      { Separator5 Separator
+        Move(387,0,18,36)
+      }
+      { HBox24 HBox
+        Move(414,0,252,36)
+        { !CheckBoxTerminado4 CheckBox
+          Move(0,0,108,36)
+          #Public = True
+          AutoResize = True
+          Text = ("README    ")
+          Value = CheckBox.True
+        }
+        { !CheckBoxTerminado5 CheckBox
+          Move(135,0,90,36)
+          #Public = True
+          AutoResize = True
+          Text = ("Licencia")
+          Value = CheckBox.True
+        }
+      }
+    }
     { HBox19 HBox
-      Move(27,378,693,36)
+      Move(27,414,693,36)
       { Label17 Label
         Move(9,0,144,36)
         Alignment = Align.Right
@@ -239,20 +272,6 @@
       }
       { !txtToken TextBox
         Move(306,0,126,36)
-        #Public = True
-        Expand = True
-        Password = True
-      }
-    }
-    { HBox20 HBox
-      Move(27,414,693,36)
-      { Label18 Label
-        Move(9,0,144,36)
-        Alignment = Align.Right
-        Text = ("Organización  ")
-      }
-      { !txtOrganizacion TextBox
-        Move(261,0,126,36)
         #Public = True
         Expand = True
         Password = True
