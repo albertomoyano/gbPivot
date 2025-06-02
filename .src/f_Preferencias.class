@@ -2,6 +2,8 @@
 
 Public UsuarioAdmin As String
 Public sRefrescar As Result
+Public hResultadoProyectos As Result
+Private bCargandoDatos As Boolean
 
 Public Sub Form_Open()
 
@@ -31,23 +33,41 @@ Public Sub Form_Open()
   With TableViewProyectos
     .Header = True
     .Grid = True
-    .Columns.Count = 5
+    .Columns.Count = 9
     .Columns[0].Title = "id"
     .Columns[0].Width = 0
-    .Columns[1].Title = ""
-    .Columns[1].Width = 200
-    .Columns[2].Title = ""
-    .Columns[2].Width = 200
-    .Columns[3].Title = ""
-    .Columns[3].Width = 200
+    .Columns[1].Title = "Nombre del proyecto"
+    .Columns[1].Width = 300
+    .Columns[2].Title = "Tipo"
+    .Columns[2].Width = 100
+    .Columns[3].Title = "Lenguaje"
+    .Columns[3].Width = 120
     .Columns[4].Title = ""
-    .Columns[4].Width = 200
+    .Columns[4].Width = 0
+    .Columns[5].Title = "Fecha creación"
+    .Columns[5].Width = 150
+    .Columns[6].Title = ""
+    .Columns[6].Width = 0
+    .Columns[7].Title = ""
+    .Columns[7].Width = 0
+    .Columns[8].Title = ""
+    .Columns[8].Width = 0
   End With
+
+  ConsultaBBDDproyectos()
 
   btnNuevoProyecto.Visible = True
   btnBorrarProyecto.Visible = False
   btnGuardarProyecto.Visible = False
   btnGuardarCambiosProyecto.Visible = False
+
+End
+
+Public Sub ConsultaBBDDproyectos()
+
+  hResultadoProyectos = m_OnOff_y_Red.meConn.Exec("SELECT * FROM proyectos ORDER BY id_proyectos DESC")
+  TableViewProyectos.Rows.Count = hResultadoProyectos.Count
+  TableViewProyectos.Refresh()
 
 End
 
@@ -171,3 +191,221 @@ Public Sub txtCierreProyecto_KeyPress()
   End If
 
 End Sub
+
+Public Sub btnNuevoProyecto_Click()
+
+  txtProyecto.ReadOnly = False
+  txtProyecto.Background = Color.White
+  btnNuevoProyecto.Visible = False
+  btnGuardarProyecto.Visible = True
+  btnGuardarCambiosProyecto.Visible = False
+  CheckBoxTerminado.Enabled = True
+
+  LimpiarCamposProyecto()
+
+  Dim fecha As String
+  Dim HOY As Date
+
+  If txtInicioProyecto.Text = "" Then
+    HOY = Now
+    fecha = Format(HOY, "dd-mm-yyyy")
+    txtInicioProyecto.Text = fecha
+  Endif
+
+  ' Obtenemos el último ID y sumamos +1 para el nuevo registro
+  hResultadoProyectos = m_OnOff_y_Red.meConn.Exec("SELECT MAX(id_proyectos) FROM proyectos LIMIT 1")
+
+  Dim Idn As Integer
+  ' Si no hay ninguna entrada entonces arrancamos desde 0
+  If hResultadoProyectos["MAX(id_proyectos)"] = Null Then
+    Idn = 0
+  Else
+    Idn = CInt(hResultadoProyectos["MAX(id_proyectos)"]) + 1
+  Endif
+
+  txtIDproyectos.Text = Idn
+  txtProyecto.SetFocus
+
+End
+
+Public Sub btnGuardarProyecto_Click()
+
+  GuardarProyectoPrimeraVez()
+  ConsultaBBDDproyectos()
+  LimpiarCamposProyecto()
+
+  txtProyecto.ReadOnly = True
+  txtProyecto.Background = Color.Background
+  btnNuevoProyecto.Visible = True
+  btnGuardarProyecto.Visible = False
+  btnGuardarCambiosProyecto.Visible = False
+  CheckBoxTerminado.Enabled = False
+
+End
+
+Public Sub GuardarProyectoPrimeraVez()
+
+  Dim BuscarProyecto As String
+
+  ' Escapa los caracteres especiales(comilla simple)en el título
+  Dim tituloEscapado As String
+
+  tituloEscapado = Replace(txtProyecto.Text, "'", "''")
+
+  BuscarProyecto = "SELECT * FROM proyectos WHERE nombre = '" & tituloEscapado & "'"
+  hResultadoProyectos = m_OnOff_y_Red.meConn.Exec(BuscarProyecto)
+
+  ' Verificar si se encontraron resultados en la consulta
+  If hResultadoProyectos.Count > 0 Then
+    Message.Warning("El nombre de proyecto que desea agregar ya existe en la base de datos.")
+    Return ' Salir de la función si el título ya existe
+  Endif
+
+  hResultadoProyectos = m_OnOff_y_Red.meConn.Create("proyectos")
+
+  GuardarProyecto()
+  m_OnOff_y_Red.meConn.Commit()
+  hResultadoProyectos.Update()
+  TableViewProyectos.Refresh()
+
+  Message.Info("Nueva entrada guardada.")
+
+  ' LimpiarCamposGlosarios()
+
+End
+
+Public Sub GuardarCambiosProyectos()
+
+  ' Escapa los caracteres especiales(comilla simple)en el título
+  Dim tituloEscapado As String
+
+  tituloEscapado = Replace(FMain.txtTEXTglosario.Text, "'", "''")
+
+  hResultadoProyectos = m_OnOff_y_Red.meConn.Edit("proyectos", "id_proyectos=" & txtIDproyectos.Text)
+
+  GuardarProyecto()
+  m_OnOff_y_Red.meConn.Commit()
+  hResultadoProyectos.Update()
+  TableViewProyectos.Refresh()
+
+  Message.Info("Los cambios se guardaron con éxito.")
+
+  LimpiarCamposProyecto()
+
+End
+
+Public Sub GuardarProyecto()
+
+  hResultadoProyectos!id_proyectos = txtIDproyectos.Text
+  hResultadoProyectos!nombre = txtProyecto.Text
+  hResultadoProyectos!tipo = cmbTipoProyecto.Text
+  hResultadoProyectos!lenguaje = cmbTipoLenguaje.Text
+  hResultadoProyectos!terminado = CheckBoxTerminado.Value
+  hResultadoProyectos!fecha_creacion = txtInicioProyecto.Text
+  hResultadoProyectos!fecha_cierre = txtCierreProyecto.Text
+  hResultadoProyectos!tiempo_total = txtHorasEmpleadas.Text
+  hResultadoProyectos!notas = txtNotas.Text
+
+End
+
+Public Sub VerProyectosEnTableViewProyectos()
+
+  bCargandoDatos = True ' Inicia la carga de datos
+
+  With f_Preferencias
+    .txtIDproyectos.Text = TableViewProyectos[TableViewProyectos.Row, 0].Text
+    .txtProyecto.Text = TableViewProyectos[TableViewProyectos.Row, 1].Text
+    .cmbTipoProyecto.Text = TableViewProyectos[TableViewProyectos.Row, 2].Text
+    .cmbTipoLenguaje.Text = TableViewProyectos[TableViewProyectos.Row, 3].Text
+    .CheckBoxTerminado.Value = Val(TableViewProyectos[TableViewProyectos.Row, 4].Text)
+    .txtInicioProyecto.Text = TableViewProyectos[TableViewProyectos.Row, 5].Text
+    .txtNotas.Text = TableViewProyectos[TableViewProyectos.Row, 6].Text
+    .txtCierreProyecto.Text = TableViewProyectos[TableViewProyectos.Row, 7].Text
+    .txtHorasEmpleadas.Text = TableViewProyectos[TableViewProyectos.Row, 8].Text
+  End With
+
+  bCargandoDatos = False ' Finaliza la carga
+
+End
+
+' Public Sub VerProyectosEnTableViewProyectos()
+'
+'   With f_Preferencias
+'     .txtIDproyectos.Text = TableViewProyectos[TableViewProyectos.Row, 0].Text
+'     .txtProyecto.Text = TableViewProyectos[TableViewProyectos.Row, 1].Text
+'     .cmbTipoProyecto.Text = TableViewProyectos[TableViewProyectos.Row, 2].Text
+'     .cmbTipoLenguaje.Text = TableViewProyectos[TableViewProyectos.Row, 3].Text
+'     .CheckBoxTerminado.Value = Val(TableViewProyectos[TableViewProyectos.Row, 4].Text)
+'     .txtInicioProyecto.Text = TableViewProyectos[TableViewProyectos.Row, 5].Text
+'     .txtNotas.Text = TableViewProyectos[TableViewProyectos.Row, 6].Text
+'     .txtCierreProyecto.Text = TableViewProyectos[TableViewProyectos.Row, 7].Text
+'     .txtHorasEmpleadas.Text = TableViewProyectos[TableViewProyectos.Row, 8].Text
+'   End With
+'
+' End
+
+Public Sub TableViewProyectos_Data(Row As Integer, Column As Integer)
+
+  If (hResultadoProyectos <> Null) Then
+    If Row >= 0 Then
+      hResultadoProyectos.moveTo(Row)
+      Try TableViewProyectos.Data.Text = Str(hResultadoProyectos[Column])
+    Endif
+  Endif
+
+  If row Mod 2 = 0 Then
+    TableViewProyectos.Data.Background = Color.RGB(230, 230, 230)
+  Endif
+
+End
+
+Public Sub TableViewProyectos_Click()
+
+  VerProyectosEnTableViewProyectos()
+
+  txtProyecto.ReadOnly = False
+  txtProyecto.Background = Color.White
+  btnGuardarProyecto.Visible = False
+  btnNuevoProyecto.Visible = False
+  btnGuardarCambiosProyecto.Visible = True
+  CheckBoxTerminado.Enabled = True
+
+End
+
+Public Sub btnGuardarCambiosProyecto_Click()
+
+  GuardarCambiosProyectos()
+  ConsultaBBDDproyectos()
+  LimpiarCamposProyecto()
+
+  txtProyecto.ReadOnly = True
+  txtProyecto.Background = Color.Background
+  btnNuevoProyecto.Visible = True
+  btnGuardarProyecto.Visible = False
+  btnGuardarCambiosProyecto.Visible = False
+  CheckBoxTerminado.Enabled = False
+
+End
+
+Public Sub LimpiarCamposProyecto()
+
+  txtIDproyectos.Text = ""
+  txtProyecto.Text = ""
+  CheckBoxTerminado.Value = False
+  txtInicioProyecto.Text = ""
+  txtCierreProyecto.Text = ""
+  txtHorasEmpleadas.Text = ""
+  txtNotas.Text = ""
+
+End
+
+Public Sub CheckBoxTerminado_Click()
+
+  If bCargandoDatos Then Return ' Evita conflicto durante la carga
+
+  If CheckBoxTerminado.Value = True And Trim(txtCierreProyecto.Text) = "" Then
+    Message.Warning("Debe completar la fecha de cierre antes de marcar el proyecto como terminado.")
+    CheckBoxTerminado.Value = False
+  End If
+
+End

@@ -981,23 +981,66 @@ Public Sub menuAbrirProyecto_Click()
   Dialog.Filter = ["*.adoc", "Archivos Asciidoc"]
   Dialog.AutoExt = True
   Dialog.Path = User.Home
-  If Dialog.OpenFile() Then
+
+  If Dialog.OpenFile() Then Return
+
+  Dim rutaArchivo As String = Dialog.Path
+  Dim nombreArchivo As String = File.BaseName(rutaArchivo)
+  Dim resultado As Result
+  Dim sql As String
+
+  ' Validar si el proyecto está registrado en la base de datos
+  sql = "SELECT COUNT(*) AS existe FROM proyectos WHERE nombre = '" & nombreArchivo & "';"
+  Try resultado = m_OnOff_y_Red.meConn.Exec(sql)
+
+  If Error Then
+    Message.Error("Error al consultar la base de datos: " & Error.Text)
     Return
-  Else
-    Shell Quote$("rm -rf " & User.Home & "/.local/share/org.gambas.*") & "\n" Wait
-    txtProyecto.Text = Dialog.Path
-    RutaProyecto = File.Dir(txtProyecto.Text)
-    NombreProyecto = File.BaseName(txtProyecto.Text)
-    DirViewProyecto.Root = File.Dir(txtProyecto.Text)
-    ControlarCarpetas()
-    ImageViewProyecto.Image = Null
-    tvProyecto.Input("cd " & RutaProyecto & "\n")
-    tvProyecto.Input("clear" & "\n")
-    DirViewProyecto.Refresh
-    FileViewProyecto.Refresh
   Endif
 
+  If resultado!existe = 0 Then
+    Message.Warning("Este archivo no pertenece a ningún proyecto registrado.")
+    Return
+  Endif
+
+  ' Si está en la base, continuar con apertura
+  Shell Quote$("rm -rf " & User.Home & "/.local/share/org.gambas.*") & "\n" Wait
+  txtProyecto.Text = rutaArchivo
+  RutaProyecto = File.Dir(rutaArchivo)
+  NombreProyecto = nombreArchivo
+  DirViewProyecto.Root = RutaProyecto
+  ControlarCarpetas()
+  ImageViewProyecto.Image = Null
+  tvProyecto.Input("cd " & RutaProyecto & "\n")
+  tvProyecto.Input("clear" & "\n")
+  DirViewProyecto.Refresh
+  FileViewProyecto.Refresh
+
 End
+
+' Public Sub menuAbrirProyecto_Click()
+'
+'   Dialog.Title = "Seleccionar archivo"
+'   Dialog.Filter = ["*.adoc", "Archivos Asciidoc"]
+'   Dialog.AutoExt = True
+'   Dialog.Path = User.Home
+'   If Dialog.OpenFile() Then
+'     Return
+'   Else
+'     Shell Quote$("rm -rf " & User.Home & "/.local/share/org.gambas.*") & "\n" Wait
+'     txtProyecto.Text = Dialog.Path
+'     RutaProyecto = File.Dir(txtProyecto.Text)
+'     NombreProyecto = File.BaseName(txtProyecto.Text)
+'     DirViewProyecto.Root = File.Dir(txtProyecto.Text)
+'     ControlarCarpetas()
+'     ImageViewProyecto.Image = Null
+'     tvProyecto.Input("cd " & RutaProyecto & "\n")
+'     tvProyecto.Input("clear" & "\n")
+'     DirViewProyecto.Refresh
+'     FileViewProyecto.Refresh
+'   Endif
+'
+' End
 
 Public Sub ControlarCarpetas()
 

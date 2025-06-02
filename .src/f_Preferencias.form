@@ -21,7 +21,7 @@
     Move(9,90,504,9)
   }
   { TabPanel1 TabPanel
-    Move(9,108,729,468)
+    Move(9,108,729,495)
     Expand = True
     Arrangement = Arrange.Vertical
     Spacing = True
@@ -55,8 +55,9 @@
         ToolTip = ("Guardar modificaciones")
         Picture = Picture["iconos/guardarComo.svg"]
       }
-      { txtIDproyectos TextBox
+      { !txtIDproyectos TextBox
         Move(153,0,135,36)
+        #Public = True
         Visible = False
         Background = Color.Background
         NoTabFocus = True
@@ -79,9 +80,12 @@
         Alignment = Align.Right
         Text = ("Proyecto  ")
       }
-      { txtProyecto TextBox
-        Move(153,0,189,36)
+      { !txtProyecto TextBox
+        Move(198,0,189,36)
+        #Public = True
+        Background = Color.Background
         Expand = True
+        ReadOnly = True
       }
     }
     { HBox14 HBox
@@ -91,19 +95,21 @@
         Alignment = Align.Right
         Text = ("Tipo  ")
       }
-      { cmbTipoProyecto ComboBox
-        Move(153,0,126,36)
+      { !cmbTipoProyecto ComboBox
+        Move(144,0,180,36)
+        #Public = True
         Expand = True
         ReadOnly = True
         List = [("Libro"), ("Revista")]
       }
       { Label16 Label
-        Move(279,0,144,36)
+        Move(333,0,144,36)
         Alignment = Align.Right
         Text = ("Lenguaje  ")
       }
-      { cmbTipoLenguaje ComboBox
-        Move(432,0,126,36)
+      { !cmbTipoLenguaje ComboBox
+        Move(486,0,171,36)
+        #Public = True
         Expand = True
         ReadOnly = True
         List = [("Asciidoc"), ("LaTeX")]
@@ -116,8 +122,9 @@
         Alignment = Align.Right
         Text = ("Fecha de inicio  ")
       }
-      { txtInicioProyecto TextBox
+      { !txtInicioProyecto TextBox
         Move(153,0,162,36)
+        #Public = True
         Background = Color.Background
         Expand = True
         ReadOnly = True
@@ -127,33 +134,39 @@
         Alignment = Align.Right
         Text = ("Fecha de cierre  ")
       }
-      { txtCierreProyecto TextBox
+      { !txtCierreProyecto TextBox
         Move(486,0,162,36)
+        #Public = True
         Expand = True
       }
     }
     { HBox5 HBox
       Move(27,261,693,36)
-      { Label3 Label
-        Move(0,0,144,36)
-        Alignment = Align.Right
-        Text = ("Asignaciones  ")
-      }
-      { cmbUsuarios ComboBox
-        Move(153,0,189,36)
-        Expand = True
-        ReadOnly = True
-      }
       { Label4 Label
-        Move(360,0,144,36)
+        Move(9,0,144,36)
         Alignment = Align.Right
         Text = ("Horas empleadas  ")
       }
-      { txtHorasEmpleadas TextBox
-        Move(504,0,162,36)
+      { !txtHorasEmpleadas TextBox
+        Move(153,0,162,36)
+        #Public = True
         Background = Color.Background
         Expand = True
         ReadOnly = True
+      }
+      { HBox17 HBox
+        Move(315,0,144,36)
+      }
+      { HBox15 HBox
+        Move(486,0,162,36)
+        Expand = True
+        { !CheckBoxTerminado CheckBox
+          Move(0,0,108,36)
+          #Public = True
+          Enabled = False
+          AutoResize = True
+          Text = ("Terminado")
+        }
       }
     }
     { HBox4 HBox
@@ -167,17 +180,10 @@
         Move(189,0,36,36)
         Picture = Picture["iconos/schedule.svg"]
       }
-      { txtNotas TextBox
+      { !txtNotas TextBox
         Move(261,0,126,36)
+        #Public = True
         Expand = True
-      }
-      { Separator2 Separator
-        Move(387,0,9,36)
-      }
-      { CheckBoxTerminado CheckBox
-        Move(405,0,144,36)
-        AutoResize = True
-        Text = ("Terminado")
       }
     }
     Index = 1
@@ -196,7 +202,7 @@
         Expand = True
       }
       { !txtIdAdmin TextBox
-        Move(621,0,81,36)
+        Move(585,0,81,36)
         #Public = True
         Visible = False
       }
@@ -209,7 +215,7 @@
         Text = ("Email  ")
       }
       { !txtAdministradorEmail TextBox
-        Move(270,0,243,36)
+        Move(270,0,207,36)
         #Public = True
         Expand = True
       }
@@ -244,10 +250,10 @@
       }
     }
     { Separator3 Separator
-      Move(9,180,504,9)
+      Move(9,171,504,9)
     }
     { HBox9 HBox
-      Move(9,198,414,36)
+      Move(9,189,414,36)
       { btnNuevoUsuario Button
         Move(0,0,36,36)
         NoTabFocus = True
@@ -271,7 +277,7 @@
         Picture = Picture["iconos/guardarComo.svg"]
       }
       { txtIDusuarios TextBox
-        Move(153,0,90,36)
+        Move(153,0,144,36)
         Visible = False
         Background = Color.Background
         NoTabFocus = True
@@ -279,7 +285,7 @@
       }
     }
     { TableViewUsuarios TableView
-      Move(9,234,549,81)
+      Move(9,225,549,81)
       NoTabFocus = True
       Expand = True
       Mode = Select.Single
@@ -288,7 +294,7 @@
       ScrollBar = Scroll.Vertical
     }
     { HBox12 HBox
-      Move(9,315,693,36)
+      Move(9,306,693,36)
       { Label13 Label
         Move(9,0,144,36)
         Alignment = Align.Right
@@ -296,7 +302,9 @@
       }
       { txtFechaCreacion TextBox
         Move(171,0,207,36)
+        Background = Color.Background
         Expand = True
+        ReadOnly = True
       }
       { Label14 Label
         Move(378,0,144,36)
@@ -311,7 +319,7 @@
       }
     }
     { HBox8 HBox
-      Move(9,351,693,36)
+      Move(9,342,693,36)
       { Label10 Label
         Move(9,0,144,36)
         Alignment = Align.Right
@@ -322,17 +330,17 @@
         Expand = True
       }
       { Label11 Label
-        Move(387,0,144,36)
+        Move(378,0,144,36)
         Alignment = Align.Right
         Text = ("Clave  ")
       }
       { txtClaveUsuario TextBox
-        Move(540,0,135,36)
+        Move(531,0,144,36)
         Expand = True
       }
     }
     { HBox11 HBox
-      Move(9,387,693,36)
+      Move(9,378,693,36)
       { Label12 Label
         Move(9,0,144,36)
         Alignment = Align.Right

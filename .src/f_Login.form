@@ -62,7 +62,7 @@
   { HBox3 HBox
     MoveScaled(1,31,56,4)
     { Spring1 Spring
-      MoveScaled(0,0,8,4)
+      MoveScaled(13,0,8,4)
     }
     { btnConectarseMy Button
       MoveScaled(36,0,18,4)
