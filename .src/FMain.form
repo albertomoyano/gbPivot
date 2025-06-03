@@ -204,12 +204,20 @@
       Move(27,621,171,4)
     }
     { HBox18 HBox
-      Move(0,630,225,36)
+      Move(18,630,225,36)
+      { Spring13 Spring
+        Move(9,0,45,36)
+      }
+      { PictureBox1 PictureBox
+        Move(63,0,36,36)
+        Picture = Picture.Load("iconos/go-home.svg")
+        Alignment = Align.Center
+      }
       { lblProyecto Label
-        Move(18,0,99,36)
-        Expand = True
+        Move(108,0,99,36)
+        AutoResize = True
         Alignment = Align.Right
-        Text = ("Proyecto en curso")
+        Text = ("  Proyecto en curso")
       }
     }
     { HBox118 HBox
