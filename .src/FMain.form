@@ -42,6 +42,7 @@
     Text = ("Archivo")
     { menuAbrirProyecto Menu
       Text = ("Abrir Proyecto")
+      Picture = Picture["iconos/abrirBuscar.svg"]
     }
     { Menu5 Menu
       Text = ("Salir de la aplicación")
@@ -121,8 +122,11 @@
     Move(9,9,234,693)
     Visible = False
     Arrangement = Arrange.Vertical
+    { HBox21 HBox
+      Move(27,9,171,4)
+    }
     { HBox14 HBox
-      Move(0,0,225,36)
+      Move(9,27,216,36)
       { btnComentarios Button
         Move(0,0,36,36)
         Picture = Picture["iconos/cafe.svg"]
@@ -132,31 +136,60 @@
         ToolTip = ("Orden de taller para imprenta")
         Picture = Picture["iconos/impresora.svg"]
       }
+      { btnEmpujarGitLocal Button
+        Move(72,0,36,36)
+        ToolTip = ("Empujar a Git local")
+        Picture = Picture["iconos/git-local.svg"]
+      }
       { Spring2 Spring
-        Move(144,0,63,36)
+        Move(171,0,27,36)
       }
     }
-    { HBox21 HBox
-      Move(36,108,171,4)
+    { HBox119 HBox
+      Move(9,63,216,36)
+      { btnEmpujarGitHub Button
+        Move(0,0,36,36)
+        Picture = Picture["iconos/gitremoto.svg"]
+      }
+      { !txtUsuarioGit TextBox
+        Move(36,0,108,36)
+        #Public = True
+        Expand = True
+      }
     }
     { !DirViewProyecto DirView
-      Move(27,135,189,90)
+      Move(9,153,189,90)
       #Public = True
       Expand = True
     }
     { HBox19 HBox
-      Move(27,234,171,9)
+      Move(9,252,171,9)
+    }
+    { HBox117 HBox
+      Move(9,270,207,36)
+      { btnComentarios2 Button
+        Move(0,0,36,36)
+        ToolTip = ("Agregar archivo")
+        Picture = Picture["iconos/agregardarchivo.svg"]
+      }
+      { btnOrdenDeTaller2 Button
+        Move(36,0,36,36)
+        Picture = Picture["iconos/borrararchivo.svg"]
+      }
+      { Spring3 Spring
+        Move(108,0,63,36)
+      }
     }
     { FileViewProyecto FileView
-      Move(18,252,189,90)
+      Move(9,306,189,90)
       Expand = True
       View = FileView.Detailed
     }
     { HBox15 HBox
-      Move(18,360,171,9)
+      Move(27,405,171,9)
     }
     { Panel9 Panel
-      Move(18,378,189,234)
+      Move(18,423,189,189)
       Expand = True
       Arrangement = Arrange.Fill
       Border = Border.Raised
@@ -171,13 +204,16 @@
       Move(27,621,171,4)
     }
     { HBox18 HBox
-      Move(0,639,225,36)
+      Move(0,630,225,36)
       { lblProyecto Label
         Move(18,0,99,36)
         Expand = True
         Alignment = Align.Right
         Text = ("Proyecto en curso")
       }
+    }
+    { HBox118 HBox
+      Move(18,675,171,4)
     }
   }
   { SplitterPrincipal Splitter
@@ -203,19 +239,8 @@
           ReadOnly = True
           Text = ("Theme del editor")
         }
-        { btnEmpujarGitLocal Button
-          Move(306,0,36,36)
-          ToolTip = ("Empujar a Git local")
-          Picture = Picture["iconos/git-local.svg"]
-        }
-        { btnEmpujarGitHub Button
-          Move(342,0,36,36)
-          Picture = Picture["iconos/gitremoto.svg"]
-        }
-        { !txtUsuarioGit TextBox
-          Move(378,0,135,36)
-          #Public = True
-          Expand = True
+        { Spring9 Spring
+          Move(324,0,27,36)
         }
       }
       { HBox22 HBox

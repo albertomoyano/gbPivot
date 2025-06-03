@@ -32,9 +32,9 @@ Public Sub Form_Open()
     Quit
   Endif
 
-  Dim RutaArchivoActual As String
+  ' Dim RutaArchivoActual As String
 
-  FMain.Title = "gbPivot (usuario en curso: " & m_OnOff_y_Red.UsuarioActual & ")"
+  FMain.Title = "gbPivot (usuario en curso: " & m_OnOff_y_Red.UsuarioActual & ") versión en desarrollo"
 
   ' Damos inicio al control de archivos
   m_Inicio.ControlDeInicio()' controlamos directorios y archivos base del programa
@@ -53,9 +53,6 @@ Public Sub Form_Open()
 
   ruta = "file://" & rutaAce
   WebViewEditor.url = ruta
-
-  ' Inicializar variables necesarias
-  RutaArchivoActual = ""
 
   $Bash = tvProyecto.Shell("/usr/bin/bash")
 
@@ -896,68 +893,10 @@ Public Sub btnVerProyectos_Click()
 
 End Sub
 
-Public Sub menuAbrirProyecto_Click()
-
-  Dialog.Title = "Seleccionar archivo"
-  Dialog.Filter = ["*.adoc", "Archivos Asciidoc"]
-  Dialog.AutoExt = True
-  Dialog.Path = User.Home
-
-  If Dialog.OpenFile() Then Return
-
-  Dim nombreProyecto As String = File.BaseName(Dialog.Path)
-  Dim resultado As Result
-  Dim sSQL As String
-
-  ' Buscar el proyecto en la base
-  sSQL = "SELECT terminado, en_uso FROM proyectos WHERE nombre = '" & nombreProyecto & "'"
-  resultado = m_OnOff_y_Red.meConn.Exec(sSQL)
-
-  If Not resultado.Available Then
-    Message.Warning("El archivo seleccionado no corresponde a un proyecto registrado.")
-    Return
-  Endif
-
-  If resultado!terminado = True Then
-    Message.Info("El proyecto <strong>'" & nombreProyecto & "'</strong> está cerrado. Contacte al editor para reabrirlo.")
-    Return
-  Endif
-
-  If resultado!en_uso = True Then
-    Message.Warning("Este proyecto ya está en uso por otro usuario. Espere a que se libere o contacte al editor.")
-    Return
-  Endif
-
-  ' Marcar el proyecto como "en uso"
-  Try m_OnOff_y_Red.meConn.Exec("UPDATE proyectos SET en_uso = 1 WHERE nombre = '" & nombreProyecto & "'")
-
-  If Error Then
-    Message.Error("No se pudo marcar el proyecto como 'en uso'.")
-    Return
-  Endif
-
-  ' --- Si pasa todas las validaciones, se continúa con la apertura normal ---
-  Shell Quote$("rm -rf " & User.Home & "/.local/share/org.gambas.*") & "\n" Wait
-
-  txtProyecto.Text = Dialog.Path
-  RutaProyecto = File.Dir(txtProyecto.Text)
-  NombreProyecto = nombreProyecto' hacemos global la variable
-  DirViewProyecto.Root = File.Dir(txtProyecto.Text)
-  ControlarCarpetas()
-  ImageViewProyecto.Image = Null
-  tvProyecto.Input("cd " & RutaProyecto & "\n")
-  tvProyecto.Input("clear" & "\n")
-  DirViewProyecto.Refresh
-  FileViewProyecto.Refresh
-  ' reinicamosTiempo()
-  ' cargarTiempoTotal(nombreProyecto)
-
-End
-
 Public Sub ControlarCarpetas()
 
   ' Lista de directorios que deseas crear
-  Dim directorios As String[] = ["artcap", "correcciones", "media", "originales", "tapa", "config", "salidas", ".github", ".github/workflows"]
+  Dim directorios As String[] = ["art-cap", "correcciones", "media", "originales", "config", "salidas", "salidas/tapa", ".github", ".github/workflows"]
 
   ' Crear los directorios si no existen
   For Each directorio As String In directorios
@@ -965,5 +904,74 @@ Public Sub ControlarCarpetas()
       Mkdir RutaProyecto & "/" & directorio
     End If
   Next
+
+End
+
+Public Sub Form_Show()
+
+  ' Configurar el Watcher
+  If RutaProyecto <> "" Then
+    Watcher.Path = RutaProyecto
+    Watcher.AddMask("create,delete")
+    Watcher.Start
+  End If
+
+End
+
+Public Sub menuAbrirProyecto_Click()
+
+  Dialog.Title = "Seleccionar archivo"
+  Dialog.Filter = ["*.adoc", "Archivos Asciidoc"]
+  Dialog.AutoExt = True
+  Dialog.Path = User.Home
+
+  If Dialog.OpenFile() Then
+    Return
+  Else
+    Dim nombreProyecto As String = File.BaseName(Dialog.Path)
+    Dim resultado As Result
+    Dim sSQL As String
+
+    ' Buscar el proyecto en la base
+    sSQL = "SELECT terminado, en_uso FROM proyectos WHERE nombre = '" & nombreProyecto & "'"
+    resultado = m_OnOff_y_Red.meConn.Exec(sSQL)
+
+    If Not resultado.Available Then
+      Message.Warning("El archivo seleccionado no corresponde a un proyecto registrado.")
+      Return
+    Endif
+
+    If resultado!terminado = True Then
+      Message.Info("El proyecto <strong>'" & nombreProyecto & "'</strong> está cerrado. Contacte al editor para reabrirlo.")
+      Return
+    Endif
+
+    If resultado!en_uso = True Then
+      Message.Warning("Este proyecto ya está en uso por otro usuario. Espere a que se libere o contacte al editor.")
+      Return
+    Endif
+
+    ' Marcar el proyecto como "en uso"
+    Try m_OnOff_y_Red.meConn.Exec("UPDATE proyectos SET en_uso = 1 WHERE nombre = '" & nombreProyecto & "'")
+
+    If Error Then
+      Message.Error("No se pudo marcar el proyecto como 'en uso'.")
+      Return
+    Endif
+
+    ' --- Si pasa todas las validaciones, se continúa con la apertura normal ---
+    Shell Quote$("rm -rf " & User.Home & "/.local/share/org.gambas.*") & "\n" Wait
+
+    txtProyecto.Text = Dialog.Path
+    RutaProyecto = File.Dir(txtProyecto.Text)
+    NombreProyecto = nombreProyecto' hacemos global la variable
+    DirViewProyecto.Root = File.Dir(txtProyecto.Text)
+    ControlarCarpetas()
+    ImageViewProyecto.Image = Null
+    tvProyecto.Input("cd " & RutaProyecto & "\n")
+    tvProyecto.Input("clear" & "\n")
+    DirViewProyecto.Refresh
+    FileViewProyecto.Refresh
+  Endif
 
 End
