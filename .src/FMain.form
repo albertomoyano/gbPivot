@@ -394,18 +394,24 @@
             Border = False
             ScrollBar = Scroll.Vertical
             { HBox107 HBox
-              Move(27,9,567,36)
-              { !cmbCompilarLibro ComboBox
-                Move(27,0,162,36)
-                #Public = True
+              Move(27,9,756,36)
+              { MenuButtonLibroCompilar MenuButton
+                Move(207,0,99,36)
+                Enabled = False
                 Expand = True
-                ReadOnly = True
+                MenuOnly = True
+              }
+              { MenuButtonLibroVer MenuButton
+                Move(432,0,99,36)
+                Enabled = False
+                Expand = True
+                MenuOnly = True
               }
               { Separator4 Separator
-                Move(495,0,18,36)
+                Move(666,0,18,36)
               }
               { btnGuardarCambiosAutor2 Button
-                Move(522,0,36,36)
+                Move(693,0,36,36)
                 Picture = Picture["iconos/guardarComo.svg"]
               }
             }
@@ -1127,11 +1133,17 @@
             ScrollBar = Scroll.Vertical
             { HBox114 HBox
               Move(0,0,567,36)
-              { !cmbCompilarRevista ComboBox
-                Move(0,0,162,36)
-                #Public = True
+              { MenuButtonRevistaCompilar MenuButton
+                Move(0,0,99,36)
+                Enabled = False
                 Expand = True
-                ReadOnly = True
+                MenuOnly = True
+              }
+              { MenuButtonRevistaVer MenuButton
+                Move(225,0,99,36)
+                Enabled = False
+                Expand = True
+                MenuOnly = True
               }
               { Separator5 Separator
                 Move(495,0,18,36)
@@ -1407,21 +1419,34 @@
           }
         }
         { HBox195 HBox
-          Move(9,369,729,36)
+          Move(9,369,972,36)
           { Label3 Label
-            Move(0,0,152,36)
+            Move(9,0,152,36)
             Font = Font["Bold"]
-            Foreground = &HE00000
             Alignment = Align.Right
             Text = ("Tipo de entrada ")
           }
           { !cmbTipoEntrada ComboBox
-            Move(252,0,216,36)
+            Move(216,0,207,36)
             #Public = True
             ReadOnly = True
           }
+          { hbTesis HBox
+            Move(423,0,396,36)
+            AutoResize = True
+            { lblLocation3 Label
+              Move(0,0,144,36)
+              Alignment = Align.Right
+              Text = ("Tipo de tesis ")
+            }
+            { !cbType ComboBox
+              Move(153,0,207,36)
+              #Public = True
+              ReadOnly = True
+            }
+          }
           { Spring7 Spring
-            Move(558,0,135,36)
+            Move(873,0,54,36)
           }
         }
         { TabPanel6 TabPanel
@@ -2615,16 +2640,6 @@
             Shadow = True
             { HBox64 HBox
               Move(0,0,1098,36)
-              { lblLocation3 Label
-                Move(0,0,144,32)
-                Alignment = Align.Right
-                Text = ("Type ")
-              }
-              { !cbType ComboBox
-                Move(153,0,234,36)
-                #Public = True
-                ReadOnly = True
-              }
               { lblLocation4 Label
                 Move(396,0,144,32)
                 Alignment = Align.Right
@@ -3631,7 +3646,6 @@
           { Label11 Label
             Move(0,0,148,36)
             Font = Font["Bold"]
-            Foreground = &HFF0000
             Alignment = Align.Right
             Text = ("Tipo de entrada  ")
           }

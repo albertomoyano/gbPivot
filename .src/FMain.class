@@ -43,8 +43,6 @@ Public Sub Form_Open()
   m_glosarios.ConfigurarGridGlosario(ViewGridGlosarioTotal)
   m_Inicio.LevantarThemes()
   m_Inicio.LevantarScriptBash()
-  m_Inicio.LevantarCompilarRevista()
-  m_Inicio.LevantarCompilarLibro()
   m_Inteligencia.ConfigurarGridInteligencia(ViewgridAI)
 
   ' Usar la ruta existente para el editor ACE
@@ -965,13 +963,18 @@ Public Sub menuAbrirProyecto_Click()
     txtProyecto.Text = Dialog.Path
     RutaProyecto = File.Dir(txtProyecto.Text)
     NombreProyecto = nombreProyecto' hacemos global la variable
-    DirViewProyecto.Root = File.Dir(txtProyecto.Text)
-    ControlarCarpetas()
-    ImageViewProyecto.Image = Null
+    ControlarCarpetas()' nos aseguramos revisar las carpetas del proyecto
     tvProyecto.Input("cd " & RutaProyecto & "\n")
     tvProyecto.Input("clear" & "\n")
-    DirViewProyecto.Refresh
+    ImageViewProyecto.Image = Null
+    DirViewProyecto.Root = File.Dir(txtProyecto.Text)
+    DirViewProyecto.Refresh' hacemos un refresco luego de aseguramos de que las carpetas fueron revisadas
     FileViewProyecto.Refresh
+    MenuButtonLibroCompilar.Enabled = True
+    MenuButtonLibroVer.Enabled = True
+    MenuButtonRevistaCompilar.Enabled = True
+    MenuButtonRevistaVer.Enabled = True
+    ' falta activar el timer
   Endif
 
 End
