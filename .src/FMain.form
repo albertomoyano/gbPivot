@@ -1229,7 +1229,7 @@
         }
         Index = 1
         Text = ("Bibliografia")
-        Picture = Picture["iconos/bibtex.svg"]
+        Picture = Picture["iconos/bibliografia.svg"]
         { Panel5 Panel
           Move(9,0,1107,252)
           Arrangement = Arrange.Horizontal
