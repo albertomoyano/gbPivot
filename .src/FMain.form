@@ -11,6 +11,46 @@
   Spacing = True
   Margin = True
   Padding = 4
+  { menuCompilarLibro Menu
+    Text = ("menuCompilarLibro")
+    Visible = False
+    { Menu10 Menu
+      Text = ("Menu10")
+    }
+    { Menu11 Menu
+      Text = ("Menu11")
+    }
+  }
+  { menuCompilarRevista Menu
+    Text = ("menuCompilarRevista")
+    Visible = False
+    { Menu23 Menu
+      Text = ("Menu23")
+    }
+    { Menu27 Menu
+      Text = ("Menu27")
+    }
+  }
+  { menuVerLibro Menu
+    Text = ("menuVerLibro")
+    Visible = False
+    { Menu28 Menu
+      Text = ("Menu28")
+    }
+    { Menu29 Menu
+      Text = ("Menu29")
+    }
+  }
+  { menuVerRevista Menu
+    Text = ("menuVerRevista")
+    Visible = False
+    { Menu30 Menu
+      Text = ("Menu30")
+    }
+    { Menu31 Menu
+      Text = ("Menu31")
+    }
+  }
   { menuRecordatorios Menu
     Text = ("menuRecordatorios")
     Toggle = True
@@ -407,12 +447,14 @@
                 Move(207,0,99,36)
                 Enabled = False
                 Expand = True
+                Menu = "menuCompilarLibro"
                 MenuOnly = True
               }
               { MenuButtonLibroVer MenuButton
                 Move(432,0,99,36)
                 Enabled = False
                 Expand = True
+                Menu = "menuVerLibro"
                 MenuOnly = True
               }
               { Separator4 Separator
@@ -1145,12 +1187,14 @@
                 Move(0,0,99,36)
                 Enabled = False
                 Expand = True
+                Menu = "menuCompilarRevista"
                 MenuOnly = True
               }
               { MenuButtonRevistaVer MenuButton
                 Move(225,0,99,36)
                 Enabled = False
                 Expand = True
+                Menu = "menuVerRevista"
                 MenuOnly = True
               }
               { Separator5 Separator
