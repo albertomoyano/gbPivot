@@ -122,16 +122,18 @@
     Visible = False
     Arrangement = Arrange.Vertical
     { HBox14 HBox
-      Move(0,0,225,40)
+      Move(0,0,225,36)
       { btnComentarios Button
         Move(0,0,36,36)
-        ToolTip = ("Block de notas")
         Picture = Picture["iconos/cafe.svg"]
       }
       { btnOrdenDeTaller Button
         Move(36,0,36,36)
-        ToolTip = ("Block de notas")
-        Picture = Picture["iconos/textnormal.svg"]
+        ToolTip = ("Orden de taller para imprenta")
+        Picture = Picture["iconos/impresora.svg"]
+      }
+      { Spring2 Spring
+        Move(144,0,63,36)
       }
     }
     { HBox21 HBox
@@ -165,8 +167,11 @@
         Expand = True
       }
     }
+    { HBox116 HBox
+      Move(27,621,171,4)
+    }
     { HBox18 HBox
-      Move(0,630,225,40)
+      Move(0,639,225,36)
       { lblProyecto Label
         Move(18,0,99,36)
         Expand = True
@@ -189,6 +194,7 @@
         Move(9,0,594,36)
         { btnVerProyectos ToggleButton
           Move(0,0,36,36)
+          ToolTip = ("Mostrar/Ocultar elemento del proyecto")
           Picture = Picture["iconos/document.svg"]
         }
         { !cmbTheme ComboBox
@@ -199,12 +205,11 @@
         }
         { btnEmpujarGitLocal Button
           Move(306,0,36,36)
-          ToolTip = ("Block de notas")
+          ToolTip = ("Empujar a Git local")
           Picture = Picture["iconos/git-local.svg"]
         }
         { btnEmpujarGitHub Button
           Move(342,0,36,36)
-          ToolTip = ("Block de notas")
           Picture = Picture["iconos/gitremoto.svg"]
         }
         { !txtUsuarioGit TextBox
