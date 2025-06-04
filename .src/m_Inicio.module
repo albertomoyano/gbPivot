@@ -272,3 +272,49 @@ Private Sub Copiar(archivos As String[], rutaDestino As String)
   Next
 
 End Sub
+
+' Función para validar un número ISBN
+Public Sub EsISBNValido(ISBN As String) As Boolean
+  ' Elimina los guiones o espacios en blanco del número ISBN
+
+  ISBN = Replace(ISBN, "-", "")
+  ISBN = Replace(ISBN, " ", "")
+
+  ' Comprueba si el ISBN tiene 10 o 13 dígitos
+  If Len(ISBN) <> 10 And Len(ISBN) <> 13 Then
+    Return False
+  End If
+
+  ' Comprueba si el último dígito de verificación es válido
+  Dim Suma As Integer
+  Dim UltimoDigito As Integer
+  Dim Factor As Integer
+
+  If Len(ISBN) = 10 Then
+    Factor = 10
+    For i As Integer = 1 To 9
+      Suma += Val(Mid(ISBN, i, 1)) * Factor
+      Factor -= 1
+    Next
+    Dim UltimoChar As String = Mid(ISBN, 10, 1)
+    If UltimoChar = "X" Then
+      UltimoDigito = 10
+    Else
+      UltimoDigito = Val(UltimoChar)
+    End If
+
+  Else If Len(ISBN) = 13 Then
+    Factor = 1
+    For i As Integer = 1 To 12
+      Suma += Val(Mid(ISBN, i, 1)) * Factor
+      Factor = IIf(Factor = 1, 3, 1)
+    Next
+    UltimoDigito = Val(Mid(ISBN, 13, 1))
+  End If
+
+  Dim DigitoVerificacion As Integer
+  DigitoVerificacion = 10 - (Suma Mod 10)
+
+  Return UltimoDigito = DigitoVerificacion
+
+End

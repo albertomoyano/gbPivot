@@ -1003,3 +1003,171 @@ Public Sub menuAbrirProyecto_Click()
   Endif
 
 End
+
+Public Sub btnVerificarURL_Click()
+
+  Dim sURL As String
+  Dim sResult As String
+  Dim iExitCode As Integer
+
+  ' Mostrar indicador de carga
+  FMain.Mouse = Mouse.Wait
+
+  sURL = Trim(txtURLLibro.Text)
+  If sURL = "" Then
+    Message.Error("Por favor, ingresar una URL válida.")
+    FMain.Mouse = Mouse.Default
+    Return
+  Endif
+
+  ' Comando curl con límite de tiempo y otras mejoras
+  ' --connect-timeout: límite de tiempo para la conexión (5 segundos)
+  ' --max-time: límite de tiempo total para la operación (10 segundos)
+  Shell "curl -s -o /dev/null -w '%{http_code}' -L --connect-timeout 5 --max-time 10 -A 'Mozilla/5.0'" & " " & Quote(sURL) To sResult
+  iExitCode = Process.LastValue
+
+  ' Restaurar el cursor
+  FMain.Mouse = Mouse.Default
+
+  ' Evaluar código de estado HTTP
+  Select Case sResult
+    Case "200"
+      Message.Info("La <strong>URL existe</strong> y respondió con código 200.")
+    Case "301", "302"
+      Message.Info("La <strong>URL fue redireccionada</strong> y respondió con código " & sResult & ".")
+    Case "404"
+      Message.Error("La <strong>URL no existe</strong> y respondió con 404 Not Found.")
+    Case "500", "503"
+      Message.Error("<strong>Error del servidor</strong> (" & sResult & "). Intenta nuevamente más tarde.")
+    Case "000"
+      Message.Error("Tiempo de espera agotado o no se pudo conectar al servidor.")
+    Case Else
+      Message.Error("Código de respuesta desconocido: <strong>" & sResult & "<strong>.")
+  End Select
+
+End
+
+Public Sub btnBuscarDOI_Click()
+
+  Dim sDOI As String
+  Dim sResult As String
+  Dim iExitCode As Integer
+
+  ' Mostrar indicador de carga
+  FMain.Mouse = Mouse.Wait
+
+  sDOI = Trim(txtDOILibro.Text)
+  If sDOI = "" Then
+    Message.Error("Por favor, ingresar un DOI válido.")
+    FMain.Mouse = Mouse.Default
+    Return
+  Endif
+
+  ' Validar si el formato es de un DOI
+  If Not (Left(sDOI, 4) = "http") Then
+    ' Agregar el prefijo para DOI
+    sDOI = "https://doi.org/" & sDOI
+  Endif
+
+  ' Comando curl con límite de tiempo y otras mejoras
+  ' --connect-timeout: límite de tiempo para la conexión (5 segundos)
+  ' --max-time: límite de tiempo total para la operación (10 segundos)
+  Shell "curl -s -o /dev/null -w '%{http_code}' -L --connect-timeout 5 --max-time 10 -A 'Mozilla/5.0'" & " " & Quote(sDOI) To sResult
+  iExitCode = Process.LastValue
+
+  ' Restaurar el cursor
+  FMain.Mouse = Mouse.Default
+
+  ' Evaluar código de estado HTTP
+  Select Case sResult
+    Case "200"
+      Message.Info("El <strong>DOI es válido</strong> y respondió con código 200.")
+    Case "301", "302"
+      Message.Info("El <strong>DOI fue redireccionado</strong> y respondió con código " & sResult & ".")
+    Case "404"
+      Message.Error("El <strong>DOI no existe</strong> y respondió con código 404 Not Found.")
+    Case "500", "503"
+      Message.Error("<strong>Error del servidor</strong> (" & sResult & "). Intenta nuevamente más tarde.")
+    Case "000"
+      Message.Error("Tiempo de espera agotado o no se pudo conectar al servidor.")
+    Case ""
+      Message.Error("Error en la ejecución del comando. Verifica la conexión a Internet.")
+    Case Else
+      Message.Error("Código de respuesta: <strong>" & sResult & "</strong>.")
+  End Select
+
+End
+
+Public Sub btnConfirmarISBN_Click()
+
+  Dim ISBN As String = txtISBNLibro.Text
+
+  If m_Inicio.EsISBNValido(ISBN) Then
+    Message.Info("El ISBN es válido.")
+  Else
+    Message.Warning("El ISBN no es válido.")
+  End If
+
+End
+
+Public Sub btnVisitarURL_Click()
+
+  Dim sUrl As String = Trim(txtURLLibro.Text)
+
+  ' Validación básica
+  If sUrl = "" Then
+    Message.Error("Por favor, ingresar una dirección válida.")
+    Return
+  End If
+
+  Shell "xdg-open " & Quote$(sUrl) Wait
+
+End
+
+' Función opcional: Validar DOI antes de navegar
+Public Sub btnVisitarDOI_Click()
+
+  Dim sDOI As String
+  Dim sURLCompleta As String
+  Dim sResult As String
+
+  sDOI = Trim(txtDOILibro.Text)
+
+  ' Validación básica
+  If sDOI = "" Then
+    Message.Error("Por favor, ingrese un DOI válido.")
+    Return
+  End If
+
+  ' Construir URL completa
+  If Not (Left(sDOI, 4) = "http") Then
+    sURLCompleta = "https://doi.org/" & sDOI
+  Else
+    sURLCompleta = sDOI
+  End If
+
+  ' Opcional: Validar DOI antes de abrir (verificación rápida)
+  FMain.Mouse = Mouse.Wait
+  Shell "curl -s -o /dev/null -w '%{http_code}' -L --connect-timeout 3 --max-time 5 -A 'Mozilla/5.0'" & " " & Quote(sURLCompleta) To sResult
+  FMain.Mouse = Mouse.Default
+
+  ' Verificar si el DOI es navegable
+  Select Case sResult
+    Case "200", "301", "302"
+      ' DOI válido, proceder a abrir
+      Shell "xdg-open " & Quote$(sURLCompleta) Wait
+    Case "404"
+      Message.Error("<strong>El DOI no existe.</strong> No se puede navegar a esta dirección.")
+    Case "000", ""
+      Message.Warning("No se pudo verificar el DOI. ¿Desea intentar abrirlo de todas formas?")
+      If Message.Question("¿Abrir DOI sin verificar?", "Sí", "No") = 1 Then
+        Shell "xdg-open " & Quote$(sURLCompleta) Wait
+      End If
+    Case Else
+      Message.Warning("Respuesta inesperada del servidor (" & sResult & "). ¿Desea intentar abrirlo?")
+      If Message.Question("¿Abrir DOI?", "Sí", "No") = 1 Then
+        Shell "xdg-open " & Quote$(sURLCompleta) Wait
+      End If
+  End Select
+
+End

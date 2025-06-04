@@ -15,20 +15,28 @@
     Text = ("menuCompilarLibroTeX")
     Visible = False
     { Menu10 Menu
-      Text = ("c libro tex")
+      Text = ("Compilar PDF completo para web")
+    }
+    { Menu45 Menu
+      Text = ("Construir separata en PDF por capítulos")
     }
     { Menu11 Menu
-      Text = ("tex")
+      Text = ("Compilar PDF para imprenta")
+    }
+    { Menu46 Menu
+    }
+    { Menu47 Menu
+      Text = ("Compilar ePub")
     }
   }
   { menuCompilarLibroAdoc Menu
     Text = ("menuCompilarLibroAdoc")
     Visible = False
     { Menu23 Menu
-      Text = ("c libro adoc")
+      Text = ("Generar PDF completo")
     }
     { Menu27 Menu
-      Text = ("adoc")
+      Text = ("Generar ePub")
     }
   }
   { menuVerLibroTeX Menu
@@ -55,10 +63,34 @@
     Text = ("menuCompilarRevistaAdoc")
     Visible = False
     { Menu32 Menu
-      Text = ("c revista adoc")
+      Text = ("Generar HTML completo")
     }
     { Menu33 Menu
-      Text = ("Menu33")
+      Text = ("Generar HTML  por artículos")
+    }
+    { Menu39 Menu
+      Text = ("Generar ePub")
+    }
+    { Menu38 Menu
+    }
+    { Menu36 Menu
+      Text = ("Generar PDF completo")
+    }
+    { Menu37 Menu
+      Text = ("Generar PDF por artículos")
+    }
+    { Menu40 Menu
+    }
+    { Menu41 Menu
+      Text = ("Generar XML-JAT-PMD")
+    }
+    { Menu42 Menu
+      Text = ("Generar XML-JAT-SciELO")
+    }
+    { Menu44 Menu
+    }
+    { Menu43 Menu
+      Text = ("Generar todas las salidas")
     }
   }
   { menuVerRevistaAdoc Menu
@@ -616,8 +648,13 @@
                 #Public = True
                 Picture = Picture["iconos/sincronizar.svg"]
               }
+              { !btnVisitarDOI Button
+                Move(207,0,36,36)
+                #Public = True
+                Picture = Picture["iconos/google.svg"]
+              }
               { !txtDOILibro TextBox
-                Move(216,0,216,36)
+                Move(288,0,216,36)
                 #Public = True
                 Expand = True
               }
@@ -629,13 +666,18 @@
                 Alignment = Align.Right
                 Text = ("URL ")
               }
-              { !btnBuscarURL Button
+              { !btnVerificarURL Button
                 Move(171,0,36,36)
                 #Public = True
                 Picture = Picture["iconos/sincronizar.svg"]
               }
+              { !btnVisitarURL Button
+                Move(207,0,36,36)
+                #Public = True
+                Picture = Picture["iconos/google.svg"]
+              }
               { !txtURLLibro TextBox
-                Move(216,0,216,36)
+                Move(288,0,216,36)
                 #Public = True
                 Expand = True
               }
