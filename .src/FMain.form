@@ -15,7 +15,7 @@
     Text = ("menuCompilarLibroTeX")
     Visible = False
     { Menu10 Menu
-      Text = ("c tex")
+      Text = ("c libro tex")
     }
     { Menu11 Menu
       Text = ("tex")
@@ -25,7 +25,7 @@
     Text = ("menuCompilarLibroAdoc")
     Visible = False
     { Menu23 Menu
-      Text = ("c adoc")
+      Text = ("c libro adoc")
     }
     { Menu27 Menu
       Text = ("adoc")
@@ -35,7 +35,7 @@
     Text = ("menuVerLibroTeX")
     Visible = False
     { Menu28 Menu
-      Text = ("v tex")
+      Text = ("v libro tex")
     }
     { Menu29 Menu
       Text = ("Menu29")
@@ -45,10 +45,30 @@
     Text = ("menuVerLibroAdoc")
     Visible = False
     { Menu30 Menu
-      Text = ("v adoc")
+      Text = ("v libro adoc")
     }
     { Menu31 Menu
       Text = ("Menu31")
+    }
+  }
+  { menuCompilarRevistaAdoc Menu
+    Text = ("menuCompilarRevistaAdoc")
+    Visible = False
+    { Menu32 Menu
+      Text = ("c revista adoc")
+    }
+    { Menu33 Menu
+      Text = ("Menu33")
+    }
+  }
+  { menuVerRevistaAdoc Menu
+    Text = ("menuVerRevistaAdoc")
+    Visible = False
+    { Menu34 Menu
+      Text = ("v revista adoc")
+    }
+    { Menu35 Menu
+      Text = ("Menu35")
     }
   }
   { menuRecordatorios Menu
@@ -449,7 +469,8 @@
                 #Public = True
                 Visible = False
                 Expand = True
-                Text = ("Compilar archivos .tex")
+                Text = ("Compilar archivos de LaTeX")
+                Picture = Picture["iconos/conversor.svg"]
                 Menu = "menuCompilarLibroTeX"
                 MenuOnly = True
               }
@@ -458,8 +479,8 @@
                 #Public = True
                 Visible = False
                 Expand = True
-                Text = ("Compilar archivos .adoc")
-                Picture = Picture["iconos/conversor.svg"]
+                Text = ("Compilar archivos de Asciidoc")
+                Picture = Picture["iconos/AsciiDoc-icon-color.png"]
                 Menu = "menuCompilarLibroAdoc"
                 MenuOnly = True
               }
@@ -468,6 +489,8 @@
                 #Public = True
                 Visible = False
                 Expand = True
+                Text = ("Salidas")
+                Picture = Picture["iconos/AI.svg"]
                 Menu = "menuVerLibroTeX"
                 MenuOnly = True
               }
@@ -1211,19 +1234,19 @@
               { !MenuButtonRevistaCompilarAdoc MenuButton
                 Move(108,0,99,36)
                 #Public = True
-                Visible = False
                 Expand = True
                 Text = ("Compilar archivos .adoc")
-                Picture = Picture["iconos/conversor.svg"]
+                Picture = Picture["iconos/AsciiDoc-icon-color.png"]
+                Menu = "menuCompilarRevistaAdoc"
                 MenuOnly = True
               }
               { !MenuButtonRevistaVerAdoc MenuButton
                 Move(315,0,99,36)
                 #Public = True
-                Visible = False
                 Expand = True
                 Text = ("Salidas")
                 Picture = Picture["iconos/AI.svg"]
+                Menu = "menuVerRevistaAdoc"
                 MenuOnly = True
               }
               { Separator5 Separator

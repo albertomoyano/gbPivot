@@ -10,7 +10,7 @@ Public $Bash As Process
 Public horasTotal As Integer
 Public minutosTotal As Integer
 Public segundosTotal As Integer
-' Public NombreProyecto As String
+Public NombreArchivo As String
 Public RutaProyecto As String
 
 Public Sub Form_Open()
@@ -919,23 +919,27 @@ End
 Public Sub menuAbrirProyecto_Click()
 
   Dialog.Title = "Seleccionar archivo"
-  Dialog.Filter = ["*.adoc", "Archivos Asciidoc"]
-  Dialog.AutoExt = True
+  Dialog.Filter = ["*.adoc;*.tex", "Archivos .adoc y .tex", "*", "Todos los archivos"]
+  Dialog.AutoExt = False
   Dialog.Path = User.Home
 
   If Dialog.OpenFile() Then
     Return
   Else
-    Dim nombreProyecto As String = File.BaseName(Dialog.Path)
+    ' Guardar nombre del proyecto actual antes de sobrescribirlo
+    Dim sProyectoAnterior As String = File.BaseName(txtProyecto.Text)
+    ' Poner en_uso = 0 al proyecto anterior si hay alguno cargado
+    If txtProyecto.Text Then
+      Try m_OnOff_y_Red.meConn.Exec("UPDATE proyectos SET en_uso = 0 WHERE nombre = '" & sProyectoAnterior & "'")
+    Endif
+    ' ahora refrescamos el nombre del archivo nuevo
+    txtProyecto.Text = Dialog.Path
+    NombreArchivo = File.BaseName(Dialog.Path)
+    RutaProyecto = File.Dir(txtProyecto.Text)
     Dim resultado As Result
     Dim sSQL As String
-
-    ' ' Buscar el proyecto en la base
-    ' sSQL = "SELECT terminado, en_uso FROM proyectos WHERE nombre = '" & nombreProyecto & "'"
-    ' resultado = m_OnOff_y_Red.meConn.Exec(sSQL)
-
     ' Agregar el campo tipo_producto a la consulta
-    sSQL = "SELECT terminado, en_uso, tipo FROM proyectos WHERE nombre = '" & nombreProyecto & "'"
+    sSQL = "SELECT terminado, en_uso, tipo FROM proyectos WHERE nombre = '" & NombreArchivo & "'"
     resultado = m_OnOff_y_Red.meConn.Exec(sSQL)
 
     If Not resultado.Available Then
@@ -944,7 +948,7 @@ Public Sub menuAbrirProyecto_Click()
     Endif
 
     If resultado!terminado = True Then
-      Message.Info("El proyecto <strong>'" & nombreProyecto & "'</strong> está cerrado. Contacte al editor para reabrirlo.")
+      Message.Info("El proyecto <strong>'" & NombreArchivo & "'</strong> está cerrado. Contacte al editor para reabrirlo.")
       Return
     Endif
 
@@ -953,12 +957,8 @@ Public Sub menuAbrirProyecto_Click()
       Return
     Endif
 
-    ' Obtener el tipo de producto
-    Dim tipoProducto As String
-    tipoProducto = resultado!tipo
-
     ' Marcar el proyecto como "en uso"
-    Try m_OnOff_y_Red.meConn.Exec("UPDATE proyectos SET en_uso = 1 WHERE nombre = '" & nombreProyecto & "'")
+    Try m_OnOff_y_Red.meConn.Exec("UPDATE proyectos SET en_uso = 1 WHERE nombre = '" & NombreArchivo & "'")
 
     If Error Then
       Message.Error("No se pudo marcar el proyecto como 'en uso'.")
@@ -968,9 +968,6 @@ Public Sub menuAbrirProyecto_Click()
     ' --- Si pasa todas las validaciones, se continúa con la apertura normal ---
     Shell Quote$("rm -rf " & User.Home & "/.local/share/org.gambas.*") & "\n" Wait
 
-    txtProyecto.Text = Dialog.Path
-    RutaProyecto = File.Dir(txtProyecto.Text)
-    NombreProyecto = File.BaseName(txtProyecto.Text)
     ControlarCarpetas()' nos aseguramos revisar las carpetas del proyecto
     tvProyecto.Input("cd " & RutaProyecto & "\n")
     tvProyecto.Input("clear" & "\n")
@@ -981,19 +978,21 @@ Public Sub menuAbrirProyecto_Click()
     ' Configurar según tipo de producto
     Dim sExtension As String
     sExtension = File.Ext(txtProyecto.Text)
+    Dim tipoProducto As String
+    tipoProducto = resultado!tipo
     If tipoProducto = "Libro" Then
       ScrollViewLibro.Visible = True
       ScrollViewRevista.Visible = False
-      If sExtension = "adoc" Then
-        MenuButtonLibroCompilarTeX.Visible = False
-        MenuButtonLibroVerTeX.Visible = False
-        MenuButtonLibroCompilarAdoc.Visible = True
-        MenuButtonLibroVerAdoc.Visible = True
-      Else If sExtension = "tex" Then
+      If sExtension = "tex" Then
         MenuButtonLibroCompilarTeX.Visible = True
         MenuButtonLibroVerTeX.Visible = True
         MenuButtonLibroCompilarAdoc.Visible = False
         MenuButtonLibroVerAdoc.Visible = False
+      Else If sExtension = "adoc" Then
+        MenuButtonLibroCompilarTeX.Visible = False
+        MenuButtonLibroVerTeX.Visible = False
+        MenuButtonLibroCompilarAdoc.Visible = True
+        MenuButtonLibroVerAdoc.Visible = True
       Endif
     Else If tipoProducto = "Revista" Then
       ScrollViewRevista.Visible = True
