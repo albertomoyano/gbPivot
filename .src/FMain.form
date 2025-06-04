@@ -470,7 +470,7 @@
                 Visible = False
                 Expand = True
                 Text = ("Compilar archivos de LaTeX")
-                Picture = Picture["iconos/conversor.svg"]
+                Picture = Picture["iconos/latex.svg"]
                 Menu = "menuCompilarLibroTeX"
                 MenuOnly = True
               }
