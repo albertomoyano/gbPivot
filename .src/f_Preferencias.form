@@ -3,7 +3,7 @@
 { Form Form
   Move(0,0,840,740)
   #Scaled = False
-  Text = ("Configuraciones")
+  Text = ("Administración")
   Resizable = False
   Arrangement = Arrange.Vertical
   Spacing = True
@@ -27,7 +27,7 @@
     Spacing = True
     Margin = True
     Padding = 4
-    Count = 2
+    Count = 3
     Index = 0
     Text = ("Proyectos     ")
     Picture = Picture["iconos/basededatos.svg"]
@@ -459,6 +459,9 @@
         Expand = True
       }
     }
+    Index = 2
+    Text = ("Imprenta     ")
+    Picture = Picture["iconos/impresora.svg"]
     Index = 0
   }
   { HBox1 HBox
