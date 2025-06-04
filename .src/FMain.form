@@ -11,41 +11,41 @@
   Spacing = True
   Margin = True
   Padding = 4
-  { menuCompilarLibro Menu
-    Text = ("menuCompilarLibro")
+  { menuCompilarLibroTeX Menu
+    Text = ("menuCompilarLibroTeX")
     Visible = False
     { Menu10 Menu
-      Text = ("Menu10")
+      Text = ("c tex")
     }
     { Menu11 Menu
-      Text = ("Menu11")
+      Text = ("tex")
     }
   }
-  { menuCompilarRevista Menu
-    Text = ("menuCompilarRevista")
+  { menuCompilarLibroAdoc Menu
+    Text = ("menuCompilarLibroAdoc")
     Visible = False
     { Menu23 Menu
-      Text = ("Menu23")
+      Text = ("c adoc")
     }
     { Menu27 Menu
-      Text = ("Menu27")
+      Text = ("adoc")
     }
   }
-  { menuVerLibro Menu
-    Text = ("menuVerLibro")
+  { menuVerLibroTeX Menu
+    Text = ("menuVerLibroTeX")
     Visible = False
     { Menu28 Menu
-      Text = ("Menu28")
+      Text = ("v tex")
     }
     { Menu29 Menu
       Text = ("Menu29")
     }
   }
-  { menuVerRevista Menu
-    Text = ("menuVerRevista")
+  { menuVerLibroAdoc Menu
+    Text = ("menuVerLibroAdoc")
     Visible = False
     { Menu30 Menu
-      Text = ("Menu30")
+      Text = ("v adoc")
     }
     { Menu31 Menu
       Text = ("Menu31")
@@ -435,6 +435,7 @@
           Picture = Picture["iconos/titulo.svg"]
           { ScrollViewLibro ScrollView
             Move(9,9,837,1278)
+            Visible = False
             Expand = True
             Arrangement = Arrange.Vertical
             Spacing = True
@@ -443,18 +444,41 @@
             ScrollBar = Scroll.Vertical
             { HBox107 HBox
               Move(27,9,756,36)
-              { MenuButtonLibroCompilar MenuButton
-                Move(207,0,99,36)
-                Enabled = False
+              { !MenuButtonLibroCompilarTeX MenuButton
+                Move(9,0,99,36)
+                #Public = True
+                Visible = False
                 Expand = True
-                Menu = "menuCompilarLibro"
+                Text = ("Compilar archivos .tex")
+                Menu = "menuCompilarLibroTeX"
                 MenuOnly = True
               }
-              { MenuButtonLibroVer MenuButton
-                Move(432,0,99,36)
-                Enabled = False
+              { !MenuButtonLibroCompilarAdoc MenuButton
+                Move(117,0,99,36)
+                #Public = True
+                Visible = False
                 Expand = True
-                Menu = "menuVerLibro"
+                Text = ("Compilar archivos .adoc")
+                Picture = Picture["iconos/conversor.svg"]
+                Menu = "menuCompilarLibroAdoc"
+                MenuOnly = True
+              }
+              { !MenuButtonLibroVerTeX MenuButton
+                Move(216,0,99,36)
+                #Public = True
+                Visible = False
+                Expand = True
+                Menu = "menuVerLibroTeX"
+                MenuOnly = True
+              }
+              { !MenuButtonLibroVerAdoc MenuButton
+                Move(324,0,99,36)
+                #Public = True
+                Visible = False
+                Expand = True
+                Text = ("Salidas")
+                Picture = Picture["iconos/AI.svg"]
+                Menu = "menuVerLibroAdoc"
                 MenuOnly = True
               }
               { Separator4 Separator
@@ -1174,7 +1198,8 @@
           Text = ("Revista     ")
           Picture = Picture["iconos/revista.svg"]
           { ScrollViewRevista ScrollView
-            Move(9,18,909,441)
+            Move(9,9,909,441)
+            Visible = False
             Expand = True
             Arrangement = Arrange.Vertical
             Spacing = True
@@ -1183,18 +1208,22 @@
             ScrollBar = Scroll.Vertical
             { HBox114 HBox
               Move(0,0,567,36)
-              { MenuButtonRevistaCompilar MenuButton
-                Move(0,0,99,36)
-                Enabled = False
+              { !MenuButtonRevistaCompilarAdoc MenuButton
+                Move(108,0,99,36)
+                #Public = True
+                Visible = False
                 Expand = True
-                Menu = "menuCompilarRevista"
+                Text = ("Compilar archivos .adoc")
+                Picture = Picture["iconos/conversor.svg"]
                 MenuOnly = True
               }
-              { MenuButtonRevistaVer MenuButton
-                Move(225,0,99,36)
-                Enabled = False
+              { !MenuButtonRevistaVerAdoc MenuButton
+                Move(315,0,99,36)
+                #Public = True
+                Visible = False
                 Expand = True
-                Menu = "menuVerRevista"
+                Text = ("Salidas")
+                Picture = Picture["iconos/AI.svg"]
                 MenuOnly = True
               }
               { Separator5 Separator
@@ -1259,7 +1288,7 @@
             { HBox87 HBox
               Move(0,162,783,36)
               { Label38 Label
-                Move(27,-9,162,32)
+                Move(9,0,162,32)
                 Alignment = Align.Right
                 Text = ("Text ")
               }
