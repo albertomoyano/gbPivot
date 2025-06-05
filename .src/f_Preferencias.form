@@ -185,10 +185,10 @@
           Picture = Picture["iconos/borrar.svg"]
         }
       }
-      { Label22 Label
+      { LabelVacio Label
         Move(450,0,144,36)
       }
-      { HBox26 HBox
+      { HBoxVacio HBox
         Move(612,0,144,36)
         Expand = True
         AutoResize = True
@@ -520,11 +520,6 @@
     Text = ("Estadísticas     ")
     Picture = Picture["iconos/chart.svg"]
     Index = 0
-  }
-  { Label21 Label
-    Move(486,729,144,36)
-    Alignment = Align.Right
-    Text = ("Fecha de cierre  ")
   }
   { HBox1 HBox
     Move(9,738,477,36)

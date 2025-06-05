@@ -2,30 +2,38 @@
 
 Public UsuarioAdmin As String
 Public sRefrescar As Result
-Public hResultadoProyectos As Result
+Private hResultadosProyectos As Result
+Private hResultadosUsuarios As Result
 Private bCargandoDatos As Boolean
 
 Public Sub Form_Open()
 
-  SplitterUsuarios.Layout = [6, 2]
   f_Preferencias.Title = "Preferencias (usuario: " & m_OnOff_y_Red.UsuarioActual & ")"
 
   With TableViewUsuarios
     .Header = True
     .Grid = True
-    .Columns.Count = 5
+    .Columns.Count = 8
     .Columns[0].Title = "id"
     .Columns[0].Width = 0
-    .Columns[1].Title = ""
-    .Columns[1].Width = 200
+    .Columns[1].Title = "Usuario"
+    .Columns[1].Width = 300
     .Columns[2].Title = ""
-    .Columns[2].Width = 200
+    .Columns[2].Width = 0
     .Columns[3].Title = ""
-    .Columns[3].Width = 200
+    .Columns[3].Width = 0
     .Columns[4].Title = ""
-    .Columns[4].Width = 200
+    .Columns[4].Width = 0
+    .Columns[5].Title = "email"
+    .Columns[5].Width = 600
+    .Columns[6].Title = ""
+    .Columns[6].Width = 0
+    .Columns[7].Title = ""
+    .Columns[7].Width = 0
   End With
 
+  SplitterUsuarios.Layout = [6, 2]' del formulario de preferencias
+  ConsultaBBDDusuarios()
   btnNuevoUsuario.Visible = True
   btnBorrarUsuario.Visible = False
   btnGuardarUsuario.Visible = False
@@ -56,7 +64,6 @@ Public Sub Form_Open()
   End With
 
   ConsultaBBDDproyectos()
-
   btnNuevoProyecto.Visible = True
   btnBorrarProyecto.Visible = False
   btnGuardarProyecto.Visible = False
@@ -64,10 +71,18 @@ Public Sub Form_Open()
 
 End
 
+Public Sub ConsultaBBDDusuarios()
+
+  hResultadosUsuarios = m_OnOff_y_Red.meConn.Exec("SELECT * FROM usuarios ORDER BY id_usuarios DESC")
+  TableViewUsuarios.Rows.Count = hResultadosUsuarios.Count
+  TableViewUsuarios.Refresh()
+
+End
+
 Public Sub ConsultaBBDDproyectos()
 
-  hResultadoProyectos = m_OnOff_y_Red.meConn.Exec("SELECT * FROM proyectos ORDER BY id_proyectos DESC")
-  TableViewProyectos.Rows.Count = hResultadoProyectos.Count
+  hResultadosProyectos = m_OnOff_y_Red.meConn.Exec("SELECT * FROM proyectos ORDER BY id_proyectos DESC")
+  TableViewProyectos.Rows.Count = hResultadosProyectos.Count
   TableViewProyectos.Refresh()
 
 End
@@ -214,14 +229,14 @@ Public Sub btnNuevoProyecto_Click()
   Endif
 
   ' Obtenemos el último ID y sumamos +1 para el nuevo registro
-  hResultadoProyectos = m_OnOff_y_Red.meConn.Exec("SELECT MAX(id_proyectos) FROM proyectos LIMIT 1")
+  hResultadosProyectos = m_OnOff_y_Red.meConn.Exec("SELECT MAX(id_proyectos) FROM proyectos LIMIT 1")
 
   Dim Idn As Integer
   ' Si no hay ninguna entrada entonces arrancamos desde 0
-  If hResultadoProyectos["MAX(id_proyectos)"] = Null Then
+  If hResultadosProyectos["MAX(id_proyectos)"] = Null Then
     Idn = 0
   Else
-    Idn = CInt(hResultadoProyectos["MAX(id_proyectos)"]) + 1
+    Idn = CInt(hResultadosProyectos["MAX(id_proyectos)"]) + 1
   Endif
 
   txtIDproyectos.Text = Idn
@@ -254,19 +269,19 @@ Public Sub GuardarProyectoPrimeraVez()
   tituloEscapado = Replace(txtProyecto.Text, "'", "''")
 
   BuscarProyecto = "SELECT * FROM proyectos WHERE nombre = '" & tituloEscapado & "'"
-  hResultadoProyectos = m_OnOff_y_Red.meConn.Exec(BuscarProyecto)
+  hResultadosProyectos = m_OnOff_y_Red.meConn.Exec(BuscarProyecto)
 
   ' Verificar si se encontraron resultados en la consulta
-  If hResultadoProyectos.Count > 0 Then
+  If hResultadosProyectos.Count > 0 Then
     Message.Warning("El nombre de proyecto que desea agregar ya existe en la base de datos.")
     Return ' Salir de la función si el título ya existe
   Endif
 
-  hResultadoProyectos = m_OnOff_y_Red.meConn.Create("proyectos")
+  hResultadosProyectos = m_OnOff_y_Red.meConn.Create("proyectos")
 
   GuardarProyecto()
   m_OnOff_y_Red.meConn.Commit()
-  hResultadoProyectos.Update()
+  hResultadosProyectos.Update()
   TableViewProyectos.Refresh()
 
   Message.Info("Nueva entrada guardada.")
@@ -282,11 +297,11 @@ Public Sub GuardarCambiosProyectos()
 
   tituloEscapado = Replace(FMain.txtTEXTglosario.Text, "'", "''")
 
-  hResultadoProyectos = m_OnOff_y_Red.meConn.Edit("proyectos", "id_proyectos=" & txtIDproyectos.Text)
+  hResultadosProyectos = m_OnOff_y_Red.meConn.Edit("proyectos", "id_proyectos=" & txtIDproyectos.Text)
 
   GuardarProyecto()
   m_OnOff_y_Red.meConn.Commit()
-  hResultadoProyectos.Update()
+  hResultadosProyectos.Update()
   TableViewProyectos.Refresh()
 
   Message.Info("Los cambios se guardaron con éxito.")
@@ -297,15 +312,15 @@ End
 
 Public Sub GuardarProyecto()
 
-  hResultadoProyectos!id_proyectos = txtIDproyectos.Text
-  hResultadoProyectos!nombre = txtProyecto.Text
-  hResultadoProyectos!tipo = cmbTipoProyecto.Text
-  hResultadoProyectos!lenguaje = cmbTipoLenguaje.Text
-  hResultadoProyectos!terminado = CheckBoxTerminado.Value
-  hResultadoProyectos!fecha_creacion = txtInicioProyecto.Text
-  hResultadoProyectos!fecha_cierre = txtCierreProyecto.Text
-  hResultadoProyectos!tiempo_total = txtHorasEmpleadas.Text
-  hResultadoProyectos!notas = txtNotas.Text
+  hResultadosProyectos!id_proyectos = txtIDproyectos.Text
+  hResultadosProyectos!nombre = txtProyecto.Text
+  hResultadosProyectos!tipo = cmbTipoProyecto.Text
+  hResultadosProyectos!lenguaje = cmbTipoLenguaje.Text
+  hResultadosProyectos!terminado = CheckBoxTerminado.Value
+  hResultadosProyectos!fecha_creacion = txtInicioProyecto.Text
+  hResultadosProyectos!fecha_cierre = txtCierreProyecto.Text
+  hResultadosProyectos!tiempo_total = txtHorasEmpleadas.Text
+  hResultadosProyectos!notas = txtNotas.Text
 
 End
 
@@ -344,21 +359,6 @@ End
 '   End With
 '
 ' End
-
-Public Sub TableViewProyectos_Data(Row As Integer, Column As Integer)
-
-  If (hResultadoProyectos <> Null) Then
-    If Row >= 0 Then
-      hResultadoProyectos.moveTo(Row)
-      Try TableViewProyectos.Data.Text = Str(hResultadoProyectos[Column])
-    Endif
-  Endif
-
-  If row Mod 2 = 0 Then
-    TableViewProyectos.Data.Background = Color.RGB(230, 230, 230)
-  Endif
-
-End
 
 Public Sub TableViewProyectos_Click()
 
@@ -439,5 +439,35 @@ End
 Public Sub SplitterUsuarios_Resize()
 
   SplitterUsuarios.Layout = [6, 2]
+
+End
+
+Public Sub TableViewProyectos_Data(Row As Integer, Column As Integer)
+
+  If (hResultadosProyectos <> Null) Then
+    If Row >= 0 Then
+      hResultadosProyectos.moveTo(Row)
+      Try TableViewProyectos.Data.Text = Str(hResultadosProyectos[Column])
+    Endif
+  Endif
+
+  If row Mod 2 = 0 Then
+    TableViewProyectos.Data.Background = Color.RGB(230, 230, 230)
+  Endif
+
+End
+
+Public Sub TableViewUsuarios_Data(Row As Integer, Column As Integer)
+
+  If (hResultadosUsuarios <> Null) Then
+    If Row >= 0 Then
+      hResultadosUsuarios.moveTo(Row)
+      Try TableViewUsuarios.Data.Text = Str(hResultadosUsuarios[Column])
+    Endif
+  Endif
+
+  If row Mod 2 = 0 Then
+    TableViewUsuarios.Data.Background = Color.RGB(230, 230, 230)
+  Endif
 
 End
