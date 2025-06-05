@@ -7,6 +7,7 @@ Private bCargandoDatos As Boolean
 
 Public Sub Form_Open()
 
+  SplitterUsuarios.Layout = [6, 2]
   f_Preferencias.Title = "Preferencias (usuario: " & m_OnOff_y_Red.UsuarioActual & ")"
 
   With TableViewUsuarios
@@ -329,7 +330,7 @@ Public Sub VerProyectosEnTableViewProyectos()
 End
 
 ' Public Sub VerProyectosEnTableViewProyectos()
-' 
+'
 '   With f_Preferencias
 '     .txtIDproyectos.Text = TableViewProyectos[TableViewProyectos.Row, 0].Text
 '     .txtProyecto.Text = TableViewProyectos[TableViewProyectos.Row, 1].Text
@@ -341,7 +342,7 @@ End
 '     .txtCierreProyecto.Text = TableViewProyectos[TableViewProyectos.Row, 7].Text
 '     .txtHorasEmpleadas.Text = TableViewProyectos[TableViewProyectos.Row, 8].Text
 '   End With
-' 
+'
 ' End
 
 Public Sub TableViewProyectos_Data(Row As Integer, Column As Integer)
@@ -432,5 +433,11 @@ Public Sub txtProyecto_KeyRelease()
 
   ' Actualizar el TextBox con el texto filtrado
   txtProyecto.Text = LCase(textoFiltrado)
+
+End
+
+Public Sub SplitterUsuarios_Resize()
+
+  SplitterUsuarios.Layout = [6, 2]
 
 End
