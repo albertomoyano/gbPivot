@@ -877,11 +877,16 @@ Public Sub btnVerProyectos_Click()
     ' Verificar si hay un proyecto seleccionado (filtro)
     If Trim(txtProyecto.Text) = "" Then
       ' No hay proyecto seleccionado, mostrar advertencia
-      Message.Warning("No tiene ningún proyecto seleccionado.\nSeleccione un proyecto antes de continuar.", "Proyecto requerido")
+      Message.Warning("No tiene ningún proyecto seleccionado.\nSe abrirá el gestor para seleccionar uno.", "Aceptar")
+
       ' Desactivar el botón ya que no se puede mostrar el panel
       btnVerProyectos.Value = False
+
+      ' Llamar al procedimiento para abrir un proyecto
+      menuAbrirProyecto_Click()
       Return
     End If
+
     ' Si hay proyecto seleccionado, mostrar el panel
     PanelProyectos.Visible = True
   Else
@@ -890,6 +895,27 @@ Public Sub btnVerProyectos_Click()
   End If
 
 End Sub
+
+' Public Sub btnVerProyectos_Click()
+'   ' Cambiar visibilidad del TabPanel2 según el estado del botón
+'
+'   If btnVerProyectos.Value Then
+'     ' Verificar si hay un proyecto seleccionado (filtro)
+'     If Trim(txtProyecto.Text) = "" Then
+'       ' No hay proyecto seleccionado, mostrar advertencia
+'       Message.Warning("No tiene ningún proyecto seleccionado.\nSeleccione un proyecto antes de continuar.", "Proyecto requerido")
+'       ' Desactivar el botón ya que no se puede mostrar el panel
+'       btnVerProyectos.Value = False
+'       Return
+'     End If
+'     ' Si hay proyecto seleccionado, mostrar el panel
+'     PanelProyectos.Visible = True
+'   Else
+'     ' Ocultar el panel
+'     PanelProyectos.Visible = False
+'   End If
+'
+' End Sub
 
 Public Sub ControlarCarpetas()
 

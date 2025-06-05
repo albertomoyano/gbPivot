@@ -137,7 +137,7 @@
       Picture = Picture["iconos/abrirBuscar.svg"]
     }
     { Menu5 Menu
-      Text = ("Salir de la aplicación")
+      Text = ("Cerrar la aplicación")
       Picture = Picture["iconos/salir.svg"]
     }
   }
