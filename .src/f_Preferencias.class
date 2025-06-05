@@ -329,7 +329,7 @@ Public Sub VerProyectosEnTableViewProyectos()
 End
 
 ' Public Sub VerProyectosEnTableViewProyectos()
-'
+' 
 '   With f_Preferencias
 '     .txtIDproyectos.Text = TableViewProyectos[TableViewProyectos.Row, 0].Text
 '     .txtProyecto.Text = TableViewProyectos[TableViewProyectos.Row, 1].Text
@@ -341,7 +341,7 @@ End
 '     .txtCierreProyecto.Text = TableViewProyectos[TableViewProyectos.Row, 7].Text
 '     .txtHorasEmpleadas.Text = TableViewProyectos[TableViewProyectos.Row, 8].Text
 '   End With
-'
+' 
 ' End
 
 Public Sub TableViewProyectos_Data(Row As Integer, Column As Integer)

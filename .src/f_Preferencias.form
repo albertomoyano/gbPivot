@@ -1,11 +1,12 @@
 # Gambas Form File 3.0
 
 { Form Form
-  Move(0,0,840,740)
+  Move(0,0,963,783)
   #Scaled = False
   Text = ("Administración")
   Resizable = False
   Arrangement = Arrange.Vertical
+  AutoResize = True
   Spacing = True
   Margin = True
   Padding = 4
@@ -21,18 +22,18 @@
     Move(9,90,504,9)
   }
   { TabPanel1 TabPanel
-    Move(9,108,729,567)
+    Move(9,108,945,621)
     Expand = True
     Arrangement = Arrange.Vertical
     Spacing = True
     Margin = True
     Padding = 4
-    Count = 3
+    Count = 4
     Index = 0
     Text = ("Proyectos     ")
     Picture = Picture["iconos/basededatos.svg"]
     { HBox16 HBox
-      Move(27,18,414,36)
+      Move(27,0,414,36)
       { btnNuevoProyecto Button
         Move(0,0,36,36)
         NoTabFocus = True
@@ -64,17 +65,30 @@
         ReadOnly = True
       }
     }
-    { TableViewProyectos TableView
-      Move(27,54,549,99)
-      NoTabFocus = True
+    { SplitterUsuarios Splitter
+      Move(9,45,765,144)
       Expand = True
-      Mode = Select.Single
-      ShowCursor = True
-      Header = GridView.Horizontal
-      ScrollBar = Scroll.Vertical
+      Border = False
+      { TableViewProyectos TableView
+        Move(0,0,549,126)
+        NoTabFocus = True
+        Mode = Select.Single
+        ShowCursor = True
+        Header = GridView.Horizontal
+        ScrollBar = Scroll.Vertical
+        AutoResize = False
+      }
+      { VBox2 VBox
+        Move(576,0,99,117)
+        { ListBoxUsuarios ListBox
+          Move(0,0,81,90)
+          Expand = True
+          Highlight = True
+        }
+      }
     }
     { HBox2 HBox
-      Move(27,153,693,36)
+      Move(0,189,693,36)
       { Label1 Label
         Move(9,0,144,36)
         Alignment = Align.Right
@@ -89,7 +103,7 @@
       }
     }
     { HBox14 HBox
-      Move(27,189,693,36)
+      Move(0,225,693,36)
       { Label6 Label
         Move(0,0,144,36)
         Alignment = Align.Right
@@ -103,12 +117,12 @@
         List = [("Libro"), ("Revista")]
       }
       { Label16 Label
-        Move(333,0,144,36)
+        Move(324,0,144,36)
         Alignment = Align.Right
         Text = ("Lenguaje  ")
       }
       { !cmbTipoLenguaje ComboBox
-        Move(486,0,171,36)
+        Move(468,0,171,36)
         #Public = True
         Expand = True
         ReadOnly = True
@@ -116,7 +130,7 @@
       }
     }
     { HBox3 HBox
-      Move(27,225,693,36)
+      Move(0,261,693,36)
       { Label2 Label
         Move(9,0,144,36)
         Alignment = Align.Right
@@ -140,8 +154,48 @@
         Expand = True
       }
     }
+    { HBox17 HBox
+      Move(0,297,810,36)
+      { Label20 Label
+        Move(9,0,144,36)
+        Alignment = Align.Right
+        Text = ("Usuarios  ")
+      }
+      { HBox25 HBox
+        Move(153,0,288,36)
+        Expand = True
+        AutoResize = True
+        { !cmbUsuariosAsignados ComboBox
+          Move(0,0,198,36)
+          #Public = True
+          Expand = True
+          ReadOnly = True
+          List = [("Asciidoc"), ("LaTeX")]
+        }
+        { btnGitRemoto2 Button
+          Move(216,0,36,36)
+          NoTabFocus = True
+          ToolTip = ("Borrar entrada")
+          Picture = Picture["iconos/+nuevo.svg"]
+        }
+        { btnGitRemoto3 Button
+          Move(252,0,36,36)
+          NoTabFocus = True
+          ToolTip = ("Borrar entrada")
+          Picture = Picture["iconos/borrar.svg"]
+        }
+      }
+      { Label22 Label
+        Move(450,0,144,36)
+      }
+      { HBox26 HBox
+        Move(612,0,144,36)
+        Expand = True
+        AutoResize = True
+      }
+    }
     { HBox5 HBox
-      Move(27,261,693,36)
+      Move(0,333,693,36)
       { Label4 Label
         Move(9,0,144,36)
         Alignment = Align.Right
@@ -169,7 +223,7 @@
       }
     }
     { HBox18 HBox
-      Move(27,297,693,36)
+      Move(0,369,693,36)
       { Label3 Label
         Move(9,0,144,36)
         Alignment = Align.Right
@@ -200,7 +254,7 @@
       }
     }
     { HBox22 HBox
-      Move(27,333,693,36)
+      Move(0,405,693,36)
       { Label19 Label
         Move(9,0,144,36)
         Alignment = Align.Right
@@ -226,7 +280,7 @@
       }
     }
     { HBox20 HBox
-      Move(27,369,693,36)
+      Move(0,441,693,36)
       { Label18 Label
         Move(9,0,144,36)
         Alignment = Align.Right
@@ -260,7 +314,7 @@
       }
     }
     { HBox19 HBox
-      Move(27,414,693,36)
+      Move(0,477,495,36)
       { Label17 Label
         Move(9,0,144,36)
         Alignment = Align.Right
@@ -278,7 +332,7 @@
       }
     }
     { HBox4 HBox
-      Move(27,450,693,36)
+      Move(0,513,486,36)
       { Label5 Label
         Move(9,0,144,36)
         Alignment = Align.Right
@@ -462,10 +516,18 @@
     Index = 2
     Text = ("Imprenta     ")
     Picture = Picture["iconos/impresora.svg"]
+    Index = 3
+    Text = ("Estadísticas     ")
+    Picture = Picture["iconos/chart.svg"]
     Index = 0
   }
+  { Label21 Label
+    Move(486,729,144,36)
+    Alignment = Align.Right
+    Text = ("Fecha de cierre  ")
+  }
   { HBox1 HBox
-    Move(9,684,477,36)
+    Move(9,738,477,36)
     { Spring1 Spring
       Move(90,0,126,36)
     }
