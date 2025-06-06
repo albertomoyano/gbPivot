@@ -4017,6 +4017,11 @@
               Alignment = Align.Right
               Text = ("Anotación XML ")
             }
+            { !btnTEIsincronizar Button
+              Move(216,0,36,36)
+              #Public = True
+              Picture = Picture["iconos/sincronizar.svg"]
+            }
             { !txtANOTACIONtei TextBox
               Move(261,0,216,36)
               #Public = True
@@ -4031,7 +4036,7 @@
               Alignment = Align.Right
               Text = ("Comentarios ")
             }
-            { !btnMostrarTextoExtendido5 Button
+            { !btnTEItextoextendido Button
               Move(216,0,36,36)
               #Public = True
               Picture = Picture["iconos/schedule.svg"]
