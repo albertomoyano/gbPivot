@@ -327,7 +327,7 @@
     }
   }
   { SplitterPrincipal Splitter
-    Move(243,9,1818,1026)
+    Move(252,-72,1818,1026)
     Expand = True
     Centered = True
     Border = False
@@ -469,7 +469,7 @@
       }
     }
     { Panel3 Panel
-      Move(648,18,1125,999)
+      Move(648,90,1125,999)
       Expand = True
       Arrangement = Arrange.Vertical
       Padding = 4
@@ -3985,7 +3985,7 @@
           { HBox133 HBox
             Move(9,126,675,36)
             { Label53 Label
-              Move(18,0,148,32)
+              Move(18,0,153,36)
               Alignment = Align.Right
               Text = ("Tipo ")
             }
@@ -3999,7 +3999,7 @@
           { HBox135 HBox
             Move(9,162,675,36)
             { Label55 Label
-              Move(18,0,148,32)
+              Move(18,0,153,36)
               Alignment = Align.Right
               Text = ("Texto visible ")
             }
@@ -4093,7 +4093,7 @@
         }
         Index = 5
         Text = ("Asistente AI")
-        Picture = Picture["iconos/AI.svg"]
+        Picture = Picture["iconos/deep.svg"]
         { Panel11 Panel
           Move(9,9,783,810)
           Expand = True
