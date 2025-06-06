@@ -98,6 +98,9 @@
       { Menu49 Menu
         Text = ("OJS Native XML")
       }
+      { Menu6 Menu
+        Text = ("TEI (Text Encoding Initiative)")
+      }
       { Menu50 Menu
         Text = ("Validar todos")
       }
@@ -151,38 +154,6 @@
       Picture = Picture["iconos/salir.svg"]
     }
   }
-  { Menu15 Menu
-    Text = ("Salidas")
-    { Menu16 Menu
-      Text = ("Generar PDFs")
-    }
-    { Menu17 Menu
-      Text = ("Generar ePub")
-    }
-    { Menu18 Menu
-      Text = ("Generar DocBook")
-    }
-    { Menu19 Menu
-      Text = ("Generar HTML")
-    }
-    { Menu20 Menu
-      Text = ("Generar XML-JATS SciELO")
-    }
-    { Menu21 Menu
-      Text = ("Generar XML-JATS PMD")
-    }
-    { Menu25 Menu
-    }
-    { Menu6 Menu
-      Text = ("Generar Orden de Taller")
-    }
-    { Menu22 Menu
-      Text = ("Generar PDF para corrector")
-    }
-    { Menu26 Menu
-      Text = ("Generar PDF para catálogo")
-    }
-  }
   { Menu3 Menu
     Text = ("Herramientas")
     { Menu7 Menu
@@ -207,16 +178,17 @@
     }
   }
   { Menu4 Menu
-    Text = ("Acerca de") & "..."
+    Text = ("?")
     { Menu13 Menu
-      Text = ("Gambas")
+      Text = ("Acerca de Gambas")
       Picture = Picture["iconos/logo-gambas.png"]
     }
     { Menu14 Menu
-      Text = ("De los íconos")
+      Text = ("Sobre los íconos de este programa")
+      Picture = Picture["iconos/info.svg"]
     }
     { Menu9 Menu
-      Text = ("gbPivot")
+      Text = ("Visitar la web de gbPivot")
       Picture = Picture["iconos/pivote.png"]
     }
   }
