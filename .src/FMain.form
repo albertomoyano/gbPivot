@@ -15,13 +15,16 @@
     Text = ("menuCompilarLibroTeX")
     Visible = False
     { Menu10 Menu
-      Text = ("Compilar PDF completo para web")
+      Text = ("Compilar PDF para pantalla")
     }
     { Menu45 Menu
       Text = ("Construir separata en PDF por capítulos")
     }
     { Menu11 Menu
       Text = ("Compilar PDF para imprenta")
+    }
+    { combinarPDF Menu
+      Text = ("Combinar PDF (interior + tapa)")
     }
     { Menu46 Menu
     }

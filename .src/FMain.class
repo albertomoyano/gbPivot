@@ -1197,3 +1197,9 @@ Public Sub btnVisitarDOI_Click()
   End Select
 
 End
+
+Public Sub combinarPDF_Click()
+
+  f_CombinarPDF.ShowModal()
+
+End
