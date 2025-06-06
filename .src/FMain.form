@@ -3957,7 +3957,7 @@
           { HBox133 HBox
             Move(9,126,675,36)
             { Label53 Label
-              Move(18,0,153,36)
+              Move(18,0,148,36)
               Alignment = Align.Right
               Text = ("Tipo ")
             }
@@ -3971,7 +3971,7 @@
           { HBox135 HBox
             Move(9,162,675,36)
             { Label55 Label
-              Move(18,0,153,36)
+              Move(18,0,148,36)
               Alignment = Align.Right
               Text = ("Texto visible ")
             }
