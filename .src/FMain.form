@@ -82,15 +82,25 @@
     { Menu40 Menu
     }
     { Menu41 Menu
-      Text = ("Generar XML-JAT-PMD")
-    }
-    { Menu42 Menu
-      Text = ("Generar XML-JAT-SciELO")
-    }
-    { Menu44 Menu
-    }
-    { Menu43 Menu
-      Text = ("Generar todas las salidas")
+      Text = ("Esportar metadatos XML (incluye el .bib)")
+      { Menu42 Menu
+        Text = ("Crossref XML")
+      }
+      { Menu43 Menu
+        Text = ("DOAJ XML")
+      }
+      { Menu44 Menu
+        Text = ("PubMed JATS")
+      }
+      { Menu48 Menu
+        Text = ("SciELO JATS")
+      }
+      { Menu49 Menu
+        Text = ("OJS Native XML")
+      }
+      { Menu50 Menu
+        Text = ("Validar todos")
+      }
     }
   }
   { menuVerRevistaAdoc Menu
@@ -464,13 +474,13 @@
       Arrangement = Arrange.Vertical
       Padding = 4
       { TabPanel1 TabPanel
-        Move(9,18,1116,774)
+        Move(18,18,1116,774)
         Expand = True
         Arrangement = Arrange.Vertical
         Spacing = True
         Margin = True
         Padding = 4
-        Count = 5
+        Count = 6
         Index = 0
         Text = ("Metadatos")
         Picture = Picture["iconos/metadatos.svg"]
@@ -486,7 +496,7 @@
           Text = ("Libro     ")
           Picture = Picture["iconos/titulo.svg"]
           { ScrollViewLibro ScrollView
-            Move(9,-657,837,1458)
+            Move(18,18,837,1458)
             Visible = False
             Expand = True
             Arrangement = Arrange.Vertical
@@ -716,10 +726,21 @@
                 Alignment = Align.Right
                 Text = ("Formato impreso ")
               }
+              { RadioButton1 RadioButton
+                Move(207,0,63,36)
+                Text = ("Sí   ")
+              }
+              { RadioButton2 RadioButton
+                Move(270,0,63,36)
+                Text = ("No  ")
+                Value = True
+              }
               { !txtFormatoLibro TextBox
-                Move(171,0,216,36)
+                Move(360,0,216,36)
                 #Public = True
+                Background = Color.Background
                 Expand = True
+                ReadOnly = True
                 Placeholder = ("Formato final del libro impreso")
               }
             }
@@ -1295,7 +1316,7 @@
         }
         Index = 1
         Text = ("Bibliografia")
-        Picture = Picture["iconos/bibliografia.svg"]
+        Picture = Picture["iconos/bibtex.svg"]
         { Panel5 Panel
           Move(9,0,1107,252)
           Arrangement = Arrange.Horizontal
@@ -3627,7 +3648,7 @@
           { lblAlta2 Label
             Move(45,0,112,36)
             Alignment = Align.Right
-            Text = ("Clave  ")
+            Text = ("Clave GLO  ")
           }
           { !btnAgregarClaveGlosario Button
             Move(162,0,36,36)
@@ -3815,6 +3836,215 @@
           }
         }
         Index = 3
+        Text = ("TEI     ")
+        Picture = Picture["iconos/tei.svg"]
+        { HBox125 Panel
+          Move(18,9,855,198)
+          NoTabFocus = True
+          Arrangement = Arrange.Horizontal
+          { !ViewGridTEI TableView
+            Move(0,0,270,90)
+            #Public = True
+            Font = Font["-1"]
+            Expand = True
+            Mode = Select.Single
+            ShowCursor = True
+            Header = GridView.Horizontal
+            ScrollBar = Scroll.Vertical
+            Resizable = False
+          }
+        }
+        { HBox126 HBox
+          Move(27,252,675,36)
+          { HBox127 HBox
+            Move(0,0,144,36)
+            { !btnNuevoGlosario2 Button
+              Move(-9,0,36,36)
+              #Public = True
+              NoTabFocus = True
+              ToolTip = ("Agregar una nueva referencia")
+              Picture = Picture["iconos/+nuevo.svg"]
+            }
+            { !btnBorrarGlosario2 Button
+              Move(27,0,36,36)
+              #Public = True
+              NoTabFocus = True
+              ToolTip = ("Borrar entrada")
+              Picture = Picture["iconos/borrar.svg"]
+            }
+            { !btnGuardarGlosario2 Button
+              Move(63,0,36,36)
+              #Public = True
+              ToolTip = ("Guardar modificaciones")
+              Picture = Picture["iconos/guardar.svg"]
+            }
+            { !btnGuardarCambiosGlosario2 Button
+              Move(117,0,36,36)
+              #Public = True
+              ToolTip = ("Guardar modificaciones")
+              Picture = Picture["iconos/guardarComo.svg"]
+            }
+          }
+          { !lblTEItotales TextLabel
+            Move(180,0,218,36)
+            #Public = True
+            Expand = True
+            Alignment = Align.Center
+          }
+          { !txtIDtei TextBox
+            Move(567,0,90,36)
+            #Public = True
+            Visible = False
+            Background = Color.Background
+            NoTabFocus = True
+            ReadOnly = True
+          }
+        }
+        { ScrollView1 ScrollView
+          Move(27,297,909,270)
+          Expand = True
+          Arrangement = Arrange.Vertical
+          Spacing = True
+          Padding = 4
+          Border = False
+          ScrollBar = Scroll.Vertical
+          { HBox128 HBox
+            Move(18,18,675,36)
+            { !btnBuscarClaveGLO2 Button
+              Move(0,0,36,36)
+              #Public = True
+              Picture = Picture["iconos/search.svg"]
+            }
+            { lblAlta3 Label
+              Move(45,0,112,36)
+              Alignment = Align.Right
+              Text = ("Clave TEI  ")
+            }
+            { !btnAgregarClaveGlosario2 Button
+              Move(162,0,36,36)
+              #Public = True
+              ToolTip = ("Agregar clave")
+              Picture = Picture["iconos/clave.svg"]
+            }
+            { !txtCLAVEtei TextBox
+              Move(207,0,171,36)
+              #Public = True
+              NoTabFocus = True
+              Expand = True
+              Alignment = Align.Left
+              Placeholder = ("Clave TEI única")
+            }
+          }
+          { HBox129 HBox
+            Move(18,54,675,36)
+            { !btnBuscarFiltroGlosario2 Button
+              Move(0,0,36,36)
+              #Public = True
+              Picture = Picture["iconos/search.svg"]
+            }
+            { lblKEYWORDS8 Label
+              Move(36,0,112,36)
+              #Translate = False
+              Alignment = Align.Right
+              Text = "    Filtro "
+            }
+            { !btnAgregarClaveGlosarioProyecto2 Button
+              Move(162,0,36,36)
+              #Public = True
+              ToolTip = ("Agregar clave")
+              Picture = Picture["iconos/clave.svg"]
+            }
+            { !txtFILTROtei TextBox
+              Move(207,0,171,36)
+              #Public = True
+              NoTabFocus = True
+              Expand = True
+              Placeholder = ("El nombre del proyecto")
+            }
+          }
+          { HBox131 HBox
+            Move(9,90,675,36)
+            { !btnBuscarNombreGlosario2 Button
+              Move(9,0,36,36)
+              #Public = True
+              Picture = Picture["iconos/search.svg"]
+            }
+            { lblKEYWORDS9 Label
+              Move(90,0,112,36)
+              #Translate = False
+              Alignment = Align.Right
+              Text = "identificador "
+            }
+            { !txtIDENTIFICADORtei TextBox
+              Move(261,0,216,36)
+              #Public = True
+              NoTabFocus = True
+              Expand = True
+            }
+          }
+          { HBox133 HBox
+            Move(9,126,675,36)
+            { Label53 Label
+              Move(18,0,148,32)
+              Alignment = Align.Right
+              Text = ("Tipo ")
+            }
+            { !txtTIPOtei TextBox
+              Move(261,0,216,36)
+              #Public = True
+              Expand = True
+              Placeholder = ("Un tipo de entidad")
+            }
+          }
+          { HBox135 HBox
+            Move(9,162,675,36)
+            { Label55 Label
+              Move(18,0,148,32)
+              Alignment = Align.Right
+              Text = ("Texto visible ")
+            }
+            { !txtTEXTOtei TextBox AllTextBoxes
+              Name = "txtTEXTOtei"
+              Move(261,0,216,36)
+              #Public = True
+              Expand = True
+            }
+          }
+          { HBox136 HBox
+            Move(9,198,675,36)
+            { lblLANGID24 Label
+              Move(0,0,148,36)
+              Alignment = Align.Right
+              Text = ("Anotación XML ")
+            }
+            { !txtANOTACIONtei TextBox
+              Move(261,0,216,36)
+              #Public = True
+              Expand = True
+              Placeholder = ("Contenido enriquecido")
+            }
+          }
+          { HBox132 HBox
+            Move(9,234,675,36)
+            { Label52 Label
+              Move(9,0,148,36)
+              Alignment = Align.Right
+              Text = ("Comentarios ")
+            }
+            { !btnMostrarTextoExtendido5 Button
+              Move(216,0,36,36)
+              #Public = True
+              Picture = Picture["iconos/schedule.svg"]
+            }
+            { !txCOMENTARIOStei TextBox AllTextBoxes
+              Name = "txCOMENTARIOStei"
+              Move(261,0,216,36)
+              #Public = True
+              Expand = True
+            }
+          }
+        }
+        Index = 4
         Text = ("Chart")
         Picture = Picture["iconos/chart.svg"]
         { HBox93 HBox
@@ -3861,7 +4091,7 @@
           Move(180,513,198,63)
           Expand = True
         }
-        Index = 4
+        Index = 5
         Text = ("Asistente AI")
         Picture = Picture["iconos/AI.svg"]
         { Panel11 Panel

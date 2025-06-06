@@ -33,7 +33,7 @@
     Text = ("Proyectos     ")
     Picture = Picture["iconos/basededatos.svg"]
     { HBox16 HBox
-      Move(27,0,414,36)
+      Move(27,0,747,36)
       { btnNuevoProyecto Button
         Move(0,0,36,36)
         NoTabFocus = True
