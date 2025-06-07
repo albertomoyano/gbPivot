@@ -531,7 +531,7 @@
               { Separator4 Separator
                 Move(666,0,18,36)
               }
-              { btnGuardarCambiosAutor2 Button
+              { btnGuardarMetadatosLibro Button
                 Move(693,0,36,36)
                 Picture = Picture["iconos/guardarComo.svg"]
               }
