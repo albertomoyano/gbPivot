@@ -1,0 +1,34 @@
+' Gambas module file
+
+Public hResultadoTEI As Result
+
+Public Sub ConfigurarGridTEI(grid As GridView)
+
+  With grid
+    .Header = True
+    .Grid = True
+    .Columns.Count = 8
+
+    ' Configuración de columnas
+    For i As Integer = 0 To 8
+      Select Case i
+        Case 0
+          .Columns[i].Title = "id"
+          .Columns[i].Width = 0
+        Case 1
+          .Columns[i].Title = "Clave"
+          .Columns[i].Width = 200
+        Case 2
+          .Columns[i].Title = "Filtro"
+          .Columns[i].Width = 200
+        Case 3
+          .Columns[i].Title = "Identificador"
+          .Columns[i].Width = 200
+        Case 4
+          .Columns[i].Title = "Tipo"
+          .Columns[i].Width = 200
+      End Select
+    Next
+  End With
+
+End
