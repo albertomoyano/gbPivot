@@ -1,1 +1,55 @@
 ' Gambas class file
+
+' Formulario que pide el nombre del archivo nuevo
+Public RutaDestino As String ' Ruta donde se creará el archivo
+Public ArchivoCreado As String ' Nombre final del archivo creado
+
+Public Sub Form_Open()
+
+  txtNombreArchivo.SetFocus()
+
+End
+
+' Validar que solo se puedan escribir letras a-z, números, punto y permitir teclas de control
+Public Sub txtNombreArchivo_KeyPress()
+  ' Permitir teclas de control (Backspace, Delete, flechas, etc.)
+
+  If Key.Code = Key.BackSpace Or Key.Code = Key.Delete Or Key.Code = Key.Left Or Key.Code = Key.Right Or Key.Code = Key.Home Or Key.Code = Key.End Then
+    Return ' Permite estas teclas
+  Endif
+
+  ' Validar solo caracteres permitidos para el nombre del archivo
+  If Not InStr("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.", Key.Text) Then
+    Stop Event ' Bloquea la tecla
+  Endif
+
+End
+
+' ' Validar que solo se puedan escribir letras a-z y punto (para la extensión)
+' Public Sub txtNombreArchivo_KeyPress()
+'
+'   If Not InStr("0123456789abcdefghijklmnopqrstuvwxyz.", Key.Text) Then
+'     Stop Event ' Bloquea la tecla
+'   Endif
+'
+' End
+
+Public Sub btnCrearArchivo_Click()
+
+  Dim rutaCompleta As String
+
+  If txtNombreArchivo.Text = "" Then Return
+  rutaCompleta = RutaDestino &/ txtNombreArchivo.Text
+
+  If Exist(rutaCompleta) Then
+    Message.Warning("Ya existe un archivo con ese nombre.")
+    Return
+  Endif
+
+  ' Crear archivo vacío
+  File.Save(rutaCompleta, "")
+
+  ArchivoCreado = rutaCompleta
+  Me.Close()
+
+End

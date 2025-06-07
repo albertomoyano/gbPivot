@@ -252,12 +252,12 @@
     }
     { HBox117 HBox
       Move(9,270,207,36)
-      { btnComentarios2 Button
+      { btnAgregarArchivo Button
         Move(0,0,36,36)
         ToolTip = ("Agregar archivo")
         Picture = Picture["iconos/agregardarchivo.svg"]
       }
-      { btnOrdenDeTaller2 Button
+      { btnBorrarArchivo Button
         Move(36,0,36,36)
         Picture = Picture["iconos/borrararchivo.svg"]
       }

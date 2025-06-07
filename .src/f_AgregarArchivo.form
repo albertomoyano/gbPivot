@@ -20,7 +20,7 @@
       Alignment = Align.Center
       Text = ("  Nombre del archivo  ")
     }
-    { txtContratapa TextBox
+    { txtNombreArchivo TextBox
       Move(216,0,216,36)
       NoTabFocus = True
       Expand = True
@@ -31,11 +31,12 @@
     { Spring1 Spring
       Move(36,0,126,27)
     }
-    { btnSalir Button
+    { btnCrearArchivo Button
       Move(216,0,144,36)
       NoTabFocus = True
       Text = ("Crear")
       Picture = Picture["iconos/comp.svg"]
+      Default = True
     }
   }
 }

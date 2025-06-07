@@ -125,17 +125,6 @@ Public Sub Menu8_Click()
 
 End
 
-' Evento click en el DirViewProyecto que actualiza los archivos que se muestran en FileViewProyecto
-Public Sub DirViewProyecto_Click()
-
-  Dim bloquear As Boolean = False
-
-  If Not bloquear Then
-    FileViewProyecto.Dir = DirViewProyecto.Current
-  Endif
-
-End
-
 ' Evento que se ejecuta cuando se detecta un cambio en el directorio
 Public Sub Watcher_Change()
 
@@ -1213,5 +1202,64 @@ End
 Public Sub menuCombinarPDFadoc_Click()
 
   f_CombinarPDF.ShowModal()
+
+End
+
+' Evento para agregar archivo
+Public Sub btnAgregarArchivo_Click()
+  ' Mostrar formulario de creación
+
+  f_AgregarArchivo.RutaDestino = DirViewProyecto.Current
+  f_AgregarArchivo.ShowModal
+  ' Si se creó, actualizamos la vista
+  If f_AgregarArchivo.ArchivoCreado Then
+    FileViewProyecto.Dir = DirViewProyecto.Current
+  Endif
+
+  FileViewProyecto.Reload
+
+End
+
+' Evento click en el DirViewProyecto que actualiza los archivos que se muestran en FileViewProyecto
+Public Sub DirViewProyecto_Click()
+
+  Dim bloquear As Boolean = False
+
+  If Not bloquear Then
+    FileViewProyecto.Dir = DirViewProyecto.Current
+  Endif
+
+End
+
+Public Sub btnBorrarArchivo_Click()
+
+  Dim archivoSeleccionado As String
+  Dim rutaCompleta As String
+  Dim respuesta As Integer
+
+  ' Verificar que hay un archivo seleccionado
+  If FileViewProyecto.Current = "" Then
+    Message.Warning("No hay ningún archivo seleccionado")
+    Return
+  Endif
+
+  ' Obtener el archivo seleccionado y su ruta completa
+  archivoSeleccionado = FileViewProyecto.Current
+  rutaCompleta = FileViewProyecto.Dir &/ archivoSeleccionado
+
+  ' Mostrar alerta de confirmación
+  respuesta = Message.Question("¿Está seguro que desea eliminar el archivo '" & archivoSeleccionado & "'?", "Eliminar", "Cancelar")
+
+  ' Si confirma (OK), eliminar el archivo
+  If respuesta = 1 Then
+    Kill rutaCompleta
+    If Error Then
+      Message.Error("Error al eliminar el archivo: " & Error.Text)
+    Else
+      Message.Info("Archivo eliminado correctamente")
+      ' Refrescar la vista
+      FileViewProyecto.Reload
+    Endif
+  Endif
 
 End
