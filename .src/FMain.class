@@ -1264,3 +1264,78 @@ Public Sub btnConversorWord_Click()
   f_Conversor.ShowModal()
 
 End
+
+Public Sub RadioButtonSi_Click()
+
+  txtFormatoLibro.ReadOnly = False
+  txtFormatoLibro.Background = Color.White
+  txtFormatoLibro.SetFocus
+
+End
+
+Public Sub RadioButtonNo_Click()
+
+  txtFormatoLibro.ReadOnly = True
+  txtFormatoLibro.Background = Color.Background
+  txtFormatoLibro.Text = ""
+
+End
+
+Public Sub rbSi_Click()
+
+  txtColeccionLibro.ReadOnly = False
+  txtColeccionLibro.Background = Color.White
+  txtColeccionLibro.SetFocus
+
+End
+
+Public Sub rbNo_Click()
+
+  txtColeccionLibro.ReadOnly = True
+  txtColeccionLibro.Background = Color.Background
+  txtColeccionLibro.Text = ""
+
+End
+
+Public Sub btnURLeditorial_Click()
+
+  Dim sURL As String
+  Dim sResult As String
+  Dim iExitCode As Integer
+
+  ' Mostrar indicador de carga
+  FMain.Mouse = Mouse.Wait
+
+  sURL = Trim(txtURLEditorial.Text)
+  If sURL = "" Then
+    Message.Error("Por favor, ingresar una URL válida.")
+    FMain.Mouse = Mouse.Default
+    Return
+  Endif
+
+  ' Comando curl con límite de tiempo y otras mejoras
+  ' --connect-timeout: límite de tiempo para la conexión (5 segundos)
+  ' --max-time: límite de tiempo total para la operación (10 segundos)
+  Shell "curl -s -o /dev/null -w '%{http_code}' -L --connect-timeout 5 --max-time 10 -A 'Mozilla/5.0'" & " " & Quote(sURL) To sResult
+  iExitCode = Process.LastValue
+
+  ' Restaurar el cursor
+  FMain.Mouse = Mouse.Default
+
+  ' Evaluar código de estado HTTP
+  Select Case sResult
+    Case "200"
+      Message.Info("La <strong>URL existe</strong> y respondió con código 200.")
+    Case "301", "302"
+      Message.Info("La <strong>URL fue redireccionada</strong> y respondió con código " & sResult & ".")
+    Case "404"
+      Message.Error("La <strong>URL no existe</strong> y respondió con 404 Not Found.")
+    Case "500", "503"
+      Message.Error("<strong>Error del servidor</strong> (" & sResult & "). Intenta nuevamente más tarde.")
+    Case "000"
+      Message.Error("Tiempo de espera agotado o no se pudo conectar al servidor.")
+    Case Else
+      Message.Error("Código de respuesta desconocido: <strong>" & sResult & "<strong>.")
+  End Select
+
+End

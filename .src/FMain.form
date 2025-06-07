@@ -207,7 +207,7 @@
       Move(27,9,171,4)
     }
     { HBox119 HBox
-      Move(9,63,216,36)
+      Move(9,36,216,36)
       { btnEmpujarGitLocal Button
         Move(0,0,36,36)
         ToolTip = ("Empujar a Git local")
@@ -223,6 +223,9 @@
         Expand = True
       }
     }
+    { HBox130 HBox
+      Move(9,81,171,4)
+    }
     { HBox14 HBox
       Move(9,108,216,36)
       { btnConversorWord Button
@@ -233,11 +236,6 @@
       { btnComentarios Button
         Move(36,0,36,36)
         Picture = Picture["iconos/cafe.svg"]
-      }
-      { btnOrdenDeTaller Button
-        Move(72,0,36,36)
-        ToolTip = ("Orden de taller para imprenta")
-        Picture = Picture["iconos/impresora.svg"]
       }
       { Spring2 Spring
         Move(171,0,27,36)
@@ -469,7 +467,7 @@
         Text = ("Metadatos")
         Picture = Picture["iconos/metadatos.svg"]
         { TabPanel3 TabPanel
-          Move(9,27,1062,711)
+          Move(18,18,1062,711)
           Expand = True
           Arrangement = Arrange.Fill
           Spacing = True
@@ -480,7 +478,7 @@
           Text = ("Libro     ")
           Picture = Picture["iconos/titulo.svg"]
           { ScrollViewLibro ScrollView
-            Move(18,18,837,1458)
+            Move(18,9,837,1458)
             Visible = False
             Expand = True
             Arrangement = Arrange.Vertical
@@ -600,7 +598,7 @@
               }
             }
             { HBox76 HBox
-              Move(0,189,783,36)
+              Move(27,189,783,36)
               { Label34 Label
                 Move(0,0,162,36)
                 Alignment = Align.Right
@@ -710,11 +708,11 @@
                 Alignment = Align.Right
                 Text = ("Formato impreso ")
               }
-              { RadioButton1 RadioButton
+              { RadioButtonSi RadioButton
                 Move(207,0,63,36)
                 Text = ("Sí   ")
               }
-              { RadioButton2 RadioButton
+              { RadioButtonNo RadioButton
                 Move(270,0,63,36)
                 Text = ("No  ")
                 Value = True
@@ -735,10 +733,22 @@
                 Alignment = Align.Right
                 Text = ("Colección/Serie ")
               }
+              { rbSi RadioButton
+                Move(207,0,63,36)
+                Text = ("Sí   ")
+              }
+              { rbNo RadioButton
+                Move(270,0,63,36)
+                Text = ("No  ")
+                Value = True
+              }
               { !txtColeccionLibro TextBox
-                Move(171,0,216,36)
+                Move(360,0,216,36)
                 #Public = True
+                Background = Color.Background
                 Expand = True
+                ReadOnly = True
+                Placeholder = ("Completar si el libro pertenece a un colección")
               }
             }
             { HBox100 HBox
@@ -882,7 +892,7 @@
                 Alignment = Align.Right
                 Text = ("URL de la editorial ")
               }
-              { !btnBuscarURL2 Button
+              { !btnURLeditorial Button
                 Move(171,0,36,36)
                 #Public = True
                 Picture = Picture["iconos/sincronizar.svg"]

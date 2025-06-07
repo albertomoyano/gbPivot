@@ -9,7 +9,6 @@ Component=gb.form
 Component=gb.db
 Component=gb.db.form
 Component=gb.db.mysql
-Component=gb.db.sqlite3
 Component=gb.form.dialog
 Component=gb.term
 Component=gb.form.terminal
