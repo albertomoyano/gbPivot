@@ -125,7 +125,7 @@ Public Sub Menu8_Click()
 
 End
 
-' Evento click en DirView actualiza los archivos que se muestran en FileView1
+' Evento click en el DirViewProyecto que actualiza los archivos que se muestran en FileViewProyecto
 Public Sub DirViewProyecto_Click()
 
   Dim bloquear As Boolean = False
