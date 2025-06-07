@@ -25,15 +25,6 @@ Public Sub txtNombreArchivo_KeyPress()
 
 End
 
-' ' Validar que solo se puedan escribir letras a-z y punto (para la extensión)
-' Public Sub txtNombreArchivo_KeyPress()
-'
-'   If Not InStr("0123456789abcdefghijklmnopqrstuvwxyz.", Key.Text) Then
-'     Stop Event ' Bloquea la tecla
-'   Endif
-'
-' End
-
 Public Sub btnCrearArchivo_Click()
 
   Dim rutaCompleta As String
