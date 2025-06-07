@@ -97,10 +97,6 @@
       Text = ("Compaginar")
       Picture = Picture["iconos/comp.svg"]
     }
-    { Separator1 Separator
-      Move(531,0,9,36)
-      Foreground = Color.Transparent
-    }
     { btnSalir Button
       Move(756,0,144,36)
       NoTabFocus = True

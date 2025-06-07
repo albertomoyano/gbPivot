@@ -23,7 +23,7 @@
     { Menu11 Menu
       Text = ("Compilar PDF para imprenta")
     }
-    { combinarPDF Menu
+    { combinarPDFtex Menu
       Text = ("Combinar PDF (interior + tapa)")
     }
     { Menu46 Menu
@@ -37,6 +37,14 @@
     Visible = False
     { Menu23 Menu
       Text = ("Generar PDF completo")
+    }
+    { Menu17 Menu
+      Text = ("Construir separata en PDF por capítulos")
+    }
+    { menuCombinarPDFadoc Menu
+      Text = ("Combinar PDF (interior + tapa)")
+    }
+    { Menu16 Menu
     }
     { Menu27 Menu
       Text = ("Generar ePub")
@@ -80,7 +88,7 @@
       Text = ("Generar PDF completo")
     }
     { Menu37 Menu
-      Text = ("Generar PDF por artículos")
+      Text = ("Generar separata en PDF por artículos")
     }
     { Menu40 Menu
     }
@@ -196,7 +204,7 @@
     }
   }
   { PanelProyectos Panel
-    Move(9,9,234,693)
+    Move(9,18,234,693)
     Visible = False
     Arrangement = Arrange.Vertical
     { HBox21 HBox
@@ -302,12 +310,12 @@
     }
   }
   { SplitterPrincipal Splitter
-    Move(252,-72,1818,1026)
+    Move(252,18,1818,1026)
     Expand = True
     Centered = True
     Border = False
     { Panel1 Panel
-      Move(0,63,639,441)
+      Move(0,54,639,441)
       Expand = True
       Arrangement = Arrange.Vertical
       Padding = 4
@@ -444,7 +452,7 @@
       }
     }
     { Panel3 Panel
-      Move(648,90,1125,999)
+      Move(648,0,1125,999)
       Expand = True
       Arrangement = Arrange.Vertical
       Padding = 4

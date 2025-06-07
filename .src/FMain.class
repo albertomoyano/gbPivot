@@ -147,6 +147,12 @@ End
 
 Public Sub ToggleButtonMostrar_Click()
 
+  MostrarConsola()
+
+End Sub
+
+Public Sub MostrarConsola()
+
   ' Cambiar visibilidad del TabPanel2 según el estado del botón
   If ToggleButtonMostrar.Value Then
     TabPanel2.Visible = True
@@ -154,7 +160,7 @@ Public Sub ToggleButtonMostrar_Click()
     TabPanel2.Visible = False
   End If
 
-End Sub
+End
 
 Public Sub Chequear_Realizados()
   ' Función para chequear si hay elementos completados de la lista así habilitamos / deshabilitamos el menú de borrado los elementos completados
@@ -1198,7 +1204,13 @@ Public Sub btnVisitarDOI_Click()
 
 End
 
-Public Sub combinarPDF_Click()
+Public Sub combinarPDFtex_Click()
+
+  f_CombinarPDF.ShowModal()
+
+End
+
+Public Sub menuCombinarPDFadoc_Click()
 
   f_CombinarPDF.ShowModal()
 
