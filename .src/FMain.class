@@ -92,12 +92,6 @@ Public Sub Menu2_Click()
 
 End
 
-Public Sub Menu7_Click()
-
-  f_Conversor.ShowModal()
-
-End
-
 Public Sub TimerParcial_Timer()
 
   ' Incrementamos los segundos
@@ -1262,5 +1256,11 @@ Public Sub btnBorrarArchivo_Click()
       FileViewProyecto.Reload
     Endif
   Endif
+
+End
+
+Public Sub btnConversorWord_Click()
+
+  f_Conversor.ShowModal()
 
 End

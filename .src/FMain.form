@@ -167,10 +167,6 @@
   }
   { Menu3 Menu
     Text = ("Herramientas")
-    { Menu7 Menu
-      Text = ("Conversor de .docx --> .asciidoc")
-      Picture = Picture["iconos/conversor.svg"]
-    }
     { Menu8 Menu
       Text = ("Exportar referencias bibliogáficas")
       Picture = Picture["iconos/exportarbib.svg"]
@@ -210,36 +206,41 @@
     { HBox21 HBox
       Move(27,9,171,4)
     }
-    { HBox14 HBox
-      Move(9,27,216,36)
-      { btnComentarios Button
-        Move(0,0,36,36)
-        Picture = Picture["iconos/cafe.svg"]
-      }
-      { btnOrdenDeTaller Button
-        Move(36,0,36,36)
-        ToolTip = ("Orden de taller para imprenta")
-        Picture = Picture["iconos/impresora.svg"]
-      }
+    { HBox119 HBox
+      Move(9,63,216,36)
       { btnEmpujarGitLocal Button
-        Move(72,0,36,36)
+        Move(0,0,36,36)
         ToolTip = ("Empujar a Git local")
         Picture = Picture["iconos/git-local.svg"]
       }
-      { Spring2 Spring
-        Move(171,0,27,36)
-      }
-    }
-    { HBox119 HBox
-      Move(9,63,216,36)
       { btnEmpujarGitHub Button
-        Move(0,0,36,36)
+        Move(36,0,36,36)
         Picture = Picture["iconos/gitremoto.svg"]
       }
       { !txtUsuarioGit TextBox
-        Move(36,0,108,36)
+        Move(99,0,108,36)
         #Public = True
         Expand = True
+      }
+    }
+    { HBox14 HBox
+      Move(9,108,216,36)
+      { btnConversorWord Button
+        Move(0,0,36,36)
+        ToolTip = ("Empujar a Git local")
+        Picture = Picture["iconos/word-1.svg"]
+      }
+      { btnComentarios Button
+        Move(36,0,36,36)
+        Picture = Picture["iconos/cafe.svg"]
+      }
+      { btnOrdenDeTaller Button
+        Move(72,0,36,36)
+        ToolTip = ("Orden de taller para imprenta")
+        Picture = Picture["iconos/impresora.svg"]
+      }
+      { Spring2 Spring
+        Move(171,0,27,36)
       }
     }
     { !DirViewProyecto DirView
