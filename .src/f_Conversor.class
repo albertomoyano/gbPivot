@@ -20,7 +20,7 @@ Public Sub btnBuscar_Click()
   Endif
 
   Dialog.AutoExt = True
-  Dialog.Path = User.Home
+  Dialog.Path = File.Dir(FMain.txtProyecto.Text) & "/originales/"
 
   If Not Dialog.OpenFile() Then
     txtORIGEN.Text = Dialog.Path
@@ -46,6 +46,12 @@ Public Sub txtDESTINO_KeyRelease()
   Dim caracteresPermitidos As String = "abcdefghijklmnopqrstuvwxyz0123456789"
   Dim texto As String = txtDESTINO.Text
   Dim textoFiltrado As String = ""
+
+  If txtRutaSalida.Text = "" Then
+    txtDESTINO.Text = ""
+    Message.Info("Primero debe indicar una carpeta de destico válida", "Aceptar")
+    Return
+  Endif
 
   ' Filtrar caracteres no permitidos
   For i As Integer = 1 To Len(texto)
@@ -155,5 +161,14 @@ End
 Public Sub btnListo_Click()
 
   Me.Close()
+
+End
+
+Public Sub btnDestino_Click()
+
+  Dialog.Path = File.Dir(FMain.txtProyecto.Text) & "/art-cap/"
+  If Not Dialog.SelectDirectory() Then
+    txtRutaSalida.Text = Dialog.Path
+  Endif
 
 End
