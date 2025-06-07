@@ -28,10 +28,28 @@ End
 Public Sub btnCrearArchivo_Click()
 
   Dim rutaCompleta As String
+  Dim partes As String[]
+  Dim extension As String
 
   If txtNombreArchivo.Text = "" Then Return
-  rutaCompleta = RutaDestino &/ txtNombreArchivo.Text
 
+  ' Validar que el nombre tenga una extensión válida
+  partes = Split(txtNombreArchivo.Text, ".")
+  If partes.Count < 2 Then
+    Message.Warning("El archivo debe tener una extensión válida (ej: .js .tex, .adoc, .html).")
+    Return
+  Endif
+
+  ' Obtener la extensión (última parte después del punto)
+  extension = partes[partes.Count - 1]
+
+  ' Validar que la extensión tenga entre 2 y 4 caracteres
+  If Len(extension) < 2 Or Len(extension) > 4 Then
+    Message.Warning("La extensión debe tener entre 2 y 4 caracteres (ej: .js .tex, .adoc, .html).")
+    Return
+  Endif
+
+  rutaCompleta = RutaDestino &/ txtNombreArchivo.Text
   If Exist(rutaCompleta) Then
     Message.Warning("Ya existe un archivo con ese nombre.")
     Return
@@ -39,8 +57,27 @@ Public Sub btnCrearArchivo_Click()
 
   ' Crear archivo vacío
   File.Save(rutaCompleta, "")
-
   ArchivoCreado = rutaCompleta
   Me.Close()
 
 End
+
+' Public Sub btnCrearArchivo_Click()
+'
+'   Dim rutaCompleta As String
+'
+'   If txtNombreArchivo.Text = "" Then Return
+'   rutaCompleta = RutaDestino &/ txtNombreArchivo.Text
+'
+'   If Exist(rutaCompleta) Then
+'     Message.Warning("Ya existe un archivo con ese nombre.")
+'     Return
+'   Endif
+'
+'   ' Crear archivo vacío
+'   File.Save(rutaCompleta, "")
+'
+'   ArchivoCreado = rutaCompleta
+'   Me.Close()
+'
+' End
